@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+ERROR=1
+
+cd /Library/Application\ Support/TextMate/Bundles || exit $ERROR
+
+for bundle in *.tmbundle; do
+  echo "Updating ${bundle}..."
+  svn up "${bundle}"
+done
+
+osascript -e 'tell app "TextMate" to reload bundles'

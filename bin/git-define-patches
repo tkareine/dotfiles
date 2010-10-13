@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+echo_and_eval() {
+  cmd="$@"
+  echo -e "$cmd\n"
+  eval $cmd
+}
+
+if [ -n "$1" ]; then
+  SUBJECT_PREFIX="$1"
+  shift
+else
+  SUBJECT_PREFIX="PATCH"
+fi
+
+if [ -n "$1" ]; then
+  REVISION="$1"
+  shift
+else
+  REVISION="master"
+fi
+
+echo_and_eval "rm -f 00??-*.patch"
+echo_and_eval "git format-patch -M -n --no-binary --subject-prefix=\"$SUBJECT_PREFIX\" $* \"$REVISION\""

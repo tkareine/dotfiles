@@ -1,0 +1,20 @@
+--pager=less -R
+
+--type-add=objc=.pch
+
+--type-set=clojure=.clj
+--type-set=excel=.xls
+--type-set=haml=.haml
+--type-set=markdown=.markdown,.md
+--type-set=nib=.xib
+--type-set=plain_text=.text,.txt
+--type-set=plist=.plist
+--type-set=ragel=.rl
+--type-set=rdoc=.rdoc
+--type-set=ronn=.ron,.ronn
+--type-set=textmatestuff=.tm_build_errors,.tmproj
+--type-set=xcode=.pbxproj,.pbxuser,.perspectivev3
+
+--nonib
+--notextmatestuff
+--noxcode
