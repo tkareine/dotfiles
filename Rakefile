@@ -21,7 +21,7 @@ task :install do
       puts "linking: #{destination} -> #{source}"
       FileUtils.ln_s(source, destination)
     elsif File.symlink?(destination) && File.identical?(File.readlink(destination), file)
-      puts "installed already: #{destination}"
+      puts "installed already, skipping: #{destination}"
     else
       puts "exists already, skipping: #{destination}"
     end
