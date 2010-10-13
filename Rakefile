@@ -16,7 +16,7 @@ task :install do
 
     destination = in_home(file)
 
-    if !File.file? destination
+    if !File.exist? destination
       source = File.expand_path(file)
       puts "linking: #{destination} -> #{source}"
       FileUtils.ln_s(source, destination)
