@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 
 echo_and_eval() {
-  cmd="$@"
+  local cmd="$@"
   echo -e "$cmd\n"
-  eval $cmd
+  eval "$cmd"
 }
 
-if [[ "$#" -lt 2 ]]; then
+if [[ $# -lt 2 ]]; then
     cat <<END
 Usage: $0 <subject-prefix> <rev-comp> [options...]
 
@@ -26,4 +26,4 @@ rev_comp="$2"
 shift 2
 
 echo_and_eval "rm -f 00??-*.patch"
-echo_and_eval "git format-patch -M -n --no-binary --subject-prefix=\"$subject_prefix\" "$@" \"$rev_comp\""
+echo_and_eval "git format-patch -M -n --no-binary --subject-prefix='$subject_prefix' $@ $rev_comp"
