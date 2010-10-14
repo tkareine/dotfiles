@@ -15,7 +15,7 @@
   st  = status
 [core]
   editor = vi
-  excludesfile = /Users/tuomas/.gitignore
+  excludesfile = ~/.gitignore
 [merge]
   conflictstyle = diff3
   tool = opendiff
