@@ -60,7 +60,7 @@ fi
 
 # Apache Maven 2
 export M2_HOME=~/.m2
-export M2_REPO=~/.m2/repository
+export M2_REPO="${M2_HOME}/repository"
 
 # Ruby Version Manager
 [[ -s "${HOME}/.rvm/scripts/rvm" ]] && source "${HOME}/.rvm/scripts/rvm"
