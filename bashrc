@@ -12,19 +12,8 @@ fn_exists() {
 
 #-- platform independent environment -----------------------------------------
 
-# localisation
-export LANG="UTF-8"                     # fallback if LC_specific not set
-export LC_ADDRESS="fi_FI.UTF-8"
-export LC_COLLATE="fi_FI.UTF-8"         # sort order, eg. a" &auml; is after z
-export LC_CTYPE="fi_FI.UTF-8"           # which characters are letter
-export LC_MEASUREMENT="fi_FI.UTF-8"     # metric system
-export LC_MESSAGES="en_US.UTF-8"        # language
-export LC_MONETARY="fi_FI.UTF-8"        # EUR
-export LC_NAME="fi_FI.UTF-8"
-export LC_NUMERIC="fi_FI.UTF-8"         # 100 000,02 fi keyboard numpad has comma not dot
-export LC_PAPER="fi_FI.UTF-8"           # A4, can't print without this
-export LC_TELEPHONE="fi_FI.UTF-8"
-export LC_TIME="en_US.UTF-8"
+# localization
+export LANG="en_US.UTF-8"
 
 # local system executables take precedence global system executables
 [[ -d /usr/local/bin ]] && export PATH=/usr/local/bin:"${PATH}"
