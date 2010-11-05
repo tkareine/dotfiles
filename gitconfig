@@ -1,8 +1,6 @@
 [user]
   email = tkareine@gmail.com
   name = Tuomas Kareinen
-[color]
-  ui = auto
 [alias]
   br  = branch
   ci  = commit -v
@@ -13,11 +11,16 @@
   lg  = log -p
   rv  = revert
   st  = status
+[color]
+  ui = auto
 [core]
   editor = vi
   excludesfile = ~/.gitignore
-[merge]
-  conflictstyle = diff3
+[diff]
   tool = opendiff
+[difftool]
+  prompt = false
 [format]
   numbered = auto
+[merge]
+  conflictstyle = diff3
