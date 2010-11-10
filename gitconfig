@@ -8,7 +8,7 @@
   df  = diff
   dfc = diff --cached
   gr  = grep -n
-  lg  = log -p
+  lg  = log --patch-with-stat
   rv  = revert
   st  = status
 [color]
