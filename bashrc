@@ -53,6 +53,9 @@ export M2_REPO=~/.m2/repository
 # JRebel
 export REBEL_HOME=~/opt/jrebel
 
+# Scala
+export SCALA_HOME=/usr/local/Cellar/scala/2.8.1/libexec
+
 # Ruby Version Manager
 [[ -s "${HOME}/.rvm/scripts/rvm" ]] && source "${HOME}/.rvm/scripts/rvm"
 [[ -r $rvm_path/scripts/completion ]] && source $rvm_path/scripts/completion
