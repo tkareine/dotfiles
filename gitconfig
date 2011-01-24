@@ -25,3 +25,5 @@
   numbered = auto
 [merge]
   conflictstyle = diff3
+[push]
+  default = nothing
