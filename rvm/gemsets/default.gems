@@ -6,4 +6,3 @@ mocha
 rake
 rdoc
 rspec
-trollop
