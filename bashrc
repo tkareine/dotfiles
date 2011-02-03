@@ -87,6 +87,12 @@ if [[ -n $PS1 ]]; then
     export HISTFILESIZE=2000
     export HISTSIZE=2000
 
+    # git prompt configuration
+    export GIT_PS1_SHOWDIRTYSTATE=true
+    export GIT_PS1_SHOWSTASHSTATE=
+    export GIT_PS1_SHOWUNTRACKEDFILES=true
+    export GIT_PS1_SHOWUPSTREAM="auto"
+
     # color support for prompt and ls
     if [[ -x /usr/bin/tput ]] && tput setaf 1 &>/dev/null; then
         case "`uname`" in
