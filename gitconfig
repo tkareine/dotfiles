@@ -1,29 +1,29 @@
 [user]
-  email = tkareine@gmail.com
-  name = Tuomas Kareinen
+	email = tkareine@gmail.com
+	name = Tuomas Kareinen
 [alias]
-  br  = branch
-  ci  = commit -v
-  co  = checkout
-  cp  = cherry-pick
-  df  = diff
-  dfc = diff --cached
-  gr  = grep -n
-  lg  = log --patch-with-stat --decorate
-  rv  = revert
-  st  = status
+	br  = branch
+	ci  = commit -v
+	co  = checkout
+	cp  = cherry-pick
+	df  = diff
+	dfc = diff --cached
+	gr  = grep -n
+	lg  = log --patch-with-stat --decorate
+	rv  = revert
+	st  = status
 [color]
-  ui = auto
+	ui = auto
 [core]
-  editor = vi
-  excludesfile = ~/.gitignore
+	editor = vi
+	excludesfile = ~/.gitignore
 [diff]
-  tool = opendiff
+	tool = opendiff
 [difftool]
-  prompt = false
+	prompt = false
 [format]
-  numbered = auto
+	numbered = auto
 [merge]
-  conflictstyle = diff3
+	conflictstyle = diff3
 [push]
-  default = nothing
+	default = nothing
