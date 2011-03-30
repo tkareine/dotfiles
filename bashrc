@@ -134,8 +134,8 @@ if [[ -n $PS1 ]]; then
         ;;
     esac
 
-    if [[ -d ~/lib/bash-completions ]]; then
-        for completion_file in ~/lib/bash-completions/*.bash; do
+    if [[ -d ~/lib/bash-completion ]]; then
+        for completion_file in ~/lib/bash-completion/*.bash; do
             source "$completion_file"
         done
     fi
