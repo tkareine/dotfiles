@@ -54,7 +54,7 @@ export M2_REPO=~/.m2/repository
 export REBEL_HOME=~/opt/jrebel
 
 # npm for node.js
-export NODE_PATH=/usr/local/lib/node
+export NODE_PATH=/usr/local/lib/node_modules
 
 # Scala
 export SCALA_HOME=/usr/local/Cellar/scala/2.8.1/libexec
