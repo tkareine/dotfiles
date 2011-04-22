@@ -110,7 +110,7 @@ if [[ -n $PS1 ]]; then
             alias ls='ls -F --color=auto'
             ;;
         esac
-        prompt_user_and_host="\[\033[1;32m\]\u@\h\[\033[0m\] "
+        prompt_user_and_host="\[\033[0;32m\]\u@\h\[\033[0m\] "
         prompt_pwd="\[\033[1;33m\]\w\[\033[0m\] "
         prompt_end="\[\033[1;32m\]$\[\033[0m\] "
     else
@@ -121,8 +121,8 @@ if [[ -n $PS1 ]]; then
     prompt_git=""
     fn_exists __git_ps1 && prompt_git="\$(__git_ps1 '(%s) ')"
     prompt_rvm=""
-    [[ -x ~/.rvm/bin/rvm-prompt ]] && prompt_rvm="\$(~/.rvm/bin/rvm-prompt) "
-    PS1="${prompt_user_and_host}${prompt_rvm}${prompt_pwd}${prompt_git}${prompt_end}"
+    [[ -x ~/.rvm/bin/rvm-prompt ]] && prompt_rvm="(\$(~/.rvm/bin/rvm-prompt)) "
+    PS1="${prompt_user_and_host}${prompt_pwd}${prompt_git}${prompt_rvm}\n${prompt_end}"
     unset prompt_user_and_host prompt_rvm prompt_pwd prompt_git prompt_end
 
     # if this is an xterm set the title to user@host:dir
