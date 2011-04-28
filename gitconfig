@@ -10,6 +10,7 @@
 	dfc = diff --cached
 	gr  = grep -n
 	lg  = log --patch-with-stat --decorate
+	pl  = pull --ff-only
 	rv  = revert
 	st  = status
 [color]
