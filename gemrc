@@ -2,4 +2,4 @@
 :sources:
 - http://rubygems.org/
 gem: --no-ri --rdoc
-rdoc: --inline-source --line-numbers --fmt=html --template=hanna
+rdoc: --inline-source --line-numbers --fmt=html
