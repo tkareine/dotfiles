@@ -1,8 +1,6 @@
 bundler
-hanna
 json
 minitest
 mocha
 rake
 rdoc
-rspec
