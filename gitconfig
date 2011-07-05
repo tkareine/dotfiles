@@ -8,6 +8,7 @@
 	cp  = cherry-pick
 	df  = diff
 	dfc = diff --cached
+	fep = fetch --prune
 	gr  = grep -n
 	lg  = log --patch-with-stat --decorate
 	pl  = pull --ff-only
