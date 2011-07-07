@@ -1,0 +1,8 @@
+#!/bin/sh
+
+BASENAME=`basename $0`
+OUT_FILE=`mktemp ~/tmp/${BASENAME}.XXXXXX` || exit 1
+
+echo "ARGS  : $@" > "$OUT_FILE"
+echo "STDIN :" >> "$OUT_FILE"
+cat >> "$OUT_FILE"
