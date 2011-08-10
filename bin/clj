@@ -3,7 +3,7 @@
 # With no arguments, runs Clojure's REPL.
 
 # resolve links - $0 may be a softlink
-classpath="$CLASSPATH:$(brew --cellar)/clojure/1.2.0/clojure.jar"
+classpath="$CLASSPATH:$(brew --cellar)/clojure/1.2.1/clojure.jar"
 breakchars="(){}[],^%$#@\"\";:''|\\"
 
 if [[ $# -eq 0 ]]; then
