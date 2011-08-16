@@ -111,13 +111,11 @@ autocmd BufReadPost *
 map <Leader>d :execute 'NERDTreeToggle ' . getcwd()<CR>
 map <F10>     :execute 'NERDTreeToggle ' . getcwd()<CR>
 
-" plugin FuzzyFinder TextMate
+" plugin FuzzyFinder
 let g:fuzzy_ceiling = 20000
 let g:fuzzy_ignore = "*~,*.*.swp,*.log,*.gz,*.zip"
 let g:fuzzy_matching_limit = 200
 
-map <Leader>f :FuzzyFinderTextMate<CR>
-map <F9>      :FuzzyFinderTextMate<CR>
 map <Leader>b :FuzzyFinderBuffer<CR>
 map <F8>      :FuzzyFinderBuffer<CR>
 
