@@ -2,6 +2,7 @@
 	email = tkareine@gmail.com
 	name = Tuomas Kareinen
 [alias]
+	authors = !sh -c 'git log --format=\"%an <%ae>\" ${1-master} -- | sort | uniq' -
 	br  = branch
 	ci  = commit -v
 	co  = checkout
