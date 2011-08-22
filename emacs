@@ -14,6 +14,12 @@
 (line-number-mode 1)
 (column-number-mode 1)
 
+;; Font
+(set-default-font "Inconsolata-14")
+
+;; Frame width and height
+(if (window-system) (set-frame-size (selected-frame) 140 60))
+
 ;; Prevent extraneous tabs
 (setq-default indent-tabs-mode nil)
 
