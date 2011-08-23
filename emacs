@@ -61,3 +61,19 @@
 
 ;;; JavaScript settings
 (setq js-indent-level 2)
+
+;;; Scala language support
+(let* ((root-dir   (car (file-expand-wildcards "/usr/local/Cellar/scala/*" t)))
+       (elisp-dir  (concat root-dir "/libexec/misc/scala-tool-support/emacs")))
+  (add-to-list 'load-path elisp-dir))
+(require 'scala-mode-auto)
+
+;;; Erlang language support
+(let* ((root-dir  "/usr/local/lib/erlang")
+       (bin-dir   (expand-file-name "bin" root-dir))
+       (elisp-dir (car (file-expand-wildcards (concat root-dir
+                                                      "/lib/tools-2.6.*/emacs") t))))
+  (setq erlang-root-dir root-dir)
+  (add-to-list 'load-path elisp-dir)
+  (add-to-list 'exec-path bin-dir))
+(require 'erlang-start)
