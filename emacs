@@ -21,7 +21,7 @@
 (column-number-mode t)
 
 ;;; No blinking cursor
-(blink-cursor-mode nil)
+(blink-cursor-mode 0)
 
 ;;; Show file size
 (size-indication-mode t)
