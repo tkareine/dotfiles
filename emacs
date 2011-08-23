@@ -53,6 +53,9 @@
 ;;; OS X: use Command as meta key
 (setq mac-command-modifier 'meta)
 
+;;; Custom key bindings
+(global-set-key (kbd "M-p") 'dabbrev-expand)
+
 ;;; Prevent extraneous tabs
 (setq-default indent-tabs-mode nil)
 
