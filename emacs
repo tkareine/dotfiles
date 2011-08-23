@@ -32,6 +32,10 @@
 ;;; Frame width and height
 (if (boundp 'window-system) (set-frame-size (selected-frame) 140 60))
 
+;;; Switch buffers and windows interactively
+(ido-mode 1)
+(setq ido-enable-flex-matching t)
+
 ;;; Enable backup files
 (setq make-backup-files t)
 
