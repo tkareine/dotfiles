@@ -44,6 +44,9 @@
 ;;; Save all backup files in this directory
 (setq backup-directory-alist `((".*" . "~/.emacs_backups/")))
 
+;;; Silently delete old backup files
+(setq delete-old-versions t)
+
 ;;; OS X: allow entering special chars via Option key
 (setq mac-option-modifier nil)
 
