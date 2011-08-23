@@ -71,6 +71,13 @@
   (add-to-list 'load-path elisp-dir))
 (require 'scala-mode-auto)
 
+;;; Ensime for Scala language
+(let* ((root-dir   (car (file-expand-wildcards "~/opt/ensime_*" t)))
+       (elisp-dir  (concat root-dir "/elisp")))
+  (add-to-list 'load-path elisp-dir))
+(require 'ensime)
+(add-hook 'scala-mode-hook 'ensime-scala-mode-hook)
+
 ;;; Erlang language support
 (let* ((root-dir  "/usr/local/lib/erlang")
        (bin-dir   (expand-file-name "bin" root-dir))
