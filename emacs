@@ -32,15 +32,6 @@
 ;;; Frame width and height
 (if (boundp 'window-system) (set-frame-size (selected-frame) 140 60))
 
-;;; Prevent extraneous tabs
-(setq-default indent-tabs-mode nil)
-
-;;; Default indentation
-(setq standard-indent 2)
-
-;;; Language specific settings
-(setq js-indent-level 2)
-
 ;;; Enable backup files
 (setq make-backup-files t)
 
@@ -58,3 +49,12 @@
 
 ;;; OS X: use Command as meta key
 (setq mac-command-modifier 'meta)
+
+;;; Prevent extraneous tabs
+(setq-default indent-tabs-mode nil)
+
+;;; Default indentation
+(setq standard-indent 2)
+
+;;; JavaScript settings
+(setq js-indent-level 2)
