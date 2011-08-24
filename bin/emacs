@@ -1,0 +1,10 @@
+#!/usr/bin/env sh
+
+bin=$(\find /usr/local/Cellar/emacs -name 'Emacs' | tail -1)
+
+if test -z "$bin" || test ! -x "$bin"; then
+    echo "Emacs not found"
+    exit 1
+fi
+
+"$bin" "$@"
