@@ -58,7 +58,9 @@
 (setq mac-command-modifier 'meta)
 
 ;;; Custom key bindings
-(global-set-key (kbd "M-p") 'dabbrev-expand)
+(global-set-key [kp-delete]    'delete-char)
+(global-set-key [M-kp-delete]  'kill-word)
+(global-set-key (kbd "M-p")    'dabbrev-expand)
 
 ;;; Prevent extraneous tabs
 (setq-default indent-tabs-mode nil)
