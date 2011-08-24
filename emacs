@@ -32,16 +32,6 @@
 ;;; Frame width and height
 (if (boundp 'window-system) (set-frame-size (selected-frame) 140 60))
 
-;;; Color theme support
-(add-to-list 'load-path "~/.emacs.d/site-lisp/color-theme")
-(add-to-list 'load-path "~/.emacs.d/site-lisp/color-theme-solarized")
-(require 'color-theme)
-(require 'color-theme-solarized)
-(eval-after-load "color-theme"
-  '(progn
-     (color-theme-initialize)
-     (color-theme-solarized-dark)))
-
 ;;; Switch buffers and windows interactively
 (ido-mode 1)
 (setq ido-enable-flex-matching t)
@@ -81,21 +71,33 @@
 ;;; JavaScript settings
 (setq js-indent-level 2)
 
-;;; Scala language support
-(add-to-list 'load-path "~/.emacs.d/site-lisp/scala-mode")
-(require 'scala-mode-auto)
+(let* ((local-site-lisp-dir "~/.emacs.d/site-lisp"))
+  ;; Color theme support
+  (add-to-list 'load-path (concat local-site-lisp-dir "/color-theme"))
+  (add-to-list 'load-path (concat local-site-lisp-dir "/color-theme-solarized"))
+  (require 'color-theme)
+  (require 'color-theme-solarized)
+  (eval-after-load "color-theme"
+    '(progn
+       (color-theme-initialize)
+       (color-theme-solarized-dark)))
 
-;;; Ensime for Scala language
-(add-to-list 'load-path "~/.emacs.d/site-lisp/ensime/elisp")
-(require 'ensime)
-(add-hook 'scala-mode-hook 'ensime-scala-mode-hook)
+  ;; Scala language support
+  (add-to-list 'load-path (concat local-site-lisp-dir "/scala-mode"))
+  (require 'scala-mode-auto)
 
-;;; Erlang language support
-(let* ((root-dir  "~/.emacs.d/site-lisp/erlang-mode")
-       (bin-dir   (expand-file-name "bin" root-dir))
-       (elisp-dir (car (file-expand-wildcards (concat root-dir
-                                                      "/lib/tools-2.6.*/emacs") t))))
-  (setq erlang-root-dir root-dir)
-  (add-to-list 'load-path elisp-dir)
-  (add-to-list 'exec-path bin-dir))
-(require 'erlang-start)
+  ;; Ensime for Scala language
+  (add-to-list 'load-path (concat local-site-lisp-dir "/ensime/elisp"))
+  (require 'ensime)
+  (add-hook 'scala-mode-hook 'ensime-scala-mode-hook)
+
+  ;; Erlang language support
+  (let* ((root-dir  (concat local-site-lisp-dir "/erlang-mode"))
+         (bin-dir   (concat root-dir "/bin"))
+         (elisp-dir (car (file-expand-wildcards (concat root-dir
+                                                        "/lib/tools-2.6.*/emacs") t))))
+    (setq erlang-root-dir root-dir)
+    (add-to-list 'load-path elisp-dir)
+    (add-to-list 'exec-path bin-dir))
+  (require 'erlang-start)
+)
