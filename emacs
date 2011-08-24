@@ -88,9 +88,7 @@
 (require 'scala-mode-auto)
 
 ;;; Ensime for Scala language
-(let* ((root-dir   (car (file-expand-wildcards "~/opt/ensime_*" t)))
-       (elisp-dir  (concat root-dir "/elisp")))
-  (add-to-list 'load-path elisp-dir))
+(add-to-list 'load-path "~/.emacs.d/site-lisp/ensime/elisp")
 (require 'ensime)
 (add-hook 'scala-mode-hook 'ensime-scala-mode-hook)
 
