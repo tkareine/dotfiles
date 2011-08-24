@@ -172,7 +172,7 @@ if [[ -n $PS1 ]]; then
     _gemdoc() {
         local gemdocs=()
         for path in $(gem_search_paths); do
-            gemdocs+=($(\ls "$path"/doc))
+            gemdocs+=($(\find "$path/doc" -name '*' -type d -depth 1 -exec basename '{}' ';'))
         done
         echo "${gemdocs[@]}"
     }
@@ -204,7 +204,7 @@ if [[ -n $PS1 ]]; then
     _gemedit() {
         local gems=()
         for path in $(gem_search_paths); do
-            gems+=($(\ls "$path"/gems))
+            gems+=($(\find "$path/gems" -name '*' -type d -depth 1 -exec basename '{}' ';'))
         done
         echo "${gems[@]}"
     }
