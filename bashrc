@@ -35,8 +35,8 @@ shopt -s checkwinsize
 export LESS="-iR"
 
 # choose default editor
-if [[ -n `which matew` ]]; then
-    export EDITOR="matew"
+if [[ -n `which emacs` ]]; then
+    export EDITOR="emacs"
 else
     export EDITOR="vi"
 fi
