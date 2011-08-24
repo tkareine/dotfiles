@@ -32,6 +32,16 @@
 ;;; Frame width and height
 (if (boundp 'window-system) (set-frame-size (selected-frame) 140 60))
 
+;;; Color theme support
+(add-to-list 'load-path "~/.emacs.d/site-lisp/color-theme")
+(add-to-list 'load-path "~/.emacs.d/site-lisp/color-theme-solarized")
+(require 'color-theme)
+(require 'color-theme-solarized)
+(eval-after-load "color-theme"
+  '(progn
+     (color-theme-initialize)
+     (color-theme-solarized-dark)))
+
 ;;; Switch buffers and windows interactively
 (ido-mode 1)
 (setq ido-enable-flex-matching t)
