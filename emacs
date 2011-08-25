@@ -82,6 +82,11 @@
        (color-theme-initialize)
        (color-theme-solarized-dark)))
 
+  ;; Automatic closing parens
+  (add-to-list 'load-path (concat local-site-lisp-dir "/autopair"))
+  (require 'autopair)
+  (autopair-global-mode)
+
   ;; Scala language support
   (add-to-list 'load-path (concat local-site-lisp-dir "/scala-mode"))
   (require 'scala-mode-auto)
