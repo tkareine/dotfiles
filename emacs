@@ -30,7 +30,7 @@
 (set-default-font "Inconsolata-14")
 
 ;;; Frame width and height
-(if (boundp 'window-system) (set-frame-size (selected-frame) 140 60))
+(if (and (boundp 'window-system) window-system) (set-frame-size (selected-frame) 140 60))
 
 ;;; Switch buffers and windows interactively
 (ido-mode 1)
