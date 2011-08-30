@@ -23,6 +23,9 @@
 ;;; No blinking cursor
 (blink-cursor-mode 0)
 
+;;; Whitespace highlighting options
+(setq whitespace-line-column 140)
+
 ;;; Show file size
 (size-indication-mode t)
 
@@ -60,7 +63,8 @@
 ;;; Custom key bindings
 (global-set-key [kp-delete]    'delete-char)
 (global-set-key [M-kp-delete]  'kill-word)
-(global-set-key (kbd "M-p")    'dabbrev-expand)
+(global-set-key (kbd "C-c w")  'whitespace-mode)
+(global-set-key (kbd "M-+")    'dabbrev-expand)
 
 ;;; Prevent extraneous tabs
 (setq-default indent-tabs-mode nil)
