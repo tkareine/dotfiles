@@ -65,6 +65,7 @@
 (global-set-key [M-kp-delete]  'kill-word)
 (global-set-key (kbd "C-c w")  'whitespace-mode)
 (global-set-key (kbd "M-+")    'dabbrev-expand)
+(global-set-key (kbd "M-ö")    'fixup-whitespace)
 
 ;;; Prevent extraneous tabs
 (setq-default indent-tabs-mode nil)
