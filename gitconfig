@@ -12,6 +12,7 @@
 	fep = fetch --prune
 	gr  = grep -n
 	lg  = log --patch-with-stat --decorate
+	lt  = log --graph --pretty=format:'%C(yellow)%h%Creset%C(yellow)%d%Creset %s %C(red)%ar%Creset by %C(green)%an%Creset'
 	pl  = pull --ff-only
 	rv  = revert
 	st  = status
