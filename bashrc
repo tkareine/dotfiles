@@ -36,7 +36,7 @@ export LESS="-iR"
 
 # choose default editor
 if [[ -n `which emacs` ]]; then
-    export EDITOR="emacs"
+    export EDITOR="emacsclient"
 else
     export EDITOR="vi"
 fi

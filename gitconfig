@@ -19,7 +19,6 @@
 [color]
 	ui = auto
 [core]
-	editor = vi
 	excludesfile = ~/.gitignore
 [diff]
 	tool = opendiff
