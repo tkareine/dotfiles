@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-bin=$(\find /usr/local/Cellar/emacs -name 'Emacs' | tail -1)
+bin=$(\find /usr/local/Cellar/emacs -type f -name 'Emacs' | tail -1)
 
 if test -z "$bin" || test ! -x "$bin"; then
     echo "Emacs not found"
