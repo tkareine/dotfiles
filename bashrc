@@ -60,7 +60,6 @@ export NODE_PATH=/usr/local/lib/node_modules
 export SCALA_HOME=/usr/local/Cellar/scala/2.8.1/libexec
 
 # rbenv
-export PATH=~/.rbenv/bin:"${PATH}"
 eval "$(rbenv init -)"
 
 #-- OS X specific environment ------------------------------------------------
@@ -121,7 +120,7 @@ if [[ -n $PS1 ]]; then
     prompt_git=""
     fn_exists __git_ps1 && prompt_git="\$(__git_ps1 '[git: %s] ')"
     prompt_rbenv=""
-    [[ -x ~/.rbenv/bin/rbenv ]] && prompt_rbenv="[ruby: \$(~/.rbenv/bin/rbenv version-name)] "
+    hash rbenv 2>&- && prompt_rbenv="[ruby: \$(rbenv version-name)] "
     PS1="${prompt_user_and_host}${prompt_pwd}${prompt_git}${prompt_rbenv}\n${prompt_end}"
     unset prompt_user_and_host prompt_rvm prompt_pwd prompt_git prompt_end
 
