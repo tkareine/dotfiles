@@ -122,7 +122,7 @@ if [[ -n $PS1 ]]; then
     prompt_rbenv=""
     hash rbenv 2>&- && prompt_rbenv="[ruby: \$(rbenv version-name)] "
     PS1="${prompt_user_and_host}${prompt_pwd}${prompt_git}${prompt_rbenv}\n${prompt_end}"
-    unset prompt_user_and_host prompt_rvm prompt_pwd prompt_git prompt_end
+    unset prompt_user_and_host prompt_rbenv prompt_pwd prompt_git prompt_end
 
     # if this is an xterm set the title to user@host:dir
     case "${TERM}" in
@@ -211,8 +211,7 @@ if [[ -n $PS1 ]]; then
     complete -W '$(_gemedit)' gemedit
 
     gemdir() {
-        [[ -n "$1" ]] && rvm "$1"
-        pushd `rvm gemdir`/gems
+        pushd "$(gem env gemdir)/gems"
     }
 
     alias bashrc='$EDITOR ~/.bashrc && source ~/.bashrc'
