@@ -2,12 +2,13 @@
 
 #-- helpers ------------------------------------------------------------------
 
+error_msg() {
+    echo "${1}" >&2
+}
+
 fn_exists() {
-    if [[ -z "$1" ]]; then
-        echo "fn_exists expects function name as the parameter"
-    else
-        [[ `type -t "${1}"` == 'function' ]]
-    fi
+    [[ -z "$1" ]] && error_msg "fn_exists expects function name as the parameter" && return 1
+    [[ `type -t "${1}"` == 'function' ]]
 }
 
 #-- platform independent environment -----------------------------------------
@@ -141,30 +142,28 @@ if [[ -n $PS1 ]]; then
 
     gem_search_paths() {
         local paths=() gem_base_dir=$(gem env gemdir)
-        [[ -d "$gem_base_dir" ]]        && paths+=("$gem_base_dir")
-        [[ -d "$gem_base_dir@global" ]] && paths+=("$gem_base_dir@global")
+        [[ -d "$gem_base_dir" ]] && paths+=("$gem_base_dir")
+        [[ ${#paths[@]} -le 0 ]] && error_msg "gem_search_paths: no gem paths found" && return 1
         echo "${paths[@]}"
     }
 
     gemdoc() {
-        if [[ -z "$1" ]]; then
-            echo "gemdoc expects gem and its version as the parameter"
-        else
-            local last gems found
-            found=0
-            for path in $(gem_search_paths); do
-                gems=("$path"/doc/$1*/rdoc/index.html)
-                last=${gems[@]: -1}
-                if [[ -r "$last" ]]; then
-                    found=1
-                    break
-                fi
-            done
-            if [[ $found -ne 0 ]]; then
-                open "$last"
-            else
-                echo "not found"
+        [[ -z "$1" ]] && error_msg "gemdoc expects gem and its version as the parameter" && return 1
+
+        local last gems found
+        found=0
+        for path in $(gem_search_paths); do
+            gems=("$path"/doc/$1*/rdoc/index.html)
+            last=${gems[@]: -1}
+            if [[ -r "$last" ]]; then
+                found=1
+                break
             fi
+        done
+        if [[ $found -ne 0 ]]; then
+            open "$last"
+        else
+            echo "not found"
         fi
     }
 
@@ -179,24 +178,22 @@ if [[ -n $PS1 ]]; then
     complete -W '$(_gemdoc)' gemdoc
 
     gemedit() {
-        if [[ -z "$1" ]]; then
-            echo "gemedit expects gem and its version as the parameter"
-        else
-            local last gems found
-            found=0
-            for path in $(gem_search_paths); do
-                gems=("$path"/gems/$1*)
-                last=${gems[@]: -1}
-                if [[ -d "$last" ]]; then
-                    found=1
-                    break
-                fi
-            done
-            if [[ $found -ne 0 ]]; then
-                $EDITOR "$last"
-            else
-                echo "not found"
+        [[ -z "$1" ]] && error_msg "gemedit expects gem and its version as the parameter" && return 1
+
+        local last gems found
+        found=0
+        for path in $(gem_search_paths); do
+            gems=("$path"/gems/$1*)
+            last=${gems[@]: -1}
+            if [[ -d "$last" ]]; then
+                found=1
+                break
             fi
+        done
+        if [[ $found -ne 0 ]]; then
+            $EDITOR "$last"
+        else
+            echo "not found"
         fi
     }
 
