@@ -7,7 +7,7 @@ error_msg() {
 }
 
 fn_exists() {
-    [[ -z "$1" ]] && error_msg "fn_exists expects function name as the parameter" && return 1
+    [[ -z "$1" ]] && error_msg "fn_exists(): expects function name as the parameter" && return 1
     [[ `type -t "${1}"` == 'function' ]]
 }
 
@@ -143,12 +143,12 @@ if [[ -n $PS1 ]]; then
     gem_search_paths() {
         local paths=() gem_base_dir=$(gem env gemdir)
         [[ -d "$gem_base_dir" ]] && paths+=("$gem_base_dir")
-        [[ ${#paths[@]} -le 0 ]] && error_msg "gem_search_paths: no gem paths found" && return 1
+        [[ ${#paths[@]} -le 0 ]] && error_msg "gem_search_paths(): no gem paths found" && return 1
         echo "${paths[@]}"
     }
 
     gemdoc() {
-        [[ -z "$1" ]] && error_msg "gemdoc expects gem and its version as the parameter" && return 1
+        [[ -z "$1" ]] && error_msg "gemdoc(): expects gem and its version as the parameter" && return 1
 
         local last gems found
         found=0
@@ -178,7 +178,7 @@ if [[ -n $PS1 ]]; then
     complete -W '$(_gemdoc)' gemdoc
 
     gemedit() {
-        [[ -z "$1" ]] && error_msg "gemedit expects gem and its version as the parameter" && return 1
+        [[ -z "$1" ]] && error_msg "gemedit(): expects gem and its version as the parameter" && return 1
 
         local last gems found
         found=0
