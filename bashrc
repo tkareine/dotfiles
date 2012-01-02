@@ -59,9 +59,9 @@ export NODE_PATH=/usr/local/lib/node_modules
 # Scala
 export SCALA_HOME=/usr/local/Cellar/scala/2.8.1/libexec
 
-# Ruby Version Manager
-[[ -s "${HOME}/.rvm/scripts/rvm" ]] && source "${HOME}/.rvm/scripts/rvm"
-[[ -r $rvm_path/scripts/completion ]] && source $rvm_path/scripts/completion
+# rbenv
+export PATH=~/.rbenv/bin:"${PATH}"
+eval "$(rbenv init -)"
 
 #-- OS X specific environment ------------------------------------------------
 
@@ -119,10 +119,10 @@ if [[ -n $PS1 ]]; then
         prompt_end="$ "
     fi
     prompt_git=""
-    fn_exists __git_ps1 && prompt_git="\$(__git_ps1 '[%s] ')"
-    prompt_rvm=""
-    [[ -x ~/.rvm/bin/rvm-prompt ]] && prompt_rvm="[\$(~/.rvm/bin/rvm-prompt)] "
-    PS1="${prompt_user_and_host}${prompt_pwd}${prompt_git}${prompt_rvm}\n${prompt_end}"
+    fn_exists __git_ps1 && prompt_git="\$(__git_ps1 '[git: %s] ')"
+    prompt_rbenv=""
+    [[ -x ~/.rbenv/bin/rbenv ]] && prompt_rbenv="[ruby: \$(~/.rbenv/bin/rbenv version-name)] "
+    PS1="${prompt_user_and_host}${prompt_pwd}${prompt_git}${prompt_rbenv}\n${prompt_end}"
     unset prompt_user_and_host prompt_rvm prompt_pwd prompt_git prompt_end
 
     # if this is an xterm set the title to user@host:dir
