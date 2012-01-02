@@ -6,7 +6,7 @@ fn_exists() {
     if [[ -z "$1" ]]; then
         echo "fn_exists expects function name as the parameter"
     else
-        `type ${1} 2> /dev/null | grep -q 'function'`
+        [[ `type -t "${1}"` == 'function' ]]
     fi
 }
 
