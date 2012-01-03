@@ -6,6 +6,11 @@ error_msg() {
     echo "${1}" >&2
 }
 
+cmd_exists() {
+    [[ -z "$1" ]] && error_msg "cmd_exists(): expects command name as the parameter" && return 1
+    hash "$1" 2>&-
+}
+
 fn_exists() {
     [[ -z "$1" ]] && error_msg "fn_exists(): expects function name as the parameter" && return 1
     [[ `type -t "${1}"` == 'function' ]]
@@ -61,7 +66,7 @@ export NODE_PATH=/usr/local/lib/node_modules
 export SCALA_HOME=/usr/local/Cellar/scala/2.8.1/libexec
 
 # rbenv
-eval "$(rbenv init -)"
+cmd_exists 'rbenv' && eval "$(rbenv init -)"
 
 #-- OS X specific environment ------------------------------------------------
 
@@ -121,7 +126,7 @@ if [[ -n $PS1 ]]; then
     prompt_git=""
     fn_exists __git_ps1 && prompt_git="\$(__git_ps1 '[git: %s] ')"
     prompt_rbenv=""
-    hash rbenv 2>&- && prompt_rbenv="[ruby: \$(rbenv version-name)] "
+    cmd_exists 'rbenv' && prompt_rbenv="[ruby: \$(rbenv version-name)] "
     PS1="${prompt_user_and_host}${prompt_pwd}${prompt_git}${prompt_rbenv}\n${prompt_end}"
     unset prompt_user_and_host prompt_rbenv prompt_pwd prompt_git prompt_end
 
