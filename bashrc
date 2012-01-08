@@ -218,6 +218,7 @@ if [[ -n $PS1 ]]; then
 
     alias bashrc='$EDITOR ~/.bashrc && source ~/.bashrc'
     alias duff='diff -u'
+    alias et='$EDITOR'
     alias ll='ls -la'
     alias todo='$EDITOR ~/TODO.md'
 fi
