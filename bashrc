@@ -21,12 +21,15 @@ fn_exists() {
 # localization
 export LANG="en_US.UTF-8"
 
-# local system executables take precedence global system executables
+# local system executables take precedence over global system executables
 [[ -d /usr/local/bin ]] && export PATH=/usr/local/bin:"${PATH}"
-[[ -d /usr/local/share/man ]] && export MANPATH=/usr/local/share/man:"${MANPATH}"
+[[ -d /usr/local/sbin ]] && export PATH=/usr/local/sbin:"${PATH}"
 
 # my local executables take precedence over everything else
 [[ -d ~/bin ]] && export PATH=~/bin:"${PATH}"
+
+# same as above for local system man pages
+[[ -d /usr/local/share/man ]] && export MANPATH=/usr/local/share/man:"${MANPATH}"
 
 # disable core dumps; to enable them: `ulimit -S -c unlimited`
 ulimit -S -c 0
