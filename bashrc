@@ -86,7 +86,7 @@ fi
 
 [[ -r ~/.shenv ]] && source ~/.shenv
 
-#-- shell interaction ---------------------------------------------------------
+#-- shell interaction --------------------------------------------------------
 
 # set only if running interactively
 if [[ -n $PS1 ]]; then
