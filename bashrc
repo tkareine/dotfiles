@@ -225,3 +225,7 @@ if [[ -n $PS1 ]]; then
     alias ll='ls -la'
     alias todo='$EDITOR ~/TODO.md'
 fi
+
+#-- greets at login ----------------------------------------------------------
+
+cmd_exists 'fortune' && echo && fortune -o
