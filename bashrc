@@ -51,6 +51,7 @@ else
 fi
 
 # C/C++
+export CC=/usr/bin/gcc-4.2
 #export CC="ccache gcc"
 #export CXX="ccache g++"
 #export CCACHE_DIR=/tmp/${USER}/.ccache
