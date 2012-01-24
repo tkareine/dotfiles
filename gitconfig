@@ -30,5 +30,7 @@
 	conflictstyle = diff3
 [push]
 	default = nothing
+[rebase]
+	autosquash = true
 [rerere]
 	enabled = true
