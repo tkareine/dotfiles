@@ -12,6 +12,7 @@
 --type-set=ragel=.rl
 --type-set=rdoc=.rdoc
 --type-set=ronn=.ron,.ronn
+--type-set=sass=.sass,.scss
 --type-set=textmatestuff=.tm_build_errors,.tmproj
 --type-set=xcode=.pbxproj,.pbxuser,.perspectivev3
 
