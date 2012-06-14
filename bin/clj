@@ -3,7 +3,7 @@
 # With no arguments, runs Clojure's REPL.
 
 # resolve links - $0 may be a softlink
-clj_version="1.3.0"
+clj_version="1.4.0"
 classpath="${CLASSPATH}:$(brew --cellar)/clojure/${clj_version}/clojure-${clj_version}.jar:${PWD}"
 breakchars="(){}[],^%$#@\"\";:''|\\"
 
