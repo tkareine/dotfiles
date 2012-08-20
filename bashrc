@@ -78,7 +78,7 @@ cmd_exists 'rbenv' && eval "$(rbenv init -)"
 if [[ `uname` = Darwin ]]; then
     export JAVA_HOME=`/usr/libexec/java_home | tail -1`
 
-    [[ -r `brew --prefix`/etc/bash_completion ]] && source `brew --prefix`/etc/bash_completion
+    [[ -r `brew --prefix`/etc/bash_completion ]] && source "`brew --prefix`/etc/bash_completion"
 
     # tar does not copy "._*" files
     export COPYFILE_DISABLE=true
