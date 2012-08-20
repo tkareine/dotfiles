@@ -80,6 +80,8 @@ if [[ `uname` = Darwin ]]; then
 
     [[ -r `brew --prefix`/etc/bash_completion ]] && source "`brew --prefix`/etc/bash_completion"
 
+    [[ -r `brew --prefix git`/share/git-core/contrib/completion/git-prompt.sh ]] && source "`brew --prefix git`/share/git-core/contrib/completion/git-prompt.sh"
+
     # tar does not copy "._*" files
     export COPYFILE_DISABLE=true
 fi
