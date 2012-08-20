@@ -1,8 +1,8 @@
 #!/usr/bin/env sh
 
-bin=$(\find /usr/local/Cellar/emacs -type f -name 'emacsclient' | tail -1)
+bin="`brew --prefix emacs`/bin/emacsclient"
 
-if test -z "$bin" || test ! -x "$bin"; then
+if test ! -x "$bin"; then
     echo "emacsclient not found"
     exit 1
 fi
