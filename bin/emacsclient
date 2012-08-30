@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-bin="`brew --prefix emacs`/bin/emacsclient"
+bin="$(brew --prefix emacs)/bin/emacsclient"
 
 if test ! -x "$bin"; then
     echo "emacsclient not found"
