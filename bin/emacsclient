@@ -3,7 +3,7 @@
 bin="$(brew --prefix emacs)/bin/emacsclient"
 
 if test ! -x "$bin"; then
-    echo "emacsclient not found"
+    echo "emacsclient not found from $bin"
     exit 1
 fi
 

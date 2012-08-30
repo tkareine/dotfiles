@@ -3,7 +3,7 @@
 bin="$(brew --prefix emacs)/Emacs.app/Contents/MacOS/Emacs"
 
 if test ! -x "$bin"; then
-    echo "Emacs not found"
+    echo "Emacs not found from $bin"
     exit 1
 fi
 
