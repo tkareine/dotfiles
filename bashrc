@@ -228,8 +228,7 @@ if [[ -n $PS1 ]]; then
     alias et='$EDITOR'
     alias ll='ls -la'
     alias todo='$EDITOR ~/TODO.md'
+
+    # greets at login
+    cmd_exists 'fortune' && echo && fortune -o
 fi
-
-#-- greets at login ----------------------------------------------------------
-
-cmd_exists 'fortune' && echo && fortune -o
