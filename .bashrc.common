@@ -1,0 +1,75 @@
+# localization
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+
+# local system executables take precedence over global system executables
+[[ -d /usr/local/bin ]] && export PATH=/usr/local/bin:"$PATH"
+[[ -d /usr/local/sbin ]] && export PATH=/usr/local/sbin:"$PATH"
+
+# my local executables take precedence over everything else
+[[ -d ~/bin ]] && export PATH=~/bin:"$PATH"
+
+# same as above for local system man pages
+[[ -d /usr/local/share/man ]] && export MANPATH=/usr/local/share/man:"$MANPATH"
+
+# disable core dumps; to enable them: `ulimit -S -c unlimited`
+ulimit -S -c 0
+
+# new file permissions: read-write for you, read for group, read for others
+umask 0022
+
+# check the window size after each command
+shopt -s checkwinsize
+
+# less: ignore character case in searches and display ANSI colors
+export LESS="-iR"
+
+# at shell exit, append history to the history file rather than overwrite it
+shopt -s histappend
+
+# ignore commands that begin with space and duplicate commands
+export HISTCONTROL=ignoreboth
+export HISTFILESIZE=2000
+export HISTSIZE=2000
+
+# git prompt configuration
+export GIT_PS1_SHOWDIRTYSTATE=true
+export GIT_PS1_SHOWSTASHSTATE=
+export GIT_PS1_SHOWUNTRACKEDFILES=true
+export GIT_PS1_SHOWUPSTREAM="auto"
+
+# choose default editor
+if [[ -n `which emacsclient` ]]; then
+    export EDITOR="emacsclient"
+else
+    export EDITOR="vi"
+fi
+
+# C/C++
+export CC=/usr/bin/gcc
+#export CC="ccache gcc"
+#export CXX="ccache g++"
+#export CCACHE_DIR=/tmp/${USER}/.ccache
+#mkdir -p /tmp/${USER}/.ccache
+
+# Apache Maven 2
+export M2_REPO=~/.m2/repository
+
+# JRebel
+export REBEL_HOME=~/opt/jrebel
+
+# npm for node.js
+export NODE_PATH=/usr/local/lib/node_modules
+
+# Scala
+export SCALA_HOME=/usr/local/Cellar/scala/2.8.1/libexec
+
+# rbenv
+cmd_exists 'rbenv' && eval "$(rbenv init -)"
+
+# my local bash-completions
+if [[ -d ~/lib/bash-completion ]]; then
+    for completion_file in ~/lib/bash-completion/*.bash; do
+        source "$completion_file"
+    done
+fi

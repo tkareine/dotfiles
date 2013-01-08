@@ -1,0 +1,84 @@
+error_msg() {
+    echo "${1}" >&2
+}
+
+cmd_exists() {
+    [[ -z "$1" ]] && error_msg "cmd_exists(): expects command name as the parameter" && return 1
+    hash "$1" 2>&-
+}
+
+fn_exists() {
+    [[ -z "$1" ]] && error_msg "fn_exists(): expects function name as the parameter" && return 1
+    [[ `type -t "${1}"` == 'function' ]]
+}
+
+gem_search_paths() {
+    local paths=() gem_base_dir=$(gem env gemdir)
+    [[ -d "$gem_base_dir" ]] && paths+=("$gem_base_dir")
+    [[ ${#paths[@]} -le 0 ]] && error_msg "gem_search_paths(): no gem paths found" && return 1
+    echo "${paths[@]}"
+}
+
+gemdoc() {
+    [[ -z "$1" ]] && error_msg "gemdoc(): expects gem and its version as the parameter" && return 1
+
+    local last gems found
+    found=0
+    for path in $(gem_search_paths); do
+        gems=("$path"/doc/$1*/rdoc/index.html)
+        last=${gems[@]: -1}
+        if [[ -r "$last" ]]; then
+            found=1
+            break
+        fi
+    done
+    if [[ $found -ne 0 ]]; then
+        open "$last"
+    else
+        echo "not found"
+    fi
+}
+
+_gemdoc() {
+    local gemdocs=()
+    for path in $(gem_search_paths); do
+        gemdocs+=($(\find "$path/doc" -name '*' -type d -depth 1 -exec basename '{}' ';'))
+    done
+    echo "${gemdocs[@]}"
+}
+
+complete -W '$(_gemdoc)' gemdoc
+
+gemedit() {
+    [[ -z "$1" ]] && error_msg "gemedit(): expects gem and its version as the parameter" && return 1
+
+    local last gems found
+    found=0
+    for path in $(gem_search_paths); do
+        gems=("$path"/gems/$1*)
+        last=${gems[@]: -1}
+        if [[ -d "$last" ]]; then
+            found=1
+            break
+        fi
+    done
+    if [[ $found -ne 0 ]]; then
+        $EDITOR "$last"
+    else
+        echo "not found"
+    fi
+}
+
+_gemedit() {
+    local gems=()
+    for path in $(gem_search_paths); do
+        gems+=($(\find "$path/gems" -name '*' -type d -depth 1 -exec basename '{}' ';'))
+    done
+    echo "${gems[@]}"
+}
+
+complete -W '$(_gemedit)' gemedit
+
+gemdir() {
+    pushd "$(gem env gemdir)/gems"
+}

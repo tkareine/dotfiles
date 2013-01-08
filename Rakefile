@@ -5,6 +5,11 @@ DOTFILES = %w{
   .autotest
   .bash_profile
   .bashrc
+  .bashrc.aliases
+  .bashrc.common
+  .bashrc.darwin
+  .bashrc.functions
+  .bashrc.prompt
   .dircolors
   .gemrc
   .gitconfig
