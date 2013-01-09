@@ -61,9 +61,6 @@ export REBEL_HOME=~/opt/jrebel
 # npm for node.js
 export NODE_PATH=/usr/local/lib/node_modules
 
-# Scala
-export SCALA_HOME=/usr/local/Cellar/scala/2.8.1/libexec
-
 # rbenv
 cmd_exists 'rbenv' && eval "$(rbenv init -)"
 
