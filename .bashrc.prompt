@@ -1,6 +1,6 @@
 # color support for prompt and ls
 if [[ -x /usr/bin/tput ]] && tput setaf 1 &>/dev/null; then
-    case "`uname`" in
+    case "$(uname)" in
     Darwin)
         export LSCOLORS="Hxgxfxdxcxegedabagacad"
         alias ls='ls -FG'

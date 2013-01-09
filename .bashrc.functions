@@ -9,11 +9,11 @@ cmd_exists() {
 
 fn_exists() {
     [[ -z "$1" ]] && error_msg "fn_exists(): expects function name as the parameter" && return 1
-    [[ `type -t "${1}"` == 'function' ]]
+    [[ "$(type -t "$1")" == 'function' ]]
 }
 
 gem_search_paths() {
-    local paths=() gem_base_dir=$(gem env gemdir)
+    local paths=() gem_base_dir="$(gem env gemdir)"
     [[ -d "$gem_base_dir" ]] && paths+=("$gem_base_dir")
     [[ ${#paths[@]} -le 0 ]] && error_msg "gem_search_paths(): no gem paths found" && return 1
     echo "${paths[@]}"
