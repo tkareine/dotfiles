@@ -34,6 +34,7 @@ task :install do
     if !File.exist? destination
       source = File.expand_path file
       puts "linking: #{destination} -> #{source}"
+      FileUtils.mkdir_p File.dirname(destination)
       FileUtils.ln_sf source, destination
     elsif File.symlink?(destination) && File.identical?(File.readlink(destination), file)
       puts "installed already, skipping: #{destination}"
