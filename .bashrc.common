@@ -6,9 +6,6 @@ export LANG=en_US.UTF-8
 [[ -d /usr/local/bin ]] && export PATH=/usr/local/bin:"$PATH"
 [[ -d /usr/local/sbin ]] && export PATH=/usr/local/sbin:"$PATH"
 
-# my local executables take precedence over everything else
-[[ -d ~/bin ]] && export PATH=~/bin:"$PATH"
-
 # same as above for local system man pages
 [[ -d /usr/local/share/man ]] && export MANPATH=/usr/local/share/man:"$MANPATH"
 
@@ -70,3 +67,6 @@ if [[ -d ~/lib/bash-completion ]]; then
         source "$completion_file"
     done
 fi
+
+# my local executables take precedence over everything else
+[[ -d ~/bin ]] && export PATH=~/bin:"$PATH"
