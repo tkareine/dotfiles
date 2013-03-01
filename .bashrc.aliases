@@ -1,4 +1,5 @@
 alias bashrc='$EDITOR ~/.bashrc && source ~/.bashrc'
+alias be='bundle exec'
 alias duff='diff -u'
 alias et='$EDITOR'
 alias ll='ls -la'
