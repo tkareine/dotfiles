@@ -59,8 +59,9 @@ export REBEL_HOME=~/opt/jrebel
 [[ -d /usr/local/share/npm/lib/node_modules ]] && export NODE_PATH=/usr/local/share/npm/lib/node_modules
 [[ -d /usr/local/share/npm/bin ]] && export PATH=/usr/local/share/npm/bin:"$PATH"
 
-# rbenv
-cmd_exists 'rbenv' && eval "$(rbenv init -)"
+# chruby
+source /usr/local/opt/chruby/share/chruby/chruby.sh
+chruby 2.0.0
 
 # my local bash-completions
 if [[ -d ~/lib/bash-completion ]]; then

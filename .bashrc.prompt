@@ -23,7 +23,7 @@ fi
 prompt_git=""
 fn_exists __git_ps1 && prompt_git="\$(__git_ps1 '[git: %s] ')"
 prompt_rbenv=""
-cmd_exists 'rbenv' && prompt_rbenv="[ruby: \$(rbenv version-name)] "
+cmd_exists 'chruby' && prompt_rbenv="[\$(chruby | grep '\* ' | cut -d ' ' -f 3)] "
 PS1="${prompt_user_and_host}${prompt_pwd}${prompt_git}${prompt_rbenv}\n${prompt_end}"
 unset prompt_user_and_host prompt_rbenv prompt_pwd prompt_git prompt_end
 
