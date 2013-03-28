@@ -1,0 +1,23 @@
+#!/bin/bash
+# From <http://mths.be/osx>
+
+# Finder: show hidden files by default
+defaults write com.apple.finder AppleShowAllFiles -bool true
+
+# Finder: use current directory as default search scope
+defaults write com.apple.finder FXDefaultSearchScope -string "SCcf"
+
+# Finder: show Path bar
+defaults write com.apple.finder ShowPathbar -bool true
+
+# Finder: show Status Bar
+defaults write com.apple.finder ShowStatusBar -bool true
+
+# Finder: display full POSIX path as window title
+defaults write com.apple.finder _FXShowPosixPathInTitle -bool YES
+
+# Finder: allow text selection in Quick Look
+defaults write com.apple.finder QLEnableTextSelection -bool true
+
+# Avoid creating .DS_Store files on network volumes
+defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
