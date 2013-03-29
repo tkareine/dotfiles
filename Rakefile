@@ -16,6 +16,7 @@ DOTFILES = %w{
   .gitignore
   .inputrc
   .irbrc
+  .osx
   .sbtconfig
   .tmux.conf
   .vimrc
