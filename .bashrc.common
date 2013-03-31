@@ -60,8 +60,10 @@ export REBEL_HOME=~/opt/jrebel
 [[ -d /usr/local/share/npm/bin ]] && export PATH=/usr/local/share/npm/bin:"$PATH"
 
 # chruby
-source /usr/local/opt/chruby/share/chruby/chruby.sh
-chruby 2.0.0
+if [[ -f /usr/local/opt/chruby/share/chruby/chruby.sh ]]; then
+    source /usr/local/opt/chruby/share/chruby/chruby.sh
+    chruby 2.0.0
+fi
 
 # my local bash-completions
 if [[ -d ~/lib/bash-completion ]]; then
