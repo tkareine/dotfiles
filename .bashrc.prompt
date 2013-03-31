@@ -21,7 +21,7 @@ else
     prompt_end="$ "
 fi
 prompt_git=""
-fn_exists __git_ps1 && prompt_git="\$(__git_ps1 '[git: %s] ')"
+fn_exists '__git_ps1' && prompt_git="\$(__git_ps1 '[git: %s] ')"
 prompt_rbenv=""
 cmd_exists 'chruby' && prompt_rbenv="[\$(chruby | grep '\* ' | cut -d ' ' -f 3)] "
 PS1="${prompt_user_and_host}${prompt_pwd}${prompt_git}${prompt_rbenv}\n${prompt_end}"
