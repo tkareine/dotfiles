@@ -1,3 +1,4 @@
+alias ag='ag --pager=less'
 alias bashrc='$EDITOR ~/.bashrc && source ~/.bashrc'
 alias be='bundle exec'
 alias duff='diff -u'
