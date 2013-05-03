@@ -4,7 +4,7 @@ error_msg() {
 
 cmd_exists() {
     [[ -z $1 ]] && error_msg "cmd_exists(): expects command name as the parameter" && return 1
-    hash "$1" 2>&-
+    [[ $(command -v $1) ]]
 }
 
 fn_exists() {
