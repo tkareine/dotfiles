@@ -7,4 +7,4 @@ if test ! -x "$bin"; then
     exit 1
 fi
 
-"$bin" "$@"
+exec "$bin" "$@"

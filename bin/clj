@@ -8,8 +8,8 @@ classpath="${CLASSPATH}:$(brew --cellar)/clojure/${clj_version}/clojure-${clj_ve
 breakchars="(){}[],^%$#@\"\";:''|\\"
 
 if [[ "$#" -eq 0 ]]; then
-    rlwrap --remember -c -b "$breakchars" -f "${HOME}/.clj_completions" \
+    exec rlwrap --remember -c -b "$breakchars" -f "${HOME}/.clj_completions" \
         java -cp "$classpath" clojure.main
 else
-    java -cp "$classpath" clojure.main "$@"
+    exec java -cp "$classpath" clojure.main "$@"
 fi
