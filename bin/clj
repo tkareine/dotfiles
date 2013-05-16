@@ -1,15 +1,19 @@
 #!/usr/bin/env bash
-# Clojure wrapper script.
-# With no arguments, runs Clojure's REPL.
+set -e
 
-# resolve links - $0 may be a softlink
-clj_version="1.4.0"
-classpath="${CLASSPATH}:$(brew --cellar)/clojure/${clj_version}/clojure-${clj_version}.jar:${PWD}"
+clojure_jars=("$(brew --prefix clojure)"/clojure-*.jar)
+clojure_jar="${clojure_jars[0]}"
+
+if [[ ! -f $clojure_jar ]]; then
+    echo "clojure jar not found: $clojure_jar"
+    exit 1
+fi
+
+classpath="${CLASSPATH}:${clojure_jar}:${PWD}"
 breakchars="(){}[],^%$#@\"\";:''|\\"
 
 if [[ "$#" -eq 0 ]]; then
-    exec rlwrap --remember -c -b "$breakchars" -f "${HOME}/.clj_completions" \
-        java -cp "$classpath" clojure.main
+    exec rlwrap --remember -c -b "$breakchars" -f "${HOME}/.clj_completions" java -cp "$classpath" clojure.main
 else
     exec java -cp "$classpath" clojure.main "$@"
 fi
