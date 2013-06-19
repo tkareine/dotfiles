@@ -4,5 +4,10 @@ export JAVA_HOME="$(/usr/libexec/java_home | tail -1)"
 
 [[ -r $(brew --prefix git)/share/git-core/contrib/completion/git-prompt.sh ]] && source "$(brew --prefix git)/share/git-core/contrib/completion/git-prompt.sh"
 
+# for building rubies
+export CONFIGURE_OPTS=""
+[[ -d $(brew --prefix openssl)  ]] && CONFIGURE_OPTS+="--with-openssl-dir=$(brew --prefix openssl) "
+[[ -d $(brew --prefix readline) ]] && CONFIGURE_OPTS+="--with-readline-dir=$(brew --prefix readline) "
+
 # tar does not copy "._*" files
 export COPYFILE_DISABLE=true
