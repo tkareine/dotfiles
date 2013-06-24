@@ -1,5 +1,8 @@
 export JAVA_HOME="$(/usr/libexec/java_home | tail -1)"
 
+# for non-homebrew python (2.x)
+[[ -d $(brew --prefix)/lib/python2.7/site-packages ]] && export PYTHONPATH="$(brew --prefix)/lib/python2.7/site-packages:$PYTHONPATH"
+
 [[ -r $(brew --prefix)/etc/bash_completion ]] && source "$(brew --prefix)/etc/bash_completion"
 
 [[ -r $(brew --prefix git)/share/git-core/contrib/completion/git-prompt.sh ]] && source "$(brew --prefix git)/share/git-core/contrib/completion/git-prompt.sh"
