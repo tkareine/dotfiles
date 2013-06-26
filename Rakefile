@@ -9,7 +9,7 @@ DOTFILES = %w{
   .bashrc.common
   .bashrc.darwin
   .bashrc.functions
-  .bashrc.prompt
+  .bashrc.looks
   .dircolors
   .gemrc
   .gitconfig

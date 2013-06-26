@@ -82,3 +82,36 @@ complete -W '$(_gemedit)' gemedit
 gemdir() {
     pushd "$(gem env gemdir)/gems"
 }
+
+is_color_term() {
+    local colors="$(tput colors 2>/dev/null)"
+    [[ $? = 0 ]] && [[ $colors -ge 256 ]]
+}
+
+set_prompt() {
+    local ansi_b_green="\[\e[1;32m\]"
+    local ansi_b_yellow="\[\e[1;33m\]"
+    local ansi_green="\[\e[0;32m\]"
+    local ansi_reset="\[\e[0m\]"
+
+    local user_and_host pwd end git ruby
+
+    if is_color_term; then
+        user_and_host="${ansi_green}[\u@\h]${ansi_reset} "
+        pwd="${ansi_b_yellow}[\w]${ansi_reset} "
+        end="${ansi_b_green}\$${ansi_reset} "
+    else
+        user_and_host="[\u@\h] "
+        pwd="[\w] "
+        end="$ "
+    fi
+
+    fn_exists '__git_ps1' && git="$(__git_ps1 '[git: %s] ')"
+    cmd_exists 'chruby' && ruby="[$(chruby | grep '\* ' | cut -d ' ' -f 3)] "
+
+    PS1="${user_and_host}${pwd}${git}${ruby}\n${end}"
+}
+
+set_title() {
+    echo -ne "\033]0;${USER}@${HOSTNAME}: ${PWD/$HOME/~}\007"
+}

@@ -1,0 +1,27 @@
+# color support for ls
+if is_color_term; then
+    case "$(uname)" in
+    Darwin)
+        export LSCOLORS="Hxgxfxdxcxegedabagacad"
+        alias ls='ls -FG'
+        ;;
+    Linux)
+        [[ -r $HOME/.dircolors ]] && DIR_COLORS="$HOME/.dircolors"
+        [[ -r $DIR_COLORS ]] || DIR_COLORS=""
+        eval "`dircolors -b $DIR_COLORS`"
+        alias ls='ls -F --color=auto'
+        ;;
+    esac
+fi
+
+case "$TERM" in
+xterm*|rxvt*)
+    PROMPT_COMMAND="set_prompt; set_title"
+    ;;
+*)
+    PROMPT_COMMAND="set_prompt"
+    ;;
+esac
+
+# greets at login
+cmd_exists 'fortune' && echo && fortune -o
