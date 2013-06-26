@@ -88,8 +88,13 @@ is_color_term() {
     [[ $? = 0 ]] && [[ $colors -ge 256 ]]
 }
 
+is_root() {
+    [[ $(whoami) = "root" ]]
+}
+
 set_prompt() {
     local ansi_b_green="\[\e[1;32m\]"
+    local ansi_b_red="\[\e[1;31m\]"
     local ansi_b_yellow="\[\e[1;33m\]"
     local ansi_green="\[\e[0;32m\]"
     local ansi_reset="\[\e[0m\]"
@@ -99,11 +104,19 @@ set_prompt() {
     if is_color_term; then
         user_and_host="${ansi_green}[\u@\h]${ansi_reset} "
         pwd="${ansi_b_yellow}[\w]${ansi_reset} "
-        end="${ansi_b_green}\$${ansi_reset} "
+        if is_root; then
+            end="${ansi_b_red}#${ansi_reset} "
+        else
+            end="${ansi_b_green}\$${ansi_reset} "
+        fi
     else
         user_and_host="[\u@\h] "
         pwd="[\w] "
-        end="$ "
+        if is_root; then
+            end="# "
+        else
+            end="$ "
+        fi
     fi
 
     fn_exists '__git_ps1' && git="$(__git_ps1 '[git: %s] ')"
