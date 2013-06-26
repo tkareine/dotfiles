@@ -15,7 +15,7 @@
 	pl  = pull --ff-only
 	rv  = revert
 	slg = shortlog -s -n
-	st  = status
+	st  = status -s -b
 [color]
 	ui = auto
 [core]
