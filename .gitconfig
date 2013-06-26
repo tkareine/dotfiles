@@ -11,7 +11,7 @@
 	fep = fetch --prune
 	gr  = grep -n
 	lg  = log --patch-with-stat --decorate
-	lt  = log --graph --pretty=format:'%C(yellow)%h%Creset%C(yellow)%d%Creset %s %C(red)%ar%Creset by %C(green)%an%Creset'
+	lt  = log --graph --oneline --decorate
 	pl  = pull --ff-only
 	rv  = revert
 	slg = shortlog -s -n
