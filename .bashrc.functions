@@ -85,7 +85,7 @@ gemdir() {
 
 is_color_term() {
     local colors="$(tput colors 2>/dev/null)"
-    [[ $? = 0 ]] && [[ $colors -ge 256 ]]
+    [[ $? = 0 ]] && [[ $colors -ge 8 ]]
 }
 
 is_root() {
