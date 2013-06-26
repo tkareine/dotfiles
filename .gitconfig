@@ -29,7 +29,7 @@
 [merge]
 	conflictstyle = diff3
 [push]
-	default = nothing
+	default = simple
 [rebase]
 	autosquash = true
 [rerere]
