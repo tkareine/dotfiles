@@ -1,11 +1,15 @@
-export JAVA_HOME="$(/usr/libexec/java_home | tail -1)"
-
-# for non-homebrew python (2.x)
-[[ -d $(brew --prefix)/lib/python2.7/site-packages ]] && export PYTHONPATH="$(brew --prefix)/lib/python2.7/site-packages:$PYTHONPATH"
+# chruby
+if [[ -f $(brew --prefix chruby)/share/chruby/chruby.sh ]]; then
+    source "$(brew --prefix chruby)/share/chruby/chruby.sh"
+    chruby 2.0.0
+fi
 
 [[ -r $(brew --prefix)/etc/bash_completion ]] && source "$(brew --prefix)/etc/bash_completion"
 
 [[ -r $(brew --prefix git)/share/git-core/contrib/completion/git-prompt.sh ]] && source "$(brew --prefix git)/share/git-core/contrib/completion/git-prompt.sh"
+
+# for non-homebrew python (2.x)
+[[ -d $(brew --prefix)/lib/python2.7/site-packages ]] && export PYTHONPATH="$(brew --prefix)/lib/python2.7/site-packages:$PYTHONPATH"
 
 # for building rubies
 export CONFIGURE_OPTS=""
@@ -14,3 +18,5 @@ export CONFIGURE_OPTS=""
 
 # tar does not copy "._*" files
 export COPYFILE_DISABLE=true
+
+export JAVA_HOME="$(/usr/libexec/java_home | tail -1)"

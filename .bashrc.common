@@ -1,13 +1,23 @@
-# localization
-export LC_ALL=en_US.UTF-8
-export LANG=en_US.UTF-8
-
 # local system executables take precedence over global system executables
 [[ -d /usr/local/bin ]] && export PATH=/usr/local/bin:"$PATH"
 [[ -d /usr/local/sbin ]] && export PATH=/usr/local/sbin:"$PATH"
 
 # same as above for local system man pages
 [[ -d /usr/local/share/man ]] && export MANPATH=/usr/local/share/man:"$MANPATH"
+
+# npm packages for node.js
+[[ -d /usr/local/share/npm/lib/node_modules ]] && export NODE_PATH=/usr/local/share/npm/lib/node_modules
+[[ -d /usr/local/share/npm/bin ]] && export PATH=/usr/local/share/npm/bin:"$PATH"
+
+# my local bash-completions
+if [[ -d ~/lib/bash-completion ]]; then
+    for completion_file in ~/lib/bash-completion/*.bash; do
+        source "$completion_file"
+    done
+fi
+
+# my local executables
+[[ -d ~/bin ]] && export PATH=~/bin:"$PATH"
 
 # disable core dumps; to enable them: `ulimit -S -c unlimited`
 ulimit -S -c 0
@@ -18,9 +28,6 @@ umask 0022
 # check the window size after each command
 shopt -s checkwinsize
 
-# less: ignore character case in searches and display ANSI colors
-export LESS="-iR"
-
 # at shell exit, append history to the history file rather than overwrite it
 shopt -s histappend
 
@@ -29,7 +36,14 @@ export HISTCONTROL=ignoreboth
 export HISTFILESIZE=2000
 export HISTSIZE=2000
 
-# git prompt configuration
+# localization
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+
+# less: ignore character case in searches and display ANSI colors
+export LESS="-iR"
+
+# git: prompt configuration
 export GIT_PS1_SHOWDIRTYSTATE=true
 export GIT_PS1_SHOWSTASHSTATE=
 export GIT_PS1_SHOWUNTRACKEDFILES=true
@@ -54,23 +68,3 @@ export M2_REPO=~/.m2/repository
 
 # JRebel
 export REBEL_HOME=~/opt/jrebel
-
-# npm packages for node.js
-[[ -d /usr/local/share/npm/lib/node_modules ]] && export NODE_PATH=/usr/local/share/npm/lib/node_modules
-[[ -d /usr/local/share/npm/bin ]] && export PATH=/usr/local/share/npm/bin:"$PATH"
-
-# chruby
-if [[ -f /usr/local/opt/chruby/share/chruby/chruby.sh ]]; then
-    source /usr/local/opt/chruby/share/chruby/chruby.sh
-    chruby 2.0.0
-fi
-
-# my local bash-completions
-if [[ -d ~/lib/bash-completion ]]; then
-    for completion_file in ~/lib/bash-completion/*.bash; do
-        source "$completion_file"
-    done
-fi
-
-# my local executables take precedence over everything else
-[[ -d ~/bin ]] && export PATH=~/bin:"$PATH"
