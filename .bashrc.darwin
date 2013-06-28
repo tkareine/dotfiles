@@ -11,11 +11,6 @@ fi
 # for non-homebrew python (2.x)
 [[ -d $(brew --prefix)/lib/python2.7/site-packages ]] && export PYTHONPATH="$(brew --prefix)/lib/python2.7/site-packages:$PYTHONPATH"
 
-# for building rubies
-export CONFIGURE_OPTS=""
-[[ -d $(brew --prefix openssl)  ]] && CONFIGURE_OPTS+="--with-openssl-dir=$(brew --prefix openssl) "
-[[ -d $(brew --prefix readline) ]] && CONFIGURE_OPTS+="--with-readline-dir=$(brew --prefix readline) "
-
 # tar does not copy "._*" files
 export COPYFILE_DISABLE=true
 
