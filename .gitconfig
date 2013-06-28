@@ -34,5 +34,3 @@
 	autosquash = true
 [rerere]
 	enabled = true
-[branch "master"]
-	rebase = true
