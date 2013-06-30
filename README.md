@@ -1,6 +1,6 @@
 My dotfiles. So that I can synchronize them across computers I work on.
 
-Install the dotfiles with `rake install`, which symlinks each file to your
+Install the dotfiles with `./install.sh`, which symlinks each file to your
 home directory. The installation is safe: if the target file in your home
 directory exists already, symlink is not created.
 
