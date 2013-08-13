@@ -24,4 +24,4 @@ xterm*|rxvt*)
 esac
 
 # greets at login
-cmd_exists 'fortune' && echo && fortune -o
+cmd_exists 'fortune' && echo && fortune -a
