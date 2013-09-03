@@ -12,7 +12,7 @@
 	gr  = grep -n
 	lg  = log --patch-with-stat --decorate
 	lt  = log --graph --oneline --decorate
-	pl  = pull --ff-only
+	pl  = pull --ff-only --prune
 	rv  = revert
 	slg = shortlog -s -n
 	st  = status -s -b
