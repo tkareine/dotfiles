@@ -11,6 +11,9 @@ fi
 # for non-homebrew python (2.x)
 [[ -d $(brew --prefix)/lib/python2.7/site-packages ]] && export PYTHONPATH="$(brew --prefix)/lib/python2.7/site-packages:$PYTHONPATH"
 
+# for updated CA certificates from Mozilla.org
+[[ -f $(brew --prefix)/share/ca-bundle.crt ]] && export SSL_CERT_FILE="$(brew --prefix)/share/ca-bundle.crt"
+
 # tar does not copy "._*" files
 export COPYFILE_DISABLE=true
 
