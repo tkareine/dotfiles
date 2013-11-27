@@ -28,10 +28,12 @@ umask 0022
 # bash: check the window size after each command
 shopt -s checkwinsize
 
-# bash: at shell exit, append history to the history file rather than overwrite it
+# bash: at shell exit, append history to the history file rather than
+# overwrite it
 shopt -s histappend
 
-# bash: attempt to save all lines of a multiple-line command in the same history entry
+# bash: attempt to save all lines of a multiple-line command in the same
+# history entry
 shopt -s cmdhist
 
 # bash: enable extended pattern matching features
