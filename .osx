@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-# From <http://mths.be/osx>
+#
+# Originally from <http://mths.be/osx>, thanks!
 
 # Expand save panel by default
 defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true
