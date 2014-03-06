@@ -81,3 +81,6 @@ defaults write com.apple.TextEdit RichText -int 0
 # TextEdit: open and save files as UTF-8
 defaults write com.apple.TextEdit PlainTextEncoding -int 4
 defaults write com.apple.TextEdit PlainTextEncodingForWrite -int 4
+
+# Google Chrome: disable swipe navigation, because it has bad implementation
+defaults write com.google.Chrome AppleEnableSwipeNavigateWithScrolls -bool FALSE
