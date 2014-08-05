@@ -2,6 +2,23 @@ error_msg() {
     echo "$@" >&2
 }
 
+exit_if_fail() {
+    local cmd=$@
+    $cmd
+    local status=$?
+    if [[ $status != 0 ]]; then
+        error_msg "failed: $cmd"
+        exit $status
+    fi
+    return $status
+}
+
+wait_while() {
+    while eval "$@"; do
+        sleep 0.5
+    done
+}
+
 cmd_exists() {
     [[ -z $1 ]] && error_msg "cmd_exists(): expects command name as the parameter" && return 1
     [[ $(command -v $1) ]]
