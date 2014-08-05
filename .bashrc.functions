@@ -1,5 +1,5 @@
 error_msg() {
-    echo "${1}" >&2
+    echo "$@" >&2
 }
 
 cmd_exists() {
