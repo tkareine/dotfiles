@@ -13,7 +13,7 @@ exit_if_fail() {
     return $status
 }
 
-wait_while() {
+sleep_while() {
     while eval "$@"; do
         sleep 0.5
     done
