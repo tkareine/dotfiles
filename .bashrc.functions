@@ -7,7 +7,7 @@ exit_if_fail() {
     $cmd
     local status=$?
     if [[ $status != 0 ]]; then
-        error_msg "failed: $cmd"
+        error_msg "failed ($status): $cmd"
         exit $status
     fi
     return $status
