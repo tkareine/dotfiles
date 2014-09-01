@@ -5,10 +5,6 @@
 # same as above for local system man pages
 [[ -d /usr/local/share/man ]] && export MANPATH=/usr/local/share/man:"$MANPATH"
 
-# npm packages for node.js
-[[ -d /usr/local/share/npm/lib/node_modules ]] && export NODE_PATH=/usr/local/share/npm/lib/node_modules
-[[ -d /usr/local/share/npm/bin ]] && export PATH=/usr/local/share/npm/bin:"$PATH"
-
 # my local bash-completions
 if [[ -d ~/lib/bash-completion ]]; then
     for completion_file in ~/lib/bash-completion/*.bash; do
