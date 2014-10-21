@@ -25,3 +25,11 @@ set output-meta on
 # words which have more than one possible completion cause the matches
 # to be listed immediately instead of ringing the bell
 set show-all-if-ambiguous on
+
+# arrow key up: non-incremental backward history search, must match
+# from beginning of history line
+"\e[A": history-search-backward
+
+# arrow key down: non-incremental forward history search, must match
+# from beginning of history line
+"\e[B": history-search-forward
