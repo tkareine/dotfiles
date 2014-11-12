@@ -28,7 +28,7 @@ DOTFILES=(
 )
 DOTFILES+=(bin/*)
 
-source_dir="$(pwd -P)"
+source_dir=$(pwd -P)
 
 for file in "${DOTFILES[@]}"; do
     source="$source_dir/$file"

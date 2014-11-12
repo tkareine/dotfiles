@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-bin="$(brew --prefix emacs)/Emacs.app/Contents/MacOS/Emacs"
+bin=$(brew --prefix emacs)/Emacs.app/Contents/MacOS/Emacs
 
 if test ! -x "$bin"; then
     echo "Emacs not found from $bin"

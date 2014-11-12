@@ -107,7 +107,7 @@ gemdir() {
 }
 
 is_color_term() {
-    local colors="$(tput colors 2>/dev/null)"
+    local colors=$(tput colors 2>/dev/null)
     [[ $? = 0 ]] && [[ $colors -ge 8 ]]
 }
 
