@@ -106,6 +106,22 @@ gemdir() {
     pushd "$(gem env gemdir)/gems"
 }
 
+chjava() {
+    local home
+
+    if [[ -z $1 ]]; then
+        /usr/libexec/java_home -V
+        return
+    fi
+
+    home=$(/usr/libexec/java_home --failfast -v "$1")
+
+    if [[ $? = 0 ]]; then
+        echo "Using JVM in $home"
+        export JAVA_HOME=$home
+    fi
+}
+
 is_color_term() {
     local colors=$(tput colors 2>/dev/null)
     [[ $? = 0 ]] && [[ $colors -ge 8 ]]
