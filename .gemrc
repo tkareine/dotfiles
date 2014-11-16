@@ -1,5 +1,5 @@
 ---
 :sources:
-- http://rubygems.org/
+- https://rubygems.org/
 gem: --no-ri --no-rdoc
 rdoc: --inline-source --line-numbers
