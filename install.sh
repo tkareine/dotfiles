@@ -50,7 +50,7 @@ install_by_copying() {
         if [[ ! -e $destination ]]; then
             echo "copying: $destination -> $source"
             mkdir -p "$(dirname "$destination")"
-            ln -sf "$source" "$destination"
+            cp "$source" "$destination"
         elif [[ -f $destination ]] && cmp -s $source $destination; then
             echo "installed already, skipping: $destination"
         else
