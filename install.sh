@@ -17,7 +17,6 @@ INSTALL_BY_SYMLINKING_ALL=(
     .bashrc
     .bashrc.aliases
     .bashrc.common
-    .bashrc.darwin
     .bashrc.functions
     .bashrc.looks
     .dircolors
@@ -26,7 +25,6 @@ INSTALL_BY_SYMLINKING_ALL=(
     .gitignore
     .inputrc
     .irbrc
-    .osx
     .sbtconfig
     .tmux.conf
     .vimrc
