@@ -12,7 +12,6 @@ INSTALL_BY_COPYING_DARWIN=(
 
 INSTALL_BY_SYMLINKING_ALL=(
     .ackrc
-    .autotest
     .bash_profile
     .bashrc
     .bashrc.aliases
