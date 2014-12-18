@@ -1,14 +1,14 @@
 #!/usr/bin/env bash
 
 echo_and_eval() {
-  local cmd="$@"
+  local cmd=$@
   echo -e "$cmd\n"
   eval "$cmd"
 }
 
 if [[ $# -lt 2 ]]; then
     cat <<END
-Usage: $0 <subject-prefix> <rev-comp> [options...]
+Usage: $BASH_SOURCE <subject-prefix> <rev-comp> [options...]
 
   Where
     <subject-prefif> is the prefix for patch subject
@@ -21,8 +21,8 @@ END
     exit 1
 fi
 
-subject_prefix="$1"
-rev_comp="$2"
+subject_prefix=$1
+rev_comp=$2
 shift 2
 
 echo_and_eval "rm -f 00??-*.patch"
