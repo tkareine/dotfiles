@@ -1,7 +1,7 @@
 # chruby
 if [[ -f $(brew --prefix chruby)/share/chruby/chruby.sh ]]; then
     source "$(brew --prefix chruby)/share/chruby/chruby.sh"
-    chruby ruby-2.1
+    chruby ruby-2
 fi
 
 [[ -r $(brew --prefix)/etc/bash_completion ]] && source "$(brew --prefix)/etc/bash_completion"
