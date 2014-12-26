@@ -7,6 +7,7 @@ cd "${BASH_SOURCE%/*}" || exit 1
 SOURCE_DIR=$(pwd -P)
 
 INSTALL_BY_COPYING_DARWIN=(
+    Library/Developer/Xcode/UserData/KeyBindings/tkareine.idekeybindings
     Library/KeyBindings/DefaultKeyBinding.dict
 )
 
