@@ -43,12 +43,12 @@ INSTALL_BY_SYMLINKING_DARWIN=(
     .osx
 )
 
-error_msg() {
+print_error() {
     echo "$@" >&2
 }
 
 print_usage() {
-cat << EOF
+    cat << EOF
 Usage: ${0##*/} [-f] [-h]
 Install dotfiles by copying or symlinking to user's home directory.
 
@@ -58,7 +58,7 @@ EOF
 }
 
 install_by_copying() {
-    [[ $# -le 0 || -z $1 ]] && error_msg "install_by_copying(): expects file paths as parameters" && return 1
+    [[ $# -le 0 || -z $1 ]] && print_error "install_by_copying(): expects file paths as parameters" && return 1
     for file in "$@"; do
         source="$SOURCE_DIR/$file"
         destination=~/"$file"
@@ -76,7 +76,7 @@ install_by_copying() {
 }
 
 install_by_symlinking() {
-    [[ $# -le 0 || -z $1 ]] && error_msg "install_by_symlinking(): expects file paths as parameters" && return 1
+    [[ $# -le 0 || -z $1 ]] && print_error "install_by_symlinking(): expects file paths as parameters" && return 1
     for file in "$@"; do
         source="$SOURCE_DIR/$file"
         destination=~/"$file"
