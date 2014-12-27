@@ -3,8 +3,8 @@ computers I work with.
 
 Install the dotfiles with `./install.sh`, which either symlinks or
 copies each file to your home directory. Installation is safe by
-default: if the target file already exists in your home directory,
-symlinking or copying is skipped. See `./install -h` for more.
+default: if the target file exists in your home directory already, the
+installer skips symlinking or copying. See `./install -h` for more.
 
 XCode Zenburn color theme
 -------------------------
@@ -17,25 +17,26 @@ for XCode:
 
 I prefer to use
 [Inconsolata](http://www.levien.com/type/myfonts/inconsolata.html)
-font for source editor view, but you can change the font yourself
-easily: In XCode's Preferences → Fonts & Colors → tkareine-zenburn →
+font for XCode's source editor view, but you can change the font with
+ease: in XCode's Preferences → Fonts & Colors → tkareine-zenburn →
 Source Editor, select all the list items with Cmd+A and click on the
 font icon at the bottom to select another font for all the items.
 
-You can install the theme manually by copying
+The installer installs the theme. Alternatively, you can install the
+theme manually by copying
 `Library/Developer/Xcode/UserData/FontAndColorThemes/tkareine-zenburn.dvtcolortheme`
-to `~/Library/Developer/Xcode/UserData/FontAndColorThemes/`.
+to `~/Library/Developer/Xcode/UserData/FontAndColorThemes/` directory.
 
-[Jari Nurminen](http://kippura.org/zenburnpage/) invented the Zenburn
-theme originally.
+[Jari Nurminen](http://kippura.org/zenburnpage/) invented the theme
+originally.
 
 Thanks
 ------
 
-I have copied or adapted some of the files from other people. For
-small chunks of code, I have embedded the source URL in a comment
-inside the file. When copying has been extensive, I have retained the
-original copyright in the file.
+I have copied or adapted the contents of some of the files from other
+people. For small chunks of code, I have embedded the source URL in a
+comment inside the file. When copying has been extensive, I have
+retained the original copyright in the file.
 
 Thanks for:
 
@@ -46,5 +47,5 @@ Thanks for:
 * `bin/git-remote-hg`, written by
   [Felipe Contreras](https://github.com/felipec/git-remote-hg)
 
-Feel free to copy dotfiles further, as long as you respect the
-original copyrights and licensing.
+Feel free to copy dotfiles further, as long as you respect original
+copyrights and licensing.
