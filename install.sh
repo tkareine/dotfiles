@@ -7,7 +7,12 @@ cd "${BASH_SOURCE%/*}" || exit 1
 SOURCE_DIR=$(pwd -P)
 
 INSTALL_BY_COPYING_DARWIN=(
+    # XCode preferences must be copied instead of symlinking, because
+    # modifying them in XCode replaces the symlink with a new copy.
+    Library/Developer/Xcode/UserData/FontAndColorThemes/tkareine-zenburn.dvtcolortheme
     Library/Developer/Xcode/UserData/KeyBindings/tkareine.idekeybindings
+
+    # Must be copied, symlinked file has no effect.
     Library/KeyBindings/DefaultKeyBinding.dict
 )
 
