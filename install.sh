@@ -3,7 +3,7 @@
 set -e
 
 # needed for determining $SOURCE_DIR and expanding pattern bin/*
-cd "${BASH_SOURCE%/*}" || exit 1
+cd "${0%/*}" || exit 1
 SOURCE_DIR=$(pwd -P)
 
 INSTALL_BY_COPYING_DARWIN=(
@@ -47,18 +47,28 @@ error_msg() {
     echo "$@" >&2
 }
 
+print_usage() {
+cat << EOF
+Usage: ${0##*/} [-f] [-h]
+Install dotfiles by copying or symlinking to user's home directory.
+
+    -h, --help      display this help and exit
+    -f, --force     overwrite existing file if installing by copying and the file differs
+EOF
+}
+
 install_by_copying() {
     [[ $# -le 0 || -z $1 ]] && error_msg "install_by_copying(): expects file paths as parameters" && return 1
     for file in "$@"; do
         source="$SOURCE_DIR/$file"
         destination=~/"$file"
 
-        if [[ ! -e $destination ]]; then
+        if [[ -f $destination ]] && cmp -s $source $destination; then
+            echo "installed already, skipping: $destination"
+        elif [[ ! -e $destination || (-f $destination && $force_install) ]]; then
             echo "copying: $destination -> $source"
             mkdir -p "$(dirname "$destination")"
             cp "$source" "$destination"
-        elif [[ -f $destination ]] && cmp -s $source $destination; then
-            echo "installed already, skipping: $destination"
         else
             echo "exists already, skipping: $destination"
         fi
@@ -71,17 +81,35 @@ install_by_symlinking() {
         source="$SOURCE_DIR/$file"
         destination=~/"$file"
 
-        if [[ ! -e $destination ]]; then
-            echo "linking: $destination -> $source"
+        if [[ -L $destination && $source -ef $destination ]]; then
+            echo "installed already, skipping: $destination"
+        elif [[ ! -e $destination ]]; then
+            echo "symlinking: $destination -> $source"
             mkdir -p "$(dirname "$destination")"
             ln -sf "$source" "$destination"
-        elif [[ -L $destination && $source -ef $destination ]]; then
-            echo "installed already, skipping: $destination"
         else
             echo "exists already, skipping: $destination"
         fi
     done
 }
+
+force_install=
+
+while :; do
+    case $1 in
+        -h|-\?|--help)
+            print_usage
+            exit
+            ;;
+        -f|--force)
+            force_install=1
+            ;;
+        *)
+            break
+    esac
+
+    shift
+done
 
 install_by_symlinking "${INSTALL_BY_SYMLINKING_ALL[@]}"
 
