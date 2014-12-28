@@ -22,10 +22,10 @@ ease: in XCode's Preferences → Fonts & Colors → tkareine-zenburn →
 Source Editor, select all the list items with Cmd+A and click on the
 font icon at the bottom to select another font for all the items.
 
-The installer installs the theme. Alternatively, you can install the
-theme manually by copying
+For installing the theme manually, copy
 `Library/Developer/Xcode/UserData/FontAndColorThemes/tkareine-zenburn.dvtcolortheme`
-to `~/Library/Developer/Xcode/UserData/FontAndColorThemes/` directory.
+file to `~/Library/Developer/Xcode/UserData/FontAndColorThemes/`
+directory.
 
 [Jari Nurminen](http://kippura.org/zenburnpage/) invented the theme
 originally.
