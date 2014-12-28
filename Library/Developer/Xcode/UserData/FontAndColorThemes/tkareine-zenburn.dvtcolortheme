@@ -11,17 +11,17 @@
 	<key>DVTConsoleDebuggerOutputTextFont</key>
 	<string>Menlo-Regular - 12.0</string>
 	<key>DVTConsoleDebuggerPromptTextColor</key>
-	<string>0.750117 0.498389 0.50493 1</string>
+	<string>0.702383 0.912194 0.696474 1</string>
 	<key>DVTConsoleDebuggerPromptTextFont</key>
 	<string>Menlo-Bold - 12.0</string>
 	<key>DVTConsoleExectuableInputTextColor</key>
 	<string>0.830569 0.832854 0.755833 1</string>
 	<key>DVTConsoleExectuableInputTextFont</key>
-	<string>Menlo-Regular - 12.0</string>
+	<string>Menlo-Bold - 12.0</string>
 	<key>DVTConsoleExectuableOutputTextColor</key>
 	<string>0.830569 0.832854 0.755833 1</string>
 	<key>DVTConsoleExectuableOutputTextFont</key>
-	<string>Menlo-Bold - 12.0</string>
+	<string>Menlo-Regular - 12.0</string>
 	<key>DVTConsoleTextBackgroundColor</key>
 	<string>0.188707 0.188701 0.188704 1</string>
 	<key>DVTConsoleTextInsertionPointColor</key>
