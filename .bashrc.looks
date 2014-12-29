@@ -6,9 +6,12 @@ if is_color_term; then
             alias ls='ls -FG'
             ;;
         Linux)
-            [[ -r $HOME/.dircolors ]] && DIR_COLORS="$HOME/.dircolors"
-            [[ -r $DIR_COLORS ]] || DIR_COLORS=""
-            eval "`dircolors -b $DIR_COLORS`"
+            if [[ -r ~/.dircolors ]]; then
+                DIR_COLORS=~/.dircolors
+            else
+                DIR_COLORS=""
+            fi
+            eval "$(dircolors -b $DIR_COLORS)"
             alias ls='ls -F --color=auto'
             ;;
     esac
