@@ -34,13 +34,16 @@ INSTALL_BY_SYMLINKING_ALL=(
     .tmux.conf
     .vimrc
     .xmodmap
+    bin/git-create-patch
+    bin/git-remote-hg
+    bin/well
 )
-
-INSTALL_BY_SYMLINKING_ALL+=(bin/*)
 
 INSTALL_BY_SYMLINKING_DARWIN=(
     .bashrc.darwin
     .osx
+    bin/emacs
+    bin/emacsclient
 )
 
 print_error() {
