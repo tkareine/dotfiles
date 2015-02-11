@@ -29,8 +29,7 @@
 [merge]
 	conflictstyle = diff3
 [push]
-	# replace with "default = upstream" after git version update in paasikivi host
-	default = tracking
+	default = simple
 [rebase]
 	autosquash = true
 [rerere]
