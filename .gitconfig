@@ -22,6 +22,7 @@
 [core]
 	excludesfile = ~/.gitignore
 [diff]
+	submodule = log
 	tool = opendiff
 [difftool]
 	prompt = false
@@ -35,3 +36,5 @@
 	autosquash = true
 [rerere]
 	enabled = true
+[status]
+	submodulesummary = 1
