@@ -1,6 +1,6 @@
 # color support for ls
 if is_color_term; then
-    case "$(uname)" in
+    case $(uname) in
         Darwin)
             export LSCOLORS="Hxgxfxdxcxegedabagacad"
             alias ls='ls -FG'
@@ -17,7 +17,7 @@ if is_color_term; then
     esac
 fi
 
-case "$TERM" in
+case $TERM in
     xterm*|rxvt*)
         PROMPT_COMMAND="set_prompt; set_title"
         ;;

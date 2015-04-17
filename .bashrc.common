@@ -46,19 +46,19 @@ export LANG=en_US.UTF-8
 
 # less: ignore character case in searches, display ANSI colors, highlight the
 # first unread line, show verbose prompt
-export LESS="-iRWM"
+export LESS=-iRWM
 
 # git: prompt configuration
 export GIT_PS1_SHOWDIRTYSTATE=true
 export GIT_PS1_SHOWSTASHSTATE=
 export GIT_PS1_SHOWUNTRACKEDFILES=true
-export GIT_PS1_SHOWUPSTREAM="auto"
+export GIT_PS1_SHOWUPSTREAM=auto
 
 # choose default editor
 if cmd_exists 'emacsclient'; then
-    export EDITOR="$(which emacsclient)"
+    export EDITOR=$(which emacsclient)
 else
-    export EDITOR="$(which vi)"
+    export EDITOR=$(which vi)
 fi
 
 # C/C++
