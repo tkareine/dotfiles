@@ -10,8 +10,8 @@
 	dfc = diff --cached
 	fep = fetch --prune
 	gr  = grep -n
-	lg  = log --patch-with-stat --decorate
-	lt  = log --graph --oneline --decorate
+	lg  = log --cc --patch-with-stat --decorate
+	lt  = log --cc --graph --oneline --decorate
 	pl  = pull --ff-only
 	rv  = revert
 	slg = shortlog -s -n
