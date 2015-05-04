@@ -18,9 +18,6 @@ fi
 # disable core dumps; to enable them: `ulimit -S -c unlimited`
 ulimit -S -c 0
 
-# soft limit for the maximum number of open file descriptors
-ulimit -S -n 10240
-
 # new file permissions: read-write for you, read for group, read for others
 umask 0022
 

@@ -1,3 +1,6 @@
+# soft limit for the maximum number of open file descriptors
+ulimit -S -n 10240
+
 # chruby
 if [[ -f $(brew --prefix chruby)/share/chruby/chruby.sh ]]; then
     source "$(brew --prefix chruby)/share/chruby/chruby.sh"
