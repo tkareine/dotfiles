@@ -13,10 +13,10 @@ I have adapted Bozhidar Batsov's
 [Emacs Zenburn color theme](http://github.com/bbatsov/zenburn-emacs)
 for XCode:
 
-<img src="https://dl.dropboxusercontent.com/u/1404049/xcode-tkareine-zenburn.png" title="Zenburn color theme for XCode" alt="Zenburn color theme for XCode" width="725" height="734">
+<img src="https://dl.dropboxusercontent.com/u/1404049/dotfiles/xcode-tkareine-zenburn-input.png" title="Zenburn color theme for XCode" alt="Zenburn color theme for XCode" width="688" height="764">
 
 I prefer to use
-[Inconsolata](http://www.levien.com/type/myfonts/inconsolata.html)
+[Input](http://input.fontbureau.com/download/index.html?size=14&language=python&theme=solarized-dark&family=InputMono&width=300&weight=400&line-height=1.1&a=ss&g=ss&i=serifs_round&l=serifs_round&zero=0&asterisk=height&braces=straight&preset=consolas&customize=please)
 font for XCode's source editor view, but you can change the font with
 ease: in XCode's Preferences → Fonts & Colors → tkareine-zenburn →
 Source Editor, select all the list items with Cmd+A and click on the
