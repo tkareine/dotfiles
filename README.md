@@ -6,21 +6,21 @@ copies each file to your home directory. Installation is safe by
 default: if the target file exists in your home directory already, the
 installer skips symlinking or copying. See `./install -h` for more.
 
-XCode Zenburn color theme
+Xcode Zenburn color theme
 -------------------------
 
 I have adapted Bozhidar Batsov's
 [Emacs Zenburn color theme](http://github.com/bbatsov/zenburn-emacs)
-for XCode:
+for Xcode:
 
-<img src="https://dl.dropboxusercontent.com/u/1404049/dotfiles/xcode-tkareine-zenburn-input.png" title="Zenburn color theme for XCode" alt="Zenburn color theme for XCode" width="688" height="764">
+<img src="https://dl.dropboxusercontent.com/u/1404049/dotfiles/xcode-tkareine-zenburn-input.png" title="Zenburn color theme for Xcode" alt="Zenburn color theme for Xcode" width="688" height="764">
 
-I prefer to use
-[Input](http://input.fontbureau.com/download/index.html?size=14&language=python&theme=solarized-dark&family=InputMono&width=300&weight=400&line-height=1.1&a=ss&g=ss&i=serifs_round&l=serifs_round&zero=0&asterisk=height&braces=straight&preset=consolas&customize=please)
-font for XCode's source editor view, but you can change the font with
-ease: in XCode's Preferences → Fonts & Colors → tkareine-zenburn →
-Source Editor, select all the list items with Cmd+A and click on the
-font icon at the bottom to select another font for all the items.
+I prefer to use [Input](http://input.fontbureau.com/) font (with these
+[settings](http://input.fontbureau.com/download/index.html?size=14&language=python&theme=solarized-dark&family=InputMono&width=300&weight=400&line-height=1.1&a=ss&g=ss&i=serifs_round&l=serifs_round&zero=0&asterisk=height&braces=straight&preset=consolas&customize=please))
+for Xcode's source editor view, but you can change the font with ease:
+in Xcode's Preferences → Fonts & Colors → tkareine-zenburn → Source
+Editor, select all the list items with Cmd+A and click on the font
+icon at the bottom to select another font for all the items.
 
 For installing the theme manually, copy
 `Library/Developer/Xcode/UserData/FontAndColorThemes/tkareine-zenburn.dvtcolortheme`
