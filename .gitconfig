@@ -22,12 +22,14 @@
 [core]
 	excludesfile = ~/.gitignore
 [diff]
+	algorithm = patience
+	renames = true
 	submodule = log
 	tool = opendiff
 [difftool]
 	prompt = false
 [format]
-	numbered = auto
+	numbered = true
 [merge]
 	conflictstyle = diff3
 [push]
