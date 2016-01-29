@@ -25,6 +25,16 @@ sleep_until() {
     done
 }
 
+# Usage:
+#   ary=(a bb ccc)
+#   $(join , "${ary[@]}")
+#   => "a,bb,ccc"
+join() {
+    local IFS="$1"
+    shift
+    echo "$*"
+}
+
 cmd_exists() {
     [[ -z $1 ]] && print_error "cmd_exists(): expects command name as the parameter" && return 1
     [[ -n $(command -v $1) ]]
