@@ -1,0 +1,37 @@
+{
+  "env": {
+    "browser": true,
+    "es6": true,
+    "mongo": true,
+    "node": true
+  },
+  "rules": {
+    "eqeqeq": 1,
+    "no-console": 0,
+    "no-const-assign": 2,
+    "no-undef-init": 2,
+    "no-unneeded-ternary": 2,
+    "no-unreachable": 2,
+    "no-unused-expressions": 2,
+    "no-unused-vars": 2,
+    "prefer-const": 2,
+    "quotes": [2, "double"],
+    "semi": [2, "never"]
+  },
+  "ecmaFeatures": {
+    "arrowFunctions": true,
+    "blockBindings": true,
+    "classes": true,
+    "defaultParams": true,
+    "destructuring": true,
+    "forOf": true,
+    "generators": true,
+    "modules": true,
+    "objectLiteralComputedProperties": true,
+    "objectLiteralShorthandMethods": true,
+    "objectLiteralShorthandProperties": true,
+    "restParams": true,
+    "spread": true,
+    "templateStrings": true
+  }
+}

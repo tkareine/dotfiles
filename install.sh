@@ -25,6 +25,7 @@ INSTALL_BY_SYMLINKING_ALL=(
     .bashrc.functions
     .bashrc.looks
     .dircolors
+    .eslintrc.json
     .gemrc
     .gitconfig
     .gitignore
