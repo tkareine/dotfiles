@@ -1,4 +1,0 @@
-{
-  "asi": true,    // suppress warnings about missing semicolons
-  "newcap": true  // requires capitalized names of constructor functions
-}

@@ -17,7 +17,6 @@ INSTALL_BY_COPYING_DARWIN=(
 )
 
 INSTALL_BY_SYMLINKING_ALL=(
-    .ackrc
     .bash_profile
     .bashrc
     .bashrc.aliases
@@ -31,7 +30,6 @@ INSTALL_BY_SYMLINKING_ALL=(
     .gitignore
     .inputrc
     .irbrc
-    .jshintrc
     .sbtconfig
     .tmux.conf
     .vimrc
