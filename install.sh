@@ -30,7 +30,6 @@ INSTALL_BY_SYMLINKING_ALL=(
     .gitignore
     .inputrc
     .irbrc
-    .sbtconfig
     .tmux.conf
     .vimrc
     .xmodmap
