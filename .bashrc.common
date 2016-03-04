@@ -36,9 +36,11 @@ shopt -s cmdhist
 shopt -s extglob
 
 # ignore commands that begin with space and duplicate commands
-export HISTCONTROL=ignoreboth
-export HISTFILESIZE=2000
-export HISTSIZE=2000
+export HISTCONTROL=erasedups:ignoreboth
+export HISTIGNORE=bg:clear:exit:fg:history:ls
+export HISTTIMEFORMAT='%F %T '
+export HISTFILESIZE=10000
+export HISTSIZE=10000
 
 # localization
 export LC_ALL=en_US.UTF-8
