@@ -70,8 +70,5 @@ export CC=/usr/bin/gcc
 #export CCACHE_DIR=/tmp/${USER}/.ccache
 #mkdir -p /tmp/${USER}/.ccache
 
-# Apache Maven 2
-export M2_REPO=~/.m2/repository
-
-# JRebel
-export REBEL_HOME=~/opt/jrebel
+# Apache Maven
+[[ -d ~/.m2/repository ]] && export M2_REPO=~/.m2/repository
