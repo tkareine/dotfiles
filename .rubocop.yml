@@ -1,0 +1,31 @@
+AllCops:
+  DisplayCopNames: true
+  DisplayStyleGuide: true
+Metrics/ClassLength:
+  Enabled: false  # some projects have big test classes
+Metrics/LineLength:
+  Max: 200
+Metrics/MethodLength:
+  Max: 50
+Metrics/ModuleLength:
+  Max: 200
+Performance/RedundantBlockCall:
+  Enabled: false  # some projects prefer named block arguments for documentation
+Style/ClassAndModuleChildren:
+  Enabled: false  # projects use both compact and nested style, preferring compact
+Style/ClassVars:
+  Enabled: false  # it's ok when knowing it's limitations, easy to access from class instance scope
+Style/CollectionMethods:
+  Enabled: true
+Style/Copyright:
+  Enabled: false  # usually copyright is in the readme or license file
+Style/Documentation:
+  Enabled: false  # depends on project
+Style/ExtraSpacing:
+  Enabled: false  # does not work with trailing comments
+Style/PercentLiteralDelimiters:
+  Enabled: false  # it's better to use `%w{}` syntax, because the braces are the same as in `%r{}`
+Style/SpaceInsideHashLiteralBraces:
+  EnforcedStyle: no_space
+Style/StringLiterals:
+  Enabled: false  # quoting style depends on project
