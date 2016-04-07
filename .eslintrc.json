@@ -5,6 +5,10 @@
     "mongo": true,
     "node": true
   },
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module"
+  },
   "rules": {
     "eqeqeq": 1,
     "no-console": 0,
@@ -17,21 +21,5 @@
     "prefer-const": 2,
     "quotes": [2, "double"],
     "semi": [2, "never"]
-  },
-  "ecmaFeatures": {
-    "arrowFunctions": true,
-    "blockBindings": true,
-    "classes": true,
-    "defaultParams": true,
-    "destructuring": true,
-    "forOf": true,
-    "generators": true,
-    "modules": true,
-    "objectLiteralComputedProperties": true,
-    "objectLiteralShorthandMethods": true,
-    "objectLiteralShorthandProperties": true,
-    "restParams": true,
-    "spread": true,
-    "templateStrings": true
   }
 }
