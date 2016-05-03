@@ -7,6 +7,9 @@ if [[ -f $(brew --prefix chruby)/share/chruby/chruby.sh ]]; then
     chruby ruby-2
 fi
 
+# nodenv
+cmd_exists nodenv && eval "$(nodenv init -)"
+
 [[ -r $(brew --prefix)/etc/bash_completion ]] && source "$(brew --prefix)/etc/bash_completion"
 
 # for non-homebrew python (2.x)
