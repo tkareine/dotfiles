@@ -148,7 +148,7 @@ set_prompt() {
     local ansi_green="\[\e[0;32m\]"
     local ansi_reset="\[\e[0m\]"
 
-    local user_and_host pwd end git ruby
+    local user_and_host pwd end git ruby node
 
     if is_color_term; then
         user_and_host="${ansi_green}[\u@\h]${ansi_reset} "
@@ -170,8 +170,9 @@ set_prompt() {
 
     fn_exists __git_ps1 && git="$(__git_ps1 '[git: %s] ')"
     cmd_exists chruby && ruby="[$(chruby | grep '\* ' | cut -d ' ' -f 3)] "
+    cmd_exists nodenv && node="[node-$(nodenv version | cut -d ' ' -f 1)] "
 
-    PS1="${user_and_host}${pwd}${git}${ruby}\n${end}"
+    PS1="${user_and_host}${pwd}${git}${ruby}${node}\n${end}"
 }
 
 set_title() {
