@@ -27,4 +27,4 @@ case $TERM in
 esac
 
 # greets at login
-cmd_exists 'fortune' && echo && fortune -a
+cmd_exists fortune && echo && fortune -a

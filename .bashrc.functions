@@ -168,8 +168,8 @@ set_prompt() {
         fi
     fi
 
-    fn_exists '__git_ps1' && git="$(__git_ps1 '[git: %s] ')"
-    cmd_exists 'chruby' && ruby="[$(chruby | grep '\* ' | cut -d ' ' -f 3)] "
+    fn_exists __git_ps1 && git="$(__git_ps1 '[git: %s] ')"
+    cmd_exists chruby && ruby="[$(chruby | grep '\* ' | cut -d ' ' -f 3)] "
 
     PS1="${user_and_host}${pwd}${git}${ruby}\n${end}"
 }
