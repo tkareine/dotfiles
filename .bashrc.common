@@ -63,6 +63,9 @@ else
     export EDITOR=$(which vi)
 fi
 
+# nodenv
+cmd_exists nodenv && eval "$(nodenv init -)"
+
 # C/C++
 export CC=/usr/bin/gcc
 #export CC="ccache gcc"
