@@ -132,6 +132,17 @@ chjava() {
     fi
 }
 
+current_java_version() {
+    local version
+
+    [[ -z $JAVA_HOME ]] && return 1
+
+    version=${JAVA_HOME#*/jdk}
+    version=${version%.jdk*}
+
+    echo "$version"
+}
+
 is_color_term() {
     local colors=$(tput colors 2>/dev/null)
     [[ $? -eq 0 ]] && [[ $colors -ge 8 ]]
@@ -148,7 +159,7 @@ set_prompt() {
     local ansi_green="\[\e[0;32m\]"
     local ansi_reset="\[\e[0m\]"
 
-    local user_and_host pwd end git ruby node
+    local user_and_host pwd end git bin_ruby bin_node bin_java
 
     if is_color_term; then
         user_and_host="${ansi_green}[\u@\h]${ansi_reset} "
@@ -169,10 +180,17 @@ set_prompt() {
     fi
 
     fn_exists __git_ps1 && git="$(__git_ps1 '[git: %s] ')"
-    cmd_exists chruby && ruby="[$(chruby | grep '\* ' | cut -d ' ' -f 3)] "
-    cmd_exists nodenv && node="[node-$(nodenv version | cut -d ' ' -f 1)] "
 
-    PS1="${user_and_host}${pwd}${git}${ruby}${node}\n${end}"
+    cmd_exists chruby && bin_ruby="[$(chruby | grep '\* ' | cut -d ' ' -f 3)] "
+
+    cmd_exists nodenv && bin_node="[node-$(nodenv version | cut -d ' ' -f 1)] "
+
+    if [[ `uname` == Darwin ]]; then
+        bin_java=$(current_java_version)
+        [[ -n bin_java ]] && bin_java="[java-$bin_java] "
+    fi
+
+    PS1="${user_and_host}${pwd}${git}${bin_ruby}${bin_node}${bin_java}\n${end}"
 }
 
 set_title() {
