@@ -187,7 +187,7 @@ set_prompt() {
 
     if [[ `uname` == Darwin ]]; then
         bin_java=$(current_java_version)
-        [[ -n bin_java ]] && bin_java="[java-$bin_java] "
+        [[ -n $bin_java ]] && bin_java="[java-$bin_java] "
     fi
 
     PS1="${user_and_host}${pwd}${git}${bin_ruby}${bin_node}${bin_java}\n${end}"
