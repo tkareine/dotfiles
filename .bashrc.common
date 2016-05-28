@@ -57,14 +57,14 @@ export GIT_PS1_SHOWUNTRACKEDFILES=true
 export GIT_PS1_SHOWUPSTREAM=auto
 
 # choose default editor
-if cmd_exists emacsclient; then
+if tkareine_cmd_exist emacsclient; then
     export EDITOR=$(which emacsclient)
 else
     export EDITOR=$(which vi)
 fi
 
 # nodenv
-cmd_exists nodenv && eval "$(nodenv init -)"
+tkareine_cmd_exist nodenv && eval "$(nodenv init -)"
 
 # C/C++
 export CC=/usr/bin/gcc

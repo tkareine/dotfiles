@@ -1,5 +1,5 @@
 # color support for ls
-if is_color_term; then
+if tkareine_is_color_term; then
     case $(uname) in
         Darwin)
             export LSCOLORS="Hxgxfxdxcxegedabagacad"
@@ -19,12 +19,12 @@ fi
 
 case $TERM in
     xterm*|rxvt*)
-        PROMPT_COMMAND="set_prompt; set_title"
+        PROMPT_COMMAND="tkareine_set_prompt; tkareine_set_title"
         ;;
     *)
-        PROMPT_COMMAND="set_prompt"
+        PROMPT_COMMAND="tkareine_set_prompt"
         ;;
 esac
 
 # greets at login
-cmd_exists fortune && echo && fortune -a
+tkareine_cmd_exist fortune && echo && fortune -a
