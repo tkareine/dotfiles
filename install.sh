@@ -44,6 +44,7 @@ INSTALL_BY_SYMLINKING_DARWIN=(
     .osx
     bin/emacs
     bin/emacsclient
+    Library/Preferences/IdeaIC2016.1/idea.vmoptions
 )
 
 print_error() {
