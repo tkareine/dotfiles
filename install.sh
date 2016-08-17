@@ -41,6 +41,7 @@ INSTALL_BY_SYMLINKING_ALL=(
 
 INSTALL_BY_SYMLINKING_DARWIN=(
     .bashrc.darwin
+    .iterm2_shell_integration.bash
     .osx
     bin/emacs
     bin/emacsclient
