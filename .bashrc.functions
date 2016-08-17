@@ -42,7 +42,7 @@ tkareine_cmd_exist() {
 
 tkareine_fn_exist() {
     [[ -z $1 ]] && tkareine_print_error "tkareine_fn_exist(): expects function name as the parameter" && return 1
-    [[ $(type -t "$1") = function ]]
+    [[ $(type -t "$1") == "function" ]]
 }
 
 tkareine_gem_search_paths() {
@@ -149,7 +149,7 @@ tkareine_is_color_term() {
 }
 
 tkareine_is_root() {
-    [[ $(whoami) = "root" ]]
+    [[ $(whoami) == "root" ]]
 }
 
 tkareine_set_prompt() {
@@ -185,7 +185,7 @@ tkareine_set_prompt() {
 
     tkareine_cmd_exist nodenv && bin_node="[node-$(nodenv version | cut -d ' ' -f 1)] "
 
-    if [[ `uname` == Darwin ]]; then
+    if [[ `uname` == "Darwin" ]]; then
         bin_java=$(tkareine_current_java_version)
         [[ -n $bin_java ]] && bin_java="[java-$bin_java] "
     fi

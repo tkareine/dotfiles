@@ -118,7 +118,7 @@ done
 
 install_by_symlinking "${INSTALL_BY_SYMLINKING_ALL[@]}"
 
-if [[ `uname` = Darwin ]]; then
+if [[ `uname` == "Darwin" ]]; then
     install_by_copying "${INSTALL_BY_COPYING_DARWIN[@]}"
     install_by_symlinking "${INSTALL_BY_SYMLINKING_DARWIN[@]}"
 fi
