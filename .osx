@@ -30,11 +30,12 @@ defaults write NSGlobalDomain PMPrintingExpandedStateForPrint2 -bool true
 # Save to disk (not to iCloud) by default
 defaults write NSGlobalDomain NSDocumentSaveNewDocumentsToCloud -bool false
 
-# Display ASCII control characters using caret notation in standard text views.
-# Try: `cd /tmp; unidecode "\x{0000}" > cc.txt; open -e cc.txt`
+# Display ASCII control characters using caret notation in standard text
+# views.  Try: `cd /tmp; unidecode "\x{0000}" > cc.txt; open -e cc.txt`
 defaults write NSGlobalDomain NSTextShowsControlCharacters -bool true
 
-# Enable full keyboard access for all controls (e.g. enable Tab in modal dialogs)
+# Enable full keyboard access for all controls (e.g. enable Tab in modal
+# dialogs)
 defaults write NSGlobalDomain AppleKeyboardUIMode -int 3
 
 # Automatically show scroll bars (options: WhenScrolling, Automatic, Always)
@@ -98,8 +99,8 @@ defaults write NSGlobalDomain com.apple.springing.enabled -bool true
 # Finder: avoid creating .DS_Store files on network volumes
 defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
 
-# Finder: use list view in all Finder windows by default
-# Four-letter codes for the other view modes: `icnv`, `clmv`, `Flwv`
+# Finder: use list view in all Finder windows by default Four-letter codes for
+# the other view modes: `icnv`, `clmv`, `Flwv`
 defaults write com.apple.finder FXPreferredViewStyle -string "Nlsv"
 
 # Finder: show ~/Library
