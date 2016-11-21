@@ -1,3 +1,15 @@
+// References:
+// - http://osxnotes.net/keybindings.html
+// - https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/EventOverview/TextDefaultsBindings/TextDefaultsBindings.html
+
 {
-"~ " = ("insertText:", " ");
+  // Bind Control+Command+{Down,Left,Right}Arrow to do nothing,
+  // effectively disabling system alarm beep on certain apps like
+  // IntelliJ IDEA
+  "^@\Uf701" = "noop:";
+  "^@\Uf702" = "noop:";
+  "^@\Uf703" = "noop:";
+
+  // Option+Space inserts regular space
+  "~ " = ("insertText:", " ");
 }
