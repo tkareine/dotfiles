@@ -8,6 +8,24 @@
 		<array>
 			<dict>
 				<key>Action</key>
+				<string>toggleToolbarShown:</string>
+				<key>Alternate</key>
+				<string>NO</string>
+				<key>CommandID</key>
+				<string>Xcode.IDEKit.CmdDefinition.ToggleToolbar</string>
+				<key>Group</key>
+				<string>View Menu</string>
+				<key>GroupID</key>
+				<string>Xcode.IDEKit.MenuDefinition.Main</string>
+				<key>GroupedAlternate</key>
+				<string>NO</string>
+				<key>Navigation</key>
+				<string>NO</string>
+				<key>Title</key>
+				<string>Show Toolbar</string>
+			</dict>
+			<dict>
+				<key>Action</key>
 				<string>openInAdjacentEditorWithAlternate:</string>
 				<key>Alternate</key>
 				<string>NO</string>
@@ -45,182 +63,6 @@
 				<string>NO</string>
 				<key>Title</key>
 				<string>Open in…</string>
-			</dict>
-			<dict>
-				<key>Action</key>
-				<string>foldAllComments:</string>
-				<key>Alternate</key>
-				<string>NO</string>
-				<key>CommandGroupID</key>
-				<string>Xcode.IDESourceEditor.CmdDefinition.FoldCommentBlocks</string>
-				<key>CommandID</key>
-				<string>Xcode.IDESourceEditor.CmdDefinition.FoldCommentBlocks</string>
-				<key>Group</key>
-				<string>Editor Menu for Data Model Comparison</string>
-				<key>GroupID</key>
-				<string>Xcode.IDESourceCodeComparisonEditor.MenuDefinition.Editor</string>
-				<key>GroupedAlternate</key>
-				<string>NO</string>
-				<key>Navigation</key>
-				<string>NO</string>
-				<key>Parent Title</key>
-				<string>Code Folding</string>
-				<key>Title</key>
-				<string>Fold Comment Blocks</string>
-			</dict>
-			<dict>
-				<key>Action</key>
-				<string>unfoldAllComments:</string>
-				<key>Alternate</key>
-				<string>NO</string>
-				<key>CommandGroupID</key>
-				<string>Xcode.IDESourceEditor.CmdDefinition.UnfoldCommentBlocks</string>
-				<key>CommandID</key>
-				<string>Xcode.IDESourceEditor.CmdDefinition.UnfoldCommentBlocks</string>
-				<key>Group</key>
-				<string>Editor Menu for Data Model Comparison</string>
-				<key>GroupID</key>
-				<string>Xcode.IDESourceCodeComparisonEditor.MenuDefinition.Editor</string>
-				<key>GroupedAlternate</key>
-				<string>NO</string>
-				<key>Navigation</key>
-				<string>NO</string>
-				<key>Parent Title</key>
-				<string>Code Folding</string>
-				<key>Title</key>
-				<string>Unfold Comment Blocks</string>
-			</dict>
-			<dict>
-				<key>Action</key>
-				<string>foldAllComments:</string>
-				<key>Alternate</key>
-				<string>NO</string>
-				<key>CommandGroupID</key>
-				<string>Xcode.IDESourceEditor.CmdDefinition.FoldCommentBlocks</string>
-				<key>CommandID</key>
-				<string>Xcode.IDESourceEditor.CmdDefinition.FoldCommentBlocks</string>
-				<key>Group</key>
-				<string>Editor Menu for Playground</string>
-				<key>GroupID</key>
-				<string>Xcode.IDEPlaygroundEditor.MenuDefinition.Editor</string>
-				<key>GroupedAlternate</key>
-				<string>NO</string>
-				<key>Navigation</key>
-				<string>NO</string>
-				<key>Parent Title</key>
-				<string>Code Folding</string>
-				<key>Title</key>
-				<string>Fold Comment Blocks</string>
-			</dict>
-			<dict>
-				<key>Action</key>
-				<string>unfoldAllComments:</string>
-				<key>Alternate</key>
-				<string>NO</string>
-				<key>CommandGroupID</key>
-				<string>Xcode.IDESourceEditor.CmdDefinition.UnfoldCommentBlocks</string>
-				<key>CommandID</key>
-				<string>Xcode.IDESourceEditor.CmdDefinition.UnfoldCommentBlocks</string>
-				<key>Group</key>
-				<string>Editor Menu for Playground</string>
-				<key>GroupID</key>
-				<string>Xcode.IDEPlaygroundEditor.MenuDefinition.Editor</string>
-				<key>GroupedAlternate</key>
-				<string>NO</string>
-				<key>Navigation</key>
-				<string>NO</string>
-				<key>Parent Title</key>
-				<string>Code Folding</string>
-				<key>Title</key>
-				<string>Unfold Comment Blocks</string>
-			</dict>
-			<dict>
-				<key>Action</key>
-				<string>foldAllComments:</string>
-				<key>Alternate</key>
-				<string>NO</string>
-				<key>CommandGroupID</key>
-				<string>Xcode.IDESourceEditor.CmdDefinition.FoldCommentBlocks</string>
-				<key>CommandID</key>
-				<string>Xcode.IDESourceEditor.CmdDefinition.FoldCommentBlocks</string>
-				<key>Group</key>
-				<string>Editor Menu for Source Code</string>
-				<key>GroupID</key>
-				<string>Xcode.IDESourceEditor.MenuDefinition.Editor</string>
-				<key>GroupedAlternate</key>
-				<string>NO</string>
-				<key>Navigation</key>
-				<string>NO</string>
-				<key>Parent Title</key>
-				<string>Code Folding</string>
-				<key>Title</key>
-				<string>Fold Comment Blocks</string>
-			</dict>
-			<dict>
-				<key>Action</key>
-				<string>unfoldAllComments:</string>
-				<key>Alternate</key>
-				<string>NO</string>
-				<key>CommandGroupID</key>
-				<string>Xcode.IDESourceEditor.CmdDefinition.UnfoldCommentBlocks</string>
-				<key>CommandID</key>
-				<string>Xcode.IDESourceEditor.CmdDefinition.UnfoldCommentBlocks</string>
-				<key>Group</key>
-				<string>Editor Menu for Source Code</string>
-				<key>GroupID</key>
-				<string>Xcode.IDESourceEditor.MenuDefinition.Editor</string>
-				<key>GroupedAlternate</key>
-				<string>NO</string>
-				<key>Navigation</key>
-				<string>NO</string>
-				<key>Parent Title</key>
-				<string>Code Folding</string>
-				<key>Title</key>
-				<string>Unfold Comment Blocks</string>
-			</dict>
-			<dict>
-				<key>Action</key>
-				<string>foldAllComments:</string>
-				<key>Alternate</key>
-				<string>NO</string>
-				<key>CommandGroupID</key>
-				<string>Xcode.IDESourceEditor.CmdDefinition.FoldCommentBlocks</string>
-				<key>CommandID</key>
-				<string>Xcode.IDESourceEditor.CmdDefinition.FoldCommentBlocks</string>
-				<key>Group</key>
-				<string>Editor Menu for Source Code Comparison</string>
-				<key>GroupID</key>
-				<string>Xcode.IDESourceCodeComparisonEditor.MenuDefinition.Editor</string>
-				<key>GroupedAlternate</key>
-				<string>NO</string>
-				<key>Navigation</key>
-				<string>NO</string>
-				<key>Parent Title</key>
-				<string>Code Folding</string>
-				<key>Title</key>
-				<string>Fold Comment Blocks</string>
-			</dict>
-			<dict>
-				<key>Action</key>
-				<string>unfoldAllComments:</string>
-				<key>Alternate</key>
-				<string>NO</string>
-				<key>CommandGroupID</key>
-				<string>Xcode.IDESourceEditor.CmdDefinition.UnfoldCommentBlocks</string>
-				<key>CommandID</key>
-				<string>Xcode.IDESourceEditor.CmdDefinition.UnfoldCommentBlocks</string>
-				<key>Group</key>
-				<string>Editor Menu for Source Code Comparison</string>
-				<key>GroupID</key>
-				<string>Xcode.IDESourceCodeComparisonEditor.MenuDefinition.Editor</string>
-				<key>GroupedAlternate</key>
-				<string>NO</string>
-				<key>Navigation</key>
-				<string>NO</string>
-				<key>Parent Title</key>
-				<string>Code Folding</string>
-				<key>Title</key>
-				<string>Unfold Comment Blocks</string>
 			</dict>
 			<dict>
 				<key>Action</key>
