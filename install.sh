@@ -58,7 +58,7 @@ Usage: ${0##*/} [-f] [-h]
 Install dotfiles by copying or symlinking to user's home directory.
 
     -h, --help      display this help and exit
-    -f, --force     overwrite existing file if installing by copying and the file differs
+    -f, --force     overwrite existing installed files
 EOF
 }
 
@@ -70,7 +70,7 @@ install_by_copying() {
 
         if [[ -f $destination ]] && cmp -s $source $destination; then
             echo "installed already, skipping: $destination"
-        elif [[ ! -e $destination || (-f $destination && $force_install) ]]; then
+        elif [[ ! -e $destination || $force_install ]]; then
             echo "copying: $destination -> $source"
             mkdir -p "$(dirname "$destination")"
             cp "$source" "$destination"
@@ -88,7 +88,7 @@ install_by_symlinking() {
 
         if [[ -L $destination && $source -ef $destination ]]; then
             echo "installed already, skipping: $destination"
-        elif [[ ! -e $destination ]]; then
+        elif [[ ! -e $destination || $force_install ]]; then
             echo "symlinking: $destination -> $source"
             mkdir -p "$(dirname "$destination")"
             ln -sf "$source" "$destination"
