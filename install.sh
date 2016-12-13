@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-set -e
+set -euo pipefail
 
 # needed for determining $SOURCE_DIR and expanding pattern bin/*
 cd "${0%/*}" || exit 1
@@ -101,7 +101,7 @@ install_by_symlinking() {
 force_install=
 
 while :; do
-    case $1 in
+    case ${1:-} in
         -h|-\?|--help)
             print_usage
             exit
