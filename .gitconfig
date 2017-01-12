@@ -40,3 +40,7 @@
 	enabled = true
 [status]
 	submodulesummary = 1
+[submodule]
+	fetchJobs = 4
+[stash]
+	showPatch = true
