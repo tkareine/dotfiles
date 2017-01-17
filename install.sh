@@ -23,6 +23,7 @@ INSTALL_BY_SYMLINKING_ALL=(
     .bashrc.common
     .bashrc.functions
     .bashrc.looks
+    .ctags
     .dircolors
     .eslintrc.json
     .gemrc
