@@ -1,6 +1,7 @@
 --exclude=.[!.]*
 --exclude=*.min.css
 --exclude=*.min.js
+--exclude=node_modules
 --exclude=vendor
 --exclude=vendors
 
