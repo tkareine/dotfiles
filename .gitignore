@@ -2,6 +2,7 @@
 .*.swp
 .DS_Store
 .[#~]*
+.projectile
 /.idea/
 TAGS
 tags
