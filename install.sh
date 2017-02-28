@@ -37,6 +37,7 @@ INSTALL_BY_SYMLINKING_ALL=(
     .xmodmap
     bin/git-create-patch
     bin/git-remote-hg
+    bin/psql-jq
     bin/well
 )
 

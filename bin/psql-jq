@@ -1,0 +1,65 @@
+#!/usr/bin/env bash
+
+set -uo pipefail
+
+print_usage() {
+    local this_script
+    this_script=${0##*/}
+
+    cat << EOF
+Usage: $this_script [-d db_name] -c command
+
+    -c, --command command  SQL query to execute
+    -h, --help             display this message and exit
+
+Other options are passed to psql.
+
+Example: $this_script -d mydb -c 'select(1)'
+EOF
+}
+
+command=
+passthrough_args=()
+
+while :; do
+    case ${1:-} in
+        -h|-\?|--help)
+            print_usage
+            exit
+            ;;
+        -c|--command)
+            if [[ -n ${2:-} ]]; then
+                command=$2
+                shift
+            else
+                printf 'ERROR: "--command" requires a non-empty argument.\n' >&2
+                exit 1
+            fi
+            ;;
+        --)
+            shift
+            break
+            ;;
+        -?*)
+            passthrough_args+=($1)
+
+            if [[ -n ${2:-} && $2 != -* ]]; then
+                passthrough_args+=($2)
+                shift
+            fi
+            ;;
+        *)
+            break
+    esac
+
+    shift
+done
+
+if [[ -z $command ]]; then
+    print_usage
+    exit 1
+fi
+
+psql -t "${passthrough_args[@]}" << EOF | jq -C '.'
+select row_to_json(t) from ($command) t
+EOF
