@@ -26,7 +26,7 @@
 --regex-js=/([A-Za-z0-9._$]+)\[["']([A-Za-z0-9_$]+)["']\][ \t]*=[ \t]*/\1\.\2/o,objects/
 --regex-js=/([A-Za-z0-9._$]+)[ \t]*=[ \t]*\(function[ \t]*\(\)/\1/c,classes/
 --regex-js=/['"]?([A-Za-z0-9_$]+)['"]?:[ \t]*\(function[ \t]*\(\)/\1/c,classes/
---regex-js=/(^|[ \t]+)class[ \t]+([A-Za-z0-9._$]+)[ \t]*($|\{)/\2/c,classes/
+--regex-js=/(^|[ \t]+)class[ \t]+([A-Za-z0-9._$]+)[ \t]*($|\{|extends)/\2/c,classes/
 --regex-js=/([A-Za-z$][A-Za-z0-9_$()]+)[ \t]*=[ \t]*[Rr]eact.createClass[ \t]*\(/\1/c,classes/
 --regex-js=/([A-Z][A-Za-z0-9_$]+)[ \t]*=[ \t]*[A-Za-z0-9_$]*[ \t]*[{(]/\1/c,classes/
 --regex-js=/([A-Z][A-Za-z0-9_$]+)[ \t]*:[ \t]*[A-Za-z0-9_$]*[ \t]*[{(]/\1/c,classes/
