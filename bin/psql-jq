@@ -10,7 +10,7 @@ print_usage() {
 Usage: $this_script [-d db_name] -c command
 
     -c, --command command  SQL query to execute
-    -h, --help             display this message and exit
+    -?,--help              display this message and exit
 
 Other options are passed to psql.
 
@@ -23,7 +23,7 @@ passthrough_args=()
 
 while :; do
     case ${1:-} in
-        -h|-\?|--help)
+        -\?|--help)
             print_usage
             exit
             ;;
