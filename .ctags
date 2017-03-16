@@ -33,7 +33,7 @@
 --regex-js=/([A-Za-z$][A-Za-z0-9_$]+)[ \t]*=[ \t]*function[ \t]*\(/\1/f,functions/
 --regex-js=/([A-Za-z$][A-Za-z0-9_$]+)[ \t]*=[ \t]*\([^)]*\)[ \t]*=>/\1/f,functions/
 --regex-js=/^[ \t]*function[ \t]+([A-Za-z$_][A-Za-z0-9_$]+)[ \t]*\(/\1/f,functions/
---regex-js=/^[ \t]*(static[ \t]+)?([A-Za-z$][A-Za-z0-9_$]+)[ \t]*\(/\2/m,methods/
+--regex-js=/^[ \t]*(static[ \t]+)?([A-Za-z$][A-Za-z0-9_$]+)[ \t]*\([^)]*\)[ \t]*\{/\2/m,methods/
 --regex-js=/['"]?([A-Za-z$][A-Za-z0-9_$]+)['"]?:[ \t]*function[ \t]*\(/\1/m,methods/
 --regex-js=/[A-Za-z0-9_$]+\[["']([A-Za-z0-9_$]+)["']\][ \t]*=[ \t]*function[ \t]*\(/\1/m,methods/
 
