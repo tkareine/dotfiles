@@ -7,14 +7,20 @@ print_usage() {
     this_script=${0##*/}
 
     cat << EOF
-Usage: $this_script [-d db_name] -c command
+Execute SQL query with \`psql\`, produce pretty-printed JSON output with
+\`jq\`.
 
-    -c, --command command    SQL query to execute
+Usage: $this_script [-C|-M] -c command [psql options]
+
+    -c, --command command    SQL query to execute (mandatory)
     -C, --color-output       explicitly enable jq color output
     -M, --monochrome-output  explicitly disable jq color output
     -?, --help               display this message and exit
 
-Other options are passed to psql.
+Other options are passed to psql as is (such as \`-d db_name\`).
+
+If program's output is to a terminal and no jq color option is set,
+enable color output implicitly.
 
 Example: $this_script -d mydb -c 'select(1)'
 EOF
