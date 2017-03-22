@@ -21,8 +21,8 @@ INSTALL_BY_SYMLINKING_ALL=(
     .bashrc
     .bashrc.aliases
     .bashrc.common
-    .bashrc.functions
     .bashrc.looks
+    .bashrc.support
     .ctags
     .dircolors
     .eslintrc.json

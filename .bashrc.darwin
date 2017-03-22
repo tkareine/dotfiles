@@ -1,3 +1,19 @@
+chjava() {
+    local home
+
+    if [[ -z $1 ]]; then
+        /usr/libexec/java_home -V
+        return
+    fi
+
+    home=$(/usr/libexec/java_home --failfast -v "$1")
+
+    if [[ $? -eq 0 ]]; then
+        echo "Using JVM in $home"
+        export JAVA_HOME=$home
+    fi
+}
+
 # soft limit for the maximum number of open file descriptors
 ulimit -S -n 10240
 

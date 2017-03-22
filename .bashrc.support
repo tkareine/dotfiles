@@ -72,7 +72,7 @@ gemdoc() {
     fi
 }
 
-tkareine__gemdoc() {
+tkareine__complete_gemdocs() {
     local gemdocs=()
     for path in $(tkareine_gem_search_paths); do
         gemdocs+=($(\find "$path/doc" -name '*' -type d -depth 1 -exec basename '{}' ';'))
@@ -80,7 +80,7 @@ tkareine__gemdoc() {
     echo "${gemdocs[@]}"
 }
 
-complete -W '$(tkareine__gemdoc)' gemdoc
+complete -W '$(tkareine__complete_gemdocs)' gemdoc
 
 gemedit() {
     [[ -z $1 ]] && tkareine_print_error "gemedit(): expects gem and its version as the parameter" && return 1
@@ -102,7 +102,7 @@ gemedit() {
     fi
 }
 
-tkareine__gemedit() {
+tkareine__complete_gemedits() {
     local gems=()
     for path in $(tkareine_gem_search_paths); do
         gems+=($(\find "$path/gems" -name '*' -type d -depth 1 -exec basename '{}' ';'))
@@ -110,89 +110,8 @@ tkareine__gemedit() {
     echo "${gems[@]}"
 }
 
-complete -W '$(tkareine__gemedit)' gemedit
+complete -W '$(tkareine__complete_gemedits)' gemedit
 
 gemdir() {
     pushd "$(gem env gemdir)/gems"
-}
-
-chjava() {
-    local home
-
-    if [[ -z $1 ]]; then
-        /usr/libexec/java_home -V
-        return
-    fi
-
-    home=$(/usr/libexec/java_home --failfast -v "$1")
-
-    if [[ $? -eq 0 ]]; then
-        echo "Using JVM in $home"
-        export JAVA_HOME=$home
-    fi
-}
-
-tkareine_current_java_version() {
-    local version
-
-    [[ -z $JAVA_HOME ]] && return 1
-
-    version=${JAVA_HOME#*/jdk}
-    version=${version%.jdk*}
-
-    echo "$version"
-}
-
-tkareine_is_color_term() {
-    local colors=$(tput colors 2>/dev/null)
-    [[ $? -eq 0 ]] && [[ $colors -ge 8 ]]
-}
-
-tkareine_is_root() {
-    [[ $(whoami) == "root" ]]
-}
-
-tkareine_set_prompt() {
-    local ansi_b_green="\[\e[1;32m\]"
-    local ansi_b_red="\[\e[1;31m\]"
-    local ansi_b_yellow="\[\e[1;33m\]"
-    local ansi_green="\[\e[0;32m\]"
-    local ansi_reset="\[\e[0m\]"
-
-    local user_and_host pwd end git bin_ruby bin_node bin_java
-
-    if tkareine_is_color_term; then
-        user_and_host="${ansi_green}[\u@\h]${ansi_reset} "
-        pwd="${ansi_b_yellow}[\w]${ansi_reset} "
-        if tkareine_is_root; then
-            end="${ansi_b_red}#${ansi_reset} "
-        else
-            end="${ansi_b_green}\$${ansi_reset} "
-        fi
-    else
-        user_and_host="[\u@\h] "
-        pwd="[\w] "
-        if tkareine_is_root; then
-            end="# "
-        else
-            end="$ "
-        fi
-    fi
-
-    tkareine_fn_exist __git_ps1 && git="$(__git_ps1 '[git: %s] ')"
-
-    tkareine_cmd_exist chruby && bin_ruby="[$(chruby | grep '\* ' | cut -d ' ' -f 3)] "
-
-    tkareine_cmd_exist nodenv && bin_node="[node-$(nodenv version | cut -d ' ' -f 1)] "
-
-    if [[ `uname` == "Darwin" ]]; then
-        bin_java=$(tkareine_current_java_version)
-        [[ -n $bin_java ]] && bin_java="[java-$bin_java] "
-    fi
-
-    PS1="${user_and_host}${pwd}${git}${bin_ruby}${bin_node}${bin_java}\n${end}"
-}
-
-tkareine_set_title() {
-    echo -ne "\033]0;${USER}@${HOSTNAME}: ${PWD/$HOME/~}\007"
 }

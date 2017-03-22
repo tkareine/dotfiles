@@ -1,4 +1,4 @@
-source ~/.bashrc.functions
+source ~/.bashrc.support
 source ~/.bashrc.common
 
 [[ `uname` == "Darwin" ]] && source ~/.bashrc.darwin
