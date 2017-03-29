@@ -26,10 +26,16 @@ set output-meta on
 # to be listed immediately instead of ringing the bell
 set show-all-if-ambiguous on
 
-# arrow key up: non-incremental backward history search, must match
+# key binding <up>: non-incremental backward history search, must match
 # from beginning of history line
 "\e[A": history-search-backward
 
-# arrow key down: non-incremental forward history search, must match
+# key binding <down>: non-incremental forward history search, must match
 # from beginning of history line
 "\e[B": history-search-forward
+
+# key binding C-<right>
+"\e[1;5C": forward-word
+
+# key binding C-<left>
+"\e[1;5D": backward-word
