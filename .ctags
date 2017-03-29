@@ -20,21 +20,21 @@
 --langdef=js
 --langmap=js:.js
 --langmap=js:+.jsx
---regex-js=/[ \t.]([A-Z][A-Z0-9._$]+)[ \t]*[=:][ \t]*([0-9"'\[\{]|null)/\1/n,constants/
+--regex-js=/[ \t.]([A-Z_$][A-Z0-9._$]+)[ \t]*[=:][ \t]*([0-9"'\[\{]|null)/\1/n,constants/
 --regex-js=/\.([A-Za-z0-9._$]+)[ \t]*=[ \t]*/\1/o,objects/
 --regex-js=/['"]?([A-Za-z0-9_$]+)['"]?[ \t]*:[ \t]*/\1/o,objects/
 --regex-js=/([A-Za-z0-9._$]+)\[["']([A-Za-z0-9_$]+)["']\][ \t]*=[ \t]*/\1\.\2/o,objects/
 --regex-js=/([A-Za-z0-9._$]+)[ \t]*=[ \t]*\(function[ \t]*\(\)/\1/c,classes/
 --regex-js=/['"]?([A-Za-z0-9_$]+)['"]?:[ \t]*\(function[ \t]*\(\)/\1/c,classes/
 --regex-js=/(^|[ \t]+)class[ \t]+([A-Za-z0-9._$]+)[ \t]*($|\{|extends)/\2/c,classes/
---regex-js=/([A-Za-z$][A-Za-z0-9_$()]+)[ \t]*=[ \t]*[Rr]eact.createClass[ \t]*\(/\1/c,classes/
---regex-js=/([A-Z][A-Za-z0-9_$]+)[ \t]*=[ \t]*[A-Za-z0-9_$]*[ \t]*[{(]/\1/c,classes/
---regex-js=/([A-Z][A-Za-z0-9_$]+)[ \t]*:[ \t]*[A-Za-z0-9_$]*[ \t]*[{(]/\1/c,classes/
---regex-js=/([A-Za-z$][A-Za-z0-9_$]+)[ \t]*=[ \t]*function[ \t]*\(/\1/f,functions/
---regex-js=/([A-Za-z$][A-Za-z0-9_$]+)[ \t]*=[ \t]*\([^)]*\)[ \t]*=>/\1/f,functions/
---regex-js=/^[ \t]*function[ \t]+([A-Za-z$_][A-Za-z0-9_$]+)[ \t]*\(/\1/f,functions/
---regex-js=/^[ \t]*(static[ \t]+)?([A-Za-z$][A-Za-z0-9_$]+)[ \t]*\([^)]*\)[ \t]*\{/\2/m,methods/
---regex-js=/['"]?([A-Za-z$][A-Za-z0-9_$]+)['"]?:[ \t]*function[ \t]*\(/\1/m,methods/
+--regex-js=/([A-Za-z_$][A-Za-z0-9_$()]+)[ \t]*=[ \t]*[Rr]eact.createClass[ \t]*\(/\1/c,classes/
+--regex-js=/([A-Z_$][A-Za-z0-9_$]+)[ \t]*=[ \t]*[A-Za-z0-9_$]*[ \t]*[{(]/\1/c,classes/
+--regex-js=/([A-Z_$][A-Za-z0-9_$]+)[ \t]*:[ \t]*[A-Za-z0-9_$]*[ \t]*[{(]/\1/c,classes/
+--regex-js=/([A-Za-z_$][A-Za-z0-9_$]+)[ \t]*=[ \t]*function[ \t]*\(/\1/f,functions/
+--regex-js=/([A-Za-z_$][A-Za-z0-9_$]+)[ \t]*=[ \t]*\([^)]*\)[ \t]*=>/\1/f,functions/
+--regex-js=/^[ \t]*function[ \t]+([A-Za-z_$][A-Za-z0-9_$]+)[ \t]*\(/\1/f,functions/
+--regex-js=/^[ \t]*(static[ \t]+)?([A-Za-z_$][A-Za-z0-9_$]+)[ \t]*\([^)]*\)[ \t]*\{/\2/m,methods/
+--regex-js=/['"]?([A-Za-z_$][A-Za-z0-9_$]+)['"]?:[ \t]*function[ \t]*\(/\1/m,methods/
 --regex-js=/[A-Za-z0-9_$]+\[["']([A-Za-z0-9_$]+)["']\][ \t]*=[ \t]*function[ \t]*\(/\1/m,methods/
 
 --regex-ruby=/([A-Z_]+[A-Z0-9_]+)[ \t]*=/\1/k,constants/
