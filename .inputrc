@@ -6,25 +6,25 @@ set completion-ignore-case on
 # converting them to a meta-prefixed key sequence
 set convert-meta off
 
-# control which default set of key bindings is used
-set editing-mode emacs
-
 # enable eight-bit input (it will not clear the eighth bit in the
 # characters it reads), regardless of what the terminal claims it can
 # support
 set input-meta on
 
-# completed names which are symbolic links to directories have a slash
-# appended (subject to the value of mark-directories)
-set mark-symlinked-directories on
-
 # display characters with the eighth bit set directly rather than as a
 # meta-prefixed escape sequence
 set output-meta on
 
+# completed names which are symbolic links to directories have a slash
+# appended (subject to the value of mark-directories)
+set mark-symlinked-directories on
+
 # words which have more than one possible completion cause the matches
 # to be listed immediately instead of ringing the bell
 set show-all-if-ambiguous on
+
+# control which default set of key bindings is used
+set editing-mode emacs
 
 # key binding <up>: non-incremental backward history search, must match
 # from beginning of history line
