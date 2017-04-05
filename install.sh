@@ -65,6 +65,8 @@ EOF
 }
 
 install_by_copying() {
+    local source destination
+
     [[ $# -le 0 || -z $1 ]] && print_error "install_by_copying(): expects file paths as parameters" && return 1
     for file in "$@"; do
         source="$SOURCE_DIR/$file"
@@ -83,6 +85,8 @@ install_by_copying() {
 }
 
 install_by_symlinking() {
+    local source destination
+
     [[ $# -le 0 || -z $1 ]] && print_error "install_by_symlinking(): expects file paths as parameters" && return 1
     for file in "$@"; do
         source="$SOURCE_DIR/$file"
