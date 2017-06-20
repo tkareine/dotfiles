@@ -106,11 +106,14 @@ defaults write com.apple.finder FXPreferredViewStyle -string "Nlsv"
 # Finder: show ~/Library
 chflags nohidden ~/Library
 
+# Dock: only show when moving pointer to the screen edge
+defaults write com.apple.dock autohide -bool true
+
 # Dock: show indicator lights for open applications
 defaults write com.apple.dock show-process-indicators -bool true
 
 # Dock: tile size and magnification
-defaults write com.apple.dock tilesize -int 28
+defaults write com.apple.dock tilesize -int 32
 defaults write com.apple.dock largesize -int 100
 defaults write com.apple.dock magnification -bool true
 
