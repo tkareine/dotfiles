@@ -41,7 +41,7 @@ Thanks for:
 * `.irbrc`, containing code adapted from
   [Chris Wanstrath](http://ozmm.org/posts/time_in_irb.html) and
   [Ryan Tomayko](https://github.com/rtomayko/dotfiles/blob/rtomayko/.irbrc)
-* `.osx`, adapted from [Mathias Bynens](http://mths.be/osx)
+* `.macos`, adapted from [Mathias Bynens](https://mths.be/macos)
 * `bin/git-remote-hg`, written by
   [Felipe Contreras](https://github.com/felipec/git-remote-hg)
 

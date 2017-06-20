@@ -44,7 +44,7 @@ INSTALL_BY_SYMLINKING_ALL=(
 INSTALL_BY_SYMLINKING_DARWIN=(
     .bashrc.darwin
     .iterm2_shell_integration.bash
-    .osx
+    .macos
     bin/emacs
     bin/emacsclient
     Library/Preferences/IdeaIC2017.1/idea.vmoptions

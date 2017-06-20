@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# Originally from <http://mths.be/osx>, thanks!
+# Adapted from <https://mths.be/macos>, thanks!
 
 # -- Ask for sudo upfront before any changes ---------------------------------
 
