@@ -31,6 +31,7 @@ INSTALL_BY_SYMLINKING_ALL=(
     .gitignore
     .inputrc
     .irbrc
+    .psqlrc
     .rubocop.yml
     .tmux.conf
     .vimrc
