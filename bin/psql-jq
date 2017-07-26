@@ -78,6 +78,7 @@ if [[ ${#jq_args[@]} -eq 0 && -t 1 ]]; then
     jq_args+=(-C)
 fi
 
-psql -q -t ${psql_args[@]:+"${psql_args[@]}"} << EOF | jq ${jq_args[@]:+"${jq_args[@]}"} '.'
+psql -q -t ${psql_args[@]:+"${psql_args[@]}"} << EOF
+\o '|jq ${jq_args[@]:+"${jq_args[@]}"} .'
 select row_to_json(t) from ($command) t
 EOF
