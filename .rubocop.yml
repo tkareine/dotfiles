@@ -1,6 +1,12 @@
+# Default config: https://github.com/bbatsov/rubocop/blob/master/config/default.yml
+
 AllCops:
   DisplayCopNames: true
   DisplayStyleGuide: true
+Layout/ExtraSpacing:
+  Enabled: false  # does not work with trailing comments
+Layout/SpaceInsideHashLiteralBraces:
+  EnforcedStyle: no_space
 Metrics/ClassLength:
   Enabled: false  # some projects have big test classes
 Metrics/LineLength:
@@ -21,11 +27,7 @@ Style/Copyright:
   Enabled: false  # usually copyright is in the readme or license file
 Style/Documentation:
   Enabled: false  # depends on project
-Style/ExtraSpacing:
-  Enabled: false  # does not work with trailing comments
 Style/PercentLiteralDelimiters:
   Enabled: false  # it's better to use `%w{}` syntax, because the braces are the same as in `%r{}`
-Style/SpaceInsideHashLiteralBraces:
-  EnforcedStyle: no_space
 Style/StringLiterals:
   Enabled: false  # quoting style depends on project
