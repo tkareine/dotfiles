@@ -112,10 +112,13 @@ defaults write com.apple.dock autohide -bool true
 # Dock: show indicator lights for open applications
 defaults write com.apple.dock show-process-indicators -bool true
 
-# Dock: tile size and magnification
+# Dock: tile size and magnification off
 defaults write com.apple.dock tilesize -int 32
 defaults write com.apple.dock largesize -int 100
-defaults write com.apple.dock magnification -bool true
+defaults write com.apple.dock magnification -bool false
+
+# Dock: disable icon bouncing
+defaults write com.apple.dock no-bouncing -bool true
 
 # Dock: place dock on left
 defaults write com.apple.dock orientation -string "left"
