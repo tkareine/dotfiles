@@ -31,11 +31,11 @@ fi
 # for updated CA certificates from Mozilla.org
 [[ -f $(brew --prefix)/share/ca-bundle.crt ]] && export SSL_CERT_FILE="$(brew --prefix)/share/ca-bundle.crt"
 
-# openssl
-if [[ -d $(brew --prefix openssl)/bin ]]; then
-    export PATH="$(brew --prefix openssl)/bin:$PATH"
+# libressl
+if [[ -d $(brew --prefix libressl)/bin ]]; then
+    export PATH="$(brew --prefix libressl)/bin${PATH:+:$PATH}"
 
-    [[ -d $(brew --prefix openssl)/share/man ]] && export MANPATH="$(brew --prefix openssl)/share/man:$MANPATH"
+    [[ -d $(brew --prefix libressl)/share/man ]] && export MANPATH="$(brew --prefix libressl)/share/man${MANPATH:+:$MANPATH}"
 fi
 
 # ssh: load identities with passwords from user's keychain
