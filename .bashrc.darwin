@@ -33,9 +33,9 @@ fi
 
 # libressl
 if [[ -d $(brew --prefix libressl)/bin ]]; then
-    export PATH="$(brew --prefix libressl)/bin${PATH:+:$PATH}"
+    export PATH="$(brew --prefix libressl)/bin:$PATH"
 
-    [[ -d $(brew --prefix libressl)/share/man ]] && export MANPATH="$(brew --prefix libressl)/share/man${MANPATH:+:$MANPATH}"
+    [[ -d $(brew --prefix libressl)/share/man ]] && export MANPATH="$(brew --prefix libressl)/share/man:$MANPATH"
 fi
 
 # ssh: load identities with passwords from user's keychain

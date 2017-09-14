@@ -1,9 +1,9 @@
 # local system executables take precedence over global system executables
-[[ -d /usr/local/bin ]] && export PATH=/usr/local/bin"${PATH:+:$PATH}"
-[[ -d /usr/local/sbin ]] && export PATH=/usr/local/sbin"${PATH:+:$PATH}"
+[[ -d /usr/local/bin ]] && export PATH=/usr/local/bin:"$PATH"
+[[ -d /usr/local/sbin ]] && export PATH=/usr/local/sbin:"$PATH"
 
 # same as above for local system man pages
-[[ -d /usr/local/share/man ]] && export MANPATH=/usr/local/share/man"${MANPATH:+:$MANPATH}"
+[[ -d /usr/local/share/man ]] && export MANPATH=/usr/local/share/man:"$MANPATH"
 
 # my local bash-completions
 if [[ -d ~/lib/bash-completion ]]; then
@@ -13,7 +13,7 @@ if [[ -d ~/lib/bash-completion ]]; then
 fi
 
 # my local executables
-[[ -d ~/bin ]] && export PATH=~/bin"${PATH:+:$PATH}"
+[[ -d ~/bin ]] && export PATH=~/bin:"$PATH"
 
 # disable core dumps; to enable them: `ulimit -S -c unlimited`
 ulimit -S -c 0
