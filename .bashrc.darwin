@@ -26,7 +26,7 @@ fi
 [[ -r $(brew --prefix)/etc/bash_completion ]] && source "$(brew --prefix)/etc/bash_completion"
 
 # for non-homebrew python (2.x)
-[[ -d $(brew --prefix)/lib/python2.7/site-packages ]] && export PYTHONPATH="$(brew --prefix)/lib/python2.7/site-packages:$PYTHONPATH"
+[[ -d $(brew --prefix)/lib/python2.7/site-packages ]] && export PYTHONPATH="$(brew --prefix)/lib/python2.7/site-packages${PYTHONPATH:+:$PYTHONPATH}"
 
 # for updated CA certificates from Mozilla.org
 [[ -f $(brew --prefix)/share/ca-bundle.crt ]] && export SSL_CERT_FILE="$(brew --prefix)/share/ca-bundle.crt"
