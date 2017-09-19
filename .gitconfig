@@ -45,3 +45,5 @@
 	fetchJobs = 4
 [stash]
 	showPatch = true
+[magit]
+	hideCampaign = true
