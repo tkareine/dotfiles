@@ -11,4 +11,3 @@ if [[ -n $PS1 ]]; then
 fi
 
 [[ -r ~/.bashrc.host ]] && source ~/.bashrc.host
-[[ -r ~/.bashrc.secret ]] && source ~/.bashrc.secret
