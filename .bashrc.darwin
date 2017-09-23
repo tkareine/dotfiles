@@ -25,9 +25,6 @@ tkareine__tmp_path_brew=$(brew --prefix)
 # Homebrew: Python 2.x
 [[ -d $tkareine__tmp_path_brew/lib/python2.7/site-packages ]] && export PYTHONPATH="$tkareine__tmp_path_brew/lib/python2.7/site-packages${PYTHONPATH:+:$PYTHONPATH}"
 
-# Homebrew: CA certificates from Mozilla.org
-[[ -f $tkareine__tmp_path_brew/share/ca-bundle.crt ]] && export SSL_CERT_FILE="$tkareine__tmp_path_brew/share/ca-bundle.crt"
-
 unset tkareine__tmp_path_brew
 
 # Homebrew: chruby
