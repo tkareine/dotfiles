@@ -2,9 +2,9 @@
 .*.swp
 .DS_Store
 .[#~]*
+.idea/
 .lein-*
 .nrepl-port
 .projectile
-/.idea/
 TAGS
 tags
