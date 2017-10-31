@@ -4,6 +4,7 @@ tkareine_current_java_version() {
     [[ -z $JAVA_HOME ]] && return 1
 
     version=${JAVA_HOME#*/jdk}
+    version=${version#-}
     version=${version%.jdk*}
 
     echo "$version"
