@@ -19,6 +19,12 @@ tkareine_is_root() {
     [[ $(whoami) == "root" ]]
 }
 
+if tkareine_is_color_term; then
+    tkareine__use_color_prompt=1
+else
+    tkareine__use_color_prompt=
+fi
+
 tkareine_set_prompt() {
     local ansi_b_green="\[\e[1;32m\]"
     local ansi_b_red="\[\e[1;31m\]"
@@ -28,7 +34,7 @@ tkareine_set_prompt() {
 
     local user_and_host pwd end git bin_ruby bin_node bin_java
 
-    if tkareine_is_color_term; then
+   if [[ -n $tkareine__use_color_prompt ]]; then
         user_and_host="${ansi_green}[\u@\h]${ansi_reset} "
         pwd="${ansi_b_yellow}[\w]${ansi_reset} "
         if tkareine_is_root; then
