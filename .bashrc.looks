@@ -32,7 +32,7 @@ tkareine_set_prompt() {
     local ansi_green="\[\e[0;32m\]"
     local ansi_reset="\[\e[0m\]"
 
-    local user_and_host pwd end git bin_ruby bin_node bin_java
+    local user_and_host pwd host_extras end git bin_ruby bin_node bin_java
 
    if [[ -n $tkareine__use_color_prompt ]]; then
         user_and_host="${ansi_green}[\u@\h]${ansi_reset} "
@@ -52,7 +52,9 @@ tkareine_set_prompt() {
         fi
     fi
 
-    tkareine_fn_exist __git_ps1 && git="$(__git_ps1 '[git: %s] ')"
+    tkareine_fn_exist __git_ps1 && git="$(__git_ps1 '[%s] ')"
+
+    tkareine_fn_exist tkareine_prompt_hook_host_extras && host_extras="$(tkareine_prompt_hook_host_extras)"
 
     tkareine_cmd_exist chruby && bin_ruby="[$(chruby | grep '\* ' | cut -d ' ' -f 3)] "
 
@@ -63,7 +65,7 @@ tkareine_set_prompt() {
         [[ -n $bin_java ]] && bin_java="[java-$bin_java] "
     fi
 
-    PS1="${user_and_host}${pwd}${git}${bin_ruby}${bin_node}${bin_java}\n${end}"
+    PS1="${user_and_host}${pwd}${git}${host_extras}${bin_ruby}${bin_node}${bin_java}\n${end}"
 }
 
 tkareine_set_title() {
