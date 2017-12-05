@@ -1,0 +1,139 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+THIS_SCRIPT=${0##*/}
+DEFAULT_PORT=443
+
+print_usage() {
+cat << EOF
+Usage:
+  $THIS_SCRIPT verifycert host [-p port] [-s servername]
+  $THIS_SCRIPT showcert host [-p port] [-s servername]
+  $THIS_SCRIPT -h
+
+OpenSSL utilities.
+
+    -h, --help        display this help and exit
+    -p, --port        host port to connect to, defaults to $DEFAULT_PORT
+    -s, --servername  name for TLS Server Name Indication, defaults to host
+EOF
+}
+
+print_error() {
+    echo -e "$@" >&2
+}
+
+error_usage_exit() {
+    print_error "$2"
+    exit "$1"
+}
+
+error_usage_exit() {
+    print_error "$1\n"
+    print_usage
+    exit 2
+}
+
+cmd_exist() {
+    command -v "$1" &> /dev/null
+}
+
+parse_s_client_args() {
+    local subcommand
+
+    subcommand=$1
+
+    shift
+
+    host=
+    port=$DEFAULT_PORT
+    servername=
+
+    while [[ $# > 0 ]]; do
+        case ${1:-} in
+            -h|-\?|--help)
+                print_usage
+                exit
+                ;;
+            -p|--port)
+                [[ -z ${2:-} ]] && error_usage_exit "$THIS_SCRIPT $subcommand: no argument given for --port"
+                port=$2
+                shift
+                ;;
+            -s|--servername)
+                [[ -z ${2:-} ]] && error_usage_exit "$THIS_SCRIPT $subcommand: no argument given for --servername"
+                servername=$2
+                shift
+                ;;
+            *)
+                [[ -n $host ]] && error_usage_exit "$THIS_SCRIPT $subcommand: no other arguments allowed"
+                host=${1:-}
+        esac
+
+        shift
+    done
+
+    [[ -z $host ]] && error_usage_exit "$THIS_SCRIPT $subcommand: no host argument given"
+
+    if [[ -z $servername ]]; then
+        servername=$host
+    fi
+
+    true
+}
+
+cmd_verifycert() {
+    local host port servername
+
+    parse_s_client_args verifycert "$@"
+
+    openssl s_client \
+            -no_ssl2 \
+            -no_ssl3 \
+            -verify 9 \
+            -verify_return_error \
+            -servername "$servername" \
+            -connect "$host:$port" \
+            < /dev/null
+}
+
+cmd_showcert() {
+    local host port servername
+
+    parse_s_client_args showcert "$@"
+
+    openssl s_client \
+            -no_ssl2 \
+            -no_ssl3 \
+            -servername "$servername" \
+            -connect "$host:$port" \
+            < /dev/null \
+           | openssl x509 -text
+}
+
+cmd_exist openssl || error_exit 3 "$THIS_SCRIPT: openssl not found from \$PATH"
+
+while :; do
+    case ${1:-} in
+        -h|-\?|--help)
+            print_usage
+            exit
+            ;;
+        verifycert)
+            shift
+            cmd_verifycert "$@"
+            exit
+            ;;
+        showcert)
+            shift
+            cmd_showcert "$@"
+            exit
+            ;;
+        *)
+            print_usage
+            exit 2
+    esac
+
+    shift
+done

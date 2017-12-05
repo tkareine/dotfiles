@@ -40,6 +40,7 @@ INSTALL_BY_SYMLINKING_ALL=(
     bin/git-create-patch
     bin/git-remote-hg
     bin/psql-jq
+    bin/ssl-tool
     bin/well
 )
 
