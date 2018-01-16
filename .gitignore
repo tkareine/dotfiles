@@ -6,5 +6,9 @@
 .lein-*
 .nrepl-port
 .projectile
+GPATH
+GRTAGS
+GTAGS
 TAGS
+gtags.files
 tags
