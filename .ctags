@@ -1,4 +1,7 @@
---exclude=.[!.]*
+--exclude=*~
+--exclude=.idea
+--exclude=.lein-*
+--exclude=.nrepl-port
 --exclude=*.min.css
 --exclude=*.min.js
 --exclude=node_modules
