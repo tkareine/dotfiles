@@ -29,6 +29,7 @@ INSTALL_BY_SYMLINKING_ALL=(
     .gemrc
     .gitconfig
     .gitignore
+    .globalrc
     .inputrc
     .irbrc
     .lein/profiles.clj
