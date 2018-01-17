@@ -5,6 +5,7 @@
 --exclude=*.min.css
 --exclude=*.min.js
 --exclude=node_modules
+--exclude=target
 --exclude=vendor
 --exclude=vendors
 
