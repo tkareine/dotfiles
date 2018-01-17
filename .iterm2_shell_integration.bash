@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # -- BEGIN ITERM2 CUSTOMIZATIONS --
-if [[ "$TERM" != screen && "$ITERM_SHELL_INTEGRATION_INSTALLED" = "" && "$-" == *i* ]]; then
+if [[ "$ITERM_ENABLE_SHELL_INTEGRATION_WITH_TMUX""$TERM" != screen && "$ITERM_SHELL_INTEGRATION_INSTALLED" = "" && "$-" == *i* ]]; then
 ITERM_SHELL_INTEGRATION_INSTALLED=Yes
 # Saved copy of your PS1. This is used to detect if the user changes PS1
 # directly. ITERM_PREV_PS1 will hold the last value that this script set PS1 to
@@ -123,6 +123,11 @@ __bp_interactive_mode() {
 # This function is installed as part of the PROMPT_COMMAND.
 # It will invoke any functions defined in the precmd_functions array.
 __bp_precmd_invoke_cmd() {
+    # -- begin part 1/2 of iterm2 customization -- not yet upstream -- see issue 6398
+    local saved_ifs
+    saved_ifs="$IFS"
+    IFS=$(printf " \t\n")
+    # -- end part 1/2 of iterm2 customization -- not yet upstream -- see issue 6398
 
     # Save the returned value from our last command
     __bp_last_ret_value="$?"
@@ -138,6 +143,9 @@ __bp_precmd_invoke_cmd() {
             $precmd_function
         fi
     done
+    # -- begin part 2/2 of iterm2 customization -- not yet upstream -- see issue 6398
+    IFS="$saved_ifs"
+    # -- end part 2/2 of iterm2 customization -- not yet upstream -- see issue 6398
 }
 
 # Sets a return value in $?. We may want to get access to the $? variable in our
