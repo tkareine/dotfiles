@@ -1,0 +1,18 @@
+@mixin scss-mixin-simple {
+}
+
+#scss-id-simple {
+}
+
+.scss-class-simple {
+  @include scss-mixin-simple;
+
+  $scss-font-size: 120%;
+
+  table {
+    font-size: $scss-font-size;
+  }
+
+  scss-div.class-with-elem {
+  }
+}

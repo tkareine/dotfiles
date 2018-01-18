@@ -15,8 +15,8 @@
 --langmap=css:+.sass
 --langmap=css:+.scss
 --regex-css=/^[ \t]*@mixin ([A-Za-z0-9_-]+)/\1/m,mixins/
---regex-css=/^[ \t]*([A-Za-z0-9_-]+)?\.([A-Za-z0-9_-]+)/\1.\2/c,classes/
 --regex-css=/^[ \t]*([A-Za-z0-9_-]+)?#([A-Za-z0-9_-]+)/\1#\2/i,ids/
+--regex-css=/^[ \t]*([A-Za-z0-9_-]+)?\.([A-Za-z0-9_-]+)/\1.\2/c,classes/
 --regex-css=/^[ \t]*([\$@][A-Za-z0-9_-]+):/\1/v,variables/
 
 --languages=-javascript
@@ -24,21 +24,21 @@
 --langdef=js
 --langmap=js:.js
 --langmap=js:+.jsx
---regex-js=/[ \t.]([A-Z_$][A-Z0-9._$]+)[ \t]*[=:][ \t]*([0-9"'\[\{]|null)/\1/n,constants/
---regex-js=/\.([A-Za-z0-9._$]+)[ \t]*=[ \t]*/\1/o,objects/
---regex-js=/['"]?([A-Za-z0-9_$]+)['"]?[ \t]*:[ \t]*/\1/o,objects/
---regex-js=/([A-Za-z0-9._$]+)\[["']([A-Za-z0-9_$]+)["']\][ \t]*=[ \t]*/\1\.\2/o,objects/
---regex-js=/([A-Za-z0-9._$]+)[ \t]*=[ \t]*\(function[ \t]*\(\)/\1/c,classes/
---regex-js=/['"]?([A-Za-z0-9_$]+)['"]?:[ \t]*\(function[ \t]*\(\)/\1/c,classes/
---regex-js=/(^|[ \t]+)class[ \t]+([A-Za-z0-9._$]+)[ \t]*($|\{|extends)/\2/c,classes/
---regex-js=/([A-Za-z_$][A-Za-z0-9_$()]+)[ \t]*=[ \t]*[Rr]eact.createClass[ \t]*\(/\1/c,classes/
---regex-js=/([A-Z_$][A-Za-z0-9_$]+)[ \t]*=[ \t]*[A-Za-z0-9_$]*[ \t]*[{(]/\1/c,classes/
---regex-js=/([A-Z_$][A-Za-z0-9_$]+)[ \t]*:[ \t]*[A-Za-z0-9_$]*[ \t]*[{(]/\1/c,classes/
---regex-js=/([A-Za-z_$][A-Za-z0-9_$]+)[ \t]*=[ \t]*function[ \t]*\(/\1/f,functions/
---regex-js=/([A-Za-z_$][A-Za-z0-9_$]+)[ \t]*=[ \t]*(\([^)]*\)|[^)]+)[ \t]*=>/\1/f,functions/
---regex-js=/^[ \t]*function[ \t]+([A-Za-z_$][A-Za-z0-9_$]+)[ \t]*\(/\1/f,functions/
---regex-js=/^[ \t]*(static[ \t]+)?([A-Za-z_$][A-Za-z0-9_$]+)[ \t]*\([^)]*\)[ \t]*\{/\2/m,methods/
---regex-js=/['"]?([A-Za-z_$][A-Za-z0-9_$]+)['"]?:[ \t]*function[ \t]*\(/\1/m,methods/
---regex-js=/[A-Za-z0-9_$]+\[["']([A-Za-z0-9_$]+)["']\][ \t]*=[ \t]*function[ \t]*\(/\1/m,methods/
+--regex-js=/(^|[ \t]+)(async[ \t]+)?\(?function[ \t]*(\*[ \t]*)?([A-Za-z_$][A-Za-z0-9_$]+)[ \t\(]/\4/f,functions/
+--regex-js=/(^|[ \t]+)([A-Za-z_$][A-Za-z0-9_$]+)[ \t]*=[ \t]*(async[ \t]+)?function[ \t]*(\*[ \t]*)?\(/\2/f,functions/
+--regex-js=/(^|[ \t]+)([A-Za-z_$][A-Za-z0-9_$]+)[ \t]*=[ \t]*(\([^)]*\)|[^)]+)[ \t]*=>/\2/f,functions/
+--regex-js=/(^|[ \t]+)([A-Za-z_$][A-Za-z0-9_$]+)[ \t]*=[ \t]*null/\2/n,nulls/
+--regex-js=/(^|[ \t]+)([A-Za-z_$][A-Za-z0-9_$]+)[ \t]*=[ \t]*(true|false)/\2/b,booleans/
+--regex-js=/(^|[ \t]+)([A-Za-z_$][A-Za-z0-9_$]+)[ \t]*=[ \t]*[0-9]/\2/n,numbers/
+--regex-js=/(^|[ \t]+)([A-Za-z_$][A-Za-z0-9_$]+)[ \t]*=[ \t]*'[^']+'/\2/s,strings/
+--regex-js=/(^|[ \t]+)([A-Za-z_$][A-Za-z0-9_$]+)[ \t]*=[ \t]*"[^"]+"/\2/s,strings/
+--regex-js=/(^|[ \t]+)([A-Za-z_$][A-Za-z0-9_$]+)[ \t]*=[ \t]*\/[^\/]+\//\2/r,regexes/
+--regex-js=/(^|[ \t]+)([A-Za-z_$][A-Za-z0-9_$]+)[ \t]*=[ \t]*\[/\2/a,arrays/
+--regex-js=/(^|[ \t]+)([A-Za-z_$][A-Za-z0-9_$]+)[ \t]*=[ \t]*\{/\2/o,objects/
+--regex-js=/\.([A-Za-z0-9._$]+)[ \t]*=/\1/f,fields/
+--regex-js=/['"]?([A-Za-z0-9_$]+)['"]?[ \t]*:/\1/f,fields/
+--regex-js=/(^|[ \t]+)class[ \t]+([A-Za-z_$][A-Za-z0-9._$]+)[ \t]*($|\{|extends)/\2/c,classes/
+--regex-js=/(^|[ \t]+)([A-Za-z_$][A-Za-z0-9_$]+)[ \t]*=[ \t]*React.createClass[ \t]*\(/\2/c,classes/
+--regex-js=/^[ \t]*(static[ \t]+)?(async[ \t]+)?(\*[ \t]*)?([A-Za-z_$][A-Za-z0-9_$]+)[ \t]*\([^)]*\)[ \t]*\{/\4/m,methods/
 
 --regex-ruby=/([A-Z_]+[A-Z0-9_]+)[ \t]*=/\1/k,constants/
