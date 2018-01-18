@@ -14,10 +14,10 @@
 --langmap=css:+.less
 --langmap=css:+.sass
 --langmap=css:+.scss
---regex-css=/^[ \t]*@mixin ([A-Za-z0-9_-]+)/\1/m,mixin,mixins/
---regex-css=/^[ \t]*([A-Za-z0-9_-]+)?\.([A-Za-z0-9_-]+)/\1.\2/c,class,classes/
---regex-css=/^[ \t]*([A-Za-z0-9_-]+)?#([A-Za-z0-9_-]+)/\1#\2/i,id,ids/
---regex-css=/^[ \t]*([\$@][A-Za-z0-9_-]+):/\1/v,variable,variables/
+--regex-css=/^[ \t]*@mixin ([A-Za-z0-9_-]+)/\1/m,mixins/
+--regex-css=/^[ \t]*([A-Za-z0-9_-]+)?\.([A-Za-z0-9_-]+)/\1.\2/c,classes/
+--regex-css=/^[ \t]*([A-Za-z0-9_-]+)?#([A-Za-z0-9_-]+)/\1#\2/i,ids/
+--regex-css=/^[ \t]*([\$@][A-Za-z0-9_-]+):/\1/v,variables/
 
 --languages=-javascript
 
