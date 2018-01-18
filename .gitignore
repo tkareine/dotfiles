@@ -10,5 +10,6 @@ GPATH
 GRTAGS
 GTAGS
 TAGS
+gtags.conf
 gtags.files
 tags
