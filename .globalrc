@@ -1,14 +1,12 @@
 default:\
-        :tc=common@/usr/local/etc/gtags.conf:\
         :tc=extensions:\
         :tc=builtin-parser@/usr/local/etc/gtags.conf:\
-        :tc=exuberant-ctags@/usr/local/etc/gtags.conf:
+        :tc=pygments-parser@/usr/local/etc/gtags.conf:
 
 extensions:\
         :skip=.idea,.lein-*,.nrepl-port,node_modules/,target/,vendor/,vendors/:\
-        :ctagscom=/usr/local/opt/ctags/bin/ctags:\
-        :ctagslib=$libdir/gtags/exuberant-ctags.la:\
+	:pygmentslib=$libdir/gtags/pygments-parser.la:\
         :langmap=CSS\:.css.less.sass.scss:\
-        :gtags_parser=CSS\:$ctagslib:\
+        :gtags_parser=CSS\:$pygmentslib:\
         :langmap=JS\:.js.jsx:\
-        :gtags_parser=JS\:$ctagslib:
+        :gtags_parser=JS\:$pygmentslib:
