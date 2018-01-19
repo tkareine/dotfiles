@@ -83,4 +83,4 @@ for symbol in "${SYMBOLS[@]}"; do
     global_should_find_one "$symbol"
 done
 
-echo "Passed all tests."
+echo "gtags tests passed."

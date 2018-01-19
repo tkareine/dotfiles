@@ -14,7 +14,7 @@ clean:
 
 .PHONY: test
 test:
-	cd test && ./gtags_test.sh
+	cd test && for t in *_test.sh; do "./$$t"; done
 
 define newline
 
