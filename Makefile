@@ -1,4 +1,5 @@
 SHELL := bash  # required for `help` target
+INSTALL_ARGS ?=
 
 .PHONY: help
 help:
@@ -6,7 +7,7 @@ help:
 
 .PHONY: install
 install:
-	./install.sh
+	./install.sh $(INSTALL_ARGS)
 
 .PHONY: clean
 clean:
@@ -26,6 +27,6 @@ Targets:
 
   help     Show this guide.
   clean    Remove test artifacts.
-  install  Install dotfiles. For more options, see `./install -h`.
+  install  Install dotfiles. For more options, see `make install INSTALL_ARGS=-h`.
   test     Run tests (requires install).
 endef
