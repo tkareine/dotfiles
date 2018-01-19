@@ -39,7 +39,6 @@ INSTALL_BY_SYMLINKING_ALL=(
     .vimrc
     .xmodmap
     bin/git-create-patch
-    bin/git-remote-hg
     bin/psql-jq
     bin/ssl-tool
     bin/well

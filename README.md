@@ -1,12 +1,19 @@
-My dotfiles. They're here so that I can synchronize them across
-computers I work with.
+# My dotfiles
+
+They're here so that I can synchronize them across computers I work
+with.
+
+I have copied or adapted the contents of some of the files from other
+people. For small chunks of code, I have embedded the source URL in a
+comment inside the file. When copying has been extensive, I have
+retained the original copyright in the file. Thank you all!
 
 Install the dotfiles with `./install.sh`, which either symlinks or
 copies each file to your home directory. Installation is safe by
 default: if the target file exists in your home directory already, the
 installer skips symlinking or copying. See `./install -h` for more.
 
-# Xcode Zenburn color theme
+## Xcode Zenburn color theme
 
 I have adapted Bozhidar Batsov's
 [Emacs Zenburn color theme](http://github.com/bbatsov/zenburn-emacs) for
@@ -28,22 +35,3 @@ directory.
 
 [Jari Nurminen](http://kippura.org/zenburnpage/) invented the theme
 originally.
-
-# Thanks
-
-I have copied or adapted the contents of some of the files from other
-people. For small chunks of code, I have embedded the source URL in a
-comment inside the file. When copying has been extensive, I have
-retained the original copyright in the file.
-
-Thanks for:
-
-* `.irbrc`, containing code adapted from
-  [Chris Wanstrath](http://ozmm.org/posts/time_in_irb.html) and
-  [Ryan Tomayko](https://github.com/rtomayko/dotfiles/blob/rtomayko/.irbrc)
-* `.macos`, adapted from [Mathias Bynens](https://mths.be/macos)
-* `bin/git-remote-hg`, written by
-  [Felipe Contreras](https://github.com/felipec/git-remote-hg)
-
-Feel free to copy dotfiles further, as long as you respect original
-copyrights and licensing.
