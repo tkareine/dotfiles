@@ -61,6 +61,8 @@ const jsStringSingleQuoted = 'lol'
 
 const jsStringDoubleQuoted = "bal"
 
+const jsStringInterpolation = `man ${jsBooleanTrue} zap`
+
 const jsRegexSimple = /man/
 
 const jsArraySimple = [

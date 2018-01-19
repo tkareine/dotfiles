@@ -50,6 +50,7 @@ SYMBOLS=(
     jsNumberSimple
     jsStringSingleQuoted
     jsStringDoubleQuoted
+    jsStringInterpolation
     jsRegexSimple
     jsArraySimple
     JsArrayCapitalized
