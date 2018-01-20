@@ -10,6 +10,17 @@ function jsFunctionManyParams(a, {b, c}) {
   return 42
 }
 
+function jsFunctionMultilineParams(
+  a,
+  {b, c}
+) {
+  return 42
+}
+
+function jsFunctionSpaceBeforeParams (a) {
+  return 42
+}
+
 function JsFunctionCapitalized() {
   return 42
 }
@@ -18,7 +29,15 @@ async function jsFunctionAsync() {
   return 42
 }
 
-function *jsFunctionGenerator() {
+async function* jsFunctionAsyncGenerator() {
+  return 42
+}
+
+function *jsFunctionGeneratorSpaceBeforeAsterisk() {
+  return 42
+}
+
+function* jsFunctionGeneratorSpaceAfterAsterisk() {
   return 42
 }
 
@@ -38,16 +57,37 @@ const jsFunctionAssignFunctionManyParams = function(a, {b, c}) {
   return 42
 }
 
+const jsFunctionAssignFunctionMultilineParams = function(
+  a,
+  {b, c}
+) {
+  return 42
+}
+
+const jsFunctionAssignFunctionSpaceBeforeParams = function (a) {
+  return 42
+}
+
 const jsFunctionAssignAsync = async function() {
   return 42
 }
 
-const jsFunctionAssignGenerator = function * () {
+const jsFunctionAssignAsyncGenerator = async function*() {
+  return 42
+}
+
+const jsFunctionAssignGeneratorSpaceBeforeAsterisk = function *() {
+  return 42
+}
+
+const jsFunctionAssignGeneratorSpaceAfterAsterisk = function* () {
   return 42
 }
 
 const jsFunctionAssignArrow = () =>
   42
+
+jsFunctionCall()
 
 const jsNullSimple = null
 
@@ -61,7 +101,11 @@ const jsStringSingleQuoted = 'lol'
 
 const jsStringDoubleQuoted = "bal"
 
-const jsStringInterpolation = `man ${jsBooleanTrue} zap`
+const jsStringTemplateLiteral = `
+man ${jsBooleanTrue} zap`
+
+const jsStringTaggedTemplateLiteral = sql`
+man ${jsBooleanTrue} zap`
 
 const jsRegexSimple = /man/
 
@@ -98,6 +142,13 @@ class JsKlassSimple {
     return 42
   }
 
+  jsMethodMultilineParams(
+    a,
+    b
+  ) {
+    return 42
+  }
+
   JsMethodCapitalized() {
     return 42
   }
@@ -110,15 +161,31 @@ class JsKlassSimple {
     return 42
   }
 
+  async * jsMethodAsyncGenerator() {
+    return 42
+  }
+
   static async jsMethodStaticAsync() {
     return 42
   }
 
-  *jsMethodGenerator() {
+  static async * jsMethodStaticAsyncGenerator() {
     return 42
   }
 
-  static *jsMethodStaticGenerator() {
+  *jsMethodGeneratorNoSpaceAfterAsterisk() {
+    return 42
+  }
+
+  * jsMethodGeneratorSpaceAfterAsterisk() {
+    return 42
+  }
+
+  static *jsMethodStaticGeneratorSpaceBeforeAsterisk() {
+    return 42
+  }
+
+  static* jsMethodStaticGeneratorSpaceAfterAsterisk() {
     return 42
   }
 }
