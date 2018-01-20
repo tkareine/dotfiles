@@ -4,6 +4,8 @@ CLEAN_FILES ?= $(foreach file,GPATH GRTAGS GTAGS,test/$(file))
 
 INSTALL_ARGS ?=
 
+TEST_FILES ?= $(wildcard test/*_test.sh)
+
 .PHONY: help
 help:
 	@echo -e '$(subst $(newline),\n,$(help_text))'
@@ -18,7 +20,7 @@ clean:
 
 .PHONY: test
 test:
-	cd test && for t in *_test.sh; do "./$$t"; done
+	$(foreach test,$(TEST_FILES),./$(test)$(newline))
 
 define newline
 
