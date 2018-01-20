@@ -1,4 +1,7 @@
 SHELL := bash  # required for `help` target
+
+CLEAN_FILES ?= $(foreach file,GPATH GRTAGS GTAGS,test/$(file))
+
 INSTALL_ARGS ?=
 
 .PHONY: help
@@ -11,7 +14,7 @@ install:
 
 .PHONY: clean
 clean:
-	cd test && rm -f GPATH GRTAGS GTAGS
+	rm -f $(CLEAN_FILES)
 
 .PHONY: test
 test:
