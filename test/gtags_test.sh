@@ -71,9 +71,13 @@ SYMBOLS_GLOBAL_SHOULD_FIND_ONE=(
     jsFieldAssignDotNotation
     jsFieldSingleQuoted
     jsFieldDoubleQuoted
-    JsKlassSimple
-    JsKlassExtends
-    JsKlassReactCreate
+    JsClassStatementNoExtends
+    JsClassStatementExtends
+    JsClassStatementNewlineBeforeOpeningBrace
+    JsClassExpressionAnonymousSpaceAfterClass
+    JsClassExpressionAnonymousNoSpaceAfterClass
+    JsClassExpressionNameInClassScope
+    JsClassExpressionReactCreate
     jsMethodNoParams
     jsMethodOneParam
     jsMethodManyParams

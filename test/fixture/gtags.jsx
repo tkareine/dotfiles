@@ -129,7 +129,7 @@ jsObjectSimple.jsFieldAssignDotNotation = 42
 const JsObjectCapitalized = {
 }
 
-class JsKlassSimple {
+class JsClassStatementNoExtends {
   jsMethodNoParams() {
     return 42
   }
@@ -190,7 +190,19 @@ class JsKlassSimple {
   }
 }
 
-class JsKlassExtends extends JsKlassSimple {
+class JsClassStatementExtends extends JsClassSimple {
 }
 
-const JsKlassReactCreate = React.createClass({})
+class JsClassStatementNewlineBeforeOpeningBrace
+{}
+
+const JsClassExpressionAnonymousSpaceAfterClass = class {
+}
+
+const JsClassExpressionAnonymousNoSpaceAfterClass = class{
+}
+
+const JsClassExpressionNamed = class JsClassExpressionNameInClassScope {
+}
+
+const JsClassExpressionReactCreate = React.createClass({})

@@ -34,10 +34,11 @@
 --regex-js=/(^|[ \t]+)([A-Za-z_$][A-Za-z0-9_$]+)[ \t]*=[ \t]*\//\2/r,regexes/
 --regex-js=/(^|[ \t]+)([A-Za-z_$][A-Za-z0-9_$]+)[ \t]*=[ \t]*\[/\2/a,arrays/
 --regex-js=/(^|[ \t]+)([A-Za-z_$][A-Za-z0-9_$]+)[ \t]*=[ \t]*\{/\2/o,objects/
+--regex-js=/(^|[ \t]+)([A-Za-z_$][A-Za-z0-9_$]+)[ \t]*=[ \t]*class[ \t]*\{/\2/c,classes/
+--regex-js=/(^|[ \t]+)([A-Za-z_$][A-Za-z0-9_$]+)[ \t]*=[ \t]*React.createClass[ \t]*\(/\2/c,classes/
 --regex-js=/\.([A-Za-z0-9._$]+)[ \t]*=/\1/f,fields/
 --regex-js=/['"]?([A-Za-z0-9_$]+)['"]?[ \t]*:/\1/f,fields/
 --regex-js=/(^|[ \t]+)class[ \t]+([A-Za-z_$][A-Za-z0-9._$]+)[ \t]*($|\{|extends)/\2/c,classes/
---regex-js=/(^|[ \t]+)([A-Za-z_$][A-Za-z0-9_$]+)[ \t]*=[ \t]*React.createClass[ \t]*\(/\2/c,classes/
 --regex-js=/(^|[ \t]+)(static[ \t]+)?(async[ \t]+)?(\*[ \t]*)?([A-Za-z_$][A-Za-z0-9_$]+)[ \t]*\([^)]*\)[ \t]*\{/\5/m,methods/
 
 --regex-ruby=/([A-Z_]+[A-Z0-9_]+)[ \t]*=/\1/k,constants/
