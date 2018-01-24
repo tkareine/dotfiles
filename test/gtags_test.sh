@@ -5,16 +5,11 @@ set -euo pipefail
 cd "${0%/*}" || exit 2
 
 global_should_find() {
-    local expect_num_matches symbol result
+    local expect_num_matches symbol
     expect_num_matches=$1
     symbol=$2
 
-    set +e
-    global -x --literal "$symbol" | wc -l | grep "$expect_num_matches" >/dev/null
-    result=$?
-    set -e
-
-    if [[ $result -ne 0 ]]; then
+    if ! global -x --literal "$symbol" | wc -l | grep "$expect_num_matches" >/dev/null; then
         echo "Test failed (expect $expect_num_matches match): $symbol"
         global -x --literal "$symbol"
         exit 1
