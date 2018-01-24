@@ -22,14 +22,23 @@ global_should_find() {
 }
 
 SYMBOLS_GLOBAL_SHOULD_FIND_ONE=(
-    '#less-id-simple'
-    .less-class-simple
-    less-div.class-with-elem
+    '@less-str'
+    '#less-id-line1'
+    '#less-id-line2'
+    .less-class-line1
+    .less-class-line2
+    less-div.class-with-elem1
+    less-div.class-with-elem2
     '@less-font-size'
+
+    '$scss-str'
     scss-mixin-simple
-    '#scss-id-simple'
-    .scss-class-simple
-    scss-div.class-with-elem
+    '#scss-id-line1'
+    '#scss-id-line2'
+    .scss-class-line1
+    .scss-class-line2
+    scss-div.class-with-elem1
+    scss-div.class-with-elem2
     '$scss-font-size'
 
     jsFunctionNoParams
@@ -68,6 +77,7 @@ SYMBOLS_GLOBAL_SHOULD_FIND_ONE=(
     JsObjectCapitalized
     jsFieldSimple
     JsFieldCapitalized
+    jsFieldCommaBefore
     jsFieldAssignDotNotation
     jsFieldSingleQuoted
     jsFieldDoubleQuoted
@@ -96,6 +106,14 @@ SYMBOLS_GLOBAL_SHOULD_FIND_ONE=(
 )
 
 SYMBOLS_GLOBAL_SHOULD_FIND_ZERO=(
+    '#less-id-@{less-str}'
+    less-elem
+    '.less-class-@{less-str}'
+
+    '#scss-id-#{$scss-str}'
+    scss-elem
+    '.scss-class-#{$scss-str}'
+
     jsFunctionCall
 
     # must not find, otherwise would make definition out of a function call

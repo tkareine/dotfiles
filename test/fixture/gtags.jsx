@@ -119,8 +119,9 @@ const JsArrayCapitalized = [
 
 const jsObjectSimple = {
   jsFieldSimple: 42,
-  JsFieldCapitalized: 42,
-  "jsFieldSingleQuoted": 42,
+  JsFieldCapitalized: 42
+  ,jsFieldCommaBefore: 42,
+  'jsFieldSingleQuoted': 42,
   "jsFieldDoubleQuoted": 42
 }
 

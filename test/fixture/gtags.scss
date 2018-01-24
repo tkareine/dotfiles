@@ -1,18 +1,29 @@
+$scss-str: "foo";
+
 @mixin scss-mixin-simple {
 }
 
-#scss-id-simple {
+#scss-id-line1,
+#scss-id-line2 {
 }
 
-.scss-class-simple {
+#scss-id-#{$scss-str} {
+}
+
+.scss-class-line1,
+.scss-class-line2 {
   @include scss-mixin-simple;
 
   $scss-font-size: 120%;
 
-  table {
+  scss-elem {
     font-size: $scss-font-size;
   }
 
-  scss-div.class-with-elem {
+  scss-div.class-with-elem1,
+  scss-div.class-with-elem2 {
   }
+}
+
+.scss-class-#{$scss-str} {
 }

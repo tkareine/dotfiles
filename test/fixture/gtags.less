@@ -1,13 +1,24 @@
-#less-id-simple {
+@less-str: "foo";
+
+#less-id-line1,
+#less-id-line2 {
 }
 
-.less-class-simple {
+#less-id-@{less-str} {
+}
+
+.less-class-line1,
+.less-class-line2 {
   @less-font-size: 120%;
 
-  table {
+  less-elem {
     font-size: @less-font-size;
   }
 
-  less-div.class-with-elem {
+  less-div.class-with-elem1,
+  less-div.class-with-elem2 {
   }
+}
+
+.less-class-@{less-str} {
 }
