@@ -127,6 +127,12 @@ const jsObjectSimple = {
 
 jsObjectSimple.jsFieldAssignDotNotation = 42
 
+(() => {
+  return (
+    <div jsFieldJSXAttribute={42}/>
+  )
+})
+
 const JsObjectCapitalized = {
 }
 

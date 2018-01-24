@@ -81,6 +81,7 @@ SYMBOLS_GLOBAL_SHOULD_FIND_ONE=(
     jsFieldAssignDotNotation
     jsFieldSingleQuoted
     jsFieldDoubleQuoted
+    jsFieldJSXAttribute
     JsClassStatementNoExtends
     JsClassStatementExtends
     JsClassStatementNewlineBeforeOpeningBrace
