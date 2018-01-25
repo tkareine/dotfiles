@@ -1,24 +1,26 @@
-@less-str: "foo";
+@less-var-str: "foo";
 
 #less-id-line1,
 #less-id-line2 {
 }
 
-#less-id-@{less-str} {
+less-elem#less-id-with-elem {}
+
+#less-id-@{less-var-str} {
 }
 
 .less-class-line1,
 .less-class-line2 {
-  @less-font-size: 120%;
+  @less-var-font-size: 120%;
 
   less-elem {
-    font-size: @less-font-size;
+    font-size: @less-var-font-size;
   }
 
-  less-div.class-with-elem1,
-  less-div.class-with-elem2 {
+  less-elem.less-class-with-elem1,
+  less-elem.less-class-with-elem2 {
   }
 }
 
-.less-class-@{less-str} {
+.less-class-@{less-var-str} {
 }

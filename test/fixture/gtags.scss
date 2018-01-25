@@ -1,29 +1,39 @@
-$scss-str: "foo";
+$scss-var-str: "foo";
 
-@mixin scss-mixin-simple {
+@mixin scss-mixin-no-params {
+}
+
+@mixin scss-mixin-one-param($var1) {
+}
+
+@mixin scss-mixin-many-params($var1, $var2) {
 }
 
 #scss-id-line1,
 #scss-id-line2 {
 }
 
-#scss-id-#{$scss-str} {
+scss-elem#scss-id-with-elem {}
+
+#scss-id-#{$scss-var-str} {
 }
 
 .scss-class-line1,
 .scss-class-line2 {
-  @include scss-mixin-simple;
+  @include scss-mixin-no-params;
+  @include scss-mixin-one-param("foo");
+  @include scss-mixin-many-params("foo", 42);
 
-  $scss-font-size: 120%;
+  $scss-var-font-size: 120%;
 
   scss-elem {
-    font-size: $scss-font-size;
+    font-size: $scss-var-font-size;
   }
 
-  scss-div.class-with-elem1,
-  scss-div.class-with-elem2 {
+  scss-elem.scss-class-with-elem1,
+  scss-elem.scss-class-with-elem2 {
   }
 }
 
-.scss-class-#{$scss-str} {
+.scss-class-#{$scss-var-str} {
 }

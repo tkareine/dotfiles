@@ -14,10 +14,10 @@
 --langmap=css:+.less
 --langmap=css:+.sass
 --langmap=css:+.scss
---regex-css=/^[ \t]*@mixin[ \t]+([A-Za-z_][A-Za-z0-9_-]+)[ \t]*\{/\1/m,mixins/
---regex-css=/^[ \t]*([A-Za-z_][A-Za-z0-9_-]+)?#([A-Za-z_][A-Za-z0-9_-]+)[ \t]*[,{]/\1#\2/i,ids/
---regex-css=/^[ \t]*([A-Za-z_][A-Za-z0-9_-]+)?\.([A-Za-z_][A-Za-z0-9_-]+)[ \t]*[,{]/\1.\2/c,classes/
---regex-css=/^[ \t]*([\$@][A-Za-z_][A-Za-z0-9_-]+):/\1/v,variables/
+--regex-css=/^[ \t]*@mixin[ \t]+([A-Za-z_][A-Za-z0-9_-]+)[ \t]*(\([^)]+\)[ \t]*)?\{/\1/m,mixins/
+--regex-css=/^[ \t]*([A-Za-z_][A-Za-z0-9_-]+)?#([A-Za-z_][A-Za-z0-9_-]+)[ \t]*[,{]/\2/i,ids/
+--regex-css=/^[ \t]*([A-Za-z_][A-Za-z0-9_-]+)?\.([A-Za-z_][A-Za-z0-9_-]+)[ \t]*[,{]/\2/c,classes/
+--regex-css=/^[ \t]*[\$@]([A-Za-z_][A-Za-z0-9_-]+):/\1/v,variables/
 
 --languages=-javascript
 

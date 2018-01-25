@@ -17,24 +17,28 @@ global_should_find() {
 }
 
 SYMBOLS_GLOBAL_SHOULD_FIND_ONE=(
-    '@less-str'
-    '#less-id-line1'
-    '#less-id-line2'
-    .less-class-line1
-    .less-class-line2
-    less-div.class-with-elem1
-    less-div.class-with-elem2
-    '@less-font-size'
+    less-var-str
+    less-var-font-size
+    less-id-line1
+    less-id-line2
+    less-id-with-elem
+    less-class-line1
+    less-class-line2
+    less-class-with-elem1
+    less-class-with-elem2
 
-    '$scss-str'
-    scss-mixin-simple
-    '#scss-id-line1'
-    '#scss-id-line2'
-    .scss-class-line1
-    .scss-class-line2
-    scss-div.class-with-elem1
-    scss-div.class-with-elem2
-    '$scss-font-size'
+    scss-var-str
+    scss-var-font-size
+    scss-mixin-no-params
+    scss-mixin-one-param
+    scss-mixin-many-params
+    scss-id-line1
+    scss-id-line2
+    scss-id-with-elem
+    scss-class-line1
+    scss-class-line2
+    scss-class-with-elem1
+    scss-class-with-elem2
 
     jsFunctionNoParams
     jsFunctionOneParam
@@ -102,13 +106,13 @@ SYMBOLS_GLOBAL_SHOULD_FIND_ONE=(
 )
 
 SYMBOLS_GLOBAL_SHOULD_FIND_ZERO=(
-    '#less-id-@{less-str}'
     less-elem
-    '.less-class-@{less-str}'
+    'less-id-@{less-str}'
+    'less-class-@{less-str}'
 
-    '#scss-id-#{$scss-str}'
     scss-elem
-    '.scss-class-#{$scss-str}'
+    'scss-id-#{$scss-str}'
+    'scss-class-#{$scss-str}'
 
     jsFunctionCall
 
