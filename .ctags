@@ -44,3 +44,10 @@
 --regex-js=/(^|[ \t]+)(static[ \t]+)?(async[ \t]+)?(\*[ \t]*)?([A-Za-z_$][A-Za-z0-9_$]+)[ \t]*\([^)]*\)[ \t]*\{/\5/m,methods/
 
 --regex-ruby=/([A-Z_]+[A-Z0-9_]+)[ \t]*=/\1/k,constants/
+
+--langdef=yaml
+--langmap=yaml:.yml
+--langmap=yaml:+.yaml
+--regex-yaml=/^[ \t]*([A-Za-z0-9.\-_$]+):/\1/m,mappings/
+--regex-yaml=/^[ \t]*'([^']+)':/\1/m,mappings/
+--regex-yaml=/^[ \t]*"([^"]+)":/\1/m,mappings/
