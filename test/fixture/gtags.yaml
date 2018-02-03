@@ -1,0 +1,3 @@
+yaml_mapping_plain:
+  'yaml_mapping_single_quoted': foo
+  "yaml_mapping_double_quoted": bar

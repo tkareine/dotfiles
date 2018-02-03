@@ -103,6 +103,10 @@ SYMBOLS_GLOBAL_SHOULD_FIND_ONE=(
     jsMethodStaticGeneratorSpaceAfterAsterisk
 
     RUBY_CONSTANT_SIMPLE
+
+    yaml_mapping_plain
+    yaml_mapping_single_quoted
+    yaml_mapping_double_quoted
 )
 
 SYMBOLS_GLOBAL_SHOULD_FIND_ZERO=(
