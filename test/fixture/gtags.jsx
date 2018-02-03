@@ -160,13 +160,19 @@ class JsClassStatementNoExtends {
     return 42
   }
 
+jsMethodAtStartOfLine(){}
+
   static jsMethodStatic() {
     return 42
   }
 
+static jsMethodStaticAtStartOfLine(){}
+
   async jsMethodAsync() {
     return 42
   }
+
+async jsMethodAsyncAtStartOfLine(){}
 
   async * jsMethodAsyncGenerator() {
     return 42
@@ -176,9 +182,7 @@ class JsClassStatementNoExtends {
     return 42
   }
 
-  static async * jsMethodStaticAsyncGenerator() {
-    return 42
-  }
+static async jsMethodStaticAsyncAtStartOfLine(){}
 
   *jsMethodGeneratorNoSpaceAfterAsterisk() {
     return 42
@@ -188,11 +192,17 @@ class JsClassStatementNoExtends {
     return 42
   }
 
+*jsMethodGeneratorAtStartOfLine() {}
+
   static *jsMethodStaticGeneratorSpaceBeforeAsterisk() {
     return 42
   }
 
   static* jsMethodStaticGeneratorSpaceAfterAsterisk() {
+    return 42
+  }
+
+  static async * jsMethodStaticAsyncGenerator() {
     return 42
   }
 }

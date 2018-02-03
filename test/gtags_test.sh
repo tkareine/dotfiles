@@ -92,15 +92,20 @@ SYMBOLS_GLOBAL_SHOULD_FIND_ONE=(
     jsMethodOneParam
     jsMethodManyParams
     JsMethodCapitalized
+    jsMethodAtStartOfLine
     jsMethodStatic
+    jsMethodStaticAtStartOfLine
     jsMethodAsync
+    jsMethodAsyncAtStartOfLine
     jsMethodAsyncGenerator
     jsMethodStaticAsync
-    jsMethodStaticAsyncGenerator
+    jsMethodStaticAsyncAtStartOfLine
     jsMethodGeneratorNoSpaceAfterAsterisk
     jsMethodGeneratorSpaceAfterAsterisk
+    jsMethodGeneratorAtStartOfLine
     jsMethodStaticGeneratorSpaceBeforeAsterisk
     jsMethodStaticGeneratorSpaceAfterAsterisk
+    jsMethodStaticAsyncGenerator
 
     RUBY_CONSTANT_SIMPLE
 
@@ -122,6 +127,9 @@ SYMBOLS_GLOBAL_SHOULD_FIND_ZERO=(
 
     # must not find, otherwise would make definition out of a function call
     jsMethodMultilineParams
+
+    # must not leak from JS method definition
+    'function'
 )
 
 gtags

@@ -41,7 +41,7 @@
 --regex-js=/'([^']+)'[ \t]*:/\1/f,fields/
 --regex-js=/"([^"]+)"[ \t]*:/\1/f,fields/
 --regex-js=/(^|[ \t]+)class[ \t]+([A-Za-z_$][A-Za-z0-9._$]+)[ \t]*($|\{|extends)/\2/c,classes/
---regex-js=/(^|[ \t]+)(static[ \t]+)?(async[ \t]+)?(\*[ \t]*)?([A-Za-z_$][A-Za-z0-9_$]+)[ \t]*\([^)]*\)[ \t]*\{/\5/m,methods/
+--regex-js=/^([ \t]*static)?([ \t]*async)?([ \t]*\*)?[ \t]*([A-Za-z_$][A-Za-z0-9_$]+)[ \t]*\([^)]*\)[ \t]*\{/\4/m,methods/
 
 --regex-ruby=/([A-Z_]+[A-Z0-9_]+)[ \t]*=/\1/k,constants/
 
