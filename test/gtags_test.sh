@@ -112,6 +112,11 @@ SYMBOLS_GLOBAL_SHOULD_FIND_ONE=(
     yaml_mapping_plain
     yaml_mapping_single_quoted
     yaml_mapping_double_quoted
+    yaml_ansible_register_key_plain_value_plain
+    yaml_ansible_register_key_plain_value_single_quoted
+    yaml_ansible_register_key_plain_value_double_quoted
+    yaml_ansible_register_key_single_quoted_value_plain
+    yaml_ansible_register_key_double_quoted_value_plain
 )
 
 SYMBOLS_GLOBAL_SHOULD_FIND_ZERO=(

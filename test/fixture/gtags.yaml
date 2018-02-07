@@ -1,3 +1,8 @@
 yaml_mapping_plain:
   'yaml_mapping_single_quoted': foo
   "yaml_mapping_double_quoted": bar
+  register: yaml_ansible_register_key_plain_value_plain
+  register: 'yaml_ansible_register_key_plain_value_single_quoted'
+  register: "yaml_ansible_register_key_plain_value_double_quoted"
+  'register': yaml_ansible_register_key_single_quoted_value_plain
+  "register": yaml_ansible_register_key_double_quoted_value_plain

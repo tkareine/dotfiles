@@ -51,3 +51,7 @@
 --regex-yaml=/^[ \t]*([A-Za-z0-9.\-_$]+):/\1/m,mappings/
 --regex-yaml=/^[ \t]*'([^']+)':/\1/m,mappings/
 --regex-yaml=/^[ \t]*"([^"]+)":/\1/m,mappings/
+--regex-yaml=/^[ \t]*register:[ \t]*([A-Za-z0-9_$]+)/\1/r,ansible registers/
+--regex-yaml=/^[ \t]*['"]?register['"]?:[ \t]*([A-Za-z0-9_$]+)/\1/r,ansible registers/
+--regex-yaml=/^[ \t]*['"]?register['"]?:[ \t]*'([^']+)'/\1/r,ansible registers/
+--regex-yaml=/^[ \t]*['"]?register['"]?:[ \t]*"([^"]+)"/\1/r,ansible registers/
