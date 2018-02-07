@@ -1,6 +1,6 @@
 SHELL := bash  # required for `help` target
 
-CLEAN_FILES ?= $(foreach file,GPATH GRTAGS GTAGS,test/$(file))
+CLEAN_FILES ?= $(foreach file,GPATH GRTAGS GTAGS TAGS,test/$(file))
 
 INSTALL_ARGS ?=
 
