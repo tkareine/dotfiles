@@ -1,4 +1,5 @@
 {
+  "extends": ["eslint:recommended"],
   "env": {
     "browser": true,
     "es6": true,
@@ -6,20 +7,23 @@
     "node": true
   },
   "parserOptions": {
-    "ecmaVersion": 6,
+    "ecmaVersion": 2017,
+    "ecmaFeatures": {
+      "experimentalObjectRestSpread": true
+    },
     "sourceType": "module"
   },
   "rules": {
-    "eqeqeq": 1,
-    "no-console": 0,
-    "no-const-assign": 2,
-    "no-undef-init": 2,
-    "no-unneeded-ternary": 2,
-    "no-unreachable": 2,
-    "no-unused-expressions": 2,
-    "no-unused-vars": 2,
-    "prefer-const": 2,
-    "quotes": [2, "double"],
-    "semi": [2, "never"]
+    "arrow-parens": ["error", "as-needed"],
+    "eqeqeq": "warn",
+    "no-console": "off",
+    "no-const-assign": "error",
+    "no-unneeded-ternary": "error",
+    "no-unused-expressions": "error",
+    "no-var": "error",
+    "prefer-arrow-callback": "error",
+    "prefer-const": "error",
+    "quotes": ["error", "double"],
+    "semi": ["error", "never"]
   }
 }
