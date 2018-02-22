@@ -12,7 +12,7 @@
 	gr  = grep -n
 	lg  = log --cc --patch-with-stat --decorate
 	lt  = log --cc --graph --oneline --decorate
-	pl  = pull --ff-only
+	pl  = pull
 	rv  = revert
 	slg = shortlog -s -n
 	s   = status -s -b -u
@@ -33,6 +33,7 @@
 	numbered = true
 [merge]
 	conflictstyle = diff3
+	ff = only
 [push]
 	default = simple
 [rebase]
