@@ -137,14 +137,9 @@ if tkareine_is_color_term; then
     esac
 fi
 
-case $TERM in
-    xterm*|rxvt*)
-        PROMPT_COMMAND="tkareine_set_prompt; tkareine_set_title"
-        ;;
-    *)
-        PROMPT_COMMAND="tkareine_set_prompt"
-        ;;
-esac
+PROMPT_COMMAND="history -a; tkareine_set_prompt"
+
+[[ $TERM == xterm* ]] && PROMPT_COMMAND="$PROMPT_COMMAND; tkareine_set_title"
 
 # less: ignore character case in searches, display ANSI colors, highlight the
 # first unread line, show verbose prompt
