@@ -3,8 +3,7 @@
 set -uo pipefail
 
 print_usage() {
-    local this_script
-    this_script=${0##*/}
+    local this_script=${0##*/}
 
     cat << EOF
 Execute SQL query with \`psql\`, produce pretty-printed JSON output with

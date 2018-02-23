@@ -40,12 +40,11 @@ cmd_exist() {
 }
 
 parse_s_client_args() {
-    local subcommand
-
-    subcommand=$1
+    local subcommand=$1
 
     shift
 
+    # variables external to this function
     host=
     port=$DEFAULT_PORT
     servername=
