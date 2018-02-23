@@ -21,7 +21,7 @@ INSTALL_BY_SYMLINKING_ALL=(
     .bashrc
     .bashrc.aliases
     .bashrc.common
-    .bashrc.looks
+    .bashrc.ps1
     .bashrc.support
     .ctags
     .dircolors
@@ -45,7 +45,6 @@ INSTALL_BY_SYMLINKING_ALL=(
 )
 
 INSTALL_BY_SYMLINKING_DARWIN=(
-    .bashrc.darwin
     .iterm2_shell_integration.bash
     .macos
     bin/emacs
@@ -127,7 +126,7 @@ done
 
 install_by_symlinking "${INSTALL_BY_SYMLINKING_ALL[@]}"
 
-if [[ `uname` == "Darwin" ]]; then
+if [[ $(uname) == "Darwin" ]]; then
     install_by_copying "${INSTALL_BY_COPYING_DARWIN[@]}"
     install_by_symlinking "${INSTALL_BY_SYMLINKING_DARWIN[@]}"
 fi

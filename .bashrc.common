@@ -5,74 +5,23 @@
 # same as above for local system man pages
 [[ -d /usr/local/share/man ]] && export MANPATH=/usr/local/share/man:"$MANPATH"
 
-# my local bash-completions
-if [[ -d ~/lib/bash-completion ]]; then
-    for completion_file in ~/lib/bash-completion/*.bash; do
-        source "$completion_file"
-    done
-fi
-
 # my local executables
 [[ -d ~/bin ]] && export PATH=~/bin:"$PATH"
 
 # disable core dumps; to enable them: `ulimit -S -c unlimited`
 ulimit -S -c 0
 
+if [[ $(uname) == "Darwin" ]]; then
+    # soft limit for the maximum number of open file descriptors
+    ulimit -S -n 10240
+
+    # tar does not copy "._*" files
+    export COPYFILE_DISABLE=true
+fi
+
 # new file permissions: read-write for you, read for group, read for others
 umask 0022
-
-# bash: check the window size after each command
-shopt -s checkwinsize
-
-# bash: at shell exit, append history to the history file rather than
-# overwrite it
-shopt -s histappend
-
-# bash: attempt to save all lines of a multiple-line command in the same
-# history entry
-shopt -s cmdhist
-
-# bash: enable extended pattern matching features
-shopt -s extglob
-
-# ignore commands that begin with space and duplicate commands
-export HISTCONTROL=erasedups:ignoreboth
-export HISTIGNORE=bg:clear:exit:fg:history:ll:ls:reset
-export HISTTIMEFORMAT='%F %T '
-export HISTFILESIZE=10000
-export HISTSIZE=10000
 
 # localization
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
-
-# less: ignore character case in searches, display ANSI colors, highlight the
-# first unread line, show verbose prompt
-export LESS=-iRWM
-export PAGER=less
-
-# git: prompt configuration
-export GIT_PS1_SHOWDIRTYSTATE=true
-export GIT_PS1_SHOWSTASHSTATE=
-export GIT_PS1_SHOWUNTRACKEDFILES=true
-export GIT_PS1_SHOWUPSTREAM=auto
-
-# choose default editor
-if tkareine_cmd_exist emacsclient; then
-    export EDITOR=$(which emacsclient)
-else
-    export EDITOR=$(which vi)
-fi
-
-# nodenv
-tkareine_cmd_exist nodenv && eval "$(nodenv init -)"
-
-# C/C++
-export CC=/usr/bin/gcc
-#export CC="ccache gcc"
-#export CXX="ccache g++"
-#export CCACHE_DIR=/tmp/${USER}/.ccache
-#mkdir -p /tmp/${USER}/.ccache
-
-# Apache Maven
-[[ -d ~/.m2/repository ]] && export M2_REPO=~/.m2/repository
