@@ -1,5 +1,8 @@
 {
-  "extends": ["eslint:recommended"],
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended"
+  ],
   "env": {
     "browser": true,
     "es6": true,
@@ -24,6 +27,7 @@
     "prefer-arrow-callback": "error",
     "prefer-const": "error",
     "quotes": ["error", "double"],
+    "react/prop-types": "off",
     "semi": ["error", "never"]
   }
 }
