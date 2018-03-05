@@ -173,22 +173,23 @@ if [[ $(uname) == "Darwin" ]]; then
         [[ -r $brew_path/etc/bash_completion ]] && source "$brew_path/etc/bash_completion"
 
         # Python 2.x
-        [[ -d $brew_path/lib/python2.7/site-packages ]] && export PYTHONPATH="$brew_path/lib/python2.7/site-packages${PYTHONPATH:+:$PYTHONPATH}"
+        local python_path=$(brew --prefix python@2)
+        if [[ -d $python_path/bin ]]; then
+            export PATH="$python_path/bin:$PATH"
+            [[ -d $brew_path/lib/python2.7/site-packages ]] && export PYTHONPATH="$brew_path/lib/python2.7/site-packages${PYTHONPATH:+:$PYTHONPATH}"
+        fi
 
         # chruby
-        local chruby_path=$(brew --prefix chruby)
-
-        if [[ -f $chruby_path/share/chruby/chruby.sh ]]; then
-            source "$chruby_path/share/chruby/chruby.sh"
+        local chruby_path=$(brew --prefix chruby)/share/chruby/chruby.sh
+        if [[ -f $chruby_path ]]; then
+            source "$chruby_path"
             chruby ruby-2
         fi
 
         # LibreSSL (used by Emacs)
         local libressl_path=$(brew --prefix libressl)
-
         if [[ -d $libressl_path/bin ]]; then
-            export PATH="$tkareine__tmp_path_libressl/bin:$PATH"
-
+            export PATH="$libressl_path/bin:$PATH"
             [[ -d $libressl_path/share/man ]] && export MANPATH="$libressl_path/share/man:$MANPATH"
         fi
     }
