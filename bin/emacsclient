@@ -1,9 +1,11 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
-bin=$(brew --prefix emacs)/bin/emacsclient
+set -euo pipefail
 
-if test ! -x "$bin"; then
-    echo "emacsclient not found from $bin"
+bin=$(brew --prefix emacs-mac)/bin/emacsclient
+
+if [[ ! -x $bin ]]; then
+    echo "emacsclient not found from $bin" >&2
     exit 1
 fi
 

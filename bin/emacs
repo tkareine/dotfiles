@@ -1,9 +1,11 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
-bin=$(brew --prefix emacs)/Emacs.app/Contents/MacOS/Emacs
+set -euo pipefail
 
-if test ! -x "$bin"; then
-    echo "Emacs not found from $bin"
+bin=$(brew --prefix emacs-mac)/Emacs.app/Contents/MacOS/Emacs
+
+if [[ ! -x $bin ]]; then
+    echo "Emacs not found from $bin" >&2
     exit 1
 fi
 
