@@ -2,6 +2,7 @@
 .*.swp
 .DS_Store
 .[#~]*
+.dir-locals.el
 .idea/
 .lein-*
 .nrepl-port
