@@ -27,7 +27,7 @@
     "prefer-arrow-callback": "error",
     "prefer-const": "error",
     "quotes": ["error", "double"],
-    "react/prop-types": "off",
+    "react/prop-types": ["error", {"skipUndeclared": true}],
     "semi": ["error", "never"]
   }
 }
