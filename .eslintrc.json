@@ -18,7 +18,7 @@
   },
   "rules": {
     "arrow-parens": ["error", "as-needed"],
-    "eqeqeq": "warn",
+    "eqeqeq": ["warn", "always", {"null": "ignore"}],
     "no-console": "off",
     "no-const-assign": "error",
     "no-unneeded-ternary": "error",
