@@ -36,6 +36,10 @@ tkareine_is_root() {
     [[ $(whoami) == "root" ]]
 }
 
+tkareine_append_history() {
+    history -a
+}
+
 # optimization: cache whether we use color prompt or not
 if tkareine_is_color_term; then
     tkareine__use_color_prompt=1
@@ -137,9 +141,13 @@ if tkareine_is_color_term; then
     esac
 fi
 
-PROMPT_COMMAND="history -a; tkareine_set_prompt"
-
-[[ $TERM == xterm* ]] && PROMPT_COMMAND="$PROMPT_COMMAND; tkareine_set_title"
+if [[ -n ${precmd_functions+x} ]]; then
+    precmd_functions+=(tkareine_append_history tkareine_set_prompt)
+    [[ $TERM == xterm* ]] && precmd_functions+=(tkareine_set_title)
+else
+    PROMPT_COMMAND="tkareine_append_history; tkareine_set_prompt"
+    [[ $TERM == xterm* ]] && PROMPT_COMMAND="$PROMPT_COMMAND; tkareine_set_title"
+fi
 
 # less: ignore character case in searches, display ANSI colors, highlight the
 # first unread line, show verbose prompt
@@ -202,6 +210,8 @@ if [[ $(uname) == "Darwin" ]]; then
     /usr/bin/ssh-add -A 2> /dev/null
 
     export JAVA_HOME=$(/usr/libexec/java_home 2>/dev/null | tail -1)
+
+    source ~/.iterm2_shell_integration.bash
 fi
 
 # greets at login
