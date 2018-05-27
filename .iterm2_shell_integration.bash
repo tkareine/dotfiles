@@ -1,7 +1,33 @@
 #!/bin/bash
+# The iTerm2 customizations fall under the following license:
+#
+# This program is free software; you can redistribute it and/or
+# modify it under the terms of the GNU General Public License
+# as published by the Free Software Foundation; either version 2
+# of the License, or (at your option) any later version.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+
 
 # -- BEGIN ITERM2 CUSTOMIZATIONS --
 if [[ "$ITERM_ENABLE_SHELL_INTEGRATION_WITH_TMUX""$TERM" != screen && "$ITERM_SHELL_INTEGRATION_INSTALLED" = "" && "$-" == *i* ]]; then
+
+if shopt extdebug | grep on > /dev/null; then
+  echo "iTerm2 Shell Integration not installed."
+  echo ""
+  echo "Your shell has 'extdebug' turned on."
+  echo "This is incompatible with shell integration."
+  echo "Find 'shopt -s extdebug' in bash's rc scripts and remove it."
+  return 0
+fi
+
 ITERM_SHELL_INTEGRATION_INSTALLED=Yes
 # Saved copy of your PS1. This is used to detect if the user changes PS1
 # directly. ITERM_PREV_PS1 will hold the last value that this script set PS1 to
