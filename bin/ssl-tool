@@ -87,14 +87,14 @@ cmd_verifycert() {
 
     parse_s_client_args verifycert "$@"
 
-    openssl s_client \
-            -no_ssl2 \
-            -no_ssl3 \
-            -verify 9 \
-            -verify_return_error \
-            -servername "$servername" \
-            -connect "$host:$port" \
-            < /dev/null
+    echo "" \
+        | openssl s_client \
+                  -no_ssl2 \
+                  -no_ssl3 \
+                  -verify 9 \
+                  -verify_return_error \
+                  -servername "$servername" \
+                  -connect "$host:$port"
 }
 
 cmd_showcert() {
@@ -102,13 +102,13 @@ cmd_showcert() {
 
     parse_s_client_args showcert "$@"
 
-    openssl s_client \
-            -no_ssl2 \
-            -no_ssl3 \
-            -servername "$servername" \
-            -connect "$host:$port" \
-            < /dev/null \
-           | openssl x509 -text
+    echo "" \
+        | openssl s_client \
+                  -no_ssl2 \
+                  -no_ssl3 \
+                  -servername "$servername" \
+                  -connect "$host:$port" \
+        | openssl x509 -text
 }
 
 cmd_exist openssl || error_exit 3 "$THIS_SCRIPT: openssl not found from \$PATH"
