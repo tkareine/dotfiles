@@ -16,7 +16,7 @@ INSTALL_BY_COPYING_DARWIN=(
     Library/KeyBindings/DefaultKeyBinding.dict
 )
 
-INSTALL_BY_SYMLINKING_ALL=(
+INSTALL_BY_SYMLINKING_COMMON=(
     .bash_profile
     .bashrc
     .bashrc.aliases
@@ -124,7 +124,7 @@ while :; do
     shift
 done
 
-install_by_symlinking "${INSTALL_BY_SYMLINKING_ALL[@]}"
+install_by_symlinking "${INSTALL_BY_SYMLINKING_COMMON[@]}"
 
 if [[ $(uname) == "Darwin" ]]; then
     install_by_copying "${INSTALL_BY_COPYING_DARWIN[@]}"
