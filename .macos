@@ -8,6 +8,24 @@ sudo -v
 
 # -- System ------------------------------------------------------------------
 
+# Require password after 5 min after entering sleep or showing screen
+# saver
+defaults write com.apple.screensaver askForPassword -int 1
+defaults write com.apple.screensaver askForPasswordDelay -int 300
+
+# Power management: disable Power Nap to conserve power
+sudo pmset -a powernap 0
+
+# Power management: hibernation to disk, power off memory
+sudo pmset -a hibernatemode 25
+
+# Power management: enter hibernate after 1 h, instead of the default 3 h
+sudo pmset -a standby 1
+sudo pmset -a standbydelay 3600
+
+# Power management: ensure autopoweroff is disabled
+sudo pmset -a autopoweroff 0
+
 # Localization
 defaults write NSGlobalDomain AppleLanguages -array "en" "fi"
 defaults write NSGlobalDomain AppleLocale -string "en_FI"
@@ -59,10 +77,6 @@ defaults write com.apple.universalaccess HIDScrollZoomModifierMask -int 262144
 
 # Automatically quit printer app once the print jobs complete
 defaults write com.apple.print.PrintingPrefs "Quit When Finished" -bool true
-
-# Require password after 5 min after entering sleep or showing screen saver
-defaults write com.apple.screensaver askForPassword -int 1
-defaults write com.apple.screensaver askForPasswordDelay -int 300
 
 # Screen capture: save to desktop
 defaults write com.apple.screencapture location -string "$HOME/Desktop"
