@@ -175,6 +175,8 @@ tkareine_cmd_exist nodenv && eval "$(nodenv init -)"
 
 if [[ $(uname) == "Darwin" ]]; then
     tkareine__setup_brew() {
+        export HOMEBREW_NO_INSECURE_REDIRECT=1
+
         # optimization: cache Homebrew installation directory
         local brew_path=$(brew --prefix)
 
