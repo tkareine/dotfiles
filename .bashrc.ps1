@@ -173,6 +173,10 @@ fi
 # nodenv
 tkareine_cmd_exist nodenv && eval "$(nodenv init -)"
 
+# Python user installs
+export PYTHONUSERBASE=~/.python2
+export PATH="$PYTHONUSERBASE/bin:$PATH"
+
 if [[ $(uname) == "Darwin" ]]; then
     tkareine__setup_brew() {
         export HOMEBREW_NO_INSECURE_REDIRECT=1
