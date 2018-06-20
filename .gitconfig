@@ -18,6 +18,8 @@
 	s   = status -s -b -u
 	sm  = submodule
 	st  = status --long -b -u
+
+        short-rev = rev-parse --short
 [color]
 	ui = auto
 [core]
