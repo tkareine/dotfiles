@@ -108,6 +108,7 @@ cmd_showcert() {
                   -no_ssl3 \
                   -servername "$servername" \
                   -connect "$host:$port" \
+                  2>/dev/null \
         | openssl x509 -text
 }
 
