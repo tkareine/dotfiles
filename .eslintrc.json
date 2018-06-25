@@ -6,14 +6,10 @@
   "env": {
     "browser": true,
     "es6": true,
-    "mongo": true,
     "node": true
   },
   "parserOptions": {
-    "ecmaVersion": 2017,
-    "ecmaFeatures": {
-      "experimentalObjectRestSpread": true
-    },
+    "ecmaVersion": 2018,
     "sourceType": "module"
   },
   "rules": {
