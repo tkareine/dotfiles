@@ -115,6 +115,16 @@ shopt -s cmdhist
 # bash: enable extended pattern matching features
 shopt -s extglob
 
+if ((${BASH_VERSINFO[0]} >= 4)); then
+    # bash: pattern ** used in a pathname expansion context will match all
+    # files and zero or more directories and subdirectories
+    shopt -s globstar
+
+    # bash: attempt spelling correction on directory names during word
+    # completion if the directory name initially supplied does not exist
+    shopt -s dirspell
+fi
+
 # bash: ignore commands that begin with space and duplicate commands
 export HISTCONTROL=erasedups:ignoreboth
 export HISTIGNORE=bg:clear:exit:fg:history:ll:ls:reset
@@ -222,3 +232,5 @@ fi
 
 # greets at login
 tkareine_cmd_exist fortune && echo && fortune -a
+
+((${BASH_VERSINFO[0]} < 4)) && echo -e "\nWARN: old bash version: $BASH_VERSION"
