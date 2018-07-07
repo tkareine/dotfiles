@@ -94,6 +94,51 @@ tkareine_set_title() {
     echo -ne "\033]0;${USER}@${HOSTNAME}: ${PWD/$HOME/~}\007"
 }
 
+if [[ $(uname) == "Darwin" ]]; then
+    tkareine__setup_brew() {
+        export HOMEBREW_NO_INSECURE_REDIRECT=1
+
+        export PATH="$PATH:$HOME/brew/bin"
+
+        # optimization: cache Homebrew installation directory
+        local brew_path=$(brew --prefix)
+
+        [[ -r $brew_path/etc/bash_completion ]] && source "$brew_path/etc/bash_completion"
+
+        # LibreSSL (used by Emacs)
+        local libressl_path=$(brew --prefix libressl)
+        if [[ -d $libressl_path/bin ]]; then
+            export PATH="$libressl_path/bin:$PATH"
+            [[ -d $libressl_path/share/man ]] && export MANPATH="$libressl_path/share/man:$MANPATH"
+        fi
+
+        # chruby
+        local chruby_path=$(brew --prefix chruby)/share/chruby/chruby.sh
+        if [[ -f $chruby_path ]]; then
+            source "$chruby_path"
+            chruby ruby-2
+        fi
+
+        # Python 2.x
+        local python_path=$(brew --prefix python@2)
+        if [[ -d $python_path/bin ]]; then
+            export PATH="$PATH:$python_path/bin"
+            [[ -d $brew_path/lib/python2.7/site-packages ]] && export PYTHONPATH="$brew_path/lib/python2.7/site-packages${PYTHONPATH:+:$PYTHONPATH}"
+        fi
+    }
+
+    [[ -x ~/brew/bin/brew ]] && tkareine__setup_brew
+
+    unset tkareine__setup_homebrew
+
+    # ssh: load identities with passwords from user's keychain
+    /usr/bin/ssh-add -A 2> /dev/null
+
+    export JAVA_HOME=$(/usr/libexec/java_home 2>/dev/null | tail -1)
+
+    source ~/.iterm2_shell_integration.bash
+fi
+
 # my local bash-completions
 if [[ -d ~/lib/bash-completion ]]; then
     for completion_file in ~/lib/bash-completion/*.bash; do
@@ -185,50 +230,7 @@ tkareine_cmd_exist nodenv && eval "$(nodenv init -)"
 
 # Python user installs
 export PYTHONUSERBASE=~/.python2
-export PATH="$PYTHONUSERBASE/bin:$PATH"
-
-if [[ $(uname) == "Darwin" ]]; then
-    tkareine__setup_brew() {
-        export HOMEBREW_NO_INSECURE_REDIRECT=1
-
-        # optimization: cache Homebrew installation directory
-        local brew_path=$(brew --prefix)
-
-        [[ -r $brew_path/etc/bash_completion ]] && source "$brew_path/etc/bash_completion"
-
-        # Python 2.x
-        local python_path=$(brew --prefix python@2)
-        if [[ -d $python_path/bin ]]; then
-            export PATH="$python_path/bin:$PATH"
-            [[ -d $brew_path/lib/python2.7/site-packages ]] && export PYTHONPATH="$brew_path/lib/python2.7/site-packages${PYTHONPATH:+:$PYTHONPATH}"
-        fi
-
-        # chruby
-        local chruby_path=$(brew --prefix chruby)/share/chruby/chruby.sh
-        if [[ -f $chruby_path ]]; then
-            source "$chruby_path"
-            chruby ruby-2
-        fi
-
-        # LibreSSL (used by Emacs)
-        local libressl_path=$(brew --prefix libressl)
-        if [[ -d $libressl_path/bin ]]; then
-            export PATH="$libressl_path/bin:$PATH"
-            [[ -d $libressl_path/share/man ]] && export MANPATH="$libressl_path/share/man:$MANPATH"
-        fi
-    }
-
-    tkareine_cmd_exist brew && tkareine__setup_brew
-
-    unset tkareine__setup_homebrew
-
-    # ssh: load identities with passwords from user's keychain
-    /usr/bin/ssh-add -A 2> /dev/null
-
-    export JAVA_HOME=$(/usr/libexec/java_home 2>/dev/null | tail -1)
-
-    source ~/.iterm2_shell_integration.bash
-fi
+export PATH="$PATH:$PYTHONUSERBASE/bin"
 
 # greets at login
 tkareine_cmd_exist fortune && echo && fortune -a

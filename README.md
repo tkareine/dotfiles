@@ -15,14 +15,25 @@ copies each file to your home directory. Installation is safe by
 default: if the target file exists in your home directory already, the
 installer skips symlinking or copying. See `./install -h` for more.
 
+### Homebrew
+
+On macOS, [install Homebrew][Homebrew install] to a subdirectory under
+home:
+
+``` bash
+mkdir brew && curl -L https://github.com/Homebrew/brew/tarball/master | tar xz --strip 1 -C brew
+export PATH="$PATH:$HOME/brew/bin"
+brew update
+```
+
 ### Bash
 
 Installing the latest version of Bash, using [Homebrew] on macOS:
 
 ``` bash
 brew install bash
-sudo bash -c 'echo /usr/local/bin/bash >> /etc/shells'
-chsh -s /usr/local/bin/bash
+sudo bash -c 'echo ~/brew/bin/bash >> /etc/shells'
+chsh -s ~/brew/bin/bash
 ```
 
 ### Xcode Zenburn color theme
@@ -48,4 +59,5 @@ originally.
 
 [Emacs Zenburn]: https://github.com/bbatsov/zenburn-emacs
 [Homebrew]: https://brew.sh/
+[Homebrew install]: https://docs.brew.sh/Installation
 [Input font]: http://input.fontbureau.com/
