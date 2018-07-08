@@ -68,6 +68,12 @@ defaults write NSGlobalDomain AppleWindowTabbingMode -string "manual"
 # Only show menubar when moving pointer to the screen edge
 defaults write NSGlobalDomain _HIHideMenuBar -bool true
 
+# Sound: don't play UI sound effects
+defaults write NSGlobalDomain com.apple.sound.uiaudio.enabled -int 0
+
+# Sound: don't play feedback when changing volume
+defaults write NSGlobalDomain com.apple.sound.beep.feedback -int 0
+
 # Universal access: disable transparency in the menu bar and elsewhere
 defaults write com.apple.universalaccess reduceTransparency -bool true
 
@@ -86,6 +92,9 @@ defaults write com.apple.screencapture type -string "png"
 
 # Screen capture: disable shadow
 defaults write com.apple.screencapture disable-shadow -bool true
+
+# Spotlight: disable suggestions in look up
+defaults write com.apple.lookup.shared LookupSuggestionsDisabled -bool true
 
 # Finder: show all filename extensions
 defaults write NSGlobalDomain AppleShowAllExtensions -bool true
@@ -176,6 +185,9 @@ defaults write com.apple.mail PlayMailSounds -bool false
 
 # Mail: prefer plain format
 defaults write com.apple.mail SendFormat -string "Plain"
+
+# iCal: show week numbers
+defaults write com.apple.iCal 'Show Week Numbers' -bool true
 
 # TextEdit: use plain text mode for new documents
 defaults write com.apple.TextEdit RichText -int 0
