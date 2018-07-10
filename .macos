@@ -13,6 +13,12 @@ sudo -v
 defaults write com.apple.screensaver askForPassword -int 1
 defaults write com.apple.screensaver askForPasswordDelay -int 300
 
+# Power management: sleep timeouts for all power sources (in minutes)
+sudo pmset -a displaysleep 10 disksleep 10 sleep 10
+
+# Power management: sleep timeouts for battery (in minutes)
+sudo pmset -b displaysleep 2 disksleep 2 sleep 2
+
 # Power management: disable Power Nap to conserve power
 sudo pmset -a powernap 0
 
