@@ -118,13 +118,6 @@ if [[ $(uname) == "Darwin" ]]; then
             source "$chruby_path"
             chruby ruby-2
         fi
-
-        # Python 2.x
-        local python_path=$(brew --prefix python@2)
-        if [[ -d $python_path/bin ]]; then
-            export PATH="$PATH:$python_path/bin"
-            [[ -d $brew_path/lib/python2.7/site-packages ]] && export PYTHONPATH="$brew_path/lib/python2.7/site-packages${PYTHONPATH:+:$PYTHONPATH}"
-        fi
     }
 
     [[ -x ~/brew/bin/brew ]] && tkareine__setup_brew
