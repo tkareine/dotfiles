@@ -74,6 +74,26 @@ defaults write NSGlobalDomain AppleWindowTabbingMode -string "manual"
 # Only show menubar when moving pointer to the screen edge
 defaults write NSGlobalDomain _HIHideMenuBar -bool true
 
+# Trackpad: disable click with one finger tap gesture
+defaults write com.apple.AppleMultitouchTrackpad Clicking -bool false
+
+# Trackpad: enable three fingers gestures (required for App Expose and
+# Mission Control gestures below)
+defaults write com.apple.AppleMultitouchTrackpad TrackpadThreeFingerVertSwipeGesture -int 2
+
+# Trackpad: enable App Expose with swipe down with three fingers gesture
+defaults write com.apple.dock showAppExposeGestureEnabled -bool true
+
+# Trackpad: enable Mission Control with swipe up with three fingers
+# gesture
+defaults write com.apple.dock showMissionControlGestureEnabled -bool true
+
+# Trackpad: set clicking sound to minimum
+defaults write com.apple.AppleMultitouchTrackpad FirstClickThreshold -int 0
+
+# Trackpad: disable clicking sound
+defaults write com.apple.AppleMultitouchTrackpad ActuationStrength -int 0
+
 # Sound: don't play UI sound effects
 defaults write NSGlobalDomain com.apple.sound.uiaudio.enabled -int 0
 
