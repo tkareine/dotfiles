@@ -132,10 +132,12 @@ if [[ $(uname) == "Darwin" ]]; then
     source ~/.iterm2_shell_integration.bash
 fi
 
-# my local bash-completions
-if [[ -d ~/lib/bash-completion ]]; then
-    for completion_file in ~/lib/bash-completion/*.bash; do
-        source "$completion_file"
+# my local bash completions
+if [[ -d ~/lib/bash_completion.d && -x ~/lib/bash_completion.d ]]; then
+    for file in ~/lib/bash_completion.d/*; do
+        if [[ -f $file && -r $file ]]; then
+            source "$file"
+        fi
     done
 fi
 
