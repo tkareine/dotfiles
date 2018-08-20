@@ -105,18 +105,32 @@ if [[ $(uname) == "Darwin" ]]; then
 
         [[ -r $brew_path/etc/bash_completion ]] && source "$brew_path/etc/bash_completion"
 
-        # LibreSSL (used by Emacs)
-        local libressl_path=$(brew --prefix libressl)
-        if [[ -d $libressl_path/bin ]]; then
-            export PATH="$libressl_path/bin:$PATH"
-            [[ -d $libressl_path/share/man ]] && export MANPATH="$libressl_path/share/man:$MANPATH"
-        fi
-
         # chruby
         local chruby_path=$(brew --prefix chruby)/share/chruby/chruby.sh
         if [[ -f $chruby_path ]]; then
             source "$chruby_path"
             chruby ruby-2
+        fi
+
+        # ctags
+        local ctags_path=$(brew --prefix ctags)
+        if [[ -d $ctags_path/bin ]]; then
+            export PATH="$ctags_path/bin:$PATH"
+            [[ -d $ctags_path/share/man ]] && export MANPATH="$ctags_path/share/man:$MANPATH"
+        fi
+
+        # git
+        local git_path=$(brew --prefix git)
+        if [[ -d $git_path/bin ]]; then
+            export PATH="$git_path/bin:$PATH"
+            [[ -d $git_path/share/man ]] && export MANPATH="$git_path/share/man:$MANPATH"
+        fi
+
+        # LibreSSL (used by Emacs)
+        local libressl_path=$(brew --prefix libressl)
+        if [[ -d $libressl_path/bin ]]; then
+            export PATH="$libressl_path/bin:$PATH"
+            [[ -d $libressl_path/share/man ]] && export MANPATH="$libressl_path/share/man:$MANPATH"
         fi
     }
 
