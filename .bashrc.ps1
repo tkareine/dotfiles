@@ -6,9 +6,7 @@ if [[ $(uname) == "Darwin" ]]; then
         fi
 
         local home
-        home=$(/usr/libexec/java_home --failfast -v "$1")
-
-        if [[ $? -eq 0 ]]; then
+        if home=$(/usr/libexec/java_home --failfast -v "$1"); then
             echo "Using JVM in $home"
             export JAVA_HOME=$home
         fi
@@ -51,25 +49,25 @@ else
 fi
 
 tkareine_set_prompt() {
-    local ansi_b_green="\[\e[1;32m\]"
-    local ansi_b_red="\[\e[1;31m\]"
-    local ansi_b_yellow="\[\e[1;33m\]"
-    local ansi_green="\[\e[0;32m\]"
-    local ansi_reset="\[\e[0m\]"
+    local ansi_b_green='\[\e[1;32m\]'
+    local ansi_b_red='\[\e[1;31m\]'
+    local ansi_b_yellow='\[\e[1;33m\]'
+    local ansi_green='\[\e[0;32m\]'
+    local ansi_reset='\[\e[0m\]'
 
     local user_and_host pwd host_extras end git bin_ruby bin_node bin_java
 
     if [[ -n $tkareine__use_color_prompt ]]; then
-        user_and_host="${ansi_green}[\u@\h]${ansi_reset} "
-        pwd="${ansi_b_yellow}[\w]${ansi_reset} "
+        user_and_host="${ansi_green}[\\u@\\h]${ansi_reset} "
+        pwd="${ansi_b_yellow}[\\w]${ansi_reset} "
         if tkareine_is_root; then
             end="${ansi_b_red}#${ansi_reset} "
         else
             end="${ansi_b_green}\$${ansi_reset} "
         fi
     else
-        user_and_host="[\u@\h] "
-        pwd="[\w] "
+        user_and_host='[\u@\h] '
+        pwd='[\w] '
         if tkareine_is_root; then
             end="# "
         else
@@ -90,11 +88,11 @@ tkareine_set_prompt() {
         [[ -n $bin_java ]] && bin_java="[java-$bin_java] "
     fi
 
-    PS1="${user_and_host}${pwd}${git}${host_extras}${bin_ruby}${bin_node}${bin_java}\n${end}"
+    PS1="${user_and_host}${pwd}${git}${host_extras}${bin_ruby}${bin_node}${bin_java}\\n${end}"
 }
 
 tkareine_set_title() {
-    echo -ne "\033]0;${USER}@${HOSTNAME}: ${PWD/$HOME/~}\007"
+    echo -ne "\\033]0;${USER}@${HOSTNAME}: ${PWD/$HOME/~}\\007"
 }
 
 # my local executables
@@ -111,7 +109,8 @@ if [[ $(uname) == "Darwin" ]]; then
 
         # put selected brew-installed tools before system paths
         for tool in bash ctags git libressl; do
-            local path=$(brew --prefix "$tool")/bin
+            local path
+            path=$(brew --prefix "$tool")/bin
             [[ -d $path && -x $path ]] && export PATH="$path:$PATH"
         done
 
@@ -119,7 +118,8 @@ if [[ $(uname) == "Darwin" ]]; then
         [[ -r $brew_path/etc/bash_completion ]] && source "$brew_path/etc/bash_completion"
 
         # install chruby
-        local chruby_path=$(brew --prefix chruby)/share/chruby/chruby.sh
+        local chruby_path
+        chruby_path=$(brew --prefix chruby)/share/chruby/chruby.sh
         if [[ -f $chruby_path ]]; then
             source "$chruby_path"
             chruby ruby-2
@@ -133,7 +133,8 @@ if [[ $(uname) == "Darwin" ]]; then
     # ssh: load identities with passwords from user's keychain
     /usr/bin/ssh-add -A 2> /dev/null
 
-    export JAVA_HOME=$(/usr/libexec/java_home 2>/dev/null | tail -1)
+    export JAVA_HOME
+    JAVA_HOME=$(/usr/libexec/java_home 2>/dev/null | tail -1)
 
     source ~/.iterm2_shell_integration.bash
 fi
@@ -161,7 +162,7 @@ shopt -s cmdhist
 # bash: enable extended pattern matching features
 shopt -s extglob
 
-if ((${BASH_VERSINFO[0]} >= 4)); then
+if ((BASH_VERSINFO[0] >= 4)); then
     # bash: pattern ** used in a pathname expansion context will match all
     # files and zero or more directories and subdirectories
     shopt -s globstar
@@ -217,10 +218,11 @@ export GIT_PS1_SHOWUNTRACKEDFILES=true
 export GIT_PS1_SHOWUPSTREAM=auto
 
 # choose default editor
+export EDITOR
 if tkareine_cmd_exist emacsclient; then
-    export EDITOR=$(which emacsclient)
+    EDITOR=$(command -v emacsclient)
 else
-    export EDITOR=$(which vi)
+    EDITOR=$(command -v vi)
 fi
 
 # Apache Maven
@@ -236,4 +238,4 @@ export PATH="$PATH:$PYTHONUSERBASE/bin"
 # greets at login
 tkareine_cmd_exist fortune && echo && fortune -a
 
-((${BASH_VERSINFO[0]} < 4)) && echo -e "\nWARN: old bash version: $BASH_VERSION"
+((BASH_VERSINFO[0] < 4)) && echo -e "\\nWARN: old bash version: $BASH_VERSION"

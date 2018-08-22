@@ -73,7 +73,7 @@ install_by_copying() {
         source="$SOURCE_DIR/$file"
         destination=~/"$file"
 
-        if [[ -f $destination ]] && cmp -s $source $destination; then
+        if [[ -f $destination ]] && cmp -s "$source" "$destination"; then
             echo "installed already, skipping: $destination"
         elif [[ ! -e $destination || $force_install ]]; then
             echo "copying: $destination -> $source"

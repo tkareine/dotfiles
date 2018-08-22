@@ -36,7 +36,7 @@ while :; do
             exit
             ;;
         -C|--color-output|-M|--monochrome-output)
-            jq_args+=($1)
+            jq_args+=("$1")
             ;;
         -c|--command)
             if [[ -n ${2:-} ]]; then
@@ -52,10 +52,10 @@ while :; do
             break
             ;;
         -?*)
-            psql_args+=($1)
+            psql_args+=("$1")
 
             if [[ -n ${2:-} && $2 != -* ]]; then
-                psql_args+=($2)
+                psql_args+=("$2")
                 shift
             fi
             ;;
@@ -78,6 +78,6 @@ if [[ ${#jq_args[@]} -eq 0 && -t 1 ]]; then
 fi
 
 psql -q -t ${psql_args[@]:+"${psql_args[@]}"} << EOF
-\o '|jq ${jq_args[@]:+"${jq_args[@]}"} .'
+\\o '|jq ${jq_args[@]:+"${jq_args[@]}"} .'
 select row_to_json(t) from ($command) t
 EOF

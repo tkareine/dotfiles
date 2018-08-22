@@ -3,7 +3,7 @@ tkareine_print_error() {
 }
 
 tkareine_exit_if_fail() {
-    local cmd=$@
+    local cmd=$*
     $cmd
     local status=$?
     if [[ $status -ne 0 ]]; then
@@ -46,5 +46,5 @@ tkareine_fn_exist() {
 }
 
 gemdir() {
-    pushd "$(gem env gemdir)/gems"
+    pushd "$(gem env gemdir)/gems" || return
 }

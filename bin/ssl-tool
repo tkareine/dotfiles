@@ -30,7 +30,7 @@ error_usage_exit() {
 }
 
 error_usage_exit() {
-    print_error "$1\n"
+    print_error "$1\\n"
     print_usage
     exit 2
 }
@@ -49,7 +49,7 @@ parse_s_client_args() {
     port=$DEFAULT_PORT
     servername=
 
-    while [[ $# > 0 ]]; do
+    while [[ $# -gt 0 ]]; do
         case ${1:-} in
             -h|-\?|--help)
                 print_usage
