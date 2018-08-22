@@ -108,6 +108,10 @@ if [[ $(uname) == "Darwin" ]]; then
 
         [[ -r $brew_path/etc/bash_completion ]] && source "$brew_path/etc/bash_completion"
 
+        # bash
+        local bash_path=$(brew --prefix bash)
+        [[ -d $bash_path/bin ]] && export PATH="$bash_path/bin:$PATH"
+
         # chruby
         local chruby_path=$(brew --prefix chruby)/share/chruby/chruby.sh
         if [[ -f $chruby_path ]]; then
