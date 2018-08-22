@@ -94,6 +94,9 @@ tkareine_set_title() {
     echo -ne "\033]0;${USER}@${HOSTNAME}: ${PWD/$HOME/~}\007"
 }
 
+# my local executables
+[[ -d ~/bin ]] && export PATH=~/bin:"$PATH"
+
 if [[ $(uname) == "Darwin" ]]; then
     tkareine__setup_brew() {
         export HOMEBREW_NO_INSECURE_REDIRECT=1
@@ -114,24 +117,15 @@ if [[ $(uname) == "Darwin" ]]; then
 
         # ctags
         local ctags_path=$(brew --prefix ctags)
-        if [[ -d $ctags_path/bin ]]; then
-            export PATH="$ctags_path/bin:$PATH"
-            [[ -d $ctags_path/share/man ]] && export MANPATH="$ctags_path/share/man:$MANPATH"
-        fi
+        [[ -d $ctags_path/bin ]] && export PATH="$ctags_path/bin:$PATH"
 
         # git
         local git_path=$(brew --prefix git)
-        if [[ -d $git_path/bin ]]; then
-            export PATH="$git_path/bin:$PATH"
-            [[ -d $git_path/share/man ]] && export MANPATH="$git_path/share/man:$MANPATH"
-        fi
+        [[ -d $git_path/bin ]] && export PATH="$git_path/bin:$PATH"
 
         # LibreSSL (used by Emacs)
         local libressl_path=$(brew --prefix libressl)
-        if [[ -d $libressl_path/bin ]]; then
-            export PATH="$libressl_path/bin:$PATH"
-            [[ -d $libressl_path/share/man ]] && export MANPATH="$libressl_path/share/man:$MANPATH"
-        fi
+        [[ -d $libressl_path/bin ]] && export PATH="$libressl_path/bin:$PATH"
     }
 
     [[ -x ~/brew/bin/brew ]] && tkareine__setup_brew

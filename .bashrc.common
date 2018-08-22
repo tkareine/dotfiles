@@ -1,13 +1,3 @@
-# local system executables take precedence over global system executables
-[[ -d /usr/local/bin ]] && export PATH=/usr/local/bin:"$PATH"
-[[ -d /usr/local/sbin ]] && export PATH=/usr/local/sbin:"$PATH"
-
-# same as above for local system man pages
-[[ -d /usr/local/share/man ]] && export MANPATH=/usr/local/share/man:"$MANPATH"
-
-# my local executables
-[[ -d ~/bin ]] && export PATH=~/bin:"$PATH"
-
 # disable core dumps; to enable them: `ulimit -S -c unlimited`
 ulimit -S -c 0
 
