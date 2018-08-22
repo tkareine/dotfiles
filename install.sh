@@ -38,7 +38,6 @@ INSTALL_BY_SYMLINKING_COMMON=(
     .tmux.conf
     .vimrc
     .xmodmap
-    bin/git-create-patch
     bin/psql-jq
     bin/ssl-tool
     bin/well
