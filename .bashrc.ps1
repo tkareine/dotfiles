@@ -28,8 +28,11 @@ fi
 
 tkareine_is_color_term() {
     local colors
-    colors=$(tput colors 2>/dev/null)
-    [[ $? -eq 0 ]] && [[ $colors -ge 8 ]]
+    if colors=$(tput colors 2>/dev/null); then
+        [[ $colors -ge 8 ]]
+    else
+        return 1
+    fi
 }
 
 tkareine_is_root() {
