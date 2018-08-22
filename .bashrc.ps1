@@ -99,40 +99,31 @@ tkareine_set_title() {
 
 if [[ $(uname) == "Darwin" ]]; then
     tkareine__setup_brew() {
+        local brew_path=$1
+
         export HOMEBREW_NO_INSECURE_REDIRECT=1
 
-        export PATH="$PATH:$HOME/brew/bin"
+        # for security, put all brew-installed tools after system paths
+        export PATH="$PATH:$brew_path/bin"
 
-        # optimization: cache Homebrew installation directory
-        local brew_path=$(brew --prefix)
+        # put selected brew-installed tools before system paths
+        for tool in bash ctags git libressl; do
+            local path=$(brew --prefix "$tool")/bin
+            [[ -d $path && -x $path ]] && export PATH="$path:$PATH"
+        done
 
+        # install bash completions for tools
         [[ -r $brew_path/etc/bash_completion ]] && source "$brew_path/etc/bash_completion"
 
-        # bash
-        local bash_path=$(brew --prefix bash)
-        [[ -d $bash_path/bin ]] && export PATH="$bash_path/bin:$PATH"
-
-        # chruby
+        # install chruby
         local chruby_path=$(brew --prefix chruby)/share/chruby/chruby.sh
         if [[ -f $chruby_path ]]; then
             source "$chruby_path"
             chruby ruby-2
         fi
-
-        # ctags
-        local ctags_path=$(brew --prefix ctags)
-        [[ -d $ctags_path/bin ]] && export PATH="$ctags_path/bin:$PATH"
-
-        # git
-        local git_path=$(brew --prefix git)
-        [[ -d $git_path/bin ]] && export PATH="$git_path/bin:$PATH"
-
-        # LibreSSL (used by Emacs)
-        local libressl_path=$(brew --prefix libressl)
-        [[ -d $libressl_path/bin ]] && export PATH="$libressl_path/bin:$PATH"
     }
 
-    [[ -x ~/brew/bin/brew ]] && tkareine__setup_brew
+    [[ -x ~/brew/bin/brew ]] && tkareine__setup_brew ~/brew
 
     unset tkareine__setup_homebrew
 
