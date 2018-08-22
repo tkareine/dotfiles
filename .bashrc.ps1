@@ -235,6 +235,9 @@ tkareine_cmd_exist nodenv && eval "$(nodenv init -)"
 export PYTHONUSERBASE=~/.python2
 export PATH="$PATH:$PYTHONUSERBASE/bin"
 
+# ShellCheck config
+export SHELLCHECK_OPTS="-e SC1090"
+
 # greets at login
 tkareine_cmd_exist fortune && echo && fortune -a
 
