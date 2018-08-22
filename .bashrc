@@ -1,3 +1,6 @@
+# To quickly benchmark bash startup time, run:
+#   time bash -i -c true
+
 source ~/.bashrc.support
 source ~/.bashrc.common
 
