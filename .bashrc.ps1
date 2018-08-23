@@ -232,7 +232,7 @@ fi
 tkareine_cmd_exist nodenv && eval "$(nodenv init -)"
 
 # Python user installs
-export PYTHONUSERBASE=~/.python2
+export PYTHONUSERBASE=~/.local
 export PATH="$PATH:$PYTHONUSERBASE/bin"
 
 # ShellCheck config
