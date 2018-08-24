@@ -87,6 +87,15 @@ defaults write NSGlobalDomain NSAutomaticDashSubstitutionEnabled -bool false
 # Tab in modal dialogs)
 defaults write NSGlobalDomain AppleKeyboardUIMode -int 3
 
+# Keyboard: set key repeat speed
+defaults write NSGlobalDomain KeyRepeat -int 2
+
+# Keyboard: set delay until key repeat
+defaults write NSGlobalDomain InitialKeyRepeat -int 25
+
+# Keyboard: use F1, F2, etc. keys as standard function keys
+defaults write NSGlobalDomain com.apple.keyboard.fnState -bool true
+
 # Trackpad: disable click with one finger tap gesture
 defaults write com.apple.AppleMultitouchTrackpad Clicking -bool false
 defaults -currentHost write NSGlobalDomain com.apple.mouse.tapBehavior -int 0
