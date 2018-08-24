@@ -76,10 +76,26 @@ defaults write NSGlobalDomain _HIHideMenuBar -bool true
 
 # Trackpad: disable click with one finger tap gesture
 defaults write com.apple.AppleMultitouchTrackpad Clicking -bool false
+defaults -currentHost write NSGlobalDomain com.apple.mouse.tapBehavior -int 0
+
+# Trackpad: enable secondary click with two fingers
+defaults write com.apple.AppleMultitouchTrackpad TrackpadRightClick -bool true
+defaults -currentHost write NSGlobalDomain com.apple.trackpad.enableSecondaryClick -bool true
 
 # Trackpad: enable three fingers gestures (required for App Expose and
 # Mission Control gestures below)
 defaults write com.apple.AppleMultitouchTrackpad TrackpadThreeFingerVertSwipeGesture -int 2
+defaults -currentHost write NSGlobalDomain com.apple.trackpad.threeFingerVertSwipeGesture -int 2
+
+# Trackpad: enable Look up & data detectors with three fingers tap
+# gesture
+defaults write com.apple.AppleMultitouchTrackpad TrackpadThreeFingerTapGesture -int 2
+defaults -currentHost write NSGlobalDomain com.apple.trackpad.threeFingerTapGesture -int 2
+defaults write NSGlobalDomain com.apple.trackpad.forceClick -bool false
+
+# Trackpad: enable Smart zoom with two fingers tap gesture
+defaults write com.apple.AppleMultitouchTrackpad TrackpadTwoFingerDoubleTapGesture -int 1
+defaults -currentHost write NSGlobalDomain com.apple.trackpad.twoFingerDoubleTapGesture -int 1
 
 # Trackpad: enable App Expose with swipe down with three fingers gesture
 defaults write com.apple.dock showAppExposeGestureEnabled -bool true
