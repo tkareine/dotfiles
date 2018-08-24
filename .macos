@@ -289,7 +289,18 @@ defaults write com.google.Chrome.canary AppleEnableSwipeNavigateWithScrolls -boo
 
 # -- Apply changes -----------------------------------------------------------
 
-for app in "cfprefsd" "Dock" "Finder" "Mail" "Safari" "SystemUIServer"; do
+for app in \
+        "Google Chrome Canary" \
+        "Google Chrome" \
+        Calendar \
+        Dock \
+        Finder \
+        Mail \
+        Safari \
+        SystemUIServer \
+        TextEdit \
+        cfprefsd \
+    ; do
     killall "${app}" >/dev/null 2>&1
 done
 
