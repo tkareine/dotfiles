@@ -61,10 +61,6 @@ defaults write NSGlobalDomain NSDocumentSaveNewDocumentsToCloud -bool false
 # views.  Try: `cd /tmp; unidecode "\x{0000}" > cc.txt; open -e cc.txt`
 defaults write NSGlobalDomain NSTextShowsControlCharacters -bool true
 
-# Enable full keyboard access for all controls (e.g. enable Tab in modal
-# dialogs)
-defaults write NSGlobalDomain AppleKeyboardUIMode -int 3
-
 # Automatically show scroll bars (options: WhenScrolling, Automatic, Always)
 defaults write NSGlobalDomain AppleShowScrollBars -string "Automatic"
 
@@ -73,6 +69,23 @@ defaults write NSGlobalDomain AppleWindowTabbingMode -string "manual"
 
 # Only show menubar when moving pointer to the screen edge
 defaults write NSGlobalDomain _HIHideMenuBar -bool true
+
+# Keyboard, text: disable automatic spelling correction
+defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
+
+# Keyboard, text: disable automatic word capitalization
+defaults write NSGlobalDomain NSAutomaticCapitalizationEnabled -bool false
+
+# Keyboard, text: disable adding period with double-space
+defaults write NSGlobalDomain NSAutomaticPeriodSubstitutionEnabled -bool false
+
+# Keyboard, text: don't use smart quotes and dashes
+defaults write NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled -bool false
+defaults write NSGlobalDomain NSAutomaticDashSubstitutionEnabled -bool false
+
+# Keyboard: enable full keyboard access for all controls (e.g. enable
+# Tab in modal dialogs)
+defaults write NSGlobalDomain AppleKeyboardUIMode -int 3
 
 # Trackpad: disable click with one finger tap gesture
 defaults write com.apple.AppleMultitouchTrackpad Clicking -bool false
