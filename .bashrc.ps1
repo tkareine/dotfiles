@@ -140,8 +140,8 @@ if [[ $(uname) == "Darwin" ]]; then
 fi
 
 # my local bash completions
-if [[ -d ~/lib/bash_completion.d && -x ~/lib/bash_completion.d ]]; then
-    for file in ~/lib/bash_completion.d/*; do
+if [[ -d ~/.bash_completion.d && -x ~/.bash_completion.d ]]; then
+    for file in ~/.bash_completion.d/*; do
         if [[ -f $file && -r $file ]]; then
             source "$file"
         fi
