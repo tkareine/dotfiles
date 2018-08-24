@@ -2,6 +2,9 @@
 #
 # Adapted from <https://mths.be/macos>, thanks!
 
+PBUDDY=/usr/libexec/PlistBuddy
+USER_PREF_DIR=~/Library/Preferences/
+
 # -- Ask for sudo upfront before any changes ---------------------------------
 
 sudo -v
@@ -243,6 +246,25 @@ defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebK
 
 # Safari: add a context menu item for showing Web Inspector in web views
 defaults write NSGlobalDomain WebKitDeveloperExtras -bool true
+
+# Safari: use cmd+1 to cmd+9 to switch tabs
+defaults write com.apple.Safari Command1Through9SwitchesTabs -bool true
+
+# Safari: disable activating new tab when opening it
+defaults write com.apple.Safari OpenNewTabsInFront -bool false
+
+# Safari: disable Java plugin
+"$PBUDDY" -c "Set :PlugInInfo:com.oracle.java.JavaAppletPlugin:plugInCurrentState false" "$USER_PREF_DIR/com.apple.Safari.plist"
+
+# Safari: warn about fraudulent web sites
+defaults write com.apple.Safari WarnAboutFraudulentWebsites -bool true
+
+# Safari: block pop-up windows
+defaults write com.apple.Safari WebKitJavaScriptCanOpenWindowsAutomatically -bool false
+defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2JavaScriptCanOpenWindowsAutomatically -bool false
+
+# Safari: ask websites not to track me
+defaults write com.apple.Safari SendDoNotTrackHTTPHeader -bool true
 
 # Mail: disable new mail sound
 defaults write com.apple.mail MailSound -string ""
