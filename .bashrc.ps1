@@ -208,7 +208,7 @@ fi
 
 # less: ignore character case in searches, display ANSI colors, highlight the
 # first unread line, show verbose prompt
-export LESS=-iRWM
+export LESS=-iRWMFX
 export PAGER=less
 
 # git: prompt configuration
