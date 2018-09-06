@@ -1,4 +1,7 @@
-if [[ $(uname) == "Darwin" ]]; then
+# optimization: cache current uname
+tkareine__uname=$(uname)
+
+if [[ $tkareine__uname == "Darwin" ]]; then
     # shellcheck disable=SC2120
     chjava() {
         if [[ ${1:-} == "list" ]]; then
@@ -60,26 +63,25 @@ tkareine_append_history() {
 # optimization: cache whether we use color prompt or not
 if tkareine_is_color_term; then
     tkareine__use_color_prompt=1
+    tkareine__ansi_b_green='\[\e[1;32m\]'
+    tkareine__ansi_b_red='\[\e[1;31m\]'
+    tkareine__ansi_b_yellow='\[\e[1;33m\]'
+    tkareine__ansi_green='\[\e[0;32m\]'
+    tkareine__ansi_reset='\[\e[0m\]'
 else
     tkareine__use_color_prompt=
 fi
 
 tkareine_set_prompt() {
-    local ansi_b_green='\[\e[1;32m\]'
-    local ansi_b_red='\[\e[1;31m\]'
-    local ansi_b_yellow='\[\e[1;33m\]'
-    local ansi_green='\[\e[0;32m\]'
-    local ansi_reset='\[\e[0m\]'
-
     local user_and_host pwd host_extras end git bin_ruby bin_node bin_java
 
     if [[ -n $tkareine__use_color_prompt ]]; then
-        user_and_host="${ansi_green}[\\u@\\h]${ansi_reset} "
-        pwd="${ansi_b_yellow}[\\w]${ansi_reset} "
+        user_and_host="${tkareine__ansi_green}[\\u@\\h]${tkareine__ansi_reset} "
+        pwd="${tkareine__ansi_b_yellow}[\\w]${tkareine__ansi_reset} "
         if tkareine_is_root; then
-            end="${ansi_b_red}#${ansi_reset} "
+            end="${tkareine__ansi_b_red}#${tkareine__ansi_reset} "
         else
-            end="${ansi_b_green}\$${ansi_reset} "
+            end="${tkareine__ansi_b_green}\$${tkareine__ansi_reset} "
         fi
     else
         user_and_host='[\u@\h] '
@@ -99,7 +101,7 @@ tkareine_set_prompt() {
 
     tkareine_cmd_exist nodenv && bin_node="[node-$(nodenv version | cut -d ' ' -f 1)] "
 
-    if [[ $(uname) == "Darwin" ]]; then
+    if [[ $tkareine__uname == "Darwin" ]]; then
         bin_java=$(tkareine_current_java_version)
         [[ -n $bin_java ]] && bin_java="[java-$bin_java] "
     fi
@@ -114,7 +116,7 @@ tkareine_set_title() {
 # my local executables
 [[ -d ~/bin ]] && export PATH=~/bin:"$PATH"
 
-if [[ $(uname) == "Darwin" ]]; then
+if [[ $tkareine__uname == "Darwin" ]]; then
     tkareine__setup_brew() {
         local brew_path=$1
 
@@ -196,7 +198,7 @@ export HISTSIZE=10000
 
 # color support for ls
 if tkareine_is_color_term; then
-    case $(uname) in
+    case $tkareine__uname in
         Darwin)
             export LSCOLORS="Hxgxfxdxcxegedabagacad"
             alias ls='ls -FG'
