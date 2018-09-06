@@ -154,7 +154,7 @@ if [[ $tkareine__uname == "Darwin" ]]; then
     unset tkareine__setup_homebrew
 
     # ssh: load identities with passwords from user's keychain
-    /usr/bin/ssh-add -A 2> /dev/null
+    /usr/bin/ssh-add -A 2>/dev/null
 
     chjava >/dev/null
 

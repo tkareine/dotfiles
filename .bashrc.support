@@ -37,7 +37,7 @@ tkareine_join() {
 
 tkareine_cmd_exist() {
     [[ -z $1 ]] && tkareine_print_error "tkareine_cmd_exist(): expects command name as the parameter" && return 1
-    command -v "$1" &> /dev/null
+    command -v "$1" &>/dev/null
 }
 
 tkareine_fn_exist() {
