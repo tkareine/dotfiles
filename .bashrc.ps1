@@ -125,10 +125,16 @@ if [[ $tkareine__uname == "Darwin" ]]; then
         # for security, put all brew-installed tools after system paths
         export PATH="$PATH:$brew_path/bin"
 
-        # put selected brew-installed tools before system paths
-        for tool in bash ctags git libressl; do
-            local path
-            path=$(brew --prefix "$tool")/bin
+        # Put selected brew-installed tools before system paths. You can
+        # find the paths with `brew --prefix $tool`. Use pre-calculated
+        # paths, as `brew --prefix` is slow.
+        for tool_subpath in \
+                /opt/bash \
+                /opt/ctags \
+                /opt/git \
+                /opt/libressl \
+                ; do
+            local path=${brew_path}/${tool_subpath}/bin
             [[ -d $path && -x $path ]] && export PATH="$path:$PATH"
         done
 
@@ -136,8 +142,7 @@ if [[ $tkareine__uname == "Darwin" ]]; then
         [[ -r $brew_path/etc/bash_completion ]] && source "$brew_path/etc/bash_completion"
 
         # install chruby
-        local chruby_path
-        chruby_path=$(brew --prefix chruby)/share/chruby/chruby.sh
+        local chruby_path=${brew_path}/opt/chruby/share/chruby/chruby.sh
         if [[ -f $chruby_path ]]; then
             source "$chruby_path"
             chruby ruby-2
