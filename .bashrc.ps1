@@ -1,14 +1,30 @@
 if [[ $(uname) == "Darwin" ]]; then
+    # shellcheck disable=SC2120
     chjava() {
-        if [[ -z $1 ]]; then
+        if [[ ${1:-} == "list" ]]; then
             /usr/libexec/java_home -V
             return
         fi
 
+        local java_home_opts=()
         local home
-        if home=$(/usr/libexec/java_home --failfast -v "$1"); then
+        local manpath
+
+        if [[ -n ${1:-} ]]; then
+            java_home_opts+=(-v)
+            java_home_opts+=("$1")
+        fi
+
+        if home=$(/usr/libexec/java_home --failfast "${java_home_opts[@]}"); then
             echo "Using JVM in $home"
             export JAVA_HOME=$home
+            # bash parameter expansion substitution is slow, use sed instead
+            # shellcheck disable=SC2001
+            if ! manpath=$(echo "${MANPATH:-:}" | sed "s|${home}[^:]*:||g"); then
+                tkareine_print_error "failed to set \$MANPATH, was: $MANPATH"
+                return 1
+            fi
+            export MANPATH=${home}/man:${manpath#:}
         fi
     }
 
@@ -133,8 +149,7 @@ if [[ $(uname) == "Darwin" ]]; then
     # ssh: load identities with passwords from user's keychain
     /usr/bin/ssh-add -A 2> /dev/null
 
-    export JAVA_HOME
-    JAVA_HOME=$(/usr/libexec/java_home 2>/dev/null | tail -1)
+    chjava >/dev/null
 
     source ~/.iterm2_shell_integration.bash
 fi
