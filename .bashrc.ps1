@@ -127,7 +127,8 @@ tkareine_set_prompt() {
 
     tkareine_cmd_exist chruby && bin_ruby="[$(chruby | grep '\* ' | cut -d ' ' -f 3)] "
 
-    tkareine_cmd_exist nodenv && bin_node="[node-$(nodenv version | cut -d ' ' -f 1)] "
+    bin_node=~/.nodenv/version
+    [[ -r $bin_node ]] && bin_node="[node-$(head -n 1 < "$bin_node")] "
 
     if [[ $tkareine__uname == "Darwin" ]]; then
         bin_java=$(tkareine_current_java_version)
