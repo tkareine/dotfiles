@@ -96,6 +96,10 @@ else
     tkareine__use_color_prompt=
 fi
 
+# Keep the implementation of this function fast.
+#
+# To quickly benchmark time taken to display prompt, run `times` twice
+# and compare accumulated user times.
 tkareine_set_prompt() {
     local user_and_host pwd host_extras end git bin_ruby bin_node bin_java
 
