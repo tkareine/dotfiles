@@ -2,33 +2,57 @@
 tkareine__uname=$(uname)
 
 if [[ $tkareine__uname == "Darwin" ]]; then
-    # shellcheck disable=SC2120
     chjava() {
-        if [[ ${1:-} == "list" ]]; then
-            /usr/libexec/java_home -V
-            return
-        fi
+        local tool_path=/usr/libexec/java_home
+        local tool_opts=()
 
-        local java_home_opts=()
+        case ${1:-} in
+            -h|-\?|--help)
+                cat << EOF
+Usage: chjava [options] [version]
+
+Set \$JAVA_HOME and \$MANPATH for selected JVM.
+
+    -h  display this help and exit
+    -l  list JVMs available
+
+If given no version, output current \$JAVA_HOME.
+EOF
+                return
+                ;;
+            '')
+                echo "$JAVA_HOME"
+                return
+                ;;
+            -l|--list)
+                $tool_path -V
+                return
+                ;;
+            default)
+                tool_opts+=(--failfast)
+                ;;
+            *)
+                tool_opts+=(--failfast)
+                tool_opts+=(-v)
+                tool_opts+=("$1")
+                ;;
+        esac
+
         local home
+        home=$(/usr/libexec/java_home "${tool_opts[@]}") || return 1
+
         local manpath
-
-        if [[ -n ${1:-} ]]; then
-            java_home_opts+=(-v)
-            java_home_opts+=("$1")
+        # bash parameter expansion substitution is slow, use sed instead
+        # shellcheck disable=SC2001
+        if ! manpath=$(echo "${MANPATH:-:}" | sed "s|${home}[^:]*:||g"); then
+            tkareine_print_error "failed to set \$MANPATH, was: $MANPATH"
+            return 1
         fi
 
-        if home=$(/usr/libexec/java_home --failfast "${java_home_opts[@]}"); then
-            echo "Using JVM in $home"
-            export JAVA_HOME=$home
-            # bash parameter expansion substitution is slow, use sed instead
-            # shellcheck disable=SC2001
-            if ! manpath=$(echo "${MANPATH:-:}" | sed "s|${home}[^:]*:||g"); then
-                tkareine_print_error "failed to set \$MANPATH, was: $MANPATH"
-                return 1
-            fi
-            export MANPATH=${home}/man:${manpath#:}
-        fi
+        export JAVA_HOME=$home
+        export MANPATH=${home}/man:${manpath#:}
+
+        echo "$JAVA_HOME"
     }
 
     tkareine_current_java_version() {
@@ -156,7 +180,7 @@ if [[ $tkareine__uname == "Darwin" ]]; then
     # ssh: load identities with passwords from user's keychain
     /usr/bin/ssh-add -A 2>/dev/null
 
-    chjava >/dev/null
+    chjava default > /dev/null
 
     source ~/.iterm2_shell_integration.bash
 fi
