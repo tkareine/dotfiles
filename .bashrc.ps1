@@ -101,11 +101,11 @@ fi
 # To quickly benchmark time taken to display prompt, run `times` twice
 # and compare accumulated user times.
 tkareine_set_prompt() {
-    local user_and_host pwd host_extras end git bin_ruby bin_node bin_java
+    local user_and_host cwd end
 
     if [[ -n $tkareine__use_color_prompt ]]; then
         user_and_host="${tkareine__ansi_green}[\\u@\\h]${tkareine__ansi_reset} "
-        pwd="${tkareine__ansi_b_yellow}[\\w]${tkareine__ansi_reset} "
+        cwd="${tkareine__ansi_b_yellow}[\\w]${tkareine__ansi_reset} "
         if tkareine_is_root; then
             end="${tkareine__ansi_b_red}#${tkareine__ansi_reset} "
         else
@@ -113,7 +113,7 @@ tkareine_set_prompt() {
         fi
     else
         user_and_host='[\u@\h] '
-        pwd='[\w] '
+        cwd='[\w] '
         if tkareine_is_root; then
             end="# "
         else
@@ -121,21 +121,38 @@ tkareine_set_prompt() {
         fi
     fi
 
+    local git
     tkareine_fn_exist __git_ps1 && git="$(__git_ps1 '[%s] ')"
 
-    tkareine_fn_exist tkareine_prompt_hook_host_extras && host_extras="$(tkareine_prompt_hook_host_extras)"
-
-    tkareine_cmd_exist chruby && bin_ruby="[$(chruby | grep '\* ' | cut -d ' ' -f 3)] "
-
-    bin_node=~/.nodenv/version
-    [[ -r $bin_node ]] && bin_node="[node-$(head -n 1 < "$bin_node")] "
-
-    if [[ $tkareine__uname == "Darwin" ]]; then
-        bin_java=$(tkareine_current_java_version)
-        [[ -n $bin_java ]] && bin_java="[java-$bin_java] "
+    local python_venv
+    if [[ -n $VIRTUAL_ENV ]]; then
+        if (( ${PIPENV_ACTIVE:-0} > 0)); then
+            python_venv="(pipenv) "
+        else
+            python_venv="(venv) "
+        fi
     fi
 
-    PS1="${user_and_host}${pwd}${git}${host_extras}${bin_ruby}${bin_node}${bin_java}\\n${end}"
+    local host_extras
+    tkareine_fn_exist tkareine_prompt_hook_host_extras && host_extras="$(tkareine_prompt_hook_host_extras)"
+
+    local bin_states=()
+
+    tkareine_cmd_exist chruby && bin_states+=("$(chruby | grep '\* ' | head -n 1 | cut -d ' ' -f 3 | tr - :)")
+
+    local node_version_path=~/.nodenv/version
+    [[ -r $node_version_path ]] && bin_states+=("node:$(head -n 1 < "$node_version_path")")
+
+    if [[ $tkareine__uname == "Darwin" ]]; then
+        local bin_java
+        bin_java=$(tkareine_current_java_version)
+        [[ -n $bin_java ]] && bin_states+=("java:$bin_java")
+    fi
+
+    local bin_summary
+    (( ${#bin_states[@]} > 0 )) && bin_summary="($(tkareine_join ' ' "${bin_states[@]}"))"
+
+    PS1="${user_and_host}${cwd}${git}${python_venv}${host_extras}${bin_summary}\\n${end}"
 }
 
 tkareine_set_title() {
