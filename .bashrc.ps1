@@ -174,6 +174,7 @@ if [[ $tkareine__uname == "Darwin" ]]; then
         # Put selected brew-installed tools before system paths. You can
         # find the paths with `brew --prefix $tool`. Use pre-calculated
         # paths, as `brew --prefix` is slow.
+        local tool_subpath
         for tool_subpath in \
                 opt/bash \
                 opt/ctags \
@@ -214,6 +215,7 @@ if [[ -d ~/.bash_completion.d && -x ~/.bash_completion.d ]]; then
             source "$file"
         fi
     done
+    unset file
 fi
 
 # bash: check the window size after each command
