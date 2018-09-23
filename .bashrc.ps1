@@ -140,8 +140,7 @@ tkareine_set_prompt() {
 
     tkareine_cmd_exist chruby && bin_states+=("$(chruby | grep '\* ' | head -n 1 | cut -d ' ' -f 3 | tr - :)")
 
-    local node_version_path=~/.nodenv/version
-    [[ -r $node_version_path ]] && bin_states+=("node:$(head -n 1 < "$node_version_path")")
+    tkareine_cmd_exist chnode && bin_states+=("$(chnode | grep '\* ' | head -n 1 | cut -d ' ' -f 3 | tr - :)")
 
     if [[ $tkareine__uname == "Darwin" ]]; then
         local bin_java
@@ -298,8 +297,13 @@ fi
 # Apache Maven
 [[ -d ~/.m2/repository ]] && export M2_REPO=~/.m2/repository
 
-# nodenv
-tkareine_cmd_exist nodenv && eval "$(nodenv init -)"
+# install chnode
+chnode_path=~/Projects/chnode/chnode.sh
+if [[ -f $chnode_path ]]; then
+    source "$chnode_path"
+    chnode node-10
+fi
+unset chnode_path
 
 # Python user installs
 export PYTHONUSERBASE=~/.local
