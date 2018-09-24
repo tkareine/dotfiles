@@ -9,22 +9,11 @@ if [[ $tkareine__uname == "Darwin" ]]; then
         case ${1:-} in
             -h|-\?|--help)
                 cat << EOF
-Usage: chjava [options] [version]
-
-Set \$JAVA_HOME and \$MANPATH for selected JVM.
-
-    -h  display this help and exit
-    -l  list JVMs available
-
-If given no version, output current \$JAVA_HOME.
+Usage: chjava [JAVA_VERSION]
 EOF
                 return
                 ;;
             '')
-                echo "$JAVA_HOME"
-                return
-                ;;
-            -l|--list)
                 $tool_path -V
                 return
                 ;;
@@ -38,21 +27,21 @@ EOF
                 ;;
         esac
 
-        local home
-        home=$(/usr/libexec/java_home "${tool_opts[@]}") || return 1
+        local java_home
+        java_home=$(/usr/libexec/java_home "${tool_opts[@]}") || return 1
 
-        local manpath
-        # bash parameter expansion substitution is slow, use sed instead
-        # shellcheck disable=SC2001
-        if ! manpath=$(echo "${MANPATH:-:}" | sed "s|${home}[^:]*:||g"); then
-            tkareine_print_error "failed to set \$MANPATH, was: $MANPATH"
-            return 1
+        local manpath=:$MANPATH:
+        manpath=${manpath//:${JAVA_HOME}\/man:/:}
+        manpath=${manpath#:}
+        manpath=${manpath%:}
+
+        export JAVA_HOME=$java_home
+
+        if [[ $manpath == :* ]]; then
+            export MANPATH=${java_home}/man${manpath}
+        else
+            export MANPATH=${java_home}/man${manpath:+:$manpath}
         fi
-
-        export JAVA_HOME=$home
-        export MANPATH=${home}/man:${manpath#:}
-
-        echo "$JAVA_HOME"
     }
 
     tkareine_current_java_version() {
@@ -161,6 +150,9 @@ tkareine_set_title() {
 # my local executables
 [[ -d ~/bin ]] && export PATH=~/bin:"$PATH"
 
+# set manpath to contain system paths
+export MANPATH=:
+
 if [[ $tkareine__uname == "Darwin" ]]; then
     tkareine__setup_brew() {
         local brew_path=$1
@@ -202,7 +194,7 @@ if [[ $tkareine__uname == "Darwin" ]]; then
     # ssh: load identities with passwords from user's keychain
     /usr/bin/ssh-add -A 2>/dev/null
 
-    chjava default > /dev/null
+    chjava default
 
     source ~/.iterm2_shell_integration.bash
 fi
