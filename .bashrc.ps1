@@ -195,8 +195,6 @@ if [[ $tkareine__uname == "Darwin" ]]; then
     /usr/bin/ssh-add -A 2>/dev/null
 
     chjava default
-
-    source ~/.iterm2_shell_integration.bash
 fi
 
 # my local bash completions
