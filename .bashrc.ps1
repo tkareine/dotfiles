@@ -9,7 +9,7 @@ if [[ $tkareine__uname == "Darwin" ]]; then
         case ${1:-} in
             -h|-\?|--help)
                 cat << EOF
-Usage: chjava [JAVA_VERSION]
+Usage: chjava [JAVA_VERSION|default]
 EOF
                 return
                 ;;
