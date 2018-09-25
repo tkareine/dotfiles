@@ -2,24 +2,23 @@
 	email = tkareine@gmail.com
 	name = Tuomas Kareinen
 [alias]
-	br  = branch
-	ci  = commit -v
-	co  = checkout
-	cp  = cherry-pick
-	df  = diff
-	dfc = diff --cached
-	fep = fetch --prune
-	gr  = grep -n
-	lg  = log --cc --patch-with-stat --decorate
-	lt  = log --cc --graph --oneline --decorate
-	pl  = pull
-	rv  = revert
-	slg = shortlog -s -n
-	s   = status -s -b -u
-	sm  = submodule
-	st  = status --long -b -u
-
-        short-rev = rev-parse --short
+	br        = branch
+	ci        = commit -v
+	co        = checkout
+	cp        = cherry-pick
+	df        = diff
+	dfc       = diff --cached
+	fep       = fetch --prune
+	gr        = grep -n
+	lg        = log --cc --patch-with-stat --decorate
+	lt        = log --cc --graph --oneline --decorate
+	pl        = pull
+	rv        = revert
+	s         = status -s -b -u
+	short-rev = rev-parse --short
+	slg       = shortlog -s -n
+	sm        = submodule
+	st        = status --long -b -u
 [color]
 	ui = auto
 [core]
