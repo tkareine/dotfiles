@@ -300,7 +300,7 @@ export PYTHONUSERBASE=~/.local
 export PATH="$PATH:$PYTHONUSERBASE/bin"
 
 # ShellCheck config
-export SHELLCHECK_OPTS="-e SC1090"
+export SHELLCHECK_OPTS="-e SC1090 -e SC1091"
 
 # greets at login
 tkareine_cmd_exist fortune && echo && fortune -a
