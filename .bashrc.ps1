@@ -127,9 +127,9 @@ tkareine_set_prompt() {
 
     local bin_states=()
 
-    tkareine_cmd_exist chruby && bin_states+=("$(chruby | grep '\* ' | head -n 1 | cut -d ' ' -f 3 | tr - :)")
+    [[ -n $RUBY_ROOT ]] && bin_states+=("$(echo "${RUBY_ROOT##*/}" | tr - :)")
 
-    tkareine_cmd_exist chnode && bin_states+=("$(chnode | grep '\* ' | head -n 1 | cut -d ' ' -f 3 | tr - :)")
+    [[ -n $CHNODE_ROOT ]] && bin_states+=("$(echo "${CHNODE_ROOT##*/}" | tr - :)")
 
     if [[ $tkareine__uname == "Darwin" ]]; then
         local bin_java
@@ -177,14 +177,12 @@ if [[ $tkareine__uname == "Darwin" ]]; then
         done
 
         # install bash completions for tools
-        [[ -r $brew_path/etc/bash_completion ]] && source "$brew_path/etc/bash_completion"
+        local bash_completion_path=${brew_path}/etc/bash_completion
+        [[ -r $bash_completion_path ]] && source "$bash_completion_path"
 
         # install chruby
         local chruby_path=${brew_path}/opt/chruby/share/chruby/chruby.sh
-        if [[ -f $chruby_path ]]; then
-            source "$chruby_path"
-            chruby ruby-2
-        fi
+        [[ -r $chruby_path ]] && source "$chruby_path"
     }
 
     [[ -x ~/brew/bin/brew ]] && tkareine__setup_brew ~/brew
@@ -193,8 +191,6 @@ if [[ $tkareine__uname == "Darwin" ]]; then
 
     # ssh: load identities with passwords from user's keychain
     /usr/bin/ssh-add -A 2>/dev/null
-
-    chjava default
 fi
 
 # my local bash completions
@@ -287,13 +283,19 @@ fi
 # Apache Maven
 [[ -d ~/.m2/repository ]] && export M2_REPO=~/.m2/repository
 
-# install chnode
+# select Ruby if chruby is installed
+tkareine_cmd_exist chruby && chruby ruby-2
+
+# install chnode, select Node.js
 chnode_path=~/Projects/chnode/chnode.sh
 if [[ -f $chnode_path ]]; then
     source "$chnode_path"
     chnode node-10
 fi
 unset chnode_path
+
+# select Java if chjava is installed
+tkareine_cmd_exist chjava && chjava default
 
 # Python user installs
 export PYTHONUSERBASE=~/.local
