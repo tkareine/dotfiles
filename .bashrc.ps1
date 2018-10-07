@@ -180,6 +180,10 @@ if [[ $tkareine__uname == "Darwin" ]]; then
         local bash_completion_path=${brew_path}/etc/bash_completion
         [[ -r $bash_completion_path ]] && source "$bash_completion_path"
 
+        # install chnode
+        local chnode_path=${brew_path}/opt/chnode/share/chnode/chnode.sh
+        [[ -r $chnode_path ]] && source "$chnode_path"
+
         # install chruby
         local chruby_path=${brew_path}/opt/chruby/share/chruby/chruby.sh
         [[ -r $chruby_path ]] && source "$chruby_path"
@@ -283,16 +287,11 @@ fi
 # Apache Maven
 [[ -d ~/.m2/repository ]] && export M2_REPO=~/.m2/repository
 
+# select Node.js if chnode is installed
+tkareine_cmd_exist chnode && chnode node-10
+
 # select Ruby if chruby is installed
 tkareine_cmd_exist chruby && chruby ruby-2
-
-# install chnode, select Node.js
-chnode_path=~/Projects/chnode/chnode.sh
-if [[ -f $chnode_path ]]; then
-    source "$chnode_path"
-    chnode node-10
-fi
-unset chnode_path
 
 # select Java if chjava is installed
 tkareine_cmd_exist chjava && chjava default
