@@ -127,9 +127,9 @@ tkareine_set_prompt() {
 
     local bin_states=()
 
-    [[ -n $RUBY_ROOT ]] && bin_states+=("$(echo "${RUBY_ROOT##*/}" | tr - :)")
-
     [[ -n $CHNODE_ROOT ]] && bin_states+=("$(echo "${CHNODE_ROOT##*/}" | tr - :)")
+
+    [[ -n $RUBY_ROOT ]] && bin_states+=("$(echo "${RUBY_ROOT##*/}" | tr - :)")
 
     if [[ $tkareine__uname == "Darwin" ]]; then
         local bin_java
