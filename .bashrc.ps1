@@ -166,12 +166,12 @@ if [[ $tkareine__uname == "Darwin" ]]; then
         # find the paths with `brew --prefix $tool`. Use pre-calculated
         # paths, as `brew --prefix` is slow.
         local tool_subpath
-        for tool_subpath in \
-                opt/bash \
-                opt/ctags \
-                opt/git \
-                opt/libressl \
-                ; do
+        for tool_subpath in opt/bash \
+                                opt/ctags \
+                                opt/gettext \
+                                opt/git \
+                                opt/libressl \
+                            ; do
             local path=${brew_path}/${tool_subpath}/bin
             [[ -d $path && -x $path ]] && export PATH="$path:$PATH"
         done
