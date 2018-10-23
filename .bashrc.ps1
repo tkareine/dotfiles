@@ -72,11 +72,12 @@ tkareine_is_root() {
 # optimization: cache whether we use color prompt or not
 if tkareine_is_color_term; then
     tkareine__use_color_prompt=1
-    tkareine__ansi_b_green='\[\e[1;32m\]'
-    tkareine__ansi_b_red='\[\e[1;31m\]'
-    tkareine__ansi_b_yellow='\[\e[1;33m\]'
-    tkareine__ansi_b_lgray='\[\e[1;37m\]'
-    tkareine__ansi_green='\[\e[0;32m\]'
+    tkareine__ansi_bold_red='\[\e[1;31m\]'
+    tkareine__ansi_bold_yellow='\[\e[1;33m\]'
+    tkareine__ansi_gray_dark='\[\e[90m\]'
+    tkareine__ansi_bold_gray_dark='\[\e[1;90m\]'
+    tkareine__ansi_bold_256_teal_light='\[\e[1;38;5;44m\]'
+    tkareine__ansi_256_teal_dark='\[\e[38;5;30m\]'
     tkareine__ansi_reset='\[\e[0m\]'
 else
     tkareine__use_color_prompt=
@@ -90,13 +91,13 @@ tkareine_set_prompt() {
     local last_cmd_exit_status user_and_host cwd end
 
     if [[ -n $tkareine__use_color_prompt ]]; then
-        last_cmd_exit_status="${tkareine__ansi_b_lgray}${tkareine__last_cmd_exit_status}${tkareine__ansi_reset} "
-        user_and_host="${tkareine__ansi_green}\\u@\\h${tkareine__ansi_reset} "
-        cwd="${tkareine__ansi_b_yellow}\\w${tkareine__ansi_reset} "
+        last_cmd_exit_status="${tkareine__ansi_bold_gray_dark}${tkareine__last_cmd_exit_status}${tkareine__ansi_reset} "
+        user_and_host="${tkareine__ansi_256_teal_dark}\\u@\\h${tkareine__ansi_reset} "
+        cwd="${tkareine__ansi_bold_yellow}\\w${tkareine__ansi_reset} "
         if tkareine_is_root; then
-            end="${tkareine__ansi_b_red}#${tkareine__ansi_reset} "
+            end="${tkareine__ansi_bold_red}#${tkareine__ansi_reset} "
         else
-            end="${tkareine__ansi_b_green}\$${tkareine__ansi_reset} "
+            end="${tkareine__ansi_bold_256_teal_light}\$${tkareine__ansi_reset} "
         fi
     else
         last_cmd_exit_status="${tkareine__last_cmd_exit_status} "
@@ -137,7 +138,10 @@ tkareine_set_prompt() {
     fi
 
     local bin_summary
-    (( ${#bin_states[@]} > 0 )) && bin_summary="($(tkareine_join ' ' "${bin_states[@]}"))"
+    if (( ${#bin_states[@]} > 0 )); then
+        bin_summary="($(tkareine_join ' ' "${bin_states[@]}"))"
+        [[ -n $tkareine__use_color_prompt ]] && bin_summary="${tkareine__ansi_gray_dark}${bin_summary}${tkareine__ansi_reset}"
+    fi
 
     PS1="${last_cmd_exit_status}${user_and_host}${cwd}${git}${python_venv}${host_extras}${bin_summary}\\n${end}"
 }
