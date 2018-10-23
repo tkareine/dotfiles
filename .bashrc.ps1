@@ -59,14 +59,14 @@ fi
 tkareine_is_color_term() {
     local colors
     if colors=$(tput colors 2>/dev/null); then
-        (( colors >= 8 ))
+        ((colors >= 8))
     else
         return 1
     fi
 }
 
 tkareine_is_root() {
-    (( UID == 0 ))
+    ((UID == 0))
 }
 
 # optimization: cache whether we use color prompt or not
