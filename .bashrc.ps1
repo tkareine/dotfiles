@@ -72,10 +72,10 @@ tkareine_is_root() {
 # optimization: cache whether we use color prompt or not
 if tkareine_is_color_term; then
     tkareine__use_color_prompt=1
-    tkareine__ansi_b='\[\e[1m\]'
     tkareine__ansi_b_green='\[\e[1;32m\]'
     tkareine__ansi_b_red='\[\e[1;31m\]'
     tkareine__ansi_b_yellow='\[\e[1;33m\]'
+    tkareine__ansi_b_lgray='\[\e[1;37m\]'
     tkareine__ansi_green='\[\e[0;32m\]'
     tkareine__ansi_reset='\[\e[0m\]'
 else
@@ -90,9 +90,9 @@ tkareine_set_prompt() {
     local last_cmd_exit_status user_and_host cwd end
 
     if [[ -n $tkareine__use_color_prompt ]]; then
-        last_cmd_exit_status="${tkareine__ansi_b}${tkareine__last_cmd_exit_status}${tkareine__ansi_reset} "
-        user_and_host="${tkareine__ansi_green}[\\u@\\h]${tkareine__ansi_reset} "
-        cwd="${tkareine__ansi_b_yellow}[\\w]${tkareine__ansi_reset} "
+        last_cmd_exit_status="${tkareine__ansi_b_lgray}${tkareine__last_cmd_exit_status}${tkareine__ansi_reset} "
+        user_and_host="${tkareine__ansi_green}\\u@\\h${tkareine__ansi_reset} "
+        cwd="${tkareine__ansi_b_yellow}\\w${tkareine__ansi_reset} "
         if tkareine_is_root; then
             end="${tkareine__ansi_b_red}#${tkareine__ansi_reset} "
         else
@@ -100,8 +100,8 @@ tkareine_set_prompt() {
         fi
     else
         last_cmd_exit_status="${tkareine__last_cmd_exit_status} "
-        user_and_host='[\u@\h] '
-        cwd='[\w] '
+        user_and_host='\u@\h '
+        cwd='\w '
         if tkareine_is_root; then
             end="# "
         else
