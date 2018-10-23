@@ -69,13 +69,10 @@ tkareine_is_root() {
     [[ $(whoami) == "root" ]]
 }
 
-tkareine_append_history() {
-    history -a
-}
-
 # optimization: cache whether we use color prompt or not
 if tkareine_is_color_term; then
     tkareine__use_color_prompt=1
+    tkareine__ansi_b='\[\e[1m\]'
     tkareine__ansi_b_green='\[\e[1;32m\]'
     tkareine__ansi_b_red='\[\e[1;31m\]'
     tkareine__ansi_b_yellow='\[\e[1;33m\]'
@@ -87,12 +84,13 @@ fi
 
 # Keep the implementation of this function fast.
 #
-# To quickly benchmark time taken to display prompt, run `times` twice
-# and compare accumulated user times.
+# To quickly benchmark time taken to display prompt, run `time
+# tkareine_prompt_command`.
 tkareine_set_prompt() {
-    local user_and_host cwd end
+    local last_cmd_exit_status user_and_host cwd end
 
     if [[ -n $tkareine__use_color_prompt ]]; then
+        last_cmd_exit_status="${tkareine__ansi_b}${tkareine__last_cmd_exit_status}${tkareine__ansi_reset} "
         user_and_host="${tkareine__ansi_green}[\\u@\\h]${tkareine__ansi_reset} "
         cwd="${tkareine__ansi_b_yellow}[\\w]${tkareine__ansi_reset} "
         if tkareine_is_root; then
@@ -101,6 +99,7 @@ tkareine_set_prompt() {
             end="${tkareine__ansi_b_green}\$${tkareine__ansi_reset} "
         fi
     else
+        last_cmd_exit_status="${tkareine__last_cmd_exit_status} "
         user_and_host='[\u@\h] '
         cwd='[\w] '
         if tkareine_is_root; then
@@ -140,7 +139,15 @@ tkareine_set_prompt() {
     local bin_summary
     (( ${#bin_states[@]} > 0 )) && bin_summary="($(tkareine_join ' ' "${bin_states[@]}"))"
 
-    PS1="${user_and_host}${cwd}${git}${python_venv}${host_extras}${bin_summary}\\n${end}"
+    PS1="${last_cmd_exit_status}${user_and_host}${cwd}${git}${python_venv}${host_extras}${bin_summary}\\n${end}"
+}
+
+tkareine__last_cmd_exit_status=0
+
+tkareine_prompt_command() {
+    tkareine__last_cmd_exit_status=$?
+    history -a
+    tkareine_set_prompt
 }
 
 tkareine_set_title() {
@@ -258,10 +265,10 @@ if tkareine_is_color_term; then
 fi
 
 if [[ -n ${precmd_functions+x} ]]; then
-    precmd_functions+=(tkareine_append_history tkareine_set_prompt)
+    precmd_functions+=(tkareine_prompt_command)
     [[ $TERM == xterm* ]] && precmd_functions+=(tkareine_set_title)
 else
-    PROMPT_COMMAND="tkareine_append_history; tkareine_set_prompt"
+    PROMPT_COMMAND="tkareine_prompt_command"
     [[ $TERM == xterm* ]] && PROMPT_COMMAND="$PROMPT_COMMAND; tkareine_set_title"
 fi
 

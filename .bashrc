@@ -9,3 +9,5 @@ if [[ -n $PS1 ]]; then
 fi
 
 [[ -r ~/.bashrc.host ]] && source ~/.bashrc.host
+
+true  # ensure last command is successful
