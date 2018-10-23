@@ -43,7 +43,6 @@ INSTALL_BY_SYMLINKING_COMMON=(
 )
 
 INSTALL_BY_SYMLINKING_DARWIN=(
-    .iterm2_shell_integration.bash
     .macos
     bin/emacs
     bin/emacsclient
