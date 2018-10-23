@@ -264,13 +264,13 @@ if tkareine_is_color_term; then
     esac
 fi
 
-if [[ -n ${precmd_functions+x} ]]; then
-    precmd_functions+=(tkareine_prompt_command)
-    [[ $TERM == xterm* ]] && precmd_functions+=(tkareine_set_title)
-else
-    PROMPT_COMMAND="tkareine_prompt_command"
-    [[ $TERM == xterm* ]] && PROMPT_COMMAND="$PROMPT_COMMAND; tkareine_set_title"
-fi
+alias ll='ls -lhA'
+
+# grep: color support
+alias grep='grep --color=auto'
+alias egrep='egrep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias hgrep='history | egrep --color=auto'
 
 # less: ignore character case in searches, display ANSI colors, highlight the
 # first unread line, show verbose prompt
@@ -282,6 +282,12 @@ export GIT_PS1_SHOWDIRTYSTATE=true
 export GIT_PS1_SHOWSTASHSTATE=
 export GIT_PS1_SHOWUNTRACKEDFILES=true
 export GIT_PS1_SHOWUPSTREAM=auto
+
+alias g='git'
+alias gd='git diff --no-index'
+
+# ag: set pager
+alias ag='ag --pager=less'
 
 # choose default editor
 export EDITOR
@@ -303,12 +309,27 @@ tkareine_cmd_exist chruby && chruby ruby-2
 # select Java if chjava is installed
 tkareine_cmd_exist chjava && chjava default
 
+# Ruby: shorten commonly used Bundler command
+alias be='bundle exec'
+
 # Python user installs
 export PYTHONUSERBASE=~/.local
 export PATH="$PATH:$PYTHONUSERBASE/bin"
 
 # ShellCheck config
 export SHELLCHECK_OPTS="-e SC1090 -e SC1091"
+
+# list TCP listen and UDP ports
+alias linet='lsof -i UDP -i TCP -s TCP:LISTEN -n -P +c 0'
+
+# install prompt command
+if [[ -n ${precmd_functions+x} ]]; then
+    precmd_functions+=(tkareine_prompt_command)
+    [[ $TERM == xterm* ]] && precmd_functions+=(tkareine_set_title)
+else
+    PROMPT_COMMAND="tkareine_prompt_command"
+    [[ $TERM == xterm* ]] && PROMPT_COMMAND="$PROMPT_COMMAND; tkareine_set_title"
+fi
 
 # greets at login
 tkareine_cmd_exist fortune && echo && fortune -a

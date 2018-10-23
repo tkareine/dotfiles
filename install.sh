@@ -19,7 +19,6 @@ INSTALL_BY_COPYING_DARWIN=(
 INSTALL_BY_SYMLINKING_COMMON=(
     .bash_profile
     .bashrc
-    .bashrc.aliases
     .bashrc.common
     .bashrc.ps1
     .bashrc.support
