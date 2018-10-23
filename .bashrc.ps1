@@ -127,14 +127,14 @@ tkareine_set_prompt() {
 
     local bin_states=()
 
-    [[ -n $CHNODE_ROOT ]] && bin_states+=("$(echo "${CHNODE_ROOT##*/}" | tr - :)")
+    [[ -n $CHNODE_ROOT ]] && bin_states+=("n:$(echo "${CHNODE_ROOT##*/}" | cut -d - -f 2)")
 
-    [[ -n $RUBY_ROOT ]] && bin_states+=("$(echo "${RUBY_ROOT##*/}" | tr - :)")
+    [[ -n $RUBY_ROOT ]] && bin_states+=("r:$(echo "${RUBY_ROOT##*/}" | cut -d - -f 2)")
 
     if [[ $tkareine__uname == "Darwin" ]]; then
         local bin_java
         bin_java=$(tkareine_current_java_version)
-        [[ -n $bin_java ]] && bin_states+=("java:$bin_java")
+        [[ -n $bin_java ]] && bin_states+=("j:$bin_java")
     fi
 
     local bin_summary
