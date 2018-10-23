@@ -77,6 +77,7 @@ if tkareine_is_color_term; then
     tkareine__ansi_gray_dark='\[\e[90m\]'
     tkareine__ansi_bold_gray_dark='\[\e[1;90m\]'
     tkareine__ansi_bold_256_teal_light='\[\e[1;38;5;44m\]'
+    tkareine__ansi_256_orange_light='\[\e[38;5;215m\]'
     tkareine__ansi_256_teal_dark='\[\e[38;5;30m\]'
     tkareine__ansi_reset='\[\e[0m\]'
 else
@@ -111,7 +112,10 @@ tkareine_set_prompt() {
     fi
 
     local git
-    tkareine_fn_exist __git_ps1 && git="$(__git_ps1 '[%s] ')"
+    if tkareine_fn_exist __git_ps1; then
+        git="$(__git_ps1 '%s ')"
+        [[ -n $tkareine__use_color_prompt ]] && git="${tkareine__ansi_256_orange_light}${git}${tkareine__ansi_reset}"
+    fi
 
     local python_venv
     if [[ -n $VIRTUAL_ENV ]]; then
