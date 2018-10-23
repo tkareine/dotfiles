@@ -59,7 +59,7 @@ fi
 tkareine_is_color_term() {
     local colors
     if colors=$(tput colors 2>/dev/null); then
-        [[ $colors -ge 8 ]]
+        (( colors >= 8 ))
     else
         return 1
     fi
