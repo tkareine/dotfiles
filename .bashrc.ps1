@@ -155,7 +155,7 @@ tkareine_prompt_command() {
 }
 
 tkareine_set_title() {
-    echo -ne "\\033]0;${USER}@${HOSTNAME}: ${PWD/$HOME/~}\\007"
+    echo -ne "\\e]0;${USER}@${HOSTNAME}: ${PWD/$HOME/\~}\\007"
 }
 
 # my local executables
