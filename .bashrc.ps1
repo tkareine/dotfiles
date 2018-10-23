@@ -66,7 +66,7 @@ tkareine_is_color_term() {
 }
 
 tkareine_is_root() {
-    [[ $(whoami) == "root" ]]
+    (( UID == 0 ))
 }
 
 # optimization: cache whether we use color prompt or not
