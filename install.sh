@@ -37,6 +37,7 @@ INSTALL_BY_SYMLINKING_COMMON=(
     .tmux.conf
     .vimrc
     .xmodmap
+    bin/ansi-colors.sh
     bin/psql-jq
     bin/ssl-tool
     bin/well
