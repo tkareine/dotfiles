@@ -1,7 +1,7 @@
 # optimization: cache current uname
-tkareine__uname=$(uname)
+tk__uname=$(uname)
 
-if [[ $tkareine__uname == "Darwin" ]]; then
+if [[ $tk__uname == "Darwin" ]]; then
     chjava() {
         local tool_path=/usr/libexec/java_home
         local tool_opts=()
@@ -44,7 +44,7 @@ EOF
         fi
     }
 
-    tkareine_current_java_version() {
+    tk_current_java_version() {
         [[ -z $JAVA_HOME ]] && return 1
 
         local version
@@ -56,7 +56,7 @@ EOF
     }
 fi
 
-tkareine_is_color_term() {
+tk_is_color_term() {
     local colors
     if colors=$(tput colors 2>/dev/null); then
         ((colors >= 8))
@@ -65,46 +65,46 @@ tkareine_is_color_term() {
     fi
 }
 
-tkareine_is_root() {
+tk_is_root() {
     [[ $UID == "0" ]]
 }
 
 # optimization: cache whether we use color prompt or not
-if tkareine_is_color_term; then
-    tkareine__use_color_prompt=1
-    tkareine__ansi_bold_red='\[\e[1;31m\]'
-    tkareine__ansi_bold_yellow='\[\e[1;33m\]'
-    tkareine__ansi_gray_dark='\[\e[90m\]'
-    tkareine__ansi_bold_gray_dark='\[\e[1;90m\]'
-    tkareine__ansi_bold_256_teal_light='\[\e[1;38;5;44m\]'
-    tkareine__ansi_256_orange_light='\[\e[38;5;215m\]'
-    tkareine__ansi_256_teal_dark='\[\e[38;5;30m\]'
-    tkareine__ansi_reset='\[\e[0m\]'
+if tk_is_color_term; then
+    tk__use_color_prompt=1
+    tk__ansi_bold_red='\[\e[1;31m\]'
+    tk__ansi_bold_yellow='\[\e[1;33m\]'
+    tk__ansi_gray_dark='\[\e[90m\]'
+    tk__ansi_bold_gray_dark='\[\e[1;90m\]'
+    tk__ansi_bold_256_teal_light='\[\e[1;38;5;44m\]'
+    tk__ansi_256_orange_light='\[\e[38;5;215m\]'
+    tk__ansi_256_teal_dark='\[\e[38;5;30m\]'
+    tk__ansi_reset='\[\e[0m\]'
 else
-    tkareine__use_color_prompt=
+    tk__use_color_prompt=
 fi
 
 # Keep the implementation of this function fast.
 #
 # To quickly benchmark time taken to display prompt, run `time
-# tkareine_prompt_command`.
-tkareine_set_prompt() {
+# tk_prompt_command`.
+tk_set_prompt() {
     local last_cmd_exit_status user_and_host cwd end
 
-    if [[ -n $tkareine__use_color_prompt ]]; then
-        last_cmd_exit_status="${tkareine__ansi_bold_gray_dark}${tkareine__last_cmd_exit_status}${tkareine__ansi_reset} "
-        user_and_host="${tkareine__ansi_256_teal_dark}\\u@\\h${tkareine__ansi_reset} "
-        cwd="${tkareine__ansi_bold_yellow}\\w${tkareine__ansi_reset} "
-        if tkareine_is_root; then
-            end="${tkareine__ansi_bold_red}#${tkareine__ansi_reset} "
+    if [[ -n $tk__use_color_prompt ]]; then
+        last_cmd_exit_status="${tk__ansi_bold_gray_dark}${tk__last_cmd_exit_status}${tk__ansi_reset} "
+        user_and_host="${tk__ansi_256_teal_dark}\\u@\\h${tk__ansi_reset} "
+        cwd="${tk__ansi_bold_yellow}\\w${tk__ansi_reset} "
+        if tk_is_root; then
+            end="${tk__ansi_bold_red}#${tk__ansi_reset} "
         else
-            end="${tkareine__ansi_bold_256_teal_light}\$${tkareine__ansi_reset} "
+            end="${tk__ansi_bold_256_teal_light}\$${tk__ansi_reset} "
         fi
     else
-        last_cmd_exit_status="${tkareine__last_cmd_exit_status} "
+        last_cmd_exit_status="${tk__last_cmd_exit_status} "
         user_and_host='\u@\h '
         cwd='\w '
-        if tkareine_is_root; then
+        if tk_is_root; then
             end="# "
         else
             end="$ "
@@ -112,9 +112,9 @@ tkareine_set_prompt() {
     fi
 
     local git
-    if tkareine_fn_exist __git_ps1; then
+    if tk_fn_exist __git_ps1; then
         git="$(__git_ps1 '%s ')"
-        [[ -n $tkareine__use_color_prompt ]] && git="${tkareine__ansi_256_orange_light}${git}${tkareine__ansi_reset}"
+        [[ -n $tk__use_color_prompt ]] && git="${tk__ansi_256_orange_light}${git}${tk__ansi_reset}"
     fi
 
     local python_venv
@@ -127,7 +127,7 @@ tkareine_set_prompt() {
     fi
 
     local host_extras
-    tkareine_fn_exist tkareine_prompt_hook_host_extras && host_extras="$(tkareine_prompt_hook_host_extras)"
+    tk_fn_exist tk_set_prompt_hook_host_extras && host_extras="$(tk_set_prompt_hook_host_extras)"
 
     local bin_states=()
 
@@ -135,30 +135,30 @@ tkareine_set_prompt() {
 
     [[ -n $RUBY_ROOT ]] && bin_states+=("r:$(echo "${RUBY_ROOT##*/}" | cut -d - -f 2)")
 
-    if [[ $tkareine__uname == "Darwin" ]]; then
+    if [[ $tk__uname == "Darwin" ]]; then
         local bin_java
-        bin_java=$(tkareine_current_java_version)
+        bin_java=$(tk_current_java_version)
         [[ -n $bin_java ]] && bin_states+=("j:$bin_java")
     fi
 
     local bin_summary
     if (( ${#bin_states[@]} > 0 )); then
-        bin_summary="($(tkareine_join ' ' "${bin_states[@]}"))"
-        [[ -n $tkareine__use_color_prompt ]] && bin_summary="${tkareine__ansi_gray_dark}${bin_summary}${tkareine__ansi_reset}"
+        bin_summary="($(tk_join ' ' "${bin_states[@]}"))"
+        [[ -n $tk__use_color_prompt ]] && bin_summary="${tk__ansi_gray_dark}${bin_summary}${tk__ansi_reset}"
     fi
 
     PS1="${last_cmd_exit_status}${user_and_host}${cwd}${git}${python_venv}${host_extras}${bin_summary}\\n${end}"
 }
 
-tkareine__last_cmd_exit_status=0
+tk__last_cmd_exit_status=0
 
-tkareine_prompt_command() {
-    tkareine__last_cmd_exit_status=$?
+tk_prompt_command() {
+    tk__last_cmd_exit_status=$?
     history -a
-    tkareine_set_prompt
+    tk_set_prompt
 }
 
-tkareine_set_title() {
+tk_set_title() {
     echo -ne "\\e]0;${USER}@${HOSTNAME}: ${PWD/$HOME/\~}\\007"
 }
 
@@ -168,9 +168,9 @@ tkareine_set_title() {
 # set manpath to contain system paths
 export MANPATH=:
 
-if [[ $tkareine__uname == "Darwin" ]]; then
+if [[ $tk__uname == "Darwin" ]]; then
     if [[ -x ~/brew/bin/brew ]]; then
-      tkareine__setup_brew() {
+      tk__setup_brew() {
           local brew_path=$1
 
           export HOMEBREW_NO_INSECURE_REDIRECT=1
@@ -205,8 +205,8 @@ if [[ $tkareine__uname == "Darwin" ]]; then
           [[ -r $chruby_path ]] && source "$chruby_path"
       }
 
-      tkareine__setup_brew ~/brew
-      unset tkareine__setup_brew
+      tk__setup_brew ~/brew
+      unset tk__setup_brew
     fi
 
     # ssh: load identities with passwords from user's keychain
@@ -255,8 +255,8 @@ export HISTFILESIZE=10000
 export HISTSIZE=10000
 
 # color support for ls
-if tkareine_is_color_term; then
-    case $tkareine__uname in
+if tk_is_color_term; then
+    case $tk__uname in
         Darwin)
             export LSCOLORS="Hxgxfxdxcxegedabagacad"
             alias ls='ls -FG'
@@ -300,7 +300,7 @@ alias ag='ag --pager=less'
 
 # choose default editor
 export EDITOR
-if tkareine_cmd_exist emacsclient; then
+if tk_cmd_exist emacsclient; then
     EDITOR=$(command -v emacsclient)
 else
     EDITOR=$(command -v vi)
@@ -310,13 +310,13 @@ fi
 [[ -d ~/.m2/repository ]] && export M2_REPO=~/.m2/repository
 
 # select Node.js if chnode is installed
-tkareine_cmd_exist chnode && chnode node-10
+tk_cmd_exist chnode && chnode node-10
 
 # select Ruby if chruby is installed
-tkareine_cmd_exist chruby && chruby ruby-2
+tk_cmd_exist chruby && chruby ruby-2
 
 # select Java if chjava is installed
-tkareine_cmd_exist chjava && chjava default
+tk_cmd_exist chjava && chjava default
 
 # Ruby: shorten commonly used Bundler command
 alias be='bundle exec'
@@ -333,14 +333,14 @@ alias linet='lsof -i UDP -i TCP -s TCP:LISTEN -n -P +c 0'
 
 # install prompt command
 if [[ -n ${precmd_functions+x} ]]; then
-    precmd_functions+=(tkareine_prompt_command)
-    [[ $TERM == xterm* ]] && precmd_functions+=(tkareine_set_title)
+    precmd_functions+=(tk_prompt_command)
+    [[ $TERM == xterm* ]] && precmd_functions+=(tk_set_title)
 else
-    PROMPT_COMMAND="tkareine_prompt_command"
-    [[ $TERM == xterm* ]] && PROMPT_COMMAND="$PROMPT_COMMAND; tkareine_set_title"
+    PROMPT_COMMAND="tk_prompt_command"
+    [[ $TERM == xterm* ]] && PROMPT_COMMAND="$PROMPT_COMMAND; tk_set_title"
 fi
 
 # greets at login
-tkareine_cmd_exist fortune && echo && fortune -a
+tk_cmd_exist fortune && echo && fortune -a
 
 ((BASH_VERSINFO[0] < 4)) && echo -e "\\nWARN: old bash version: $BASH_VERSION"

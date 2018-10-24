@@ -1,25 +1,25 @@
-tkareine_print_error() {
+tk_print_error() {
     echo "$@" >&2
 }
 
-tkareine_exit_if_fail() {
+tk_exit_if_fail() {
     local cmd=$*
     $cmd
     local status=$?
     if [[ $status -ne 0 ]]; then
-        tkareine_print_error "failed ($status): $cmd"
+        tk_print_error "failed ($status): $cmd"
         exit $status
     fi
     return $status
 }
 
-tkareine_sleep_while() {
+tk_sleep_while() {
     while eval "$@"; do
         sleep 0.5
     done
 }
 
-tkareine_sleep_until() {
+tk_sleep_until() {
     until eval "$@"; do
         sleep 0.5
     done
@@ -27,21 +27,21 @@ tkareine_sleep_until() {
 
 # Usage:
 #   ary=(a bb ccc)
-#   $(tkareine_join , "${ary[@]}")
+#   $(tk_join , "${ary[@]}")
 #   => "a,bb,ccc"
-tkareine_join() {
+tk_join() {
     local IFS="$1"
     shift
     echo "$*"
 }
 
-tkareine_cmd_exist() {
-    [[ -z $1 ]] && tkareine_print_error "tkareine_cmd_exist(): expects command name as the parameter" && return 1
+tk_cmd_exist() {
+    [[ -z $1 ]] && tk_print_error "tk_cmd_exist(): expects command name as the parameter" && return 1
     command -v "$1" &>/dev/null
 }
 
-tkareine_fn_exist() {
-    [[ -z $1 ]] && tkareine_print_error "tkareine_fn_exist(): expects function name as the parameter" && return 1
+tk_fn_exist() {
+    [[ -z $1 ]] && tk_print_error "tk_fn_exist(): expects function name as the parameter" && return 1
     [[ $(type -t "$1") == "function" ]]
 }
 
