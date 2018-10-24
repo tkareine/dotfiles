@@ -169,44 +169,45 @@ tkareine_set_title() {
 export MANPATH=:
 
 if [[ $tkareine__uname == "Darwin" ]]; then
-    tkareine__setup_brew() {
-        local brew_path=$1
+    if [[ -x ~/brew/bin/brew ]]; then
+      tkareine__setup_brew() {
+          local brew_path=$1
 
-        export HOMEBREW_NO_INSECURE_REDIRECT=1
+          export HOMEBREW_NO_INSECURE_REDIRECT=1
 
-        # for security, put all brew-installed tools after system paths
-        export PATH="$PATH:$brew_path/bin"
+          # for security, put all brew-installed tools after system paths
+          export PATH="$PATH:$brew_path/bin"
 
-        # Put selected brew-installed tools before system paths. You can
-        # find the paths with `brew --prefix $tool`. Use pre-calculated
-        # paths, as `brew --prefix` is slow.
-        local tool_subpath
-        for tool_subpath in opt/bash \
-                                opt/ctags \
-                                opt/gettext \
-                                opt/git \
-                                opt/libressl \
-                            ; do
-            local path=${brew_path}/${tool_subpath}/bin
-            [[ -d $path && -x $path ]] && export PATH="$path:$PATH"
-        done
+          # Put selected brew-installed tools before system paths. You can
+          # find the paths with `brew --prefix $tool`. Use pre-calculated
+          # paths, as `brew --prefix` is slow.
+          local tool_subpath
+          for tool_subpath in opt/bash \
+                                  opt/ctags \
+                                  opt/gettext \
+                                  opt/git \
+                                  opt/libressl \
+                              ; do
+              local path=${brew_path}/${tool_subpath}/bin
+              [[ -d $path && -x $path ]] && export PATH="$path:$PATH"
+          done
 
-        # install bash completions for tools
-        local bash_completion_path=${brew_path}/etc/bash_completion
-        [[ -r $bash_completion_path ]] && source "$bash_completion_path"
+          # install bash completions for tools
+          local bash_completion_path=${brew_path}/etc/bash_completion
+          [[ -r $bash_completion_path ]] && source "$bash_completion_path"
 
-        # install chnode
-        local chnode_path=${brew_path}/opt/chnode/share/chnode/chnode.sh
-        [[ -r $chnode_path ]] && source "$chnode_path"
+          # install chnode
+          local chnode_path=${brew_path}/opt/chnode/share/chnode/chnode.sh
+          [[ -r $chnode_path ]] && source "$chnode_path"
 
-        # install chruby
-        local chruby_path=${brew_path}/opt/chruby/share/chruby/chruby.sh
-        [[ -r $chruby_path ]] && source "$chruby_path"
-    }
+          # install chruby
+          local chruby_path=${brew_path}/opt/chruby/share/chruby/chruby.sh
+          [[ -r $chruby_path ]] && source "$chruby_path"
+      }
 
-    [[ -x ~/brew/bin/brew ]] && tkareine__setup_brew ~/brew
-
-    unset tkareine__setup_homebrew
+      tkareine__setup_brew ~/brew
+      unset tkareine__setup_brew
+    fi
 
     # ssh: load identities with passwords from user's keychain
     /usr/bin/ssh-add -A 2>/dev/null
