@@ -1,8 +1,11 @@
-# Default config: https://github.com/bbatsov/rubocop/blob/master/config/default.yml
+# Default config: https://github.com/rubocop-hq/rubocop/blob/master/config/default.yml
 
 AllCops:
   DisplayCopNames: true
   DisplayStyleGuide: true
+Layout/AlignHash:
+  EnforcedColonStyle: table
+  EnforcedHashRocketStyle: table
 Layout/ExtraSpacing:
   Enabled: false  # does not work with trailing comments
 Layout/SpaceInsideHashLiteralBraces:
