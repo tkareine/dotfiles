@@ -276,6 +276,12 @@ defaults write com.apple.mail SendFormat -string "Plain"
 # iCal: show week numbers
 defaults write com.apple.iCal 'Show Week Numbers' -bool true
 
+# Notes: set additional key shortcuts
+defaults write com.apple.Notes NSUserKeyEquivalents -dict \
+         'Bulleted List' '@~b' \
+         'Dashed List' '@~v' \
+         'Numbered List' '@~n'
+
 # TextEdit: use plain text mode for new documents
 defaults write com.apple.TextEdit RichText -int 0
 
@@ -296,6 +302,7 @@ for app in \
         Dock \
         Finder \
         Mail \
+        Notes \
         Safari \
         SystemUIServer \
         TextEdit \
