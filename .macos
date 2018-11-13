@@ -3,7 +3,6 @@
 # Adapted from <https://mths.be/macos>, thanks!
 
 PBUDDY=/usr/libexec/PlistBuddy
-USER_PREF_DIR=~/Library/Preferences/
 
 # -- Ask for sudo upfront before any changes ---------------------------------
 
@@ -254,7 +253,7 @@ defaults write com.apple.Safari Command1Through9SwitchesTabs -bool true
 defaults write com.apple.Safari OpenNewTabsInFront -bool false
 
 # Safari: disable Java plugin
-"$PBUDDY" -c "Set :PlugInInfo:com.oracle.java.JavaAppletPlugin:plugInCurrentState false" "$USER_PREF_DIR/com.apple.Safari.plist"
+"$PBUDDY" -c "Set :PlugInInfo:com.oracle.java.JavaAppletPlugin:plugInCurrentState false" ~/Library/Containers/com.apple.Safari/Data/Library/Preferences/com.apple.Safari.plist
 
 # Safari: warn about fraudulent web sites
 defaults write com.apple.Safari WarnAboutFraudulentWebsites -bool true
