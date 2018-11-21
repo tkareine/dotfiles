@@ -1,0 +1,13 @@
+#!/usr/bin/env ruby
+
+require "yaml"
+require "json"
+
+FILENAME = ARGV.shift
+
+if FILENAME.nil?
+  puts "Usage: #{File.basename(__FILE__)} yamlfile"
+  exit 1
+end
+
+puts JSON.pretty_generate(YAML.safe_load(File.read(FILENAME)))

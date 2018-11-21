@@ -40,6 +40,7 @@ INSTALL_BY_SYMLINKING_COMMON=(
     bin/ansi-colors.sh
     bin/psql-jq
     bin/ssl-tool
+    bin/yaml-to-json
     bin/well
 )
 
