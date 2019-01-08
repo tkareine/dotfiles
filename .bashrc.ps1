@@ -168,6 +168,9 @@ tk_set_title() {
 # set manpath to contain system paths
 export MANPATH=:
 
+# install system bash completions
+[[ -f /etc/bash_completion && -r /etc/bash_completion ]] && source /etc/bash_completion
+
 if [[ $tk__uname == "Darwin" ]]; then
     if [[ -x ~/brew/bin/brew ]]; then
       tk__setup_brew() {
@@ -213,7 +216,7 @@ if [[ $tk__uname == "Darwin" ]]; then
     /usr/bin/ssh-add -A 2>/dev/null
 fi
 
-# my local bash completions
+# install my local bash completions
 if [[ -d ~/.bash_completion.d && -x ~/.bash_completion.d ]]; then
     for file in ~/.bash_completion.d/*; do
         if [[ -f $file && -r $file ]]; then
