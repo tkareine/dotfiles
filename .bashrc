@@ -3,8 +3,8 @@
 source ~/.bashrc.support
 source ~/.bashrc.common
 
-[[ -n $PS1 ]] && source ~/.bashrc.ps1
-
 [[ -r ~/.bashrc.host ]] && source ~/.bashrc.host
+
+[[ -n $PS1 ]] && source ~/.bashrc.ps1
 
 true  # ensure last command is successful
