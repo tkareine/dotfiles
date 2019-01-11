@@ -5,9 +5,9 @@ require "json"
 
 FILENAME = ARGV.shift
 
-if FILENAME.nil?
+if FILENAME.nil? || FILENAME.empty? || FILENAME =~ /^(?:-h|--help)$/
   puts "Usage: #{File.basename(__FILE__)} yamlfile"
   exit 1
 end
 
-puts JSON.pretty_generate(YAML.safe_load(File.read(FILENAME)))
+puts JSON.pretty_generate(YAML.load_file(FILENAME))
