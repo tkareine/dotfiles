@@ -72,6 +72,9 @@ defaults write NSGlobalDomain AppleWindowTabbingMode -string "manual"
 # Only show menubar when moving pointer to the screen edge
 defaults write NSGlobalDomain _HIHideMenuBar -bool true
 
+# Date format in menubar
+defaults write com.apple.menuextra.clock DateFormat -string "EEE d MMM  H.mm"
+
 # Keyboard, text: disable automatic spelling correction
 defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
 
