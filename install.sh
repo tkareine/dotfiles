@@ -36,7 +36,6 @@ INSTALL_BY_SYMLINKING_COMMON=(
     .rubocop.yml
     .tmux.conf
     .vimrc
-    .xmodmap
     bin/ansi-colors.sh
     bin/psql-jq
     bin/ssl-tool
