@@ -2,9 +2,8 @@
 
 -server
 -Xms1g
--Xmx2g
+-Xmx4g
 -XX:ReservedCodeCacheSize=240m
--XX:+UseConcMarkSweepGC
 -XX:SoftRefLRUPolicyMSPerMB=50
 -ea
 -Dsun.io.useCanonCaches=false
