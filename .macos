@@ -280,6 +280,7 @@ defaults write com.apple.iCal 'Show Week Numbers' -bool true
 
 # Notes: set additional key shortcuts
 defaults write com.apple.Notes NSUserKeyEquivalents -dict \
+         'Remove Style' '@~c' \
          'Bulleted List' '@~b' \
          'Dashed List' '@~v' \
          'Numbered List' '@~n'
