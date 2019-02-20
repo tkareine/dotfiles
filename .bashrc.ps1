@@ -334,6 +334,8 @@ export SHELLCHECK_OPTS="-e SC1090 -e SC1091"
 # list TCP listen and UDP ports
 alias linet='lsof -i UDP -i TCP -s TCP:LISTEN -n -P +c 0'
 
+alias wtfdt='date '\''+%Y-%m-%dT%H:%M%:%S%z (%Z) (week %W) (epoch %s)'\'''
+
 # install prompt command
 if [[ -n ${precmd_functions+x} ]]; then
     precmd_functions+=(tk_prompt_command)
