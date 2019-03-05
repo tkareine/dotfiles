@@ -282,7 +282,7 @@ alias ll='ls -lhA'
 alias grep='grep --color=auto'
 alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
-alias hgrep='history | egrep --color=auto'
+alias hgrep='history | \egrep --color=auto -i'
 
 # less: ignore character case in searches, display ANSI colors, highlight the
 # first unread line, show verbose prompt
