@@ -2,7 +2,7 @@
 
 -server
 -Xms1g
--Xmx4g
+-Xmx6g
 -XX:ReservedCodeCacheSize=240m
 -XX:SoftRefLRUPolicyMSPerMB=50
 -ea
