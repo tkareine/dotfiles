@@ -35,7 +35,7 @@ sudo pmset -a standbydelay 3600
 sudo pmset -a autopoweroff 0
 
 # Localization
-defaults write NSGlobalDomain AppleLanguages -array "en" "fi"
+defaults write NSGlobalDomain AppleLanguages -array "en-US" "fi-FI"
 defaults write NSGlobalDomain AppleLocale -string "en_FI"
 defaults write NSGlobalDomain AppleMeasurementUnits -string "Centimeters"
 defaults write NSGlobalDomain AppleMetricUnits -bool true
