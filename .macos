@@ -27,12 +27,23 @@ sudo pmset -a powernap 0
 # Power management: hibernation to disk, power off memory
 sudo pmset -a hibernatemode 25
 
-# Power management: enter hibernate after 1 h, instead of the default 3 h
+# Power management: enable hibernate, enter hibernate after 1 h (default
+# 3 h)
 sudo pmset -a standby 1
 sudo pmset -a standbydelay 3600
 
 # Power management: ensure autopoweroff is disabled
 sudo pmset -a autopoweroff 0
+
+# Power management: don't wake the machine when power source is changed
+sudo pmset -a acwake 0
+
+# Power management: don't wake the machine when the laptop lid is opened
+sudo pmset -a lidwake 0
+
+# Power management: prevent idle system sleep when any TTY (e.g. ssh) is
+# 'active'
+sudo pmset -a ttyskeepawake 1
 
 # Localization
 defaults write NSGlobalDomain AppleLanguages -array "en-US" "fi-FI"
