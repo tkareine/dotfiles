@@ -11,3 +11,4 @@
 -XX:+HeapDumpOnOutOfMemoryError
 -XX:-OmitStackTraceInFastThrow
 -XX:+UseCompressedOops
+-Xshare:auto
