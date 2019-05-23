@@ -313,7 +313,7 @@ fi
 [[ -d ~/.m2/repository ]] && export M2_REPO=~/.m2/repository
 
 # select Node.js if chnode is installed
-tk_cmd_exist chnode && chnode node-10
+tk_cmd_exist chnode && chnode node-12
 
 # select Ruby if chruby is installed
 tk_cmd_exist chruby && chruby ruby-2
