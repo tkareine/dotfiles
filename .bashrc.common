@@ -1,17 +1,124 @@
-# disable core dumps; to enable them: `ulimit -S -c unlimited`
-ulimit -S -c 0
-
-if [[ $(uname) == "Darwin" ]]; then
-    # soft limit for the maximum number of open file descriptors
-    ulimit -S -n 10240
-
-    # tar does not copy "._*" files
-    export COPYFILE_DISABLE=true
-fi
-
 # new file permissions: read-write for you, read for group, read for others
 umask 0022
 
 # localization
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
+
+# disable core dumps; to enable them: `ulimit -S -c unlimited`
+ulimit -S -c 0
+
+if [[ $tk__uname == "Darwin" ]]; then
+    # soft limit for the maximum number of open file descriptors
+    ulimit -S -n 10240
+
+    # tar does not copy "._*" files
+    export COPYFILE_DISABLE=true
+
+    chjava() {
+        local tool_path=/usr/libexec/java_home
+        local tool_opts=()
+
+        case ${1:-} in
+            -h|-\?|--help)
+                cat << EOF
+Usage: chjava [JAVA_VERSION|default]
+EOF
+                return
+                ;;
+            '')
+                $tool_path -V
+                return
+                ;;
+            default)
+                tool_opts+=(--failfast)
+                ;;
+            *)
+                tool_opts+=(--failfast)
+                tool_opts+=(-v)
+                tool_opts+=("$1")
+                ;;
+        esac
+
+        local java_home
+        java_home=$(/usr/libexec/java_home "${tool_opts[@]}") || return 1
+
+        local manpath=:$MANPATH:
+        manpath=${manpath//:${JAVA_HOME}\/man:/:}
+        manpath=${manpath#:}
+        manpath=${manpath%:}
+
+        export JAVA_HOME=$java_home
+
+        if [[ $manpath == :* ]]; then
+            export MANPATH=${java_home}/man${manpath}
+        else
+            export MANPATH=${java_home}/man${manpath:+:$manpath}
+        fi
+    }
+
+    tk_current_java_version() {
+        [[ -z $JAVA_HOME ]] && return 1
+
+        local version
+        version=${JAVA_HOME#*/jdk}
+        version=${version#-}
+        version=${version%.jdk*}
+
+        echo "$version"
+    }
+
+    if [[ -x ~/brew/bin/brew ]]; then
+      tk__setup_brew() {
+          tk__brew_path=$1
+
+          export HOMEBREW_NO_INSECURE_REDIRECT=1
+
+          # for security, put all brew-installed tools after system paths
+          export PATH="$PATH:$tk__brew_path/bin"
+
+          # Put selected brew-installed tools before system paths. You can
+          # find the paths with `brew --prefix $tool`. Use pre-calculated
+          # paths, as `brew --prefix` is slow.
+          local tool_subpath
+          for tool_subpath in opt/bash \
+                                  opt/ctags \
+                                  opt/gettext \
+                                  opt/git \
+                                  opt/libressl \
+                              ; do
+              local path=${tk__brew_path}/${tool_subpath}/bin
+              [[ -d $path && -x $path ]] && export PATH="$path:$PATH"
+          done
+
+          # install chnode
+          local chnode_path=${tk__brew_path}/opt/chnode/share/chnode/chnode.sh
+          [[ -r $chnode_path ]] && source "$chnode_path"
+
+          # install chruby
+          local chruby_path=${tk__brew_path}/opt/chruby/share/chruby/chruby.sh
+          [[ -r $chruby_path ]] && source "$chruby_path"
+      }
+
+      tk__setup_brew ~/brew
+      unset tk__setup_brew
+    fi
+fi
+
+# my local executables
+[[ -d ~/bin ]] && export PATH=~/bin:"$PATH"
+
+# set manpath to contain system paths
+export MANPATH=:
+
+# Apache Maven
+[[ -d ~/.m2/repository ]] && export M2_REPO=~/.m2/repository
+
+# select Node.js if chnode is installed
+tk_cmd_exist chnode && chnode node-12
+
+# select Ruby if chruby is installed
+tk_cmd_exist chruby && chruby ruby-2
+
+# select Java if chjava is installed
+tk_cmd_exist chjava && chjava default

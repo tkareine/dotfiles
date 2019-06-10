@@ -1,61 +1,3 @@
-# optimization: cache current uname
-tk__uname=$(uname)
-
-if [[ $tk__uname == "Darwin" ]]; then
-    chjava() {
-        local tool_path=/usr/libexec/java_home
-        local tool_opts=()
-
-        case ${1:-} in
-            -h|-\?|--help)
-                cat << EOF
-Usage: chjava [JAVA_VERSION|default]
-EOF
-                return
-                ;;
-            '')
-                $tool_path -V
-                return
-                ;;
-            default)
-                tool_opts+=(--failfast)
-                ;;
-            *)
-                tool_opts+=(--failfast)
-                tool_opts+=(-v)
-                tool_opts+=("$1")
-                ;;
-        esac
-
-        local java_home
-        java_home=$(/usr/libexec/java_home "${tool_opts[@]}") || return 1
-
-        local manpath=:$MANPATH:
-        manpath=${manpath//:${JAVA_HOME}\/man:/:}
-        manpath=${manpath#:}
-        manpath=${manpath%:}
-
-        export JAVA_HOME=$java_home
-
-        if [[ $manpath == :* ]]; then
-            export MANPATH=${java_home}/man${manpath}
-        else
-            export MANPATH=${java_home}/man${manpath:+:$manpath}
-        fi
-    }
-
-    tk_current_java_version() {
-        [[ -z $JAVA_HOME ]] && return 1
-
-        local version
-        version=${JAVA_HOME#*/jdk}
-        version=${version#-}
-        version=${version%.jdk*}
-
-        echo "$version"
-    }
-fi
-
 tk_is_color_term() {
     local colors
     if colors=$(tput colors 2>/dev/null); then
@@ -162,59 +104,11 @@ tk_set_title() {
     echo -ne "\\e]0;${USER}@${HOSTNAME}: ${PWD/$HOME/\~}\\007"
 }
 
-# my local executables
-[[ -d ~/bin ]] && export PATH=~/bin:"$PATH"
-
-# set manpath to contain system paths
-export MANPATH=:
-
 # install system bash completions
 [[ -f /etc/bash_completion && -r /etc/bash_completion ]] && source /etc/bash_completion
 
-if [[ $tk__uname == "Darwin" ]]; then
-    if [[ -x ~/brew/bin/brew ]]; then
-      tk__setup_brew() {
-          local brew_path=$1
-
-          export HOMEBREW_NO_INSECURE_REDIRECT=1
-
-          # for security, put all brew-installed tools after system paths
-          export PATH="$PATH:$brew_path/bin"
-
-          # Put selected brew-installed tools before system paths. You can
-          # find the paths with `brew --prefix $tool`. Use pre-calculated
-          # paths, as `brew --prefix` is slow.
-          local tool_subpath
-          for tool_subpath in opt/bash \
-                                  opt/ctags \
-                                  opt/gettext \
-                                  opt/git \
-                                  opt/libressl \
-                              ; do
-              local path=${brew_path}/${tool_subpath}/bin
-              [[ -d $path && -x $path ]] && export PATH="$path:$PATH"
-          done
-
-          # install bash completions for tools
-          local bash_completion_path=${brew_path}/etc/bash_completion
-          [[ -r $bash_completion_path ]] && source "$bash_completion_path"
-
-          # install chnode
-          local chnode_path=${brew_path}/opt/chnode/share/chnode/chnode.sh
-          [[ -r $chnode_path ]] && source "$chnode_path"
-
-          # install chruby
-          local chruby_path=${brew_path}/opt/chruby/share/chruby/chruby.sh
-          [[ -r $chruby_path ]] && source "$chruby_path"
-      }
-
-      tk__setup_brew ~/brew
-      unset tk__setup_brew
-    fi
-
-    # ssh: load identities with passwords from user's keychain
-    /usr/bin/ssh-add -A 2>/dev/null
-fi
+# install bash completions for tools from Homebew
+[[ $tk__brew_path && -r ${tk__brew_path}/etc/bash_completion ]] && source "${tk__brew_path}/etc/bash_completion"
 
 # install my local bash completions
 if [[ -d ~/.bash_completion.d && -x ~/.bash_completion.d ]]; then
@@ -224,6 +118,11 @@ if [[ -d ~/.bash_completion.d && -x ~/.bash_completion.d ]]; then
         fi
     done
     unset file
+fi
+
+if [[ $tk__uname == "Darwin" ]]; then
+    # ssh: load identities with passwords from user's keychain
+    /usr/bin/ssh-add -A 2>/dev/null
 fi
 
 # bash: check the window size after each command
@@ -308,18 +207,6 @@ if tk_cmd_exist emacsclient; then
 else
     EDITOR=$(command -v vi)
 fi
-
-# Apache Maven
-[[ -d ~/.m2/repository ]] && export M2_REPO=~/.m2/repository
-
-# select Node.js if chnode is installed
-tk_cmd_exist chnode && chnode node-12
-
-# select Ruby if chruby is installed
-tk_cmd_exist chruby && chruby ruby-2
-
-# select Java if chjava is installed
-tk_cmd_exist chjava && chjava default
 
 # Ruby: shorten commonly used Bundler command
 alias be='bundle exec'
