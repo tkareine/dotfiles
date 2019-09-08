@@ -20,8 +20,6 @@ Metrics/ModuleLength:
   Max: 200
 Naming/MemoizedInstanceVariableName:
   EnforcedStyleForLeadingUnderscores: required
-Performance/RedundantBlockCall:
-  Enabled: false  # some projects prefer named block arguments for documentation
 Style/ClassAndModuleChildren:
   Enabled: false  # projects use both compact and nested style, preferring compact
 Style/ClassVars:
