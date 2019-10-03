@@ -73,9 +73,9 @@ tk_set_prompt() {
 
     local bin_states=()
 
-    [[ -n $CHNODE_ROOT ]] && bin_states+=("n:$(echo "${CHNODE_ROOT##*/}" | cut -d - -f 2)")
+    [[ -n $CHNODE_ROOT ]] && bin_states+=("n:$(tk_version_of_path "$CHNODE_ROOT")")
 
-    [[ -n $RUBY_ROOT ]] && bin_states+=("r:$(echo "${RUBY_ROOT##*/}" | cut -d - -f 2)")
+    [[ -n $RUBY_ROOT ]] && bin_states+=("r:$(tk_version_of_path "$RUBY_ROOT")")
 
     if [[ $tk__uname == "Darwin" ]]; then
         local bin_java
