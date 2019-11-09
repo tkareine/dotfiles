@@ -228,8 +228,12 @@ if [[ -n ${precmd_functions+x} ]]; then
     precmd_functions+=(tk_prompt_command)
     [[ $TERM == xterm* ]] && precmd_functions+=(tk_set_title)
 else
-    PROMPT_COMMAND="tk_prompt_command"
-    [[ $TERM == xterm* ]] && PROMPT_COMMAND="$PROMPT_COMMAND; tk_set_title"
+    if [[ -n $PROMPT_COMMAND ]]; then
+        PROMPT_COMMAND="$PROMPT_COMMAND tk_prompt_command;"
+    else
+        PROMPT_COMMAND="tk_prompt_command;"
+    fi
+    [[ $TERM == xterm* ]] && PROMPT_COMMAND="$PROMPT_COMMAND tk_set_title;"
 fi
 
 # greets at login
