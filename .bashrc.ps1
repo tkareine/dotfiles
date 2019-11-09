@@ -28,8 +28,8 @@ fi
 
 # Keep the implementation of this function fast.
 #
-# To quickly benchmark time taken to display prompt, run `time
-# tk_prompt_command`.
+# To quickly benchmark time taken to display prompt, run `time eval
+# "$PROMPT_COMMAND"`.
 tk_set_prompt() {
     local last_cmd_exit_status user_and_host cwd end
 
