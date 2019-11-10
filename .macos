@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 #
-# Adapted from <https://mths.be/macos>, thanks!
+# Adapted from Mathias Bynens' .macos, available at
+# <https://mths.be/macos>. Thanks!
 
 PBUDDY=/usr/libexec/PlistBuddy
 

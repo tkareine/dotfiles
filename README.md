@@ -1,11 +1,94 @@
 # My dotfiles
 
-They're here so that I can synchronize them to computers I work with.
+My public configuration for selected command line tools, in order to
+synchronize them to computers I work with.
+
+The dotfiles focus on [GNU Bash] with the goal of having the shell
+user-friendly enough to use, but without having extra functionality that
+would hinder either the shell's start-up or prompt displaying time. I do
+most of my programming and file editing in Mitsuharu Yamamoto's [Emacs
+macOS port] (see [my .emacs.d], separate from this repository) or in
+[IntelliJ IDEA]; using rich IDEs is another reason for the rather
+bare-bones shell setup I prefer.
+
+I mainly use macOS, so the tools are optimized for that
+environment. Rudimentary support for Linux is in place, however, since I
+occasionally work in a Linux environment for longer periods.
 
 I have copied or adapted some contents from others. For small chunks of
 code, I have embedded the source URL in a comment inside the file. When
 copying has been extensive, I have retained the original copyright in
 the file. Thank you all!
+
+Finally, my motivation for using Bash over more feature-rich shells is
+that I think tuning [.bashrc](./.bashrc) helps keeping my shell
+programming skills in shape.
+
+## Setup highlights
+
+A screenshot from [iTerm2], showing the Bash prompt:
+
+<img src="https://github.com/tkareine/dotfiles/raw/master/images/bash-prompt.png" title="My Bash prompt" alt="My Bash prompt" width="610">
+
+The font in use is [Input][Input font] (font
+[settings](https://input.fontbureau.com/download/index.html?size=14&language=python&theme=solarized-dark&family=InputMono&width=300&weight=400&line-height=1.1&a=ss&g=ss&i=serifs_round&l=serifs_round&zero=0&asterisk=height&braces=straight&preset=consolas&customize=please)).
+
+### Fast Bash start-up and prompt display time
+
+I get frustrated if the shell feels sluggish to use. That's why I
+optimize the start-up time of my `.bashrc`:
+
+``` bash
+time bash -i -c true
+# => real 0m0.338s
+```
+
+And especially, I want that the shell prompt gets re-displayed quickly:
+
+``` bash
+time eval "$PROMPT_COMMAND"
+# => real 0m0.018s
+```
+
+### Show selected versions of programming environments in Bash prompt
+
+The Bash prompt shows the currently selected versions of
+
+* [Node.js], using [chnode] (`n:$version` at the top of the prompt),
+* [Ruby], using [chruby] (`r:$version`), and
+* [Java Development Kit], using a tiny shell function called `chjava`
+  (`j:$version`).
+
+For all these programming environments, I want that the environment
+switching tool selects the version of the environment for a shell
+session. That allows using two different versions of Node.js in separate
+shells simultaneously, for example.
+
+### macOS configuration
+
+The [.macos](./.macos) script configures macOS quite extensively,
+considering what's possible with the `defaults` tool and plist files.
+
+The script is originally based on [Mathias Bynens' .macos] script.
+
+### GNU Global configuration
+
+When you configure [GNU Global] to use Exuberant Ctags as a symbol
+parser, it's possible to extend the functionality of Global with the
+regex facility of Ctags. For instance, I've added extra support for
+YAML, Sass (SCSS), and JavaScript files. See [.global](./.globalrc) and
+[.ctags](./.ctags).
+
+The downside of regexes is that they're hard to maintain. That's why
+there's an extensive test suite in
+[test/gtags_test.sh](test/gtags_test.sh).
+
+Installing Ctags and Global with Homebrew:
+
+``` bash
+brew install ctags
+brew install global --with-ctags --with-pygments
+```
 
 ## Installation
 
@@ -25,6 +108,19 @@ export PATH="$PATH:$HOME/brew/bin"
 brew update
 ```
 
+There are two reasons for not installing to the default location,
+`/usr/local`:
+
+1. I want to include the directory of Homebrew's executables after the
+   system executable directories (`/usr/bin`, `/bin`) in the `PATH`
+   environment variable. This is done for safety; I don't want to let
+   any Homebrew formula a chance to override default system executables
+   such as `ls`.
+
+2. Many macOS apps, such as Docker Desktop, install executables and
+   libraries under `/usr/local`. I don't want to mix these with
+   stuff installed with Homebrew.
+
 ### Bash
 
 Installing the latest version of Bash, using [Homebrew] on macOS:
@@ -35,18 +131,17 @@ sudo bash -c 'echo ~/brew/bin/bash >> /etc/shells'
 chsh -s ~/brew/bin/bash
 ```
 
-### Xcode Zenburn color theme
+## Xcode Zenburn color theme
 
 I have adapted Bozhidar Batsov's [Emacs Zenburn] color theme for Xcode:
 
 <img src="https://github.com/tkareine/dotfiles/raw/master/images/xcode-tkareine-zenburn-input.png" title="Zenburn color theme for Xcode" alt="Zenburn color theme for Xcode" width="688">
 
-I prefer to use [Input font] (with these
-[settings](http://input.fontbureau.com/download/index.html?size=14&language=python&theme=solarized-dark&family=InputMono&width=300&weight=400&line-height=1.1&a=ss&g=ss&i=serifs_round&l=serifs_round&zero=0&asterisk=height&braces=straight&preset=consolas&customize=please))
-for Xcode's source editor view, but you can change the font with ease:
-in Xcode's Preferences → Fonts & Colors → tkareine-zenburn → Source
-Editor, select all the list items with Cmd+A and click on the font icon
-at the bottom to select another font for all the items.
+I prefer to use [Input font] for Xcode's source editor view, but you can
+change the font with ease: in Xcode's Preferences → Fonts & Colors →
+tkareine-zenburn → Source Editor, select all the list items with Cmd+A
+and click on the font icon at the bottom to select another font for all
+the items.
 
 For installing the theme manually, copy
 `Library/Developer/Xcode/UserData/FontAndColorThemes/tkareine-zenburn.dvtcolortheme`
@@ -57,6 +152,18 @@ directory.
 originally.
 
 [Emacs Zenburn]: https://github.com/bbatsov/zenburn-emacs
-[Homebrew]: https://brew.sh/
+[Emacs macOS port]: https://bitbucket.org/mituharu/emacs-mac/src/master/
+[GNU Bash]: https://www.gnu.org/software/bash/
+[GNU Global]: https://www.gnu.org/software/global/
 [Homebrew install]: https://docs.brew.sh/Installation
+[Homebrew]: https://brew.sh/
 [Input font]: http://input.fontbureau.com/
+[IntelliJ IDEA]: https://www.jetbrains.com/idea/
+[Java Development Kit]: https://openjdk.java.net/
+[Mathias Bynens' .macos]: https://github.com/mathiasbynens/dotfiles/blob/master/.macos
+[Node.js]: https://nodejs.org/en/
+[Ruby]: https://www.ruby-lang.org/
+[chnode]: https://github.com/tkareine/chnode
+[chruby]: https://github.com/postmodern/chruby
+[iTerm2]: https://www.iterm2.com/
+[my .emacs.d]: https://github.com/tkareine/emacs.d
