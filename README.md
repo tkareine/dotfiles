@@ -28,10 +28,10 @@ programming skills in shape.
 
 A screenshot from [iTerm2], showing the Bash prompt:
 
-<img src="https://github.com/tkareine/dotfiles/raw/master/images/bash-prompt.png" title="My Bash prompt" alt="My Bash prompt" width="610">
+<img src="https://github.com/tkareine/dotfiles/raw/master/images/bash-prompt-iterm2-input.png" title="My Bash prompt in iTerm2" alt="My Bash prompt in iTerm2" width="610">
 
-The font in use is [Input][Input font] (font
-[settings](https://input.fontbureau.com/download/index.html?size=14&language=python&theme=solarized-dark&family=InputMono&width=300&weight=400&line-height=1.1&a=ss&g=ss&i=serifs_round&l=serifs_round&zero=0&asterisk=height&braces=straight&preset=consolas&customize=please)).
+The font in use is [Input][Input font]
+([customization](https://input.fontbureau.com/download/index.html?size=14&language=python&theme=solarized-dark&family=InputMono&width=300&weight=400&line-height=1.1&a=ss&g=ss&i=serifs_round&l=serifs_round&zero=0&asterisk=height&braces=straight&preset=consolas&customize=please)).
 
 ### Fast Bash start-up and prompt display time
 
@@ -60,9 +60,9 @@ The Bash prompt shows the currently selected versions of
   (`j:$version`).
 
 For all these programming environments, I want that the environment
-switching tool selects the version of the environment for a shell
-session. That allows using two different versions of Node.js in separate
-shells simultaneously, for example.
+switching tool (such as chnode) selects the environment version for a
+shell session. That allows using two different versions of Node.js in
+separate shells simultaneously.
 
 ### macOS configuration
 
