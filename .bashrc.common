@@ -61,9 +61,9 @@ EOF
         [[ -z $JAVA_HOME ]] && return 1
 
         local version
-        version=${JAVA_HOME#*/jdk}
-        version=${version#-}
-        version=${version%.jdk*}
+        version=${JAVA_HOME%.jdk/*}
+        version=${version##*/}
+        version=${version#jdk}
 
         echo "$version"
     }
