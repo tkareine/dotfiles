@@ -6,3 +6,11 @@ yaml_mapping_plain:
   register: "yaml_ansible_register_key_plain_value_double_quoted"
   'register': yaml_ansible_register_key_single_quoted_value_plain
   "register": yaml_ansible_register_key_double_quoted_value_plain
+  yaml_mapping_nested: &yaml_anchor-map
+    - foo
+    - bar
+  yaml_lists:
+    - foo
+    - *yaml_anchor-map
+    - &yaml_anchor-list_elem bar
+    - *yaml_anchor-list_elem
