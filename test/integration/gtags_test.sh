@@ -2,7 +2,7 @@
 
 set -euo pipefail
 
-cd "${0%/*}" || exit 2
+cd "${0%/*}/../fixture/gtags/" || exit 2
 
 global_should_find() {
     local expect_num_matches symbol
@@ -139,7 +139,7 @@ SYMBOLS_GLOBAL_SHOULD_FIND_ZERO=(
     'function'
 )
 
-gtags
+gtags .
 
 for symbol in "${SYMBOLS_GLOBAL_SHOULD_FIND_ONE[@]}"; do
     global_should_find 1 "$symbol"
