@@ -11,10 +11,10 @@ sudo -v
 
 # -- System ------------------------------------------------------------------
 
-# Require password after 15 min after entering sleep or showing screen
+# Require password after 5 min after entering sleep or showing screen
 # saver
 defaults write com.apple.screensaver askForPassword -int 1
-defaults write com.apple.screensaver askForPasswordDelay -int 900
+defaults write com.apple.screensaver askForPasswordDelay -int 300
 
 # Power management: sleep timeouts for all power sources (in minutes)
 sudo pmset -a displaysleep 20 disksleep 20 sleep 20
