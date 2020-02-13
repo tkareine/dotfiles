@@ -51,7 +51,7 @@ defaults write NSGlobalDomain AppleLanguages -array "en-US" "fi-FI"
 defaults write NSGlobalDomain AppleLocale -string "en_FI"
 defaults write NSGlobalDomain AppleMeasurementUnits -string "Centimeters"
 defaults write NSGlobalDomain AppleMetricUnits -bool true
-defaults write NSGlobalDomain AppleICUDateFormatStrings -dict 1 "M.d.y" 2 "d MMM y"
+defaults write NSGlobalDomain AppleICUDateFormatStrings -dict 1 "d.M.y" 2 "d MMM y"
 defaults write NSGlobalDomain AppleICUTimeFormatStrings -dict 4 "HH' h 'mm' min 'ss' s 'zzzz"
 
 # Set the timezone; see `sudo systemsetup -listtimezones` for other values
