@@ -34,6 +34,7 @@ INSTALL_BY_SYMLINKING_COMMON=(
     .lein/profiles.clj
     .psqlrc
     .rubocop.yml
+    .rustfmt.toml
     .tmux.conf
     .vimrc
     bin/ansi-colors.sh
