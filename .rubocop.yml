@@ -3,17 +3,17 @@
 AllCops:
   DisplayCopNames: true
   DisplayStyleGuide: true
-Layout/AlignHash:
+Layout/ExtraSpacing:
+  AllowBeforeTrailingComments: true
+Layout/HashAlignment:
   EnforcedColonStyle: table
   EnforcedHashRocketStyle: table
-Layout/ExtraSpacing:
-  Enabled: false  # does not work with trailing comments
+Layout/LineLength:
+  Max: 200
 Layout/SpaceInsideHashLiteralBraces:
   EnforcedStyle: no_space
 Metrics/ClassLength:
   Enabled: false  # some projects have big test classes
-Metrics/LineLength:
-  Max: 200
 Metrics/MethodLength:
   Max: 50
 Metrics/ModuleLength:
@@ -26,11 +26,7 @@ Style/ClassVars:
   Enabled: false  # it's ok when knowing it's limitations, easy to access from class instance scope
 Style/CollectionMethods:
   Enabled: true
-Style/Copyright:
-  Enabled: false  # usually copyright is in the readme or license file
 Style/Documentation:
   Enabled: false  # depends on project
-Style/PercentLiteralDelimiters:
-  Enabled: false  # it's better to use `%w{}` syntax, because the braces are the same as in `%r{}`
 Style/StringLiterals:
   Enabled: false  # quoting style depends on project
