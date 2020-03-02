@@ -35,6 +35,16 @@ tk_join() {
     echo "$*"
 }
 
+# Usage:
+#   tk_trim " foo bar \t\n"
+#   => "foo bar"
+tk_trim() {
+    local tmp=$1
+    tmp=${tmp#${tmp%%[![:space:]]*}}
+    tmp=${tmp%${tmp##*[![:space:]]}}
+    echo -e "$tmp"
+}
+
 tk_cmd_exist() {
     [[ -z $1 ]] && tk_print_error "tk_cmd_exist(): expects command name as the parameter" && return 1
     command -v "$1" &>/dev/null

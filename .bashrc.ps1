@@ -224,13 +224,8 @@ alias linet='lsof -i UDP -i TCP -s TCP:LISTEN -n -P +c 0'
 alias wtfdt='date '\''+%Y-%m-%dT%H:%M%:%S%z (%Z) (week %W) (epoch %s)'\'''
 
 # install prompt command
-if [[ -n ${precmd_functions+x} ]]; then
-    precmd_functions+=(tk_prompt_command)
-    [[ $TERM == xterm* ]] && precmd_functions+=(tk_set_title)
-else
-    PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND$'\n'}"'tk_prompt_command;'
-    [[ $TERM == xterm* ]] && PROMPT_COMMAND="$PROMPT_COMMAND"$'\n''tk_set_title;'
-fi
+PROMPT_COMMAND=tk_prompt_command';'${PROMPT_COMMAND:+$'\n'$(tk_trim "$PROMPT_COMMAND")}
+[[ $TERM == xterm* ]] && PROMPT_COMMAND=$PROMPT_COMMAND$'\n'tk_set_title';'
 
 # greets at login
 tk_cmd_exist fortune && echo && fortune -a
