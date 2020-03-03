@@ -1,0 +1,4 @@
+--smart-case
+
+# Don't search from .git directory even when `--hidden` is given
+--glob=!.git

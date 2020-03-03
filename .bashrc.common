@@ -118,6 +118,9 @@ export MANPATH=:
 # Apache Maven
 [[ -d ~/.m2/repository ]] && export M2_REPO=~/.m2/repository
 
+# ripgrep (rg)
+[[ -r ~/.ripgreprc ]] && export RIPGREP_CONFIG_PATH=~/.ripgreprc
+
 # select Node.js if chnode is installed
 tk_cmd_exist chnode && chnode node-13
 

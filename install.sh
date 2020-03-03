@@ -33,6 +33,7 @@ INSTALL_BY_SYMLINKING_COMMON=(
     .irbrc
     .lein/profiles.clj
     .psqlrc
+    .ripgreprc
     .rubocop.yml
     .rustfmt.toml
     .tmux.conf
