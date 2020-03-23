@@ -24,7 +24,7 @@ print_error() {
     echo -e "$@" >&2
 }
 
-error_usage_exit() {
+error_exit() {
     print_error "$2"
     exit "$1"
 }
