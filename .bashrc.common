@@ -44,17 +44,12 @@ EOF
         java_home=$("$tool_path" "${tool_opts[@]}") || return 1
 
         local manpath=:$MANPATH:
-        manpath=${manpath//:${JAVA_HOME}\/man:/:}
+        manpath=${manpath//:$JAVA_HOME\/man:/:}
         manpath=${manpath#:}
         manpath=${manpath%:}
 
         export JAVA_HOME=$java_home
-
-        if [[ $manpath == :* ]]; then
-            export MANPATH=${java_home}/man${manpath}
-        else
-            export MANPATH=${java_home}/man${manpath:+:$manpath}
-        fi
+        export MANPATH=${java_home}/man${manpath:+:$manpath}
     }
 
     tk_current_java_version() {
