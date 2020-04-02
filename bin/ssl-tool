@@ -3,6 +3,7 @@
 set -euo pipefail
 
 THIS_SCRIPT=${0##*/}
+OPENSSL_BIN=${OPENSSL_BIN:-openssl}
 DEFAULT_PORT=443
 
 print_usage() {
@@ -17,6 +18,11 @@ OpenSSL utilities.
     -h, --help        display this help and exit
     -p, --port        host port to connect to, defaults to $DEFAULT_PORT
     -s, --servername  name for TLS Server Name Indication, defaults to host
+
+Use the OPENSSL_BIN environment variable to point to openssl if it's not
+available in PATH. For example:
+
+  OPENSSL_BIN=/opt/bin/openssl $THIS_SCRIPT ...
 EOF
 }
 
@@ -88,13 +94,13 @@ cmd_verifycert() {
     parse_s_client_args verifycert "$@"
 
     echo "" \
-        | openssl s_client \
-                  -no_ssl2 \
-                  -no_ssl3 \
-                  -verify 9 \
-                  -verify_return_error \
-                  -servername "$servername" \
-                  -connect "$host:$port"
+        | "$OPENSSL_BIN" s_client \
+                         -no_ssl2 \
+                         -no_ssl3 \
+                         -verify 9 \
+                         -verify_return_error \
+                         -servername "$servername" \
+                         -connect "$host:$port"
 }
 
 cmd_showcert() {
@@ -103,16 +109,16 @@ cmd_showcert() {
     parse_s_client_args showcert "$@"
 
     echo "" \
-        | openssl s_client \
-                  -no_ssl2 \
-                  -no_ssl3 \
-                  -servername "$servername" \
-                  -connect "$host:$port" \
-                  2>/dev/null \
-        | openssl x509 -text
+        | "$OPENSSL_BIN" s_client \
+                         -no_ssl2 \
+                         -no_ssl3 \
+                         -servername "$servername" \
+                         -connect "$host:$port" \
+                         2>/dev/null \
+        | "$OPENSSL_BIN" x509 -text
 }
 
-cmd_exist openssl || error_exit 3 "$THIS_SCRIPT: openssl not found from \$PATH"
+cmd_exist "$OPENSSL_BIN" || error_exit 3 "$THIS_SCRIPT: $OPENSSL_BIN not found"
 
 while :; do
     case ${1:-} in
