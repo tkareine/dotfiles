@@ -31,10 +31,15 @@ fi
 # To quickly benchmark time taken to display prompt, run `time eval
 # "$PROMPT_COMMAND"`.
 tk_set_prompt() {
-    local last_cmd_exit_status user_and_host cwd end
+    local last_cmd_exit_status last_cmd_exit_status_color user_and_host cwd end
 
     if [[ -n $tk__use_color_prompt ]]; then
-        last_cmd_exit_status="${tk__ansi_bold_gray_dark}${tk__last_cmd_exit_status}${tk__ansi_reset} "
+        if [[ $tk__last_cmd_exit_status == 0 ]]; then
+            last_cmd_exit_status_color=$tk__ansi_bold_gray_dark
+        else
+            last_cmd_exit_status_color=$tk__ansi_bold_red
+        fi
+        last_cmd_exit_status="${last_cmd_exit_status_color}${tk__last_cmd_exit_status}${tk__ansi_reset} "
         user_and_host="${tk__ansi_256_teal_dark}\\u@\\h${tk__ansi_reset} "
         cwd="${tk__ansi_bold_yellow}\\w${tk__ansi_reset} "
         if tk_is_root; then
