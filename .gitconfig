@@ -15,7 +15,6 @@
 	pl        = pull
 	rv        = revert
 	s         = status -s -b -u
-	short-rev = rev-parse --short
 	slg       = shortlog -s -n
 	sm        = submodule
 	st        = status --long -b -u

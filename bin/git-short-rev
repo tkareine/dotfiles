@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+set -uo pipefail
+
+if [[ -n ${1:-} ]]; then
+    rev=$1
+else
+    rev=HEAD
+fi
+
+git rev-parse --short "$rev"
