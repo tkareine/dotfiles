@@ -2,10 +2,17 @@
 
 set -uo pipefail
 
-if [[ -n ${1:-} ]]; then
-    rev=$1
-else
-    rev=HEAD
-fi
+case ${1:-} in
+    -h|--help)
+        echo "Usage: git short-rev [<revision>]"
+        exit 0
+        ;;
+    '')
+        rev=HEAD
+        ;;
+    *)
+        rev=$1
+        ;;
+esac
 
 git rev-parse --short "$rev"
