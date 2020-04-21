@@ -32,6 +32,7 @@ INSTALL_BY_SYMLINKING_COMMON=(
     .inputrc
     .irbrc
     .lein/profiles.clj
+    .prettierrc.js
     .psqlrc
     .ripgreprc
     .rubocop.yml
