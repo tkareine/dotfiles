@@ -80,6 +80,7 @@ EOF
                                   opt/ctags \
                                   opt/gettext \
                                   opt/git \
+                                  opt/kubernetes-cli \
                                   opt/libressl \
                               ; do
               local path=${tk__brew_path}/${tool_subpath}/bin
