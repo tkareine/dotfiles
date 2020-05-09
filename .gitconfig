@@ -48,3 +48,5 @@
 	showPatch = true
 [magit]
 	hideCampaign = true
+[include]
+	path = ~/.gitconfig.host
