@@ -34,6 +34,8 @@
 [merge]
 	conflictstyle = diff3
 	ff = only
+[pull]
+	ff = only
 [push]
 	default = simple
 [rebase]
