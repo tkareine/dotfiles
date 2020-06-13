@@ -166,15 +166,23 @@ if tk_is_color_term; then
     case $tk__uname in
         Darwin)
             export LSCOLORS="Hxgxfxdxcxegedabagacad"
-            alias ls='ls -FG'
+            if tk_cmd_exist gls && tk_cmd_exist gdircolors; then
+                if [[ -r ~/.dircolors ]]; then
+                    eval "$(gdircolors -b ~/.dircolors)"
+                else
+                    eval "$(gdircolors -b)"
+                fi
+                alias ls='gls -F --color=auto'
+            else
+                alias ls='ls -FG'
+            fi
             ;;
         Linux)
             if [[ -r ~/.dircolors ]]; then
-                DIR_COLORS=~/.dircolors
+                eval "$(dircolors -b ~/.dircolors)"
             else
-                DIR_COLORS=""
+                eval "$(dircolors -b)"
             fi
-            eval "$(dircolors -b $DIR_COLORS)"
             alias ls='ls -F --color=auto'
             ;;
     esac
