@@ -3,6 +3,8 @@
 # Adapted from Mathias Bynens' .macos, available at
 # <https://mths.be/macos>. Thanks!
 
+set -euo pipefail
+
 PBUDDY=/usr/libexec/PlistBuddy
 
 # -- Ask for sudo upfront before any changes ---------------------------------
@@ -310,6 +312,8 @@ defaults write com.google.Chrome.canary AppleEnableSwipeNavigateWithScrolls -boo
 
 # -- Apply changes -----------------------------------------------------------
 
+sudo pkill -x cfprefsd
+
 for app in \
         "Google Chrome Canary" \
         "Google Chrome" \
@@ -321,9 +325,8 @@ for app in \
         Safari \
         SystemUIServer \
         TextEdit \
-        cfprefsd \
     ; do
-    killall "${app}" >/dev/null 2>&1
+    pkill -x "${app}" || true
 done
 
 echo "Applied. Some of the changes might require logout/restart to take effect."
