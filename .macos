@@ -6,6 +6,7 @@
 set -euo pipefail
 
 PBUDDY=/usr/libexec/PlistBuddy
+SOCKETFILTERFW=/usr/libexec/ApplicationFirewall/socketfilterfw
 
 # -- Ask for sudo upfront before any changes ---------------------------------
 
@@ -47,6 +48,20 @@ sudo pmset -a lidwake 0
 # Power management: prevent idle system sleep when any TTY (e.g. ssh) is
 # 'active'
 sudo pmset -a ttyskeepawake 1
+
+# Application layer firewall: enable with logging, stealth mode, allow
+# signed built-in apps (by default), disallow downloaded signed apps (by
+# default)
+sudo "$SOCKETFILTERFW" \
+     --setglobalstate on \
+     --setloggingmode on \
+     --setstealthmode on \
+     --setallowsigned on \
+     --setallowsignedapp off \
+     >/dev/null
+
+# Application layer firewall: restart
+sudo pkill -HUP -xf "$SOCKETFILTERFW"
 
 # Localization
 defaults write NSGlobalDomain AppleLanguages -array "en-US" "fi-FI"
