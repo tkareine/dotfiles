@@ -68,6 +68,7 @@ EOF
           tk__brew_path=$1
 
           export HOMEBREW_NO_INSECURE_REDIRECT=1
+          export HOMEBREW_NO_ANALYTICS=1
 
           # for security, put all brew-installed tools after system paths
           export PATH="$PATH:$tk__brew_path/bin"
