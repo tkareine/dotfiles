@@ -83,11 +83,10 @@ The downside of regexes is that they're hard to maintain. That's why
 there's an extensive test suite in
 [test/gtags_test.sh](test/gtags_test.sh).
 
-Installing Ctags and Global with Homebrew:
+Installing Global with Homebrew:
 
 ``` bash
-brew install ctags
-brew install global --with-ctags --with-pygments
+brew install global
 ```
 
 ## Installation
