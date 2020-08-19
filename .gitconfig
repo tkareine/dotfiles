@@ -26,14 +26,21 @@
 	algorithm = patience
 	renames = true
 	submodule = log
-	tool = opendiff
+	tool = ediffclient
 [difftool]
-	prompt = false
+	prompt = true
+[difftool "ediffclient"]
+	cmd = emacsclient --eval \"(ediff-files \\\"$LOCAL\\\" \\\"$REMOTE\\\")\"
 [format]
 	numbered = true
 [merge]
 	conflictstyle = diff3
 	ff = only
+	tool = ediffclient
+[mergetool]
+	prompt = true
+[mergetool "ediffclient"]
+	cmd = emacsclient --eval \"(ediff-merge-files-with-ancestor \\\"$LOCAL\\\" \\\"$REMOTE\\\" \\\"$BASE\\\" nil \\\"$MERGED\\\")\"
 [pull]
 	ff = only
 [push]
