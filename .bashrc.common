@@ -119,7 +119,7 @@ export MANPATH=:
 [[ -r ~/.ripgreprc ]] && export RIPGREP_CONFIG_PATH=~/.ripgreprc
 
 # select Node.js if chnode is installed
-tk_cmd_exist chnode && chnode node-13
+tk_cmd_exist chnode && chnode node-14
 
 # select Ruby if chruby is installed
 tk_cmd_exist chruby && chruby ruby-2
