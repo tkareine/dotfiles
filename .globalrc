@@ -4,7 +4,7 @@ default:\
         :tc=pygments-parser@~/brew/etc/gtags.conf:
 
 extensions:\
-        :skip=.idea,.lein-*,.nrepl-port,node_modules/,target/,vendor/,vendors/:\
+        :skip=.git,.idea,.lein-*,.nrepl-port,node_modules/,target/,vendor/,vendors/:\
         :pygmentslib=$libdir/gtags/pygments-parser.la:\
         :langmap=CSS\:.css.less.sass.scss:\
         :gtags_parser=CSS\:$pygmentslib:\
