@@ -117,8 +117,10 @@ SYMBOLS_GLOBAL_SHOULD_FIND_ONE=(
     yaml_ansible_register_key_plain_value_double_quoted
     yaml_ansible_register_key_single_quoted_value_plain
     yaml_ansible_register_key_double_quoted_value_plain
+    yaml_anchor-dedicated_line
     yaml_anchor-map
     yaml_anchor-list_elem
+    yaml_anchor-before_block_scalar
 )
 
 SYMBOLS_GLOBAL_SHOULD_FIND_ZERO=(

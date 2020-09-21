@@ -1,4 +1,5 @@
 yaml_mapping_plain:
+  &yaml_anchor-dedicated_line
   'yaml_mapping_single_quoted': foo
   "yaml_mapping_double_quoted": bar
   register: yaml_ansible_register_key_plain_value_plain
@@ -10,7 +11,9 @@ yaml_mapping_plain:
     - foo
     - bar
   yaml_lists:
-    - foo
+    - man
     - *yaml_anchor-map
-    - &yaml_anchor-list_elem bar
+    - &yaml_anchor-list_elem zap
     - *yaml_anchor-list_elem
+  yaml_block_scalar: &yaml_anchor-before_block_scalar |
+    echo lol bal
