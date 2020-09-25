@@ -6,25 +6,6 @@ THIS_SCRIPT=${0##*/}
 OPENSSL_BIN=${OPENSSL_BIN:-openssl}
 DEFAULT_PORT=443
 
-s_client_opts=()
-
-parse_http_proxy() {
-    local res=$1 nc=0
-    shopt -q nocasematch && { nc=1 || shopt -s nocasematch; }
-    res=${res#"http://"}
-    res=${res#"https://"}
-    res=${res%%/*}
-    ((nc)) || shopt -u nocasematch
-    echo "$res"
-}
-
-if [[ -n ${https_proxy:-} ]]; then
-  proxy=$(parse_http_proxy "$https_proxy")
-  echo "Using proxy from \$https_proxy: $proxy" >&2
-  s_client_opts+=("-proxy" "$proxy")
-  unset proxy
-fi
-
 print_usage() {
 cat << EOF
 Usage:
@@ -44,7 +25,8 @@ available in PATH. For example:
   OPENSSL_BIN=/opt/bin/openssl $THIS_SCRIPT ...
 
 If the https_proxy environment variable is set, uses that as the proxy
-automatically.
+to connect to the host automatically, unless the no_proxy environment
+variable prohibits it.
 EOF
 }
 
@@ -67,8 +49,31 @@ cmd_exist() {
     command -v "$1" &>/dev/null
 }
 
+parse_http_proxy() {
+    local res=$1 nc=0
+    shopt -q nocasematch && { nc=1 || shopt -s nocasematch; }
+    res=${res#"http://"}
+    res=${res#"https://"}
+    res=${res%%/*}
+    (( nc )) || shopt -u nocasematch
+    echo "$res"
+}
+
+use_proxy() {
+    local host=$1 no_proxy_hosts no_proxy_host
+    IFS=', ' read -ra no_proxy_hosts <<< "${no_proxy:-}"
+    for no_proxy_host in "${no_proxy_hosts[@]}"; do
+        no_proxy_host=${no_proxy_host/#./*.}
+        # shellcheck disable=SC2053
+        if [[ $host == $no_proxy_host ]]; then
+            return 1
+        fi
+    done
+    return 0
+}
+
 parse_s_client_args() {
-    local subcommand=$1
+    local subcommand=$1 proxy
 
     shift
 
@@ -76,6 +81,7 @@ parse_s_client_args() {
     host=
     port=$DEFAULT_PORT
     servername=
+    s_client_opts=()
 
     while (( $# > 0 )); do
         case ${1:-} in
@@ -107,11 +113,20 @@ parse_s_client_args() {
         servername=$host
     fi
 
-    true
+    if [[ -n ${https_proxy:-} ]]; then
+        proxy=$(parse_http_proxy "$https_proxy")
+
+        if use_proxy "$host"; then
+            echo "Using proxy from \$https_proxy: $proxy" >&2
+            s_client_opts+=("-proxy" "$proxy")
+        fi
+    fi
+
+    return 0
 }
 
 cmd_verifycert() {
-    local host port servername
+    local host port servername s_client_opts=()
 
     parse_s_client_args verifycert "$@"
 
@@ -127,7 +142,7 @@ cmd_verifycert() {
 }
 
 cmd_showcert() {
-    local host port servername
+    local host port servername s_client_opts=()
 
     parse_s_client_args showcert "$@"
 
