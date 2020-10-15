@@ -27,12 +27,16 @@
 	renames = true
 	submodule = log
 	tool = ediffclient
+[diff "sopsdiffer"]
+	textconv = sops -d
 [difftool]
 	prompt = true
 [difftool "ediffclient"]
 	cmd = emacsclient --eval \"(ediff-files \\\"$LOCAL\\\" \\\"$REMOTE\\\")\"
 [format]
 	numbered = true
+[magit]
+	hideCampaign = true
 [merge]
 	conflictstyle = diff3
 	ff = only
@@ -55,9 +59,6 @@
 	fetchJobs = 4
 [stash]
 	showPatch = true
-[magit]
-	hideCampaign = true
+# Must be last: git includes the contents of the file immediately.
 [include]
 	path = ~/.gitconfig.host
-[diff "sopsdiffer"]
-	textconv = sops -d
