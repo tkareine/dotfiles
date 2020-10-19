@@ -3,7 +3,7 @@
 set -euo pipefail
 
 THIS_SCRIPT=${0##*/}
-OPENSSL_BIN=${OPENSSL_BIN:-openssl}
+: "${OPENSSL_BIN=openssl}"
 DEFAULT_PORT=443
 
 print_usage() {
