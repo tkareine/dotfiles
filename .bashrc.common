@@ -82,6 +82,7 @@ EOF
                                   opt/gettext \
                                   opt/git \
                                   opt/kubernetes-cli \
+                                  opt/libpq \
                                   opt/libressl \
                               ; do
               local path=${tk__brew_path}/${tool_subpath}/bin
