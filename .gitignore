@@ -5,6 +5,7 @@
 .dir-locals.el
 .idea/
 .lein-*
+.log/
 .nrepl-port
 .projectile
 GPATH
