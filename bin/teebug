@@ -1,0 +1,42 @@
+#!/usr/bin/env bash
+
+# Prints the input arguments and stdin to stdout and to a temporary
+# file in `~/tmp`.
+#
+# Usage:
+#   echo foo bar | teebug arg1 arg2
+#
+# Later, check ~/tmp/teebug.XXXXXX.
+#
+# If you execute the script from interactive terminal and without a pipe
+# (like above), the script waits for your input. Use Ctrl+D to exit. For
+# example:
+
+set -euo pipefail
+
+out_file=$(mktemp ~/tmp/"${BASH_SOURCE##*/}".XXXXXX) || exit 2
+
+printt() {
+    [[ -z "${1:-}" ]] && {
+        printf "printt(): expects format string as the first argument\n" >&2
+        exit 3
+    }
+    # shellcheck disable=SC2059
+    printf "$@" >> "$out_file"
+    # shellcheck disable=SC2059
+    printf "$@"
+}
+
+printt_args() {
+    local index=1
+    printt "NUM ARGS: %d\n" "$#"
+    for var in "$@"; do
+        printt "ARG %d: %s\n" "$index" "$var"
+        (( index += 1))
+    done
+}
+
+printf "OUT: %s\n" "$out_file"
+printt_args "$@"
+printt "STDIN:\n"
+tee -a "$out_file"

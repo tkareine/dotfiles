@@ -43,8 +43,8 @@ INSTALL_BY_SYMLINKING_COMMON=(
     bin/git-short-rev
     bin/psql-jq
     bin/ssl-tool
+    bin/teebug
     bin/yaml-to-json
-    bin/well
 )
 
 INSTALL_BY_SYMLINKING_DARWIN=(
