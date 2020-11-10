@@ -210,9 +210,6 @@ export GIT_PS1_SHOWUPSTREAM=auto
 alias g='git'
 alias gd='git diff --no-index'
 
-# ag: set pager
-alias ag='ag --pager=less'
-
 # choose default editor
 export EDITOR
 if tk_cmd_exist emacsclient; then
