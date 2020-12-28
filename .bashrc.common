@@ -123,7 +123,7 @@ export MANPATH=:
 tk_cmd_exist chnode && chnode node-14
 
 # select Ruby if chruby is installed
-tk_cmd_exist chruby && chruby ruby-2
+tk_cmd_exist chruby && chruby ruby-3
 
 # select Java if chjava is installed
 tk_cmd_exist chjava && chjava default
