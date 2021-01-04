@@ -41,7 +41,11 @@ EOF
         esac
 
         local java_home
-        java_home=$("$tool_path" "${tool_opts[@]}") || return 1
+        # macOS Big Sur: run `java_home` with empty environment
+        # variables (`env -i`): if $JAVA_HOME is already set, the tool
+        # returns the existing value in $JAVA_HOME regardless of
+        # options.
+        java_home=$(env -i "$tool_path" "${tool_opts[@]}") || return 1
 
         local manpath=:$MANPATH:
         manpath=${manpath//:$JAVA_HOME\/man:/:}
