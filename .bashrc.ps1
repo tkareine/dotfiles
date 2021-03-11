@@ -112,7 +112,7 @@ tk_set_title() {
 # install system bash completions
 [[ -f /etc/bash_completion && -r /etc/bash_completion ]] && source /etc/bash_completion
 
-# install bash completions for tools from Homebew
+# install bash completions for tools from Homebrew
 [[ $tk__brew_path && -r ${tk__brew_path}/etc/bash_completion ]] && source "${tk__brew_path}/etc/bash_completion"
 
 # install my local bash completions
@@ -189,6 +189,9 @@ if tk_is_color_term; then
 fi
 
 alias ll='ls -lhA'
+
+# install z from Homebrew
+[[ $tk__brew_path && -r ${tk__brew_path}/etc/profile.d/z.sh ]] && source "${tk__brew_path}/etc/profile.d/z.sh"
 
 # grep: color support
 alias grep='grep --color=auto'

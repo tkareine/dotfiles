@@ -93,10 +93,6 @@ EOF
               [[ -d $path && -x $path ]] && export PATH="$path:$PATH"
           done
 
-          # install z
-          local z_path=${tk__brew_path}/etc/profile.d/z.sh
-          [[ -r $z_path ]] && source "$z_path"
-
           # install chnode
           local chnode_path=${tk__brew_path}/opt/chnode/share/chnode/chnode.sh
           [[ -r $chnode_path ]] && source "$chnode_path"
