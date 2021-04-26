@@ -250,8 +250,8 @@ defaults write com.apple.dock magnification -bool false
 # Dock: disable icon bouncing
 defaults write com.apple.dock no-bouncing -bool true
 
-# Dock: place dock on left
-defaults write com.apple.dock orientation -string "left"
+# Dock: place dock on the right
+defaults write com.apple.dock orientation -string "right"
 
 # Dock: don’t automatically rearrange Spaces based on most recent use
 defaults write com.apple.dock mru-spaces -bool false
