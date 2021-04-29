@@ -1,10 +1,6 @@
 # new file permissions: read-write for you, read for group, read for others
 umask 0022
 
-# localization
-export LC_ALL=en_US.UTF-8
-export LANG=en_US.UTF-8
-
 # disable core dumps; to enable them: `ulimit -S -c unlimited`
 ulimit -S -c 0
 
@@ -13,7 +9,7 @@ if [[ $tk__uname == "Darwin" ]]; then
     ulimit -S -n 10240
 
     # tar does not copy "._*" files
-    export COPYFILE_DISABLE=true
+    tk_is_login_shell && export COPYFILE_DISABLE=true
 
     chjava() {
         local tool_path=/usr/libexec/java_home
@@ -71,28 +67,30 @@ EOF
         tk__setup_brew() {
             tk__brew_path=$1
 
-            export HOMEBREW_NO_INSECURE_REDIRECT=1
-            export HOMEBREW_NO_ANALYTICS=1
+            if tk_is_login_shell; then
+                export HOMEBREW_NO_INSECURE_REDIRECT=1
+                export HOMEBREW_NO_ANALYTICS=1
 
-            # for security, put all brew-installed tools after system paths
-            export PATH="$PATH:$tk__brew_path/bin"
+                # for security, put all brew-installed tools after system paths
+                export PATH="$PATH:$tk__brew_path/bin"
 
-            # Put selected brew-installed tools before system paths. You can
-            # find the paths with `brew --prefix $tool`. Use pre-calculated
-            # paths, as `brew --prefix` is slow.
-            local tool_subpath
-            for tool_subpath in opt/bash \
-                                    opt/ctags \
-                                    opt/gettext \
-                                    opt/git \
-                                    opt/kubernetes-cli \
-                                    opt/libpq \
-                                    opt/libressl \
-                                    opt/python@3 \
-                                ; do
-                local path=${tk__brew_path}/${tool_subpath}/bin
-                [[ -d $path && -x $path ]] && export PATH="$path:$PATH"
-            done
+                # Put selected brew-installed tools before system paths. You can
+                # find the paths with `brew --prefix $tool`. Use pre-calculated
+                # paths, as `brew --prefix` is slow.
+                local tool_subpath
+                for tool_subpath in opt/bash \
+                                        opt/ctags \
+                                        opt/gettext \
+                                        opt/git \
+                                        opt/kubernetes-cli \
+                                        opt/libpq \
+                                        opt/libressl \
+                                        opt/python@3 \
+                                    ; do
+                    local path=${tk__brew_path}/${tool_subpath}/bin
+                    [[ -d $path && -x $path ]] && export PATH="$path:$PATH"
+                done
+            fi
 
             # install chnode
             local chnode_path=${tk__brew_path}/opt/chnode/share/chnode/chnode.sh
@@ -108,27 +106,62 @@ EOF
     fi
 fi
 
-# my local executables
-[[ -d ~/bin ]] && export PATH=~/bin:"$PATH"
+if tk_is_login_shell; then
+    # my local executables
+    [[ -d ~/bin ]] && export PATH=~/bin:"$PATH"
 
-# set manpath to contain system paths
-export MANPATH=:
+    # set manpath to contain system paths
+    export MANPATH=:
 
-# Apache Maven
-[[ -d ~/.m2/repository ]] && export M2_REPO=~/.m2/repository
+    # localization
+    export LC_ALL=en_US.UTF-8
+    export LANG=en_US.UTF-8
 
-# ripgrep (rg)
-[[ -r ~/.ripgreprc ]] && export RIPGREP_CONFIG_PATH=~/.ripgreprc
+    # bash: ignore commands that begin with space and duplicate commands
+    export HISTCONTROL=erasedups:ignoreboth
+    export HISTIGNORE=bg:clear:exit:fg:history:ll:ls:reset
+    export HISTTIMEFORMAT='%F %T '
+    export HISTFILESIZE=10000
+    export HISTSIZE=10000
 
-# select Node.js if chnode is installed
-tk_cmd_exist chnode && chnode node-14
+    # Apache Maven
+    [[ -d ~/.m2/repository ]] && export M2_REPO=~/.m2/repository
 
-# select Ruby if chruby is installed
-tk_cmd_exist chruby && chruby ruby-3
+    # ripgrep (rg)
+    [[ -r ~/.ripgreprc ]] && export RIPGREP_CONFIG_PATH=~/.ripgreprc
 
-# Python user installs
-export PYTHONUSERBASE=~/.local
-export PATH="$PATH:$PYTHONUSERBASE/bin"
+    # less: ignore character case in searches, display ANSI colors, highlight the
+    # first unread line, show verbose prompt
+    export LESS=-iRWMFX
+    export PAGER=less
 
-# select Java if chjava is installed
-tk_cmd_exist chjava && chjava default
+    # git: prompt configuration
+    export GIT_PS1_SHOWDIRTYSTATE=true
+    export GIT_PS1_SHOWSTASHSTATE=
+    export GIT_PS1_SHOWUNTRACKEDFILES=true
+    export GIT_PS1_SHOWUPSTREAM=auto
+
+    # ShellCheck config
+    export SHELLCHECK_OPTS="-e SC1090 -e SC1091"
+
+    # choose default editor
+    export EDITOR
+    if tk_cmd_exist emacsclient; then
+        EDITOR=$(command -v emacsclient)
+    else
+        EDITOR=$(command -v vi)
+    fi
+
+    # select Node.js if chnode is installed
+    tk_cmd_exist chnode && chnode node-14
+
+    # select Ruby if chruby is installed
+    tk_cmd_exist chruby && chruby ruby-3
+
+    # Python user installs
+    export PYTHONUSERBASE=~/.local
+    export PATH="$PATH:$PYTHONUSERBASE/bin"
+
+    # select Java if chjava is installed
+    tk_cmd_exist chjava && chjava default
+fi

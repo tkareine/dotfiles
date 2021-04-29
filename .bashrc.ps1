@@ -154,18 +154,11 @@ if ((BASH_VERSINFO[0] >= 4)); then
     shopt -s dirspell
 fi
 
-# bash: ignore commands that begin with space and duplicate commands
-export HISTCONTROL=erasedups:ignoreboth
-export HISTIGNORE=bg:clear:exit:fg:history:ll:ls:reset
-export HISTTIMEFORMAT='%F %T '
-export HISTFILESIZE=10000
-export HISTSIZE=10000
-
 # color support for ls
 if tk_is_color_term; then
     case $tk__uname in
         Darwin)
-            export LSCOLORS="Hxgxfxdxcxegedabagacad"
+            tk_is_login_shell && export LSCOLORS="Hxgxfxdxcxegedabagacad"
             if tk_cmd_exist gls && tk_cmd_exist gdircolors; then
                 if [[ -r ~/.dircolors ]]; then
                     eval "$(gdircolors -b ~/.dircolors)"
@@ -199,33 +192,12 @@ alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias hgrep='history | \egrep --color=auto -i'
 
-# less: ignore character case in searches, display ANSI colors, highlight the
-# first unread line, show verbose prompt
-export LESS=-iRWMFX
-export PAGER=less
-
-# git: prompt configuration
-export GIT_PS1_SHOWDIRTYSTATE=true
-export GIT_PS1_SHOWSTASHSTATE=
-export GIT_PS1_SHOWUNTRACKEDFILES=true
-export GIT_PS1_SHOWUPSTREAM=auto
-
+# Git shortcuts
 alias g='git'
 alias gd='git diff --no-index'
 
-# choose default editor
-export EDITOR
-if tk_cmd_exist emacsclient; then
-    EDITOR=$(command -v emacsclient)
-else
-    EDITOR=$(command -v vi)
-fi
-
 # Ruby: shorten commonly used Bundler command
 alias be='bundle exec'
-
-# ShellCheck config
-export SHELLCHECK_OPTS="-e SC1090 -e SC1091"
 
 # list TCP listen and UDP ports
 alias linet='lsof -i UDP -i TCP -s TCP:LISTEN -n -P +c 0'
@@ -235,8 +207,5 @@ alias wtfdt='date '\''+%Y-%m-%dT%H:%M:%S%z (%Z) (week %W) (epoch %s)'\'''
 # install prompt command
 PROMPT_COMMAND=tk_prompt_command';'${PROMPT_COMMAND:+$'\n'$(tk_trim "$PROMPT_COMMAND")}
 [[ $TERM == xterm* ]] && PROMPT_COMMAND=$PROMPT_COMMAND$'\n'tk_set_title';'
-
-# greets at login
-tk_cmd_exist fortune && echo && fortune -a
 
 ((BASH_VERSINFO[0] < 4)) && echo -e "\\nWARN: old bash version: $BASH_VERSION"

@@ -1,4 +1,7 @@
-# To quickly benchmark bash startup time, run `time bash -i -c true`.
+# To quickly benchmark Bash startup time:
+#
+# * for interactive login shell: `time bash --login -i -c true`
+# * for interactive shell: `time bash -i -c true`
 
 # optimization: cache current uname
 tk__uname=$(uname)
