@@ -1,9 +1,12 @@
+# shellcheck shell=bash
+
 # new file permissions: read-write for you, read for group, read for others
 umask 0022
 
 # disable core dumps; to enable them: `ulimit -S -c unlimited`
 ulimit -S -c 0
 
+# shellcheck disable=SC2154
 if [[ $tk__uname == "Darwin" ]]; then
     # soft limit for the maximum number of open file descriptors
     ulimit -S -n 10240

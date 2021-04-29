@@ -1,3 +1,5 @@
+# shellcheck shell=bash
+
 tk_is_color_term() {
     local colors
     if colors=$(tput colors 2>/dev/null); then
@@ -82,6 +84,7 @@ tk_set_prompt() {
 
     [[ -n $RUBY_ROOT ]] && bin_states+=("r:$(tk_version_of_path "$RUBY_ROOT")")
 
+    # shellcheck disable=SC2154
     if [[ $tk__uname == "Darwin" ]]; then
         local bin_java
         bin_java=$(tk_current_java_version)

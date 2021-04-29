@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -euo pipefail
+
 printf 'ANSI 16:\n\n'
 
 for bold in 0 1; do

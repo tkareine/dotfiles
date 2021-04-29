@@ -123,6 +123,7 @@ SYMBOLS_GLOBAL_SHOULD_FIND_ONE=(
     yaml_anchor-before_block_scalar
 )
 
+# shellcheck disable=SC2016
 SYMBOLS_GLOBAL_SHOULD_FIND_ZERO=(
     less-elem
     'less-id-@{less-str}'
