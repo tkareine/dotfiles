@@ -33,3 +33,16 @@ test_tk_fn_exist() {
 }
 
 test_tk_fn_exist
+
+test_tk_bm() {
+    local actual
+    readarray -t actual < <(tk_bm_num_times=2; tk_bm 'sleep 0.1 && false')
+    local exp_lines=(
+        $'^[0-9]+\\.[0-9]{3} secs for 2 times eval: sleep 0.1 && false$'
+        $'^[0-9]+\\.[0-9]{3} ms/eval$'
+    )
+    [[ ${actual[0]} =~ ${exp_lines[0]} ]] || fail_test "didn't match: ${actual[0]}"
+    [[ ${actual[1]} =~ ${exp_lines[1]} ]] || fail_test "didn't match: ${actual[1]}"
+}
+
+test_tk_bm

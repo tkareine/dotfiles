@@ -41,3 +41,8 @@ assert_fail() {
         return 1
     fi
 }
+
+fail_test() {
+    echo "fail_test(): $*" >&2
+    return 1
+}

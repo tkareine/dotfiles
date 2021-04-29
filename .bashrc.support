@@ -67,6 +67,18 @@ tk_version_of_path() {
     echo "$version"
 }
 
+: "${tk_bm_num_times:=1000}"
+
+tk_bm() {
+    local num_times=${tk_bm_num_times:-1000}
+    local TIMEFORMAT=%3R
+    local cmd total_secs per_cmd_ms
+    cmd="$*"
+    total_secs=$({ time for (( r=0; r < num_times; r+=1 )); do eval "$cmd" >/dev/null; done; true; } 2>&1)
+    per_cmd_ms=$(printf "scale=10\n(%s / %s) * 1000\n" "$total_secs" "$num_times" | bc)
+    printf '%.3f secs for %d times eval: %s\n%.3f ms/eval\n' "$total_secs" "$num_times" "$cmd" "$per_cmd_ms"
+}
+
 gemdir() {
     pushd "$(gem env gemdir)/gems" || return
 }
