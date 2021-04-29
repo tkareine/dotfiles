@@ -88,6 +88,7 @@ EOF
                                   opt/kubernetes-cli \
                                   opt/libpq \
                                   opt/libressl \
+                                  opt/python@3 \
                               ; do
               local path=${tk__brew_path}/${tool_subpath}/bin
               [[ -d $path && -x $path ]] && export PATH="$path:$PATH"
