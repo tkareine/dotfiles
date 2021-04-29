@@ -2,7 +2,7 @@ CLEAN_FILES ?= $(foreach file,GPATH GRTAGS GTAGS TAGS,test/fixture/gtags/$(file)
 
 INSTALL_ARGS ?=
 
-TEST_FILES ?= $(wildcard test/integration/*_test.sh)
+TEST_FILES ?= $(wildcard test/unit/*_test.sh test/integration/*_test.sh)
 
 .PHONY: help
 help:

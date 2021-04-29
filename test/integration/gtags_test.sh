@@ -150,5 +150,3 @@ done
 for symbol in "${SYMBOLS_GLOBAL_SHOULD_FIND_ZERO[@]}"; do
     global_should_find 0 "$symbol"
 done
-
-echo "gtags tests passed."

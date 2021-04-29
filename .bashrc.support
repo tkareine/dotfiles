@@ -36,7 +36,7 @@ tk_join() {
 }
 
 # Usage:
-#   tk_trim " foo bar \t\n"
+#   tk_trim $' foo bar \t\n'
 #   => "foo bar"
 tk_trim() {
     local tmp=$1
