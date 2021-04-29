@@ -224,10 +224,6 @@ fi
 # Ruby: shorten commonly used Bundler command
 alias be='bundle exec'
 
-# Python user installs
-export PYTHONUSERBASE=~/.local
-export PATH="$PATH:$PYTHONUSERBASE/bin"
-
 # ShellCheck config
 export SHELLCHECK_OPTS="-e SC1090 -e SC1091"
 

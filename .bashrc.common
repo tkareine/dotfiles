@@ -126,5 +126,9 @@ tk_cmd_exist chnode && chnode node-14
 # select Ruby if chruby is installed
 tk_cmd_exist chruby && chruby ruby-3
 
+# Python user installs
+export PYTHONUSERBASE=~/.local
+export PATH="$PATH:$PYTHONUSERBASE/bin"
+
 # select Java if chjava is installed
 tk_cmd_exist chjava && chjava default
