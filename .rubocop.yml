@@ -13,7 +13,7 @@ Layout/LineLength:
 Layout/SpaceInsideHashLiteralBraces:
   EnforcedStyle: no_space
 Metrics/ClassLength:
-  Enabled: false  # some projects have big test classes
+  Enabled: false # some projects have big test classes
 Metrics/MethodLength:
   Max: 50
 Metrics/ModuleLength:
@@ -21,12 +21,12 @@ Metrics/ModuleLength:
 Naming/MemoizedInstanceVariableName:
   EnforcedStyleForLeadingUnderscores: required
 Style/ClassAndModuleChildren:
-  Enabled: false  # projects use both compact and nested style, preferring compact
+  Enabled: false # projects use both compact and nested style, preferring compact
 Style/ClassVars:
-  Enabled: false  # it's ok when knowing it's limitations, easy to access from class instance scope
+  Enabled: false # it's ok when knowing it's limitations, easy to access from class instance scope
 Style/CollectionMethods:
   Enabled: true
 Style/Documentation:
-  Enabled: false  # depends on project
+  Enabled: false # depends on project
 Style/StringLiterals:
-  Enabled: false  # quoting style depends on project
+  Enabled: false # quoting style depends on project
