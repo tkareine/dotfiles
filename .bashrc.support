@@ -100,7 +100,3 @@ EOF
 
     printf '%.3f secs for %d times run command: %s\n%.3f ms/command\n' "$total_secs" "$num_times" "$cmd" "$per_cmd_ms"
 }
-
-gemdir() {
-    pushd "$(gem env gemdir)/gems" || return
-}
