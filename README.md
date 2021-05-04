@@ -21,7 +21,7 @@ copying has been extensive, I have retained the original copyright in
 the file. Thank you all!
 
 Finally, my motivation for using Bash over more feature-rich shells is
-that I think tuning [.bashrc](./.bashrc) helps keeping my shell
+that I think tuning [.bashrc](.bashrc) helps keeping my shell
 programming skills in shape.
 
 ## Setup highlights
@@ -66,7 +66,7 @@ separate shells simultaneously.
 
 ### macOS configuration
 
-The [.macos](./.macos) script configures macOS quite extensively,
+The [.macos](.macos) script configures macOS quite extensively,
 considering what's possible with the `defaults` tool and plist files.
 
 The script is originally based on [Mathias Bynens' .macos] script.
@@ -76,12 +76,12 @@ The script is originally based on [Mathias Bynens' .macos] script.
 When you configure [GNU Global] to use Exuberant Ctags as a symbol
 parser, it's possible to extend the functionality of Global with the
 regex facility of Ctags. For instance, I've added extra support for
-YAML, Sass (SCSS), and JavaScript files. See [.global](./.globalrc) and
-[.ctags](./.ctags).
+YAML, Sass (SCSS), and JavaScript files. See [.global](.globalrc) and
+[.ctags](.ctags).
 
 The downside of regexes is that they're hard to maintain. That's why
 there's an extensive test suite in
-[test/gtags_test.sh](test/gtags_test.sh).
+[test/integration/gtags_test.sh](test/integration/gtags_test.sh).
 
 Installing Global with Homebrew:
 
