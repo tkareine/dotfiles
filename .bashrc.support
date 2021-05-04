@@ -98,7 +98,7 @@ EOF
 
     unset __tk_bm_cmd
 
-    printf '%.3f secs for %d times eval: %s\n%.3f ms/eval\n' "$total_secs" "$num_times" "$cmd" "$per_cmd_ms"
+    printf '%.3f secs for %d times run command: %s\n%.3f ms/command\n' "$total_secs" "$num_times" "$cmd" "$per_cmd_ms"
 }
 
 gemdir() {
