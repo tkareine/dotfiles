@@ -81,7 +81,7 @@ YAML, Sass (SCSS), and JavaScript files. See [.global](.globalrc) and
 
 The downside of regexes is that they're hard to maintain. That's why
 there's an extensive test suite in
-[test/integration/gtags_test.sh](test/integration/gtags_test.sh).
+[test/integration/gtags-test.sh](test/integration/gtags-test.sh).
 
 Installing Global with Homebrew:
 

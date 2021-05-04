@@ -2,7 +2,7 @@ CLEAN_FILES ?= $(foreach file,GPATH GRTAGS GTAGS TAGS,test/fixture/gtags/$(file)
 
 INSTALL_ARGS ?=
 
-TEST_FILES ?= $(wildcard test/unit/*_test.sh test/integration/*_test.sh)
+TEST_FILES ?= $(wildcard test/unit/*-test.sh test/integration/*-test.sh)
 
 .PHONY: help
 help: SHELL := bash
@@ -38,5 +38,5 @@ Targets:
   clean    Remove test artifacts
   install  Install dotfiles; for more options, see \`make install INSTALL_ARGS=-h\`
   lint     Run shellcheck on source files
-  test     Run tests (requires install)
+  test     Run tests (requires install) (select: TEST_FILES=test/unit/*-test.sh)
 endef

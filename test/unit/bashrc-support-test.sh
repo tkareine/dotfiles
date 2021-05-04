@@ -7,32 +7,53 @@ cd "${0%/*}" || exit 2
 source ../support/assertions.sh
 source ../../.bashrc.support
 
+test_tk_print_error() {
+    local msg
+    msg=$(tk_print_error 'foo bar' 'baz' 2>&1)
+    assert_equal "$msg" "foo bar baz"
+}
+
+test_tk_exit_if_fail_when_ok() {
+    local msg
+    msg=$(tk_exit_if_fail true 2>&1)
+    assert_equal $? 0
+    assert_equal "$msg" ""
+}
+
+test_tk_exit_if_fail_when_fail() {
+    local msg ecode
+    set +e
+    msg=$(tk_exit_if_fail false 2>&1)
+    ecode=$?
+    set -e
+    assert_equal $ecode 1
+    assert_equal "$msg" "failed (1): false"
+}
+
 test_tk_join() {
     local ary=(a bb ccc "d dd d")
     assert_equal "$(tk_join , "${ary[@]}")" "a,bb,ccc,d dd d"
 }
 
-test_tk_join
-
 test_tk_trim() {
     assert_equal "$(tk_trim $' foo bar \t\n')" "foo bar"
 }
-
-test_tk_trim
 
 test_tk_cmd_exist() {
     assert_ok 'tk_cmd_exist echo'
     assert_fail 'tk_cmd_exist nosuch'
 }
 
-test_tk_cmd_exist
-
 test_tk_fn_exist() {
     assert_ok 'tk_fn_exist test_tk_fn_exist'
     assert_fail 'tk_fn_exist nosuch'
 }
 
-test_tk_fn_exist
+test_tk_version_of_path() {
+    local version
+    version=$(tk_version_of_path /usr/local/share/node-14.4.5)
+    assert_equal "$version" 14.4.5
+}
 
 test_tk_bm() {
     local actual
@@ -45,4 +66,4 @@ test_tk_bm() {
     [[ ${actual[1]} =~ ${exp_lines[1]} ]] || fail_test "didn't match: ${actual[1]}"
 }
 
-test_tk_bm
+TEST_SOURCE=$0 source ../support/runner.sh

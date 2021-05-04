@@ -19,10 +19,8 @@ test_interactive_login_shell() {
     __clean_shell --login -i -c true || fail_test "error in bash init for interactive login shell"
 }
 
-test_interactive_login_shell
-
 test_interactive_nonlogin_shell() {
     __clean_shell -i -c true || fail_test "error in bash init for interactive non-login shell"
 }
 
-test_interactive_nonlogin_shell
+TEST_SOURCE=$0 source ../support/runner.sh
