@@ -15,18 +15,6 @@ tk_exit_if_fail() {
     return $status
 }
 
-tk_sleep_while() {
-    while eval "$@"; do
-        sleep 0.5
-    done
-}
-
-tk_sleep_until() {
-    until eval "$@"; do
-        sleep 0.5
-    done
-}
-
 # Usage:
 #   ary=(a bb ccc)
 #   $(tk_join , "${ary[@]}")
