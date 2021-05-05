@@ -1,4 +1,4 @@
-# shellcheck shell=bash
+#!/usr/bin/env bash
 
 # new file permissions: read-write for you, read for group, read for others
 umask 0022
