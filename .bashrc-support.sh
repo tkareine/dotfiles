@@ -1,7 +1,7 @@
 # shellcheck shell=bash
 
 tk_print_error() {
-    echo "$@" >&2
+    echo "$*" >&2
 }
 
 tk_exit_if_fail() {
