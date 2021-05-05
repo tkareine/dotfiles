@@ -2,10 +2,8 @@
 
 set -euo pipefail
 
-cd "${0%/*}" || exit 2
-
-source ../support/assertions.sh
-source ../../.bashrc.support
+source test/support/assertions.sh
+source .bashrc.support
 
 test_tk_print_error() {
     local msg
@@ -57,6 +55,7 @@ test_tk_version_of_path() {
 
 test_tk_bm() {
     local actual
+    # shellcheck disable=SC2034
     readarray -t actual < <(tk_bm_num_times=2; tk_bm 'sleep 0.1 && false')
     local exp_lines=(
         $'^[0-9]+\\.[0-9]{3} secs for 2 times run command: sleep 0.1 && false$'
@@ -66,4 +65,4 @@ test_tk_bm() {
     [[ ${actual[1]} =~ ${exp_lines[1]} ]] || fail_test "didn't match: ${actual[1]}"
 }
 
-TEST_SOURCE=$0 source ../support/runner.sh
+TEST_SOURCE=$0 source test/support/runner.sh

@@ -2,9 +2,7 @@
 
 set -euo pipefail
 
-cd "${0%/*}" || exit 2
-
-source ../support/assertions.sh
+source test/support/assertions.sh
 
 __clean_shell() {
     env -i \
@@ -23,4 +21,4 @@ test_interactive_nonlogin_shell() {
     __clean_shell -i -c true || fail_test "error in bash init for interactive non-login shell"
 }
 
-TEST_SOURCE=$0 source ../support/runner.sh
+TEST_SOURCE=$0 source test/support/runner.sh

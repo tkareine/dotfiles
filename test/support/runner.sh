@@ -12,8 +12,6 @@ EOF
     exit 2
 fi
 
-TEST_SOURCE="${TEST_SOURCE##*/}"
-
 __find_test_fns() {
     grep -E '^test_[a-z0-9_]+ *\(\)' "$1" | sed 's/[^a-z0-9_]*//g' | xargs
 }

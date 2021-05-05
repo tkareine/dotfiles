@@ -2,17 +2,15 @@
 
 set -euo pipefail
 
-cd "${0%/*}/../fixture/gtags/" || exit 2
-
 global_should_find() {
     local expect_num_matches symbol
     expect_num_matches=$1
     symbol=$2
 
     if ! global -x --literal "$symbol" | wc -l | grep -q "\<$expect_num_matches\>" ; then
-        echo "Test failed (expect $expect_num_matches match): $symbol"
-        global -x --literal "$symbol"
-        exit 1
+        echo "global_should_find(): failed (expect $expect_num_matches match): $symbol" >&2
+        global -x --literal "$symbol" >&2
+        return 1
     fi
 }
 
@@ -142,12 +140,18 @@ SYMBOLS_GLOBAL_SHOULD_FIND_ZERO=(
     'function'
 )
 
-gtags .
+test_global_find_symbols() (
+    cd "${0%/*}/../fixture/gtags/" || exit 2
 
-for symbol in "${SYMBOLS_GLOBAL_SHOULD_FIND_ONE[@]}"; do
-    global_should_find 1 "$symbol"
-done
+    gtags .
 
-for symbol in "${SYMBOLS_GLOBAL_SHOULD_FIND_ZERO[@]}"; do
-    global_should_find 0 "$symbol"
-done
+    for symbol in "${SYMBOLS_GLOBAL_SHOULD_FIND_ONE[@]}"; do
+        global_should_find 1 "$symbol"
+    done
+
+    for symbol in "${SYMBOLS_GLOBAL_SHOULD_FIND_ZERO[@]}"; do
+        global_should_find 0 "$symbol"
+    done
+)
+
+TEST_SOURCE=$0 source test/support/runner.sh
