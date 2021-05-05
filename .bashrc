@@ -9,11 +9,11 @@
 # shellcheck disable=SC2034
 tk__uname=$(uname)
 
-source ~/.bashrc.support
-source ~/.bashrc.common
+source ~/.bashrc-support.sh
+source ~/.bashrc-common.sh
 
-[[ -r ~/.bashrc.host ]] && source ~/.bashrc.host
+[[ -r ~/.bashrc-host.sh ]] && source ~/.bashrc-host.sh
 
-[[ -n $PS1 ]] && source ~/.bashrc.ps1
+[[ -n $PS1 ]] && source ~/.bashrc-ps1.sh
 
 true  # ensure last command is successful

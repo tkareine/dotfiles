@@ -3,7 +3,7 @@
 set -euo pipefail
 
 source test/support/assertions.sh
-source .bashrc.support
+source .bashrc-support.sh
 
 test_tk_print_error() {
     local msg

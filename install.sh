@@ -19,9 +19,9 @@ INSTALL_BY_COPYING_DARWIN=(
 INSTALL_BY_SYMLINKING_COMMON=(
     .bash_profile
     .bashrc
-    .bashrc.common
-    .bashrc.ps1
-    .bashrc.support
+    .bashrc-common.sh
+    .bashrc-ps1.sh
+    .bashrc-support.sh
     .ctags
     .dircolors
     .eslintrc.json
