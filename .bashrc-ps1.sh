@@ -186,8 +186,7 @@ fi
 
 alias ll='ls -lhA'
 
-# install z from Homebrew
-[[ $tk__brew_path && -r ${tk__brew_path}/etc/profile.d/z.sh ]] && source "${tk__brew_path}/etc/profile.d/z.sh"
+tk_cmd_exist zoxide && eval "$(zoxide init --hook pwd bash)"
 
 # grep: color support
 alias grep='grep --color=auto'
