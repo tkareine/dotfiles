@@ -156,7 +156,7 @@ if tk_is_login_shell; then
     fi
 
     # select Node.js if chnode is installed
-    tk_cmd_exist chnode && chnode node-14
+    tk_cmd_exist chnode && chnode node-16
 
     # select Ruby if chruby is installed
     tk_cmd_exist chruby && chruby ruby-3
