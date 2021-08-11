@@ -1,41 +1,55 @@
-# perform filename matching and completion in a case-insensitive fashion
+# See
+# https://www.gnu.org/software/bash/manual/html_node/Readline-Init-File-Syntax.html
+
+# Perform filename matching and completion in a case-insensitive
+# fashion.
 set completion-ignore-case on
 
-# convert characters with the eighth bit set to an ASCII key sequence
-# by stripping the eighth bit and prefixing an ESC character,
-# converting them to a meta-prefixed key sequence
+# Convert characters with the eighth bit set to an ASCII key sequence by
+# stripping the eighth bit and prefixing an ESC character, converting
+# them to a meta-prefixed key sequence.
 set convert-meta off
 
-# enable eight-bit input (it will not clear the eighth bit in the
+# Enable eight-bit input (it will not clear the eighth bit in the
 # characters it reads), regardless of what the terminal claims it can
-# support
+# support.
 set input-meta on
 
-# display characters with the eighth bit set directly rather than as a
-# meta-prefixed escape sequence
+# Display characters with the eighth bit set directly rather than as a
+# meta-prefixed escape sequence.
 set output-meta on
 
-# completed names which are symbolic links to directories have a slash
-# appended (subject to the value of mark-directories)
+# Completed names which are symbolic links to directories have a slash
+# appended (subject to the value of mark-directories).
 set mark-symlinked-directories on
 
-# words which have more than one possible completion cause the matches
-# to be listed immediately instead of ringing the bell
+# Words which have more than one possible completion cause the matches
+# to be listed immediately instead of ringing the bell.
 set show-all-if-ambiguous on
 
-# control which default set of key bindings is used
+# Control which default set of key bindings is used.
 set editing-mode emacs
 
-# key binding <up>: non-incremental backward history search, must match
-# from beginning of history line
+# Display possible completions using different colors to indicate their
+# file type. The color definitions are taken from the value of the
+# LS_COLORS environment variable.
+set colored-stats on
+
+# When listing completions, display the common prefix of the set of
+# possible completions using a different color. The color definitions
+# are taken from the value of the LS_COLORS environment variable.
+set colored-completion-prefix on
+
+# Key binding <up>: non-incremental backward history search, must match
+# from beginning of history line.
 "\e[A": history-search-backward
 
-# key binding <down>: non-incremental forward history search, must match
-# from beginning of history line
+# Key binding <down>: non-incremental forward history search, must match
+# from beginning of history line.
 "\e[B": history-search-forward
 
-# key binding C-<right>
+# Key binding C-<right>.
 "\e[1;5C": forward-word
 
-# key binding C-<left>
+# Key binding C-<left>.
 "\e[1;5D": backward-word
