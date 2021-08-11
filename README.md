@@ -39,8 +39,8 @@ I get frustrated if the shell feels sluggish to use. That's why I
 optimize the start-up time of my `.bashrc`:
 
 ``` bash
-time bash -i -c true
-# => real 0m0.338s
+time bash --login -i -c true
+# => real 0m0.276s
 ```
 
 And especially, I want that the shell prompt gets re-displayed quickly:
