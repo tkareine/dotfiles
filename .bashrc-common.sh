@@ -66,34 +66,12 @@ EOF
         echo "$version"
     }
 
-    if [[ -x ~/brew/bin/brew ]]; then
+    if [[ -x /usr/local/bin/brew ]]; then
         tk__setup_brew() {
             tk__brew_path=$1
 
-            if tk_is_login_shell; then
-                export HOMEBREW_NO_INSECURE_REDIRECT=1
-                export HOMEBREW_NO_ANALYTICS=1
-
-                # for security, put all brew-installed tools after system paths
-                export PATH="$PATH:$tk__brew_path/bin"
-
-                # Put selected brew-installed tools before system paths. You can
-                # find the paths with `brew --prefix $tool`. Use pre-calculated
-                # paths, as `brew --prefix` is slow.
-                local tool_subpath
-                for tool_subpath in opt/bash \
-                                        opt/ctags \
-                                        opt/gettext \
-                                        opt/git \
-                                        opt/kubernetes-cli \
-                                        opt/libpq \
-                                        opt/libressl \
-                                        opt/python@3 \
-                                    ; do
-                    local path=${tk__brew_path}/${tool_subpath}/bin
-                    [[ -d $path && -x $path ]] && export PATH="$path:$PATH"
-                done
-            fi
+            export HOMEBREW_NO_INSECURE_REDIRECT=1
+            export HOMEBREW_NO_ANALYTICS=1
 
             # install chnode
             local chnode_path=${tk__brew_path}/opt/chnode/share/chnode/chnode.sh
@@ -104,7 +82,7 @@ EOF
             [[ -r $chruby_path ]] && source "$chruby_path"
         }
 
-        tk__setup_brew ~/brew
+        tk__setup_brew /usr/local
         unset tk__setup_brew
     fi
 fi

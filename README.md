@@ -98,27 +98,12 @@ installer skips symlinking or copying. See `./install -h` for more.
 
 ### Homebrew
 
-On macOS, [install Homebrew][Homebrew install] to a subdirectory under
-home:
+On macOS, [install Homebrew][Homebrew install] to the default path
+(`/usr/local`):
 
 ``` bash
-mkdir brew && curl -L https://github.com/Homebrew/brew/tarball/master | tar xz --strip 1 -C brew
-export PATH="$PATH:$HOME/brew/bin"
-brew update
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```
-
-There are two reasons for not installing to the default location,
-`/usr/local`:
-
-1. I want to include the directory of Homebrew's executables after the
-   system executable directories (`/usr/bin`, `/bin`) in the `PATH`
-   environment variable. This is done for safety; I don't want to let
-   any Homebrew formula a chance to override default system executables
-   such as `ls`.
-
-2. Many macOS apps, such as Docker Desktop, install executables and
-   libraries under `/usr/local`. I don't want to mix these with
-   stuff installed with Homebrew.
 
 ### Bash
 
@@ -126,8 +111,8 @@ Installing the latest version of Bash, using [Homebrew] on macOS:
 
 ``` bash
 brew install bash
-sudo bash -c 'echo ~/brew/bin/bash >> /etc/shells'
-chsh -s ~/brew/bin/bash
+sudo bash -c 'echo /usr/local/bin/bash >> /etc/shells'
+chsh -s /usr/local/bin/bash
 ```
 
 ## Xcode Zenburn color theme
