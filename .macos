@@ -283,9 +283,6 @@ defaults write com.apple.Safari Command1Through9SwitchesTabs -bool true
 # Safari: disable activating new tab when opening it
 defaults write com.apple.Safari OpenNewTabsInFront -bool false
 
-# Safari: disable Java plugin
-"$PBUDDY" -c "Set :PlugInInfo:com.oracle.java.JavaAppletPlugin:plugInCurrentState false" ~/Library/Containers/com.apple.Safari/Data/Library/Preferences/com.apple.Safari.plist
-
 # Safari: warn about fraudulent web sites
 defaults write com.apple.Safari WarnAboutFraudulentWebsites -bool true
 
