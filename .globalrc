@@ -1,7 +1,7 @@
 default:\
         :tc=extensions:\
-        :tc=builtin-parser@~/brew/etc/gtags.conf:\
-        :tc=pygments-parser@~/brew/etc/gtags.conf:
+        :tc=builtin-parser@/usr/local/etc/gtags.conf:\
+        :tc=pygments-parser@/usr/local/etc/gtags.conf:
 
 extensions:\
         :skip=.git,.idea,.lein-*,.nrepl-port,node_modules/,target/,vendor/,vendors/:\
