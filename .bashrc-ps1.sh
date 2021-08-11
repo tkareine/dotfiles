@@ -116,7 +116,7 @@ tk_set_title() {
 [[ -f /etc/bash_completion && -r /etc/bash_completion ]] && source /etc/bash_completion
 
 # install bash completions for tools from Homebrew
-[[ $tk__brew_path && -r ${tk__brew_path}/etc/bash_completion ]] && source "${tk__brew_path}/etc/bash_completion"
+[[ $tk__brew_path && -r ${tk__brew_path}/etc/profile.d/bash_completion.sh ]] && source "${tk__brew_path}/etc/profile.d/bash_completion.sh"
 
 # install my local bash completions
 if [[ -d ~/.bash_completion.d && -x ~/.bash_completion.d ]]; then
