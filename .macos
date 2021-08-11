@@ -5,7 +5,6 @@
 
 set -euo pipefail
 
-PBUDDY=/usr/libexec/PlistBuddy
 SOCKETFILTERFW=/usr/libexec/ApplicationFirewall/socketfilterfw
 
 # -- Ask for sudo upfront before any changes ---------------------------------
