@@ -70,8 +70,22 @@ EOF
         tk__setup_brew() {
             tk__brew_path=$1
 
-            export HOMEBREW_NO_INSECURE_REDIRECT=1
-            export HOMEBREW_NO_ANALYTICS=1
+            if tk_is_login_shell; then
+                export HOMEBREW_NO_INSECURE_REDIRECT=1
+                export HOMEBREW_NO_ANALYTICS=1
+
+                # Put selected brew-installed tools before system paths. You can
+                # find the paths with `brew --prefix $tool`. Use pre-calculated
+                # paths, as `brew --prefix` is slow.
+                local tools=(
+                    opt/libpq
+                )
+                local tool_subpath
+                for tool_subpath in "${tools[@]}"; do
+                    local path=${tk__brew_path}/${tool_subpath}/bin
+                    [[ -d $path && -x $path ]] && export PATH="$path:$PATH"
+                done
+            fi
 
             # install chnode
             local chnode_path=${tk__brew_path}/opt/chnode/share/chnode/chnode.sh
