@@ -10,6 +10,8 @@ SOCKETFILTERFW=/usr/libexec/ApplicationFirewall/socketfilterfw
 
 # -- Ask for sudo upfront before any changes ---------------------------------
 
+echo "Asking sudo privileges upfront before any changes…"
+
 sudo -v
 
 # -- System ------------------------------------------------------------------
