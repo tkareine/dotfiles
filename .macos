@@ -276,15 +276,15 @@ disable_selected_services_keyboard_shortcuts() {
     local plist_path=~/Library/Preferences/pbs.plist
 
     for key in "${shortcuts[@]}"; do
-        "$PBUDDY" -c "Add :NSServicesStatus:'$key' dict" "$plist_path" 2>/dev/null
-        "$PBUDDY" -c "Add :NSServicesStatus:'$key':enabled_context_menu bool" "$plist_path" 2>/dev/null
+        "$PBUDDY" -c "Add :NSServicesStatus:'$key' dict" "$plist_path" 2>/dev/null || true
+        "$PBUDDY" -c "Add :NSServicesStatus:'$key':enabled_context_menu bool" "$plist_path" 2>/dev/null || true
         "$PBUDDY" -c "Set :NSServicesStatus:'$key':enabled_context_menu false" "$plist_path"
-        "$PBUDDY" -c "Add :NSServicesStatus:'$key':enabled_services_menu bool" "$plist_path" 2>/dev/null
+        "$PBUDDY" -c "Add :NSServicesStatus:'$key':enabled_services_menu bool" "$plist_path" 2>/dev/null || true
         "$PBUDDY" -c "Set :NSServicesStatus:'$key':enabled_services_menu false" "$plist_path"
-        "$PBUDDY" -c "Add :NSServicesStatus:'$key':presentation_modes dict" "$plist_path" 2>/dev/null
-        "$PBUDDY" -c "Add :NSServicesStatus:'$key':presentation_modes:ContextMenu bool" "$plist_path" 2>/dev/null
+        "$PBUDDY" -c "Add :NSServicesStatus:'$key':presentation_modes dict" "$plist_path" 2>/dev/null || true
+        "$PBUDDY" -c "Add :NSServicesStatus:'$key':presentation_modes:ContextMenu bool" "$plist_path" 2>/dev/null || true
         "$PBUDDY" -c "Set :NSServicesStatus:'$key':presentation_modes:ContextMenu false" "$plist_path"
-        "$PBUDDY" -c "Add :NSServicesStatus:'$key':presentation_modes:ServicesMenu bool" "$plist_path" 2>/dev/null
+        "$PBUDDY" -c "Add :NSServicesStatus:'$key':presentation_modes:ServicesMenu bool" "$plist_path" 2>/dev/null || true
         "$PBUDDY" -c "Set :NSServicesStatus:'$key':presentation_modes:ServicesMenu false" "$plist_path"
     done
 }
