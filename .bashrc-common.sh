@@ -114,7 +114,7 @@ if tk_is_login_shell; then
 
     # bash: ignore commands that begin with space and duplicate commands
     export HISTCONTROL=erasedups:ignoreboth
-    export HISTIGNORE=bg:clear:exit:fg:history:ll:ls:reset
+    export HISTIGNORE='bg?( *):clear:exit:fg?( *):history?( *):ll?( *):ls?( *):reset'
     export HISTTIMEFORMAT='%F %T '
     export HISTFILESIZE=10000
     export HISTSIZE=10000
