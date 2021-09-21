@@ -1,6 +1,15 @@
 // References:
-// - http://xahlee.info/kbd/osx_keybinding.html
-// - https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/EventOverview/TextDefaultsBindings/TextDefaultsBindings.html
+//
+// * http://xahlee.info/kbd/osx_keybinding.html
+// * https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/EventOverview/TextDefaultsBindings/TextDefaultsBindings.html
+//
+// Key modifiers:
+//
+// * `^`: Control
+// * `~`: Option
+// * `@`: Command
+// * `$`: Shift
+// * `#`: Numeric keypad
 
 {
   // Bind Control+Command+{Down,Left,Right}Arrow to do nothing,

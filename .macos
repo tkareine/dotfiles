@@ -330,7 +330,7 @@ defaults write com.apple.mail SendFormat -string "Plain"
 # iCal: show week numbers
 defaults write com.apple.iCal 'Show Week Numbers' -bool true
 
-# Notes: set additional key shortcuts
+# Notes: set additional keyboard shortcuts; see `Library/KeyBindings/DefaultKeyBinding.dict` for a summary of key modifiers
 defaults write com.apple.Notes NSUserKeyEquivalents -dict \
          'Remove Style' '@~c' \
          'Bulleted List' '@~b' \
@@ -347,6 +347,9 @@ defaults write com.apple.TextEdit PlainTextEncodingForWrite -int 4
 # Google Chrome: disable swipe navigation, because it has bad implementation
 defaults write com.google.Chrome AppleEnableSwipeNavigateWithScrolls -bool false
 defaults write com.google.Chrome.canary AppleEnableSwipeNavigateWithScrolls -bool false
+
+# KeepassXC: set additional keyboard shortcuts; see `Library/KeyBindings/DefaultKeyBinding.dict` for a summary of key modifiers
+defaults write org.keepassxc.keepassxc NSUserKeyEquivalents -dict 'Password Generator' '@g'
 
 # -- Apply changes -----------------------------------------------------------
 
