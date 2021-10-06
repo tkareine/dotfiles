@@ -6,7 +6,8 @@
 -Xms1g
 -Xmx4g
 -XX:+UseG1GC
--XX:+UseStringDeduplication
+# Might cause small lags when writing text
+# -XX:+UseStringDeduplication
 -XX:ReservedCodeCacheSize=512m
 -XX:SoftRefLRUPolicyMSPerMB=50
 -XX:+UseCompressedOops
