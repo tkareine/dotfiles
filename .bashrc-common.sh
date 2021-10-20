@@ -58,12 +58,11 @@ EOF
     tk_current_java_version() {
         [[ -z $JAVA_HOME ]] && return 1
 
-        local version
-        version=${JAVA_HOME%.jdk/*}
-        version=${version##*/}
-        version=${version#jdk}
-
-        echo "$version"
+        if [[ $JAVA_HOME =~ [/-]([[:digit:]]+(\.[[:digit:]]+)*) ]]; then
+            echo "${BASH_REMATCH[1]}"
+        else
+            return 1
+        fi
     }
 
     if [[ -x /usr/local/bin/brew ]]; then
