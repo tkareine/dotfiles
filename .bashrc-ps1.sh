@@ -124,6 +124,7 @@ if [[ -d ~/.bash_completion.d && -x ~/.bash_completion.d ]]; then
     unset file
 fi
 
+# shellcheck disable=SC2154
 if [[ $tk__uname == "Darwin" ]] && ! /usr/bin/ssh-add -l >/dev/null; then
     # ssh: load identities with passwords from user's keychain
     /usr/bin/ssh-add -A 2>/dev/null
