@@ -47,10 +47,15 @@ test_tk_fn_exist() {
     assert_fail 'tk_fn_exist nosuch'
 }
 
-test_tk_version_of_path() {
-    local version
-    version=$(tk_version_of_path /usr/local/share/node-14.4.5)
-    assert_equal "$version" 14.4.5
+test_tk_version_in_path() {
+    assert_equal "$(tk_version_in_path /usr/local/share/node-14)" 14
+    assert_equal "$(tk_version_in_path /usr/local/share/node-14.4.5)" 14.4.5
+    assert_equal "$(tk_version_in_path /usr/local/share/node-14.4.5/bin)" 14.4.5
+    assert_equal "$(tk_version_in_path /usr/local/Cellar/openjdk/17/libexec/openjdk.jdk/Contents/Home)" 17
+    assert_equal "$(tk_version_in_path /usr/local/Cellar/openjdk@11/11.0.12/libexec/openjdk.jdk/Contents/Home)" 11.0.12
+    assert_equal "$(tk_version_in_path /usr/local)" ''
+    assert_equal "$(tk_version_in_path /usr)" ''
+    assert_equal "$(tk_version_in_path /)" ''
 }
 
 test_tk_bm() {

@@ -49,12 +49,11 @@ tk_is_login_shell() {
     shopt -q login_shell
 }
 
-tk_version_of_path() {
-    [[ -z $1 ]] && tk_print_error "tk_version_of_path(): expects path as the parameter" && return 1
-    local version
-    version=${1##*/}
-    version=${version#*-}
-    echo "$version"
+tk_version_in_path() {
+    [[ -z $1 ]] && tk_print_error "tk_version_in_path(): expects path as the parameter" && return 1
+    if [[ $1 =~ [/-]([[:digit:]]+(\.[[:digit:]]+)*) ]]; then
+        echo "${BASH_REMATCH[1]}"
+    fi
 }
 
 : "${tk_bm_num_times:=1000}"

@@ -80,16 +80,11 @@ tk_set_prompt() {
 
     local bin_states=()
 
-    [[ -n $CHNODE_ROOT ]] && bin_states+=("n:$(tk_version_of_path "$CHNODE_ROOT")")
+    [[ -n $CHNODE_ROOT ]] && bin_states+=("n:$(tk_version_in_path "$CHNODE_ROOT")")
 
-    [[ -n $RUBY_ROOT ]] && bin_states+=("r:$(tk_version_of_path "$RUBY_ROOT")")
+    [[ -n $RUBY_ROOT ]] && bin_states+=("r:$(tk_version_in_path "$RUBY_ROOT")")
 
-    # shellcheck disable=SC2154
-    if [[ $tk__uname == "Darwin" ]]; then
-        local bin_java
-        bin_java=$(tk_current_java_version)
-        [[ -n $bin_java ]] && bin_states+=("j:$bin_java")
-    fi
+    [[ -n $JAVA_HOME ]] && bin_states+=("j:$(tk_version_in_path "$JAVA_HOME")")
 
     local bin_summary
     if (( ${#bin_states[@]} > 0 )); then

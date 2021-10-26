@@ -55,16 +55,6 @@ EOF
         export MANPATH=${java_home}/man${manpath:+:$manpath}
     }
 
-    tk_current_java_version() {
-        [[ -z $JAVA_HOME ]] && return 1
-
-        if [[ $JAVA_HOME =~ [/-]([[:digit:]]+(\.[[:digit:]]+)*) ]]; then
-            echo "${BASH_REMATCH[1]}"
-        else
-            return 1
-        fi
-    }
-
     if [[ -x /usr/local/bin/brew ]]; then
         tk__setup_brew() {
             tk__brew_path=$1
