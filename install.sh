@@ -51,7 +51,7 @@ INSTALL_BY_SYMLINKING_DARWIN=(
     .macos
     bin/emacs
     bin/emacsclient
-    'Library/Application Support/JetBrains/IntelliJIdea2021.2/idea.vmoptions'
+    'Library/Application Support/JetBrains/IntelliJIdea2021.3/idea.vmoptions'
 )
 
 print_error() {
