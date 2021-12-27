@@ -2,6 +2,8 @@ CLEAN_FILES ?= $(foreach file,GPATH GRTAGS GTAGS TAGS,test/fixture/gtags/$(file)
 
 INSTALL_ARGS ?=
 
+SHELLCHECK_OPTS := -s bash -e SC1090
+
 TEST_FILES ?= $(wildcard test/unit/*-test.sh test/integration/*-test.sh)
 
 .PHONY: help
@@ -18,7 +20,7 @@ clean:
 	rm -f $(CLEAN_FILES)
 
 .PHONY: lint
-help: SHELL := bash
+lint: SHELL := bash
 lint:
 	shellcheck $$(< .shellcheck-files)
 
