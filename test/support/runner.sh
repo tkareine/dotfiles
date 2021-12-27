@@ -2,27 +2,26 @@
 
 set -euo pipefail
 
-if [[ -z ${TEST_SOURCE:-} ]]; then
-    cat << 'EOF' >&2
-No TEST_SOURCE set.
+__run_tests() {
+    local test_file
+    for test_file in "$@"; do
+        (
+            printf '# %s\n' "$test_file"
+            exec "$SHELL" "$test_file"
+        )
+    done
+}
 
-Usage: TEST_SOURCE=$0 source runner.sh
+if (($# < 1)); then
+    cat << 'EOF' >&2
+No test files to run.
+
+Usage: run-tests.sh file_1 [file_2 ...]
 EOF
 
     exit 2
 fi
 
-__find_test_fns() {
-    grep -E '^test_[a-z0-9_]+ *\(\)' "$1" | sed 's/[^a-z0-9_]*//g' | xargs
-}
+printf 'SHELL=%s (%s)\n' "$SHELL" "$BASH_VERSION"
 
-__run_tests() {
-    local test_fn test_fns
-    test_fns=$(__find_test_fns "$TEST_SOURCE")
-    for test_fn in $test_fns; do
-        echo "- $test_fn"
-        "$test_fn"
-    done
-}
-
-__run_tests
+__run_tests "$@"

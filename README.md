@@ -1,5 +1,7 @@
 # My dotfiles
 
+[![CI](https://github.com/tkareine/dotfiles/workflows/CI/badge.svg)][dotfiles-CI]
+
 My public configuration for selected command line tools, in order to
 synchronize them to computers I work with.
 
@@ -149,5 +151,6 @@ originally.
 [Ruby]: https://www.ruby-lang.org/
 [chnode]: https://github.com/tkareine/chnode
 [chruby]: https://github.com/postmodern/chruby
+[dotfiles-CI]: https://github.com/tkareine/dotfiles/actions?workflow=CI
 [iTerm2]: https://www.iterm2.com/
 [my .emacs.d]: https://github.com/tkareine/emacs.d

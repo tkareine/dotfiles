@@ -70,4 +70,4 @@ test_tk_bm() {
     [[ ${actual[1]} =~ ${exp_lines[1]} ]] || fail_test "didn't match: ${actual[1]}"
 }
 
-TEST_SOURCE=$0 source test/support/runner.sh
+TEST_SOURCE=$0 source test/support/suite.sh

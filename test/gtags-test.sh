@@ -141,7 +141,7 @@ SYMBOLS_GLOBAL_SHOULD_FIND_ZERO=(
 )
 
 test_global_find_symbols() (
-    cd "${0%/*}/../fixture/gtags/" || exit 2
+    cd "${0%/*}/fixture/gtags/" || exit 2
 
     gtags .
 
@@ -154,4 +154,9 @@ test_global_find_symbols() (
     done
 )
 
-TEST_SOURCE=$0 source test/support/runner.sh
+if command -v global &>/dev/null; then
+    TEST_SOURCE=$0 source test/support/suite.sh
+else
+    # shellcheck disable=SC2016
+    printf '[skip] `global` not found\n' >&2
+fi
