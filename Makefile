@@ -1,13 +1,13 @@
-CLEAN_FILES ?= $(foreach file,GPATH GRTAGS GTAGS TAGS,test/fixture/gtags/$(file))
+CLEAN_FILES := $(foreach file,GPATH GRTAGS GTAGS TAGS,test/fixture/gtags/$(file))
 
-INSTALL_ARGS ?=
+INSTALL_ARGS :=
 
-SHELLCHECK_OPTS ?= -s bash -e SC1090
-SHELLCHECK_DOCKER_IMAGE ?= koalaman/shellcheck:stable
+SHELLCHECK_OPTS := -s bash -e SC1090
+SHELLCHECK_DOCKER_IMAGE := koalaman/shellcheck:stable
 
-TEST_RUNNER ?= test/support/runner.sh
-TEST_FILES ?= $(wildcard test/*-test.sh)
-TEST_DOCKER_IMAGES ?= bash!5 bash!4.4
+TEST_RUNNER := test/support/runner.sh
+TEST_FILES := $(wildcard test/*-test.sh)
+TEST_DOCKER_IMAGES := bash!5 bash!4.4
 
 .PHONY: help
 help: SHELL := bash
