@@ -20,6 +20,17 @@ sudo -v
 defaults write com.apple.screensaver askForPassword -int 1
 defaults write com.apple.screensaver askForPasswordDelay -int 60
 
+# Power management states cheat sheet:
+#
+# [active] -(idle timeout)-> [idle] -(sleep timeout)-> [sleep]
+#                                                      or [hibernate] if hibernatemode == 25
+#
+#            ,-(standbydelay timeout)-> [hibernate]
+#           / if standby == 1 and hibernatemode == 3
+# [sleep] -+
+#           \ if autopoweroff == 1
+#            `-(autopoweroffdelay timeout)-> [hibernate]
+
 # Power management: sleep timeouts for all power sources (in minutes)
 sudo pmset -a displaysleep 10 disksleep 20 sleep 20
 
@@ -29,11 +40,12 @@ sudo pmset -b displaysleep 5 disksleep 5 sleep 5
 # Power management: disable Power Nap to conserve power
 sudo pmset -a powernap 0
 
-# Power management: hibernation to disk, power off memory
-sudo pmset -a hibernatemode 25
+# Power management: copy memory to disk, power memory during sleep,
+# power off memory during hibernate
+sudo pmset -a hibernatemode 3
 
-# Power management: enable hibernate, enter hibernate after 1 h (default
-# 3 h)
+# Power management: enable hibernate, enter hibernate after 1 h (in
+# seconds, default 3 h)
 sudo pmset -a standby 1
 sudo pmset -a standbydelay 3600
 
