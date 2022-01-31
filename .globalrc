@@ -1,14 +1,102 @@
-default:\
-        :tc=extensions:\
-        :tc=builtin-parser@/usr/local/etc/gtags.conf:\
-        :tc=pygments-parser@/usr/local/etc/gtags.conf:
+# Test configuration in effect with `gtags --conf`
 
-extensions:\
-        :skip=.git,.idea,.lein-*,.nrepl-port,node_modules/,target/,vendor/,vendors/:\
-        :pygmentslib=$libdir/gtags/pygments-parser.la:\
-        :langmap=CSS\:.css.less.sass.scss:\
+default:\
+        :tc=skip:\
+        :tc=libs:\
+        :tc=builtin-parser:\
+        :tc=pygments-parser:
+
+skip:\
+        :skip=.git,.idea,.lein-*,.nrepl-port,node_modules/,target/,vendor/,vendors/:
+
+libs:\
+        :ctagscom=/usr/local/opt/universal-ctags/bin/ctags:\
+        :ctagslib=$libdir/gtags/universal-ctags.la:\
+        :pygmentslib=$libdir/gtags/pygments-parser.la:
+
+builtin-parser:\
+        :langmap=c\:.c.h,yacc\:.y,asm\:.s.S,java\:.java,cpp\:.c++.cc.hh.cpp.cxx.hxx.hpp.C.H,php\:.php.php3.phtml:
+
+pygments-parser:\
+        :langmap=AppleScript\:.applescript:\
+        :gtags_parser=AppleScript\:$pygmentslib:\
+        :langmap=Awk\:.awk.gawk.mawk:\
+        :gtags_parser=Awk\:$pygmentslib:\
+        :langmap=Bash\:.sh.ksh.bash.ebuild.eclass:\
+        :gtags_parser=Bash\:$pygmentslib:\
+        :langmap=Bat\:.bat.cmd:\
+        :gtags_parser=Bat\:$pygmentslib:\
+        :langmap=C#\:.cs:\
+        :gtags_parser=C#\:$pygmentslib:\
+        :langmap=CSS\:.css.less:\
         :gtags_parser=CSS\:$pygmentslib:\
-        :langmap=JS\:.js.jsx:\
-        :gtags_parser=JS\:$pygmentslib:\
+        :langmap=Csh\:.tcsh.csh:\
+        :gtags_parser=Csh\:$pygmentslib:\
+        :langmap=Clojure\:.clj:\
+        :gtags_parser=Clojure\:$pygmentslib:\
+        :langmap=Common-Lisp\:.cl.lisp.el:\
+        :gtags_parser=Common-Lisp\:$pygmentslib:\
+        :langmap=Dart\:.dart:\
+        :gtags_parser=Dart\:$pygmentslib:\
+        :langmap=ERB\:.erb:\
+        :gtags_parser=ERB\:$pygmentslib:\
+        :langmap=Elixir\:.ex.exs:\
+        :gtags_parser=Elixir\:$pygmentslib:\
+        :langmap=Erlang\:.erl.hrl.es.escript:\
+        :gtags_parser=Erlang\:$pygmentslib:\
+        :langmap=FSharp\:.fs.fsi:\
+        :gtags_parser=FSharp\:$pygmentslib:\
+        :langmap=Gherkin\:.feature:\
+        :gtags_parser=Gherkin\:$pygmentslib:\
+        :langmap=Gnuplot\:.plot.plt:\
+        :gtags_parser=Gnuplot\:$pygmentslib:\
+        :langmap=Go\:.go:\
+        :gtags_parser=Go\:$pygmentslib:\
+        :langmap=Groovy\:.groovy:\
+        :gtags_parser=Groovy\:$pygmentslib:\
+        :langmap=Haskell\:.hs:\
+        :gtags_parser=Haskell\:$pygmentslib:\
+        :langmap=JavaScript\:.js.jsx:\
+        :gtags_parser=JavaScript\:$pygmentslib:\
+        :langmap=Jsp\:.jsp:\
+        :gtags_parser=Jsp\:$pygmentslib:\
+        :langmap=Kotlin\:.kt:\
+        :gtags_parser=Kotlin\:$pygmentslib:\
+        :langmap=Literate-Haskell\:.lhs:\
+        :gtags_parser=Literate-Haskell\:$pygmentslib:\
+        :langmap=Lua\:.lua.wlua:\
+        :gtags_parser=Lua\:$pygmentslib:\
+        :langmap=Matlab\:.m:\
+        :gtags_parser=Matlab\:$pygmentslib:\
+        :langmap=Objective-C\:.m.h:\
+        :gtags_parser=Objective-C\:$pygmentslib:\
+        :langmap=Perl\:.pl.pm:\
+        :gtags_parser=Perl\:$pygmentslib:\
+        :langmap=PowerShell\:.ps1:\
+        :gtags_parser=PowerShell\:$pygmentslib:\
+        :langmap=Prolog\:.prolog.pro.pl:\
+        :gtags_parser=Prolog\:$pygmentslib:\
+        :langmap=Python\:.py.pyw.sc.tac.sage:\
+        :gtags_parser=Python\:$pygmentslib:\
+        :langmap=RHTML\:.rhtml:\
+        :gtags_parser=RHTML\:$pygmentslib:\
+        :langmap=RobotFramework\:.robot:\
+        :gtags_parser=RobotFramework\:$pygmentslib:\
+        :langmap=Ruby\:.rb.rbw.rake.gemspec.rbx.duby:\
+        :gtags_parser=Ruby\:$pygmentslib:\
+        :langmap=Rust\:.rs.rc:\
+        :gtags_parser=Rust\:$pygmentslib:\
+        :langmap=SCSS\:.scss:\
+        :gtags_parser=SCSS\:$pygmentslib:\
+        :langmap=Scala\:.scala:\
+        :gtags_parser=Scala\:$pygmentslib:\
+        :langmap=Scheme\:.scm.ss:\
+        :gtags_parser=Scheme\:$pygmentslib:\
+        :langmap=TypeScript\:.ts:\
+        :gtags_parser=TypeScript\:$pygmentslib:\
+        :langmap=VB.net\:.vb.bas:\
+        :gtags_parser=VB.net\:$pygmentslib:\
+        :langmap=XSLT\:.xsl.xslt.xpl:\
+        :gtags_parser=XSLT\:$pygmentslib:\
         :langmap=YAML\:.yml.yaml:\
         :gtags_parser=YAML\:$pygmentslib:

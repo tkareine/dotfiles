@@ -149,13 +149,6 @@ class JsClassStatementNoExtends {
     return 42
   }
 
-  jsMethodMultilineParams(
-    a,
-    b
-  ) {
-    return 42
-  }
-
   JsMethodCapitalized() {
     return 42
   }

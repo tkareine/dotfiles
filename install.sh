@@ -22,7 +22,7 @@ INSTALL_BY_SYMLINKING_COMMON=(
     .bashrc-common.sh
     .bashrc-ps1.sh
     .bashrc-support.sh
-    .ctags
+    .ctags.d/custom.ctags
     .dircolors
     .eslintrc.json
     .gemrc

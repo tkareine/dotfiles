@@ -132,12 +132,6 @@ SYMBOLS_GLOBAL_SHOULD_FIND_ZERO=(
     'scss-class-#{$scss-str}'
 
     jsFunctionCall
-
-    # must not find, otherwise would make definition out of a function call
-    jsMethodMultilineParams
-
-    # must not leak from JS method definition
-    'function'
 )
 
 test_global_find_symbols() (

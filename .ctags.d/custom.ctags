@@ -1,0 +1,50 @@
+--exclude=*~
+--exclude=.idea
+--exclude=.lein-*
+--exclude=.nrepl-port
+--exclude=*.min.css
+--exclude=*.min.js
+--exclude=node_modules
+--exclude=target
+--exclude=vendor
+--exclude=vendors
+
+# function statement
+--regex-JavaScript=/(^|[ \t]+)(async[ \t]+)?\(?function[ \t]*(\*[ \t]*)?([A-Za-z_$][A-Za-z0-9_$]+)[ \t\(]/\4/f/
+
+# assign function to something
+--regex-JavaScript=/(^|[ \t]+)([A-Za-z_$][A-Za-z0-9_$]+)[ \t]*=[ \t]*(async[ \t]+)?function[ \t]*(\*[ \t]*)?\(/\2/f/
+
+# assign null to variable
+--regex-JavaScript=/(^|[ \t]+)([A-Za-z_$][A-Za-z0-9_$]+)[ \t]*=[ \t]*null([;, \t]|$)/\2/v/
+
+# set property to something
+--regex-JavaScript=/\.([A-Za-z_$][A-Za-z0-9._$]+)[ \t]*=/\1/M/
+
+# JSX property at declaration site
+--regex-JavaScript=/(^|[ \t]+)([A-Za-z][A-Za-z0-9_$]+)=\{/\2/p/
+
+--regex-SCSS=/^[ \t]*([A-Za-z_][A-Za-z0-9_-]+)?\.([A-Za-z_][A-Za-z0-9_-]+)[ \t]*[,{]/\2/c/
+
+--langdef=Less
+--map-Less=+.less
+
+--kinddef-Less=i,id,identities
+--regex-Less=/^[ \t]*([A-Za-z_][A-Za-z0-9_-]+)?#([A-Za-z_][A-Za-z0-9_-]+)[ \t]*[,{]/\2/i/
+
+--kinddef-Less=c,class,classes
+--regex-Less=/^[ \t]*([A-Za-z_][A-Za-z0-9_-]+)?\.([A-Za-z_][A-Za-z0-9_-]+)[ \t]*[,{]/\2/c/
+
+--kinddef-Less=v,variable,variables
+--regex-Less=/^[ \t]*@([A-Za-z_][A-Za-z0-9_-]+):/\1/v/
+
+--kinddef-Yaml=m,mapping,mappings
+--regex-Yaml=/^[ \t]*([A-Za-z0-9.\-_$]+):/\1/m/
+--regex-Yaml=/^[ \t]*'([^']+)':/\1/m/
+--regex-Yaml=/^[ \t]*"([^"]+)":/\1/m/
+
+--kinddef-Yaml=r,register,Ansible registers
+--regex-Yaml=/^[ \t]*register:[ \t]*([A-Za-z0-9_$]+)/\1/r/
+--regex-Yaml=/^[ \t]*['"]?register['"]?:[ \t]*([A-Za-z0-9_$]+)/\1/r/
+--regex-Yaml=/^[ \t]*['"]?register['"]?:[ \t]*'([^']+)'/\1/r/
+--regex-Yaml=/^[ \t]*['"]?register['"]?:[ \t]*"([^"]+)"/\1/r/

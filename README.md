@@ -75,15 +75,15 @@ The script is originally based on [Mathias Bynens' .macos] script.
 
 ### GNU Global configuration
 
-When you configure [GNU Global] to use Exuberant Ctags as a symbol
+When you configure [GNU Global] to use [Universal Ctags] as a symbol
 parser, it's possible to extend the functionality of Global with the
-regex facility of Ctags. For instance, I've added extra support for
-YAML, Sass (SCSS), and JavaScript files. See [.global](.globalrc) and
-[.ctags](.ctags).
+regex based [parser definition language][universal-ctags-optlib] of
+Ctags. For instance, I've added extra support for Yaml, JavaScrip, SCSS,
+and Less files. See [.globalrc](.globalrc) and
+[custom.ctags](.ctags.d/custom.ctags).
 
 The downside of regexes is that they're hard to maintain. That's why
-there's an extensive test suite in
-[test/integration/gtags-test.sh](test/integration/gtags-test.sh).
+there's an extensive test suite in [gtags-test.sh](test/gtags-test.sh).
 
 Installing Global with Homebrew:
 
@@ -151,6 +151,8 @@ originally.
 [Ruby]: https://www.ruby-lang.org/
 [chnode]: https://github.com/tkareine/chnode
 [chruby]: https://github.com/postmodern/chruby
+[universal-ctags-optlib]: https://docs.ctags.io/en/latest/man/ctags-optlib.7.html
 [dotfiles-CI]: https://github.com/tkareine/dotfiles/actions?workflow=CI
 [iTerm2]: https://www.iterm2.com/
 [my .emacs.d]: https://github.com/tkareine/emacs.d
+[Universal Ctags]: https://docs.ctags.io/en/latest/

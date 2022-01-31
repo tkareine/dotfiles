@@ -75,6 +75,6 @@ Targets:
   install      Install dotfiles; for more options, see \`make install INSTALL_ARGS=-h\`
   lint         Run ShellCheck on source files
   lint-docker  Run ShellCheck on source files in a Docker container
-  test         Run tests (requires install) (select: TEST_FILES=test/unit/*-test.sh)
+  test         Run tests (requires install) (select: TEST_FILES=test/*-test.sh)
   test-docker  Run tests with various Bash versions in Docker containers
 endef
