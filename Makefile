@@ -7,7 +7,8 @@ SHELLCHECK_DOCKER_IMAGE := koalaman/shellcheck:stable
 
 TEST_RUNNER := test/support/runner.sh
 TEST_FILES := $(wildcard test/*-test.sh)
-TEST_DOCKER_IMAGES := bash!5 bash!4.4
+TEST_BASH_DOCKER_IMAGES := bash!5 bash!4.4
+TEST_GTAGS_DOCKER_IMAGE := debian!11
 
 .PHONY: help
 help: SHELL := bash
@@ -44,10 +45,13 @@ test:
 	$(TEST_RUNNER) $(TEST_FILES)
 
 .PHONY: test-docker
-test-docker: $(TEST_DOCKER_IMAGES)
+test-docker: test-bash-docker test-gtags-docker
 
-.PHONY: $(TEST_DOCKER_IMAGES)
-$(TEST_DOCKER_IMAGES):
+.PHONY: test-bash-docker
+test-bash-docker: $(TEST_BASH_DOCKER_IMAGES)
+
+.PHONY: $(TEST_BASH_DOCKER_IMAGES)
+$(TEST_BASH_DOCKER_IMAGES):
 	docker run \
 	    --rm \
 	    -t \
@@ -55,16 +59,36 @@ $(TEST_DOCKER_IMAGES):
 	    -w /dotfiles \
 	    -e SHELL=/usr/local/bin/bash \
 	    $(subst !,:,$@) \
-	    bash -c "$(subst $(newline),; ,$(test_docker_cmds))"
+	    bash -c "$(subst $(newline),; ,$(test_bash_docker_cmds))"
+
+.PHONY: test-gtags-docker
+test-gtags-docker:
+	docker run \
+	  --rm \
+	  -t \
+	    -v "$(CURDIR):/dotfiles" \
+	    -w /dotfiles \
+	    -e SHELL=/bin/bash \
+	    $(subst !,:,$(TEST_GTAGS_DOCKER_IMAGE)) \
+	    bash -c "$(subst $(newline),; ,$(test_gtags_docker_cmds))"
 
 define newline
 
 
 endef
 
-define test_docker_cmds
-./install.sh $(INSTALL_ARGS)
+define test_bash_docker_cmds
+./install.sh -f $(INSTALL_ARGS)
 $(TEST_RUNNER) $(TEST_FILES)
+endef
+
+define test_gtags_docker_cmds
+apt-get update
+apt-get install --yes --no-install-recommends make universal-ctags python3-pygments global
+mkdir -p /usr/local/opt/universal-ctags/bin
+ln -s /usr/bin/ctags /usr/local/opt/universal-ctags/bin/ctags
+./install.sh -f $(INSTALL_ARGS)
+bash --login -c '$(TEST_RUNNER) test/gtags-test.sh'
 endef
 
 define help_text
@@ -76,5 +100,5 @@ Targets:
   lint         Run ShellCheck on source files
   lint-docker  Run ShellCheck on source files in a Docker container
   test         Run tests (requires install) (select: TEST_FILES=test/*-test.sh)
-  test-docker  Run tests with various Bash versions in Docker containers
+  test-docker  Run tests in Docker containers
 endef
