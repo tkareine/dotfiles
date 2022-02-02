@@ -102,5 +102,5 @@ pygments-parser:\
         :gtags_parser=VB.net\:$pygmentslib:\
         :langmap=XSLT\:.xsl.xslt.xpl:\
         :gtags_parser=XSLT\:$pygmentslib:\
-        :langmap=YAML\:.yml.yaml:\
-        :gtags_parser=YAML\:$pygmentslib:
+        :langmap=Yaml\:.yml.yaml:\
+        :gtags_parser=Yaml\:$pygmentslib:

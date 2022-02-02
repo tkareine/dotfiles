@@ -1,9 +1,13 @@
+# Inspect excluded files: ctags --list-excludes
+# Inspect languages and their file suffixes: ctags --list-maps
+# Inspect kinds: ctags --list-kinds-full
+
+--exclude=*.min.css
+--exclude=*.min.js
 --exclude=*~
 --exclude=.idea
 --exclude=.lein-*
 --exclude=.nrepl-port
---exclude=*.min.css
---exclude=*.min.js
 --exclude=node_modules
 --exclude=target
 --exclude=vendor
@@ -37,6 +41,8 @@
 
 --kinddef-Less=v,variable,variables
 --regex-Less=/^[ \t]*@([A-Za-z_][A-Za-z0-9_-]+):/\1/v/
+
+--map-Yaml=+.yaml
 
 --kinddef-Yaml=m,mapping,mappings
 --regex-Yaml=/^[ \t]*([A-Za-z0-9.\-_$]+):/\1/m/
