@@ -64,8 +64,8 @@ $(TEST_BASH_DOCKER_IMAGES):
 .PHONY: test-gtags-docker
 test-gtags-docker:
 	docker run \
-	  --rm \
-	  -t \
+	    --rm \
+	    -t \
 	    -v "$(CURDIR):/dotfiles" \
 	    -w /dotfiles \
 	    -e SHELL=/bin/bash \
