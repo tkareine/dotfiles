@@ -14,4 +14,4 @@ jobs:
       - name: Run linter
         run: make lint-docker
       - name: Run tests
-        run: make test-docker
+        run: make test-bash-docker
