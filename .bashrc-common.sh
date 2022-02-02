@@ -98,7 +98,6 @@ if tk_is_login_shell; then
     export MANPATH=:
 
     # localization
-    export LC_ALL=en_US.UTF-8
     export LANG=en_US.UTF-8
 
     # bash: ignore commands that begin with space and duplicate commands
