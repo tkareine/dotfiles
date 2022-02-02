@@ -14,7 +14,7 @@ skip:\
         :skip=.git/,gtags.files,.idea/,.lein-*,.nrepl-port,node_modules/,TAGS,tags,target/,vendor/,vendors/,*~,*.bak,*.bz2,*.gz,*.lzh,*.xz,*.Z,*.zip,*.tgz,*.min.css,*.min.js:
 
 libs:\
-        :ctagscom=/usr/local/opt/universal-ctags/bin/ctags:\
+        :ctagscom=ctags:\
         :ctagslib=$libdir/gtags/universal-ctags.la:\
         :pygmentslib=$libdir/gtags/pygments-parser.la:
 

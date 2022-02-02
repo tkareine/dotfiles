@@ -78,15 +78,15 @@ define newline
 endef
 
 define test_bash_docker_cmds
+set -x
 ./install.sh -f $(INSTALL_ARGS)
 $(TEST_RUNNER) $(TEST_FILES)
 endef
 
 define test_gtags_docker_cmds
+set -x
 apt-get update
-apt-get install --yes --no-install-recommends make universal-ctags python3-pygments global
-mkdir -p /usr/local/opt/universal-ctags/bin
-ln -s /usr/bin/ctags /usr/local/opt/universal-ctags/bin/ctags
+apt-get install --yes --no-install-recommends --quiet make universal-ctags python3-pygments global
 ./install.sh -f $(INSTALL_ARGS)
 bash --login -c '$(TEST_RUNNER) test/gtags-test.sh'
 endef
