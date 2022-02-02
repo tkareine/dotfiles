@@ -7,7 +7,7 @@ default:\
         :tc=pygments-parser:
 
 skip:\
-        :skip=.git,.idea,.lein-*,.nrepl-port,node_modules/,target/,vendor/,vendors/:
+        :skip=.git/,gtags.files,.idea/,.lein-*,.nrepl-port,node_modules/,TAGS,tags,target/,vendor/,vendors/,*~,*.bak,*.bz2,*.gz,*.lzh,*.xz,*.Z,*.zip,*.tgz,*.min.css,*.min.js:
 
 libs:\
         :ctagscom=/usr/local/opt/universal-ctags/bin/ctags:\
