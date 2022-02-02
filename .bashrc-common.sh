@@ -119,6 +119,9 @@ if tk_is_login_shell; then
     export LESS=-iRWMFX
     export PAGER=less
 
+    # GNU Global
+    export GTAGS_OPTIONS="--accept-dotfiles"
+
     # git: prompt configuration
     export GIT_PS1_SHOWDIRTYSTATE=true
     export GIT_PS1_SHOWSTASHSTATE=

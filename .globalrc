@@ -1,4 +1,8 @@
-# Test configuration in effect with `gtags --conf`
+# See configuration in effect: gtags --conf
+#
+# Inspect tag file creation: gtags --explain -C test/fixture/gtags .
+#
+# Inspect tag file content: global -x .
 
 default:\
         :tc=skip:\

@@ -15,6 +15,8 @@ global_should_find() {
 }
 
 SYMBOLS_GLOBAL_SHOULD_FIND_ONE=(
+    dot_sh_fun
+
     less-var-str
     less-var-font-size
     less-id-line1
