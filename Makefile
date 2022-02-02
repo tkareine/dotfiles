@@ -94,11 +94,13 @@ endef
 define help_text
 Targets:
 
-  help         Show this guide
-  clean        Remove test artifacts
-  install      Install dotfiles; for more options, see \`make install INSTALL_ARGS=-h\`
-  lint         Run ShellCheck on source files
-  lint-docker  Run ShellCheck on source files in a Docker container
-  test         Run tests (requires install) (select: TEST_FILES=test/*-test.sh)
-  test-docker  Run tests in Docker containers
+  help                Show this guide
+  clean               Remove test artifacts
+  install             Install dotfiles; for more options, see \`make install INSTALL_ARGS=-h\`
+  lint                Run ShellCheck on source files
+  lint-docker         Run ShellCheck on source files in a Docker container
+  test                Run tests (requires install) (select: TEST_FILES=test/*-test.sh)
+  test-docker         Run tests in Docker containers
+  test-bash-docker    Run Bash specific tests in Docker containers
+  test-gtags-docker   Run Bash specific tests in Docker containers
 endef
