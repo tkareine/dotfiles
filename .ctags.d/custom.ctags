@@ -1,5 +1,7 @@
 # Inspect excluded files: ctags --list-excludes
+#
 # Inspect languages and their file suffixes: ctags --list-maps
+#
 # Inspect kinds: ctags --list-kinds-full
 
 --exclude=*.min.css
