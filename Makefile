@@ -34,7 +34,7 @@ lint-docker:
 	docker run \
 	    --rm \
 	    -t \
-	    -v "$(CURDIR):/dotfiles" \
+	    -v "$(CURDIR):/dotfiles:ro" \
 	    -w /dotfiles \
 	    -e SHELLCHECK_OPTS="$(SHELLCHECK_OPTS)" \
 	    $(SHELLCHECK_DOCKER_IMAGE) \
@@ -55,7 +55,7 @@ $(TEST_BASH_DOCKER_IMAGES):
 	docker run \
 	    --rm \
 	    -t \
-	    -v "$(CURDIR):/dotfiles" \
+	    -v "$(CURDIR):/dotfiles:ro" \
 	    -w /dotfiles \
 	    -e SHELL=/usr/local/bin/bash \
 	    $(subst !,:,$@) \
@@ -66,7 +66,8 @@ test-gtags-docker:
 	docker run \
 	    --rm \
 	    -t \
-	    -v "$(CURDIR):/dotfiles" \
+	    -v "$(CURDIR):/dotfiles:ro" \
+	    -v "$(CURDIR)/test/fixture:/dotfiles/test/fixture" \
 	    -w /dotfiles \
 	    -e SHELL=/bin/bash \
 	    $(subst !,:,$(TEST_GTAGS_DOCKER_IMAGE)) \
@@ -80,7 +81,7 @@ endef
 define test_bash_docker_cmds
 set -x
 ./install.sh -f $(INSTALL_ARGS)
-$(TEST_RUNNER) $(TEST_FILES)
+$(TEST_RUNNER) test/bash*-test.sh
 endef
 
 define test_gtags_docker_cmds
@@ -102,5 +103,5 @@ Targets:
   test                Run tests (requires install) (select: TEST_FILES=test/*-test.sh)
   test-docker         Run tests in Docker containers
   test-bash-docker    Run Bash specific tests in Docker containers
-  test-gtags-docker   Run Bash specific tests in Docker containers
+  test-gtags-docker   Run GNU Global specific tests in a Docker container
 endef
