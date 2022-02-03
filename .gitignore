@@ -10,9 +10,13 @@
 .nrepl-port
 .projectile
 GPATH
+!**/gpath/
 GRTAGS
+!**/grtags/
 GTAGS
-TAGS
+!**/gtags/
 gtags.conf
 gtags.files
+TAGS
 tags
+!**/tags/
