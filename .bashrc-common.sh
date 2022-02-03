@@ -120,6 +120,7 @@ if tk_is_login_shell; then
 
     # GNU Global
     export GTAGS_OPTIONS="--accept-dotfiles"
+    export GTAGSLABEL=default
 
     # git: prompt configuration
     export GIT_PS1_SHOWDIRTYSTATE=true
