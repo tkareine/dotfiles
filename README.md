@@ -149,10 +149,10 @@ originally.
 [Mathias Bynens' .macos]: https://github.com/mathiasbynens/dotfiles/blob/master/.macos
 [Node.js]: https://nodejs.org/en/
 [Ruby]: https://www.ruby-lang.org/
+[Universal Ctags]: https://docs.ctags.io/en/latest/
 [chnode]: https://github.com/tkareine/chnode
 [chruby]: https://github.com/postmodern/chruby
-[universal-ctags-optlib]: https://docs.ctags.io/en/latest/man/ctags-optlib.7.html
 [dotfiles-CI]: https://github.com/tkareine/dotfiles/actions?workflow=CI
 [iTerm2]: https://www.iterm2.com/
 [my .emacs.d]: https://github.com/tkareine/emacs.d
-[Universal Ctags]: https://docs.ctags.io/en/latest/
+[universal-ctags-optlib]: https://docs.ctags.io/en/latest/man/ctags-optlib.7.html
