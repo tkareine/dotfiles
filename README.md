@@ -30,7 +30,7 @@ programming skills in shape.
 
 A screenshot from [iTerm2], showing the Bash prompt:
 
-<img src="https://github.com/tkareine/dotfiles/raw/master/images/bash-prompt-iterm2-input.png" title="My Bash prompt in iTerm2" alt="My Bash prompt in iTerm2" width="610">
+<img src="https://github.com/tkareine/dotfiles/raw/master/images/bash-prompt-iterm2-input.png" title="My Bash prompt in iTerm2" alt="My Bash prompt in iTerm2" width="584">
 
 The font in use is [Input][Input font]
 ([customization](https://input.fontbureau.com/download/index.html?size=14&language=python&theme=solarized-dark&family=InputMono&width=300&weight=400&line-height=1.1&a=ss&g=ss&i=serifs_round&l=serifs_round&zero=0&asterisk=height&braces=straight&preset=consolas&customize=please)).
