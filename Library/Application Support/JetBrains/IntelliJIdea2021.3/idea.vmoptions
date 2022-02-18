@@ -4,7 +4,7 @@
 
 -server
 -Xms1g
--Xmx6g
+-Xmx4g
 # Might cause small lags when writing text
 # -XX:+UseStringDeduplication
 -Xshare:auto
