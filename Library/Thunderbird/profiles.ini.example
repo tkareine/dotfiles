@@ -1,0 +1,13 @@
+[Profile0]
+Name=tkareine
+IsRelative=1
+Path=Profiles/tkareine
+Default=1
+
+[General]
+StartWithLastProfile=1
+Version=2
+
+[Install712DAF5A23ABECDC]
+Default=Profiles/tkareine
+

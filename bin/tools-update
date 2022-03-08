@@ -1,0 +1,79 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+do_update() {
+    local tool=$1
+    local cmd=$2
+    local is_first=${3:-0}
+
+    if [[ $is_first != "1" ]]; then
+        echo -en "\\n\\n"
+    fi
+
+    echo -en "=== Update $tool ===\\n\\n"
+
+    if ! $cmd; then
+        echo -e "\\nFailed to update: $tool" >&2
+        exit 2
+    fi
+}
+
+do_update_git_project() {
+    local path=$1
+
+    (
+        cd "$path"
+
+        if [[ $(git rev-parse --abbrev-ref --verify HEAD) != "master" ]]; then
+            echo "unexpected git branch: $(git rev-parse --abbrev-ref HEAD)" >&2
+            exit 1
+        fi
+
+        if ! git status -s | wc -l | grep -q '\<0\>'; then
+            echo "unclean git worktree:" >&2
+            git status -s
+            exit 1
+        fi
+
+        if ! git pull --ff-only origin master; then
+            exit 1
+        fi
+
+        git gc --quiet
+    )
+}
+
+update_dotfiles() {
+    do_update_git_project ~/Projects/dotfiles
+}
+
+update_emacsd() {
+    local path=~/.emacs.d
+    do_update_git_project "$path"
+    (
+        cd "$path"
+        make compile
+        make upgrade-packages
+    )
+}
+
+update_npm() {
+    npm update -g
+}
+
+update_rubygems() {
+    gem update --system && gem update && gem clean --silent
+}
+
+update_brew() {
+    brew update && \
+        brew upgrade && \
+        brew cleanup -s
+}
+
+do_update "dotfiles" update_dotfiles 1
+do_update ".emacs.d" update_emacsd
+do_update "npm"      update_npm
+do_update "RubyGems" update_rubygems
+do_update "Homebrew" update_brew

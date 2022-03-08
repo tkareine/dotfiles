@@ -44,6 +44,7 @@ INSTALL_BY_SYMLINKING_COMMON=(
     bin/psql-jq
     bin/ssl-tool
     bin/teebug
+    bin/tools-update
     bin/yaml-to-json
 )
 
@@ -51,7 +52,12 @@ INSTALL_BY_SYMLINKING_DARWIN=(
     .macos
     bin/emacs
     bin/emacsclient
+    'Library/Application Support/Firefox/Profiles/tkareine/user.js'
+    'Library/Application Support/Firefox/profiles.ini.example'
     'Library/Application Support/JetBrains/IntelliJIdea2021.3/idea.vmoptions'
+    'Library/Application Support/iTerm2/DynamicProfiles/dynamic-profiles.json'
+    Library/Thunderbird/Profiles/tkareine/user.js
+    Library/Thunderbird/profiles.ini.example
 )
 
 print_error() {

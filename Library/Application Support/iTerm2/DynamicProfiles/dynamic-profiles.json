@@ -1,0 +1,58 @@
+{
+  "Profiles": [
+    {
+      "Name": "prod-env",
+      "Guid": "prod-env",
+      "Background Color": {
+        "Red Component": 0.157562255859375,
+        "Color Space": "sRGB",
+        "Blue Component": 0.028218203689903021,
+        "Alpha Component": 1,
+        "Green Component": 0.034281206506899239
+      },
+      "Cursor Guide Color": {
+        "Red Component": 0.34588623046875,
+        "Color Space": "sRGB",
+        "Blue Component": 0.14209962263703346,
+        "Alpha Component": 0.50196078431372548,
+        "Green Component": 0.14827497438950968
+      }
+    },
+    {
+      "Name": "test-env",
+      "Guid": "test-env",
+      "Background Color": {
+        "Red Component": 0.036261033266782761,
+        "Color Space": "sRGB",
+        "Blue Component": 0.104705810546875,
+        "Alpha Component": 1,
+        "Green Component": 0.059268823532945762
+      },
+      "Cursor Guide Color": {
+        "Red Component": 0.14029646292328835,
+        "Color Space": "sRGB",
+        "Blue Component": 0.252685546875,
+        "Alpha Component": 0.50196078431372548,
+        "Green Component": 0.1768229215941792
+      }
+    },
+    {
+      "Name": "play-env",
+      "Guid": "play-env",
+      "Background Color": {
+        "Red Component": 0.058323067612946033,
+        "Color Space": "sRGB",
+        "Blue Component": 0.059177324881806312,
+        "Alpha Component": 1,
+        "Green Component": 0.09967041015625
+      },
+      "Cursor Guide Color": {
+        "Red Component": 0.17233788967132568,
+        "Color Space": "sRGB",
+        "Blue Component": 0.17750599167563696,
+        "Alpha Component": 0.50196078431372548,
+        "Green Component": 0.22918701171875
+      }
+    }
+  ]
+}
