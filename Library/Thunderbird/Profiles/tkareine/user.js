@@ -1,6 +1,7 @@
 // Thunderbird user preferences
 //
-// To test, run in terminal:
+// In order to test validity of preferences, run in terminal:
+//
 // /Applications/Thunderbird.app/Contents/MacOS/thunderbird
 //
 // Semicolons ending JavaScript statements are mandatory.
@@ -22,8 +23,9 @@ user_pref("mail.ui.display.dateformat.default", 2);
 // Collect outgoing email addresses automatically.
 user_pref("mail.collect_email_address_outgoing", true);
 
-// Use Do Not Track header.
-user_pref("privacy.donottrackheader.enabled", true);
+// Disable sending DNT (Do Not Track) header on requests as it can be
+// used for fingerprinting.
+user_pref("privacy.donottrackheader.enabled", false);
 
 // Don't allow loading remote content in messages.
 user_pref("mailnews.message_display.disable_remote_image", true);
