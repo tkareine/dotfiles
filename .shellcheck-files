@@ -6,5 +6,6 @@ bin/git-short-rev
 bin/psql-jq
 bin/ssl-tool
 bin/teebug
+bin/tools-update
 test/*.sh
 test/**/*.sh
