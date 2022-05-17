@@ -1,0 +1,32 @@
+#!/usr/bin/env ruby
+
+require "optparse"
+require "yaml"
+require "json"
+
+opt_parser = OptionParser.new do |opt|
+  opt.banner = <<~END
+    Convert YAML to JSON.
+
+    Usage: #{File.basename(__FILE__)} [yamlfile] [options]
+
+    Reads input from STDIN if yamlfile is not given.
+  END
+
+  opt.separator("\n")
+
+  opt.on("-h", "--help", "Print this help") do
+    puts opt_parser
+    exit 1
+  end
+end
+
+opt_parser.parse!
+
+yaml_data = String.new(capacity: 8 * 1024)
+
+ARGF.each_line do |line|
+  yaml_data << line << "\n"
+end
+
+puts JSON.pretty_generate(YAML.safe_load(yaml_data))

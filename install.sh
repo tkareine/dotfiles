@@ -45,7 +45,7 @@ INSTALL_BY_SYMLINKING_COMMON=(
     bin/ssl-tool
     bin/teebug
     bin/tools-update
-    bin/yaml-to-json
+    bin/yaml2json
 )
 
 INSTALL_BY_SYMLINKING_DARWIN=(
