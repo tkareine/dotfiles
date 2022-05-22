@@ -1,4 +1,6 @@
-ARGV.concat %w{--readline --prompt-mode simple}
+# frozen_string_literal: true
+
+ARGV.concat %w[--readline --prompt-mode simple]
 
 require "irb/completion"
 require "irb/ext/save-history"
@@ -18,13 +20,13 @@ def time(times = 1)
 end
 
 # From <http://github.com/rtomayko/dotfiles/blob/rtomayko/.irbrc>
-def local_methods(obj=self)
+def local_methods(obj = self)
   (obj.methods - obj.class.superclass.instance_methods).sort
 end
 
-def ls(obj=self)
+def ls(obj = self)
   width = `stty size 2>/dev/null`.split(/\s+/, 2).last.to_i
-  width = 80 if width == 0
+  width = 80 if width.zero?
   local_methods(obj).each_slice(3) do |meths|
     pattern = "%-#{width / 3}s" * meths.length
     puts pattern % meths
