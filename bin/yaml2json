@@ -1,17 +1,18 @@
 #!/usr/bin/env ruby
+# frozen_string_literal: true
 
 require "optparse"
 require "yaml"
 require "json"
 
 opt_parser = OptionParser.new do |opt|
-  opt.banner = <<~END
+  opt.banner = <<~DOC
     Convert YAML to JSON.
 
     Usage: #{File.basename(__FILE__)} [yamlfile] [options]
 
     Reads input from STDIN if yamlfile is not given.
-  END
+  DOC
 
   opt.separator("\n")
 

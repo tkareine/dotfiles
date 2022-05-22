@@ -7,8 +7,10 @@ SHELLCHECK_DOCKER_IMAGE := koalaman/shellcheck:stable
 
 TEST_RUNNER := test/support/runner.sh
 TEST_FILES := $(wildcard test/*-test.sh)
+TEST_BASH_FILES := $(wildcard test/bash*-test.sh)
 TEST_BASH_DOCKER_IMAGES := bash!5 bash!4.4
-TEST_GTAGS_DOCKER_IMAGE := debian!11
+TEST_DEBIAN_FILES := test/gtags-test.sh test/yaml2json-test.sh
+TEST_DEBIAN_DOCKER_IMAGE := debian!11
 
 .PHONY: help
 help: SHELL := bash
@@ -45,7 +47,7 @@ test:
 	$(TEST_RUNNER) $(TEST_FILES)
 
 .PHONY: test-docker
-test-docker: test-bash-docker test-gtags-docker
+test-docker: test-bash-docker test-debian-docker
 
 .PHONY: test-bash-docker
 test-bash-docker: $(TEST_BASH_DOCKER_IMAGES)
@@ -61,8 +63,8 @@ $(TEST_BASH_DOCKER_IMAGES):
 	    $(subst !,:,$@) \
 	    bash -c "$(subst $(newline),; ,$(test_bash_docker_cmds))"
 
-.PHONY: test-gtags-docker
-test-gtags-docker:
+.PHONY: test-debian-docker
+test-debian-docker:
 	docker run \
 	    --rm \
 	    -t \
@@ -70,8 +72,8 @@ test-gtags-docker:
 	    -v "$(CURDIR)/test/fixture:/dotfiles/test/fixture" \
 	    -w /dotfiles \
 	    -e SHELL=/bin/bash \
-	    $(subst !,:,$(TEST_GTAGS_DOCKER_IMAGE)) \
-	    bash -c "$(subst $(newline),; ,$(test_gtags_docker_cmds))"
+	    $(subst !,:,$(TEST_DEBIAN_DOCKER_IMAGE)) \
+	    bash -c "$(subst $(newline),; ,$(test_debian_docker_cmds))"
 
 define newline
 
@@ -81,15 +83,15 @@ endef
 define test_bash_docker_cmds
 set -x
 ./install.sh -f $(INSTALL_ARGS)
-$(TEST_RUNNER) test/bash*-test.sh
+$(TEST_RUNNER) $(TEST_BASH_FILES)
 endef
 
-define test_gtags_docker_cmds
+define test_debian_docker_cmds
 set -x
 apt-get update
-apt-get install --yes --no-install-recommends --quiet make universal-ctags python3-pygments global
+apt-get install --yes --no-install-recommends --quiet make universal-ctags python3-pygments global ruby
 ./install.sh -f $(INSTALL_ARGS)
-bash --login -c '$(TEST_RUNNER) test/gtags-test.sh'
+bash --login -c '$(TEST_RUNNER) $(TEST_DEBIAN_FILES)'
 endef
 
 define help_text
@@ -103,5 +105,5 @@ Targets:
   test                Run tests (requires install) (select: TEST_FILES=test/*-test.sh)
   test-docker         Run tests in Docker containers
   test-bash-docker    Run Bash specific tests in Docker containers
-  test-gtags-docker   Run GNU Global specific tests in a Docker container
+  test-debian-docker  Run tests requiring complex dependencies in a Docker container
 endef
