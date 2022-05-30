@@ -59,7 +59,7 @@ update_emacsd() {
 }
 
 update_npm() {
-    npm update -g --ignore-scripts
+    npm update --location=global --ignore-scripts
 }
 
 update_rubygems() {
