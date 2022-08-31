@@ -8,4 +8,3 @@
 # Might cause small lags when writing text
 # -XX:+UseStringDeduplication
 -Xshare:auto
--Dsplash=true
