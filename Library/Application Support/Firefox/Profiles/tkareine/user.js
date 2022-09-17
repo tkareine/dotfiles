@@ -65,14 +65,6 @@ user_pref("network.trr.uri", "https://mozilla.cloudflare-dns.com/dns-query");
 // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie/SameSite
 user_pref("network.cookie.sameSite.laxByDefault", true);
 
-// Disable RTCPeerConnection of the WebRTC API. Prevents leaking source
-// IP address.
-//
-// Read more:
-// - https://wiki.mozilla.org/Media/WebRTC/Privacy
-// - https://ipleak.net/
-user_pref("media.peerconnection.enabled", false);
-
 // Disable sending DNT (Do Not Track) header on requests as it can be
 // used for fingerprinting.
 //
