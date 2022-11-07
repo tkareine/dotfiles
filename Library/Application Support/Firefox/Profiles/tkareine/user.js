@@ -14,6 +14,11 @@
 user_pref("browser.gesture.swipe.left", "cmd_scrollLeft");
 user_pref("browser.gesture.swipe.right", "cmd_scrollRight");
 
+// Disable double tap to zoom
+//
+// Read more: https://support.mozilla.org/en-US/questions/1317872
+user_pref("apz.allow_double_tap_zooming", false);
+
 // Disable browser telemetry
 //
 // Read more:
