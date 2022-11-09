@@ -68,7 +68,7 @@ separate shells simultaneously.
 
 ### macOS configuration
 
-The [.macos](.macos) script configures macOS quite extensively,
+The [.macos.sh](.macos.sh) script configures macOS quite extensively,
 considering what's possible with the `defaults` tool and plist files.
 
 The script is originally based on [Mathias Bynens' .macos] script.

@@ -368,7 +368,8 @@ defaults write com.google.Chrome AppleEnableSwipeNavigateWithScrolls -bool false
 defaults write com.google.Chrome.canary AppleEnableSwipeNavigateWithScrolls -bool false
 
 # Mozilla Firefox: set additional keyboard shortcuts
-defaults write org.mozilla.firefox NSUserKeyEquivalents -dict 'Firefox View' '@0'
+# shellcheck disable=SC2016
+defaults write org.mozilla.firefox NSUserKeyEquivalents -dict 'Firefox View' '@$0'
 
 # KeePassXC: set additional keyboard shortcuts; see
 # `Library/KeyBindings/DefaultKeyBinding.dict` for a summary of key

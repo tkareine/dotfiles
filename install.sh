@@ -49,7 +49,7 @@ INSTALL_BY_SYMLINKING_COMMON=(
 )
 
 INSTALL_BY_SYMLINKING_DARWIN=(
-    .macos
+    .macos.sh
     bin/emacs
     bin/emacsclient
     'Library/Application Support/Firefox/Profiles/tkareine/user.js'
