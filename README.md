@@ -78,8 +78,8 @@ The script is originally based on [Mathias Bynens' .macos] script.
 When you configure [GNU Global] to use [Universal Ctags] as a symbol
 parser, it's possible to extend the functionality of Global with the
 regex based [parser definition language][universal-ctags-optlib] of
-Ctags. For instance, I've added extra support for Yaml, JavaScrip, SCSS,
-and Less files. See [.globalrc](.globalrc) and
+Ctags. For instance, I've added extra support for Yaml, JavaScript,
+SCSS, and Less files. See [.globalrc](.globalrc) and
 [custom.ctags](.ctags.d/custom.ctags).
 
 The downside of regexes is that they're hard to maintain. That's why
