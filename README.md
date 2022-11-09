@@ -91,6 +91,18 @@ Installing Global with Homebrew:
 brew install global
 ```
 
+### Test automation for dotfiles
+
+Did you know you can automate testing your shell's init scripts? See
+[bash-test.sh](test/bash-test.sh).
+
+Tests are implemented on top of a small custom framework, written in
+Bash. It was fun to write it. See the sources in the
+[test/support](test/support/) directory.
+
+Run `make` at the root of the project in order to learn how to run the
+linters and tests.
+
 ## Installation
 
 Install the dotfiles with `./install.sh`, which either symlinks or
