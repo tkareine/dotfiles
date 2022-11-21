@@ -203,7 +203,7 @@ alias be='bundle exec'
 # list TCP listen and UDP ports
 alias linet='lsof -i UDP -i TCP -s TCP:LISTEN -n -P +c 0'
 
-alias wtfdt='date '\''+%Y-%m-%dT%H:%M:%S%z (%Z) (week %W) (epoch %s)'\'''
+alias wtfdt='date '\''+%Y-%m-%dT%H:%M:%S%z (%Z W%W epoch=%s)'\'''
 
 # install prompt command
 PROMPT_COMMAND=tk_prompt_command';'${PROMPT_COMMAND:+$'\n'$(tk_trim "$PROMPT_COMMAND")}
