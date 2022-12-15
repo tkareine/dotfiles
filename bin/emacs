@@ -9,4 +9,4 @@ if [[ ! -x $bin ]]; then
     exit 1
 fi
 
-exec "$bin" "$@"
+exec "$bin" "$@" >/tmp/emacs-out.log 2>&1
