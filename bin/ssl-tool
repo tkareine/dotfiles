@@ -159,26 +159,22 @@ cmd_showcert() {
 
 cmd_exist "$OPENSSL_BIN" || error_exit 3 "$THIS_SCRIPT: $OPENSSL_BIN not found"
 
-while :; do
-    case ${1:-} in
-        -h|-\?|--help)
-            print_usage
-            exit
-            ;;
-        verifycert)
-            shift
-            cmd_verifycert "$@"
-            exit
-            ;;
-        showcert)
-            shift
-            cmd_showcert "$@"
-            exit
-            ;;
-        *)
-            print_usage
-            exit 2
-    esac
-
-    shift
-done
+case ${1:-} in
+    -h|-\?|--help)
+        print_usage
+        exit
+        ;;
+    verifycert)
+        shift
+        cmd_verifycert "$@"
+        exit
+        ;;
+    showcert)
+        shift
+        cmd_showcert "$@"
+        exit
+        ;;
+    *)
+        print_usage
+        exit 2
+esac
