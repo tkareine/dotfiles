@@ -33,7 +33,7 @@ A screenshot from [iTerm2], showing the Bash prompt:
 <img src="https://github.com/tkareine/dotfiles/raw/master/images/bash-prompt-iterm2-input.png" title="My Bash prompt in iTerm2" alt="My Bash prompt in iTerm2" width="584">
 
 The font in use is [Input][Input font]
-([customization](https://input.fontbureau.com/download/index.html?size=14&language=python&theme=solarized-dark&family=InputMono&width=300&weight=400&line-height=1.1&a=ss&g=ss&i=serifs_round&l=serifs_round&zero=0&asterisk=height&braces=straight&preset=consolas&customize=please)).
+([customization](https://input.djr.com/download/?customize&fontSelection=fourStyleFamily&regular=InputMonoNarrow-Regular&italic=InputMonoNarrow-Italic&bold=InputMonoNarrow-Bold&boldItalic=InputMonoNarrow-BoldItalic&a=ss&g=ss&i=serifs_round&l=serifs_round&zero=0&asterisk=height&braces=straight&preset=default&line-height=1.1)).
 
 ### Fast Bash start-up and prompt display time
 
@@ -155,7 +155,7 @@ originally.
 [GNU Global]: https://www.gnu.org/software/global/
 [Homebrew install]: https://docs.brew.sh/Installation
 [Homebrew]: https://brew.sh/
-[Input font]: http://input.fontbureau.com/
+[Input font]: https://input.djr.com/
 [IntelliJ IDEA]: https://www.jetbrains.com/idea/
 [Java Development Kit]: https://openjdk.java.net/
 [Mathias Bynens' .macos]: https://github.com/mathiasbynens/dotfiles/blob/master/.macos
