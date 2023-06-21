@@ -47,13 +47,13 @@ EOF
         # options
         java_home=$(env -i "$tool_path" "${tool_opts[@]}") || return 1
 
-        local manpath=:$MANPATH:
+        local manpath=":$MANPATH:"
         manpath=${manpath//:$JAVA_HOME\/man:/:}
         manpath=${manpath#:}
         manpath=${manpath%:}
 
-        export JAVA_HOME=$java_home
-        export MANPATH=${java_home}/man${manpath:+:$manpath}
+        export JAVA_HOME="$java_home"
+        export MANPATH="${java_home}/man${manpath:+:$manpath}"
     }
 
     tk__setup_brew() {
@@ -65,11 +65,11 @@ EOF
             export HOMEBREW_NO_INSECURE_REDIRECT=1
             export HOMEBREW_NO_ANALYTICS=1
 
-            [[ -n $tk__brew_should_export_path ]] && export PATH="${tk__brew_path:+$tk__brew_path/bin}:$PATH"
+            [[ -n $tk__brew_should_export_path ]] && export PATH="${tk__brew_path:+${tk__brew_path}/bin}:$PATH"
 
             # Set manpath to contain system paths by having the colon
             # character in the end
-            export MANPATH=$tk__brew_manpath:
+            export MANPATH="$tk__brew_manpath:"
 
             # Put selected Homebrew installed tools before system paths.
             # You can find the paths with `brew --prefix $tool`. Use
@@ -79,17 +79,17 @@ EOF
             )
             local tool_subpath
             for tool_subpath in "${tools[@]}"; do
-                local path=${tk__brew_path}/${tool_subpath}/bin
+                local path="${tk__brew_path}/${tool_subpath}/bin"
                 [[ -d $path && -x $path ]] && export PATH="$path:$PATH"
             done
         fi
 
         # Install chnode
-        local chnode_path=${tk__brew_path}/opt/chnode/share/chnode/chnode.sh
+        local chnode_path="${tk__brew_path}/opt/chnode/share/chnode/chnode.sh"
         [[ -r $chnode_path ]] && source "$chnode_path"
 
         # Install chruby
-        local chruby_path=${tk__brew_path}/opt/chruby/share/chruby/chruby.sh
+        local chruby_path="${tk__brew_path}/opt/chruby/share/chruby/chruby.sh"
         [[ -r $chruby_path ]] && source "$chruby_path"
     }
 

@@ -75,7 +75,7 @@ EOF
         return 2
     fi
 
-    local num_times=${tk_bm_num_times:-1000}
+    local num_times="${tk_bm_num_times:-1000}"
     local TIMEFORMAT=%3R
     local cmd="$*"
 

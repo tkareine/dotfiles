@@ -162,7 +162,7 @@ fi
 if tk_is_color_term; then
     case $tk__uname in
         Darwin*)
-            tk_is_login_shell && export LSCOLORS="Hxgxfxdxcxegedabagacad"
+            tk_is_login_shell && export LSCOLORS=Hxgxfxdxcxegedabagacad
 
             # Install GNU coreutils for from Homebrew (`brew install
             # coreutils`); see https://www.gnu.org/software/coreutils
