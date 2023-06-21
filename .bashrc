@@ -5,9 +5,11 @@
 # * for interactive login shell: `time bash --login -i -c true`
 # * for interactive shell: `time bash -i -c true`
 
-# optimization: cache current uname
+# Optimization: cache current operating system kernel and machine
+# hardware names
+#
 # shellcheck disable=SC2034
-tk__uname=$(uname)
+tk__uname=$(uname -s -m)
 
 source ~/.bashrc-support.sh
 source ~/.bashrc-common.sh

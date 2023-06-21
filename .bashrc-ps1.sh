@@ -13,7 +13,7 @@ tk_is_root() {
     [[ $UID == "0" ]]
 }
 
-# optimization: cache whether we use color prompt or not
+# Optimization: cache whether we use color prompt or not
 if tk_is_color_term; then
     tk__use_color_prompt=1
     tk__ansi_bold_red='\[\e[1;31m\]'
@@ -107,16 +107,18 @@ tk_set_title() {
     echo -ne "\\e]0;${USER}@${HOSTNAME}: ${PWD/$HOME/\~}\\007"
 }
 
-# install system bash completions
+# Install system Bash completions
+#
 # shellcheck disable=SC1091
 [[ -f /etc/bash_completion && -r /etc/bash_completion ]] && source /etc/bash_completion
 
-# install bash completions for tools from Homebrew (`brew install
+# Install Bash completions for tools from Homebrew (`brew install
 # bash-completion@2`); see https://github.com/scop/bash-completion
+#
 # shellcheck disable=SC1091
 [[ $tk__brew_path && -r ${tk__brew_path}/etc/profile.d/bash_completion.sh ]] && source "${tk__brew_path}/etc/profile.d/bash_completion.sh"
 
-# install my local bash completions
+# Install my local Bash completions
 if [[ -d ~/.bash_completion.d && -x ~/.bash_completion.d ]]; then
     for file in ~/.bash_completion.d/*; do
         if [[ -f $file && -r $file ]]; then
@@ -127,40 +129,43 @@ if [[ -d ~/.bash_completion.d && -x ~/.bash_completion.d ]]; then
 fi
 
 # shellcheck disable=SC2154
-if [[ $tk__uname == "Darwin" ]] && ! /usr/bin/ssh-add -l >/dev/null; then
+if [[ $tk__uname == Darwin* ]] && ! /usr/bin/ssh-add -l >/dev/null; then
     # ssh: load identities with passwords from user's keychain
-    /usr/bin/ssh-add -A 2>/dev/null
+    /usr/bin/ssh-add --apple-load-keychain 2>/dev/null
 fi
 
-# bash: check the window size after each command
+# Bash: check the window size after each command
 shopt -s checkwinsize
 
-# bash: at shell exit, append history to the history file rather than
+# Bash: at shell exit, append history to the history file rather than
 # overwrite it
 shopt -s histappend
 
-# bash: attempt to save all lines of a multiple-line command in the same
+# Bash: attempt to save all lines of a multiple-line command in the same
 # history entry
 shopt -s cmdhist
 
-# bash: enable extended pattern matching features
+# Bash: enable extended pattern matching features
 shopt -s extglob
 
 if ((BASH_VERSINFO[0] >= 4)); then
-    # bash: pattern ** used in a pathname expansion context will match all
-    # files and zero or more directories and subdirectories
+    # Bash: pattern `**` used in a pathname expansion context will match
+    # all files and zero or more directories and subdirectories
     shopt -s globstar
 
-    # bash: attempt spelling correction on directory names during word
+    # Bash: attempt spelling correction on directory names during word
     # completion if the directory name initially supplied does not exist
     shopt -s dirspell
 fi
 
-# color support for ls
+# Color support for ls
 if tk_is_color_term; then
     case $tk__uname in
-        Darwin)
+        Darwin*)
             tk_is_login_shell && export LSCOLORS="Hxgxfxdxcxegedabagacad"
+
+            # Install GNU coreutils for from Homebrew (`brew install
+            # coreutils`); see https://www.gnu.org/software/coreutils
             if tk_cmd_exist gls && tk_cmd_exist gdircolors; then
                 if [[ -r ~/.dircolors ]]; then
                     eval "$(gdircolors -b ~/.dircolors)"
@@ -172,7 +177,7 @@ if tk_is_color_term; then
                 alias ls='ls -FG'
             fi
             ;;
-        Linux)
+        Linux*)
             if [[ -r ~/.dircolors ]]; then
                 eval "$(dircolors -b ~/.dircolors)"
             else
@@ -187,7 +192,7 @@ alias ll='ls -lhA'
 
 tk_cmd_exist zoxide && eval "$(zoxide init --hook pwd bash)"
 
-# grep: color support
+# Grep: color support
 alias grep='grep --color=auto'
 alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
@@ -200,13 +205,13 @@ alias gd='git diff --no-index'
 # Ruby: shorten commonly used Bundler command
 alias be='bundle exec'
 
-# list TCP listen and UDP ports
+# List TCP listen and UDP ports
 alias linet='lsof -i UDP -i TCP -s TCP:LISTEN -n -P +c 0'
 
 alias wtfdt='date '\''+%Y-%m-%dT%H:%M:%S%z (%Z W%W epoch=%s)'\'''
 
-# install prompt command
+# Install prompt command
 PROMPT_COMMAND=tk_prompt_command';'${PROMPT_COMMAND:+$'\n'$(tk_trim "$PROMPT_COMMAND")}
 [[ $TERM == xterm* ]] && PROMPT_COMMAND=$PROMPT_COMMAND$'\n'tk_set_title';'
 
-((BASH_VERSINFO[0] < 4)) && echo -e "\\nWARN: old bash version: $BASH_VERSION"
+((BASH_VERSINFO[0] < 4)) && echo -e "\\nWARN: old Bash version: $BASH_VERSION"

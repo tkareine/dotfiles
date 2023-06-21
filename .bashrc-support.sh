@@ -29,7 +29,7 @@ tk_join() {
 #   tk_trim $' foo bar \t\n'
 #   => "foo bar"
 tk_trim() {
-    # adapted from
+    # Adapted from
     # https://github.com/dylanaraps/pure-bash-bible#trim-leading-and-trailing-white-space-from-string
     local tmp=$1
     tmp=${tmp#"${tmp%%[![:space:]]*}"}
