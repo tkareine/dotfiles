@@ -58,8 +58,8 @@ EOF
 
     tk__setup_brew() {
         tk__brew_path=$1
-        tk__brew_should_export_path=${2:-}
-        tk__brew_manpath=${3:-}
+        local tk__brew_should_export_path=${2:-}
+        local tk__brew_manpath=${3:-}
 
         if tk_is_login_shell; then
             export HOMEBREW_NO_INSECURE_REDIRECT=1
@@ -67,9 +67,7 @@ EOF
 
             [[ -n $tk__brew_should_export_path ]] && export PATH="${tk__brew_path:+${tk__brew_path}/bin}:$PATH"
 
-            # Set manpath to contain system paths by having the colon
-            # character in the end
-            export MANPATH="$tk__brew_manpath:"
+            MANPATH="$tk__brew_manpath"
 
             # Put selected Homebrew installed tools before system paths.
             # You can find the paths with `brew --prefix $tool`. Use
@@ -105,6 +103,10 @@ fi
 if tk_is_login_shell; then
     # My local executables
     [[ -d ~/bin ]] && export PATH=~/bin:"$PATH"
+
+    # Set manpath to contain system paths by having the colon character
+    # in the end
+    export MANPATH="${MANPATH:-}:"
 
     # Localization
     export LANG=en_US.UTF-8
