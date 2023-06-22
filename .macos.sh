@@ -113,8 +113,11 @@ defaults write NSGlobalDomain AppleShowScrollBars -string "Automatic"
 # Opening documents prefers windows, open tabs manually
 defaults write NSGlobalDomain AppleWindowTabbingMode -string "manual"
 
-# Only show menubar when moving pointer to the screen edge
-defaults write NSGlobalDomain _HIHideMenuBar -bool true
+# Menu Bar: keep it visible, but…
+defaults write NSGlobalDomain _HIHideMenuBar -bool false
+
+# Menu Bar: hide it in fullscreen mode
+defaults write NSGlobalDomain AppleMenuBarVisibleInFullscreen -bool false
 
 # Date format in menubar
 defaults write com.apple.menuextra.clock DateFormat -string "EEE d MMM  H.mm"
