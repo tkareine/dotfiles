@@ -184,6 +184,9 @@ defaults write com.apple.AppleMultitouchTrackpad FirstClickThreshold -int 0
 # Trackpad: disable clicking sound
 defaults write com.apple.AppleMultitouchTrackpad ActuationStrength -int 0
 
+# Sound: don't play sound on startup
+sudo nvram StartupMute=%01
+
 # Sound: don't play UI sound effects
 defaults write NSGlobalDomain com.apple.sound.uiaudio.enabled -int 0
 
