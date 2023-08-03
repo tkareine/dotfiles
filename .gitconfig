@@ -35,6 +35,8 @@
 	cmd = emacsclient --eval \"(ediff-files \\\"$LOCAL\\\" \\\"$REMOTE\\\")\"
 [format]
 	numbered = true
+[init]
+	defaultBranch = main
 [magit]
 	hideCampaign = true
 [merge]
