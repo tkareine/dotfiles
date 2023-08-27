@@ -1,4 +1,4 @@
-# Default config: https://github.com/rubocop-hq/rubocop/blob/master/config/default.yml
+# Default config: https://github.com/rubocop/rubocop/blob/master/config/default.yml
 
 AllCops:
   DisplayCopNames: true
