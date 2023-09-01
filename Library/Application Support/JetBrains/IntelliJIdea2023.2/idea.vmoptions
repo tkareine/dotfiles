@@ -1,10 +1,22 @@
 # Custom IntelliJ IDEA VM options
 #
-# Reference: https://docs.oracle.com/en/java/javase/11/tools/java.html#GUID-3B1CE181-CD30-4178-9602-230B800D4FAE
+# Java options reference:
+# https://docs.oracle.com/en/java/javase/17/docs/specs/man/java.html
 
+# Select Java HotSpot Server VM
+#
+# See: https://www.javacodegeeks.com/2011/07/jvm-options-client-vs-server.html
 -server
+
+# Starting heap size
 -Xms1g
+
+# Max heap size
 -Xmx6g
-# Might cause small lags when writing text
-# -XX:+UseStringDeduplication
--Xshare:auto
+
+# Select G1 GC as we consider it to be reliable and reasonably
+# low-latency most of the time
+#
+# See: https://www.oracle.com/technical-resources/articles/java/g1gc.html
+-XX:+UseG1GC
+-XX:MaxGCPauseMillis=100
