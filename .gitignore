@@ -9,6 +9,7 @@
 .log/
 .nrepl-port
 .projectile
+.vscode/
 GPATH
 !**/gpath/
 GRTAGS
