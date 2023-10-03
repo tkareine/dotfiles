@@ -74,6 +74,7 @@ EOF
             # pre-calculated paths, as `brew --prefix` is slow.
             local tools=(
                 opt/libpq
+                opt/libressl
             )
             local tool_subpath
             for tool_subpath in "${tools[@]}"; do
