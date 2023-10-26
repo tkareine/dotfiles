@@ -2,6 +2,14 @@
 
 set -euo pipefail
 
+ERROR_CMD_NOT_FOUND=253
+ERROR_FAILED_TO_UPDATE=1
+
+cmd_exist() {
+    [[ -z $1 ]] && echo "cmd_exist(): expects command name as the parameter" >&2 && return "$ERROR_CMD_NOT_FOUND"
+    command -v "$1" &>/dev/null
+}
+
 do_update() {
     local tool=$1
     local cmd=$2
@@ -13,13 +21,18 @@ do_update() {
 
     echo -en "=== Update $tool ===\\n\\n"
 
-    if ! $cmd; then
-        echo -e "\\nFailed to update: $tool" >&2
-        exit 2
+    local status=0
+    $cmd || status=$?
+
+    if (( status != 0 && status != ERROR_CMD_NOT_FOUND )); then
+        echo -e "\\nFailed to update: $tool (exit_status=$status)" >&2
+        exit "$ERROR_FAILED_TO_UPDATE"
     fi
 }
 
 do_update_git_project() {
+    cmd_exist git || { echo "Skip, because \`git\` command not found" >&2; return "$ERROR_CMD_NOT_FOUND"; }
+
     local path=$1
 
     (
@@ -50,8 +63,7 @@ update_dotfiles() {
 
 update_emacsd() {
     local path=~/.emacs.d
-    do_update_git_project "$path"
-    (
+    do_update_git_project "$path" && (
         cd "$path"
         make compile
         make upgrade-packages
@@ -59,21 +71,30 @@ update_emacsd() {
 }
 
 update_npm() {
+    cmd_exist npm || { echo "Skip, because \`npm\` command not found" >&2; return "$ERROR_CMD_NOT_FOUND"; }
     npm update --location=global --ignore-scripts
 }
 
 update_rubygems() {
+    cmd_exist gem || { echo "Skip, because \`gem\` command not found" >&2; return "$ERROR_CMD_NOT_FOUND"; }
     gem update --system && gem update && gem clean --silent
 }
 
 update_brew() {
+    cmd_exist brew || { echo "Skip, because \`brew\` command not found" >&2; return "$ERROR_CMD_NOT_FOUND"; }
     brew update && \
         brew upgrade && \
         brew cleanup -s
 }
 
-do_update "dotfiles" update_dotfiles 1
-do_update ".emacs.d" update_emacsd
-do_update "npm"      update_npm
-do_update "RubyGems" update_rubygems
-do_update "Homebrew" update_brew
+update_rustup() {
+    cmd_exist rustup || { echo "Skip, because \`rustup\` command not found" >&2; return "$ERROR_CMD_NOT_FOUND"; }
+    rustup update
+}
+
+do_update "dotfiles"       update_dotfiles 1
+do_update ".emacs.d"       update_emacsd
+do_update "npm"            update_npm
+do_update "RubyGems"       update_rubygems
+do_update "Rust toolchain" update_rustup
+do_update "Homebrew"       update_brew
