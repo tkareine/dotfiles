@@ -161,6 +161,9 @@ if tk_is_login_shell; then
     export PYTHONUSERBASE=~/.local
     export PATH="$PATH:$PYTHONUSERBASE/bin"
 
+    # Rust toolchain (`rustup`)
+    [[ -d ~/.cargo/bin ]] && export PATH="$PATH:$HOME/.cargo/bin"
+
     # Select Java if chjava is installed
     tk_cmd_exist chjava && chjava default
 fi
