@@ -12,6 +12,16 @@ for bold in 0 1; do
     echo
 done
 
+printf '\nANSI 16 bright variants:\n\n'
+
+for bold in 0 1; do
+    for color in {90..97}; do
+        printf '\e[%s;%sm  %3s  \e[0m' "$bold" "$color" "$color"
+    done
+
+    echo
+done
+
 printf '\nANSI 256:\n\n'
 
 for color in {0..255}; do
