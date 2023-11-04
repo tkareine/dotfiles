@@ -28,14 +28,13 @@ if tk_is_color_term; then
     # See:
     # https://en.wikipedia.org/wiki/ANSI_escape_code#CSI_(Control_Sequence_Introducer)_sequences
     tk__use_color_prompt=1
-    tk__ansi16_red_bold='\[\e[1;31m\]'
-    tk__ansi16_yellow_bold='\[\e[1;33m\]'
+    tk__ansi_reset='\[\e[0m\]'
     tk__ansi16b_gray_dark='\[\e[90m\]'
     tk__ansi16b_gray_dark_bold='\[\e[1;90m\]'
-    tk__ansi256_teal_light_bold='\[\e[1;38;5;44m\]'
-    tk__ansi256_orange_light='\[\e[38;5;215m\]'
-    tk__ansi256_teal_dark='\[\e[38;5;30m\]'
-    tk__ansi_reset='\[\e[0m\]'
+    tk__ansi256_bluegreen_bold='\[\e[1;38;5;80m\]'
+    tk__ansi256_greenblue='\[\e[38;5;72m\]'
+    tk__ansi256_red_bold='\[\e[1;38;5;203m\]'
+    tk__ansi256_violet_bold='\[\e[1;38;5;176m\]'
 else
     tk__use_color_prompt=
 fi
@@ -51,15 +50,15 @@ tk_set_prompt() {
         if [[ $tk__last_cmd_exit_status == 0 ]]; then
             last_cmd_exit_status_color=$tk__ansi16b_gray_dark_bold
         else
-            last_cmd_exit_status_color=$tk__ansi16_red_bold
+            last_cmd_exit_status_color=$tk__ansi256_red_bold
         fi
         last_cmd_exit_status="${last_cmd_exit_status_color}${tk__last_cmd_exit_status}${tk__ansi_reset} "
-        user_and_host="${tk__ansi256_teal_dark}\\u@\\h${tk__ansi_reset} "
-        cwd="${tk__ansi16_yellow_bold}\\w${tk__ansi_reset} "
+        user_and_host="${tk__ansi256_greenblue}\\u@\\h${tk__ansi_reset} "
+        cwd="${tk__ansi256_bluegreen_bold}\\w${tk__ansi_reset} "
         if tk_is_root; then
-            end="${tk__ansi16_red_bold}#${tk__ansi_reset} "
+            end="${tk__ansi256_red_bold}#${tk__ansi_reset} "
         else
-            end="${tk__ansi256_teal_light_bold}\$${tk__ansi_reset} "
+            end="${tk__ansi256_violet_bold}\$${tk__ansi_reset} "
         fi
     else
         last_cmd_exit_status="${tk__last_cmd_exit_status} "
@@ -75,7 +74,7 @@ tk_set_prompt() {
     local git
     if tk_fn_exist __git_ps1; then
         git="$(__git_ps1 '%s ')"
-        [[ -n $tk__use_color_prompt ]] && git="${tk__ansi256_orange_light}${git}${tk__ansi_reset}"
+        [[ -n $tk__use_color_prompt ]] && git="${tk__ansi256_greenblue}${git}${tk__ansi_reset}"
     fi
 
     local python_venv
