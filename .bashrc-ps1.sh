@@ -15,14 +15,26 @@ tk_is_root() {
 
 # Optimization: cache whether we use color prompt or not
 if tk_is_color_term; then
+    # Syntax:
+    #
+    # CSI (Control Sequence Introducer) sequences start with `ESC [`.
+    # Common sequences are written as `\e[$n1;...;$nN$c]`, where
+    # `$n1`…`$nN` are numbers (semicolon-separated, missing number is
+    # treated as 0) and `$c` is a letter to select a particular action.
+    #
+    # SGR (Select Graphic Rendition) parameters are control sequences of
+    # `CSI n m`, written as `\e[$n1;...;${nN}m]`
+    #
+    # See:
+    # https://en.wikipedia.org/wiki/ANSI_escape_code#CSI_(Control_Sequence_Introducer)_sequences
     tk__use_color_prompt=1
-    tk__ansi_bold_red='\[\e[1;31m\]'
-    tk__ansi_bold_yellow='\[\e[1;33m\]'
-    tk__ansi_gray_dark='\[\e[90m\]'
-    tk__ansi_bold_gray_dark='\[\e[1;90m\]'
-    tk__ansi_bold_256_teal_light='\[\e[1;38;5;44m\]'
-    tk__ansi_256_orange_light='\[\e[38;5;215m\]'
-    tk__ansi_256_teal_dark='\[\e[38;5;30m\]'
+    tk__ansi16_red_bold='\[\e[1;31m\]'
+    tk__ansi16_yellow_bold='\[\e[1;33m\]'
+    tk__ansi16b_gray_dark='\[\e[90m\]'
+    tk__ansi16b_gray_dark_bold='\[\e[1;90m\]'
+    tk__ansi256_teal_light_bold='\[\e[1;38;5;44m\]'
+    tk__ansi256_orange_light='\[\e[38;5;215m\]'
+    tk__ansi256_teal_dark='\[\e[38;5;30m\]'
     tk__ansi_reset='\[\e[0m\]'
 else
     tk__use_color_prompt=
@@ -37,17 +49,17 @@ tk_set_prompt() {
 
     if [[ -n $tk__use_color_prompt ]]; then
         if [[ $tk__last_cmd_exit_status == 0 ]]; then
-            last_cmd_exit_status_color=$tk__ansi_bold_gray_dark
+            last_cmd_exit_status_color=$tk__ansi16b_gray_dark_bold
         else
-            last_cmd_exit_status_color=$tk__ansi_bold_red
+            last_cmd_exit_status_color=$tk__ansi16_red_bold
         fi
         last_cmd_exit_status="${last_cmd_exit_status_color}${tk__last_cmd_exit_status}${tk__ansi_reset} "
-        user_and_host="${tk__ansi_256_teal_dark}\\u@\\h${tk__ansi_reset} "
-        cwd="${tk__ansi_bold_yellow}\\w${tk__ansi_reset} "
+        user_and_host="${tk__ansi256_teal_dark}\\u@\\h${tk__ansi_reset} "
+        cwd="${tk__ansi16_yellow_bold}\\w${tk__ansi_reset} "
         if tk_is_root; then
-            end="${tk__ansi_bold_red}#${tk__ansi_reset} "
+            end="${tk__ansi16_red_bold}#${tk__ansi_reset} "
         else
-            end="${tk__ansi_bold_256_teal_light}\$${tk__ansi_reset} "
+            end="${tk__ansi256_teal_light_bold}\$${tk__ansi_reset} "
         fi
     else
         last_cmd_exit_status="${tk__last_cmd_exit_status} "
@@ -63,7 +75,7 @@ tk_set_prompt() {
     local git
     if tk_fn_exist __git_ps1; then
         git="$(__git_ps1 '%s ')"
-        [[ -n $tk__use_color_prompt ]] && git="${tk__ansi_256_orange_light}${git}${tk__ansi_reset}"
+        [[ -n $tk__use_color_prompt ]] && git="${tk__ansi256_orange_light}${git}${tk__ansi_reset}"
     fi
 
     local python_venv
@@ -89,7 +101,7 @@ tk_set_prompt() {
     local bin_summary
     if (( ${#bin_states[@]} > 0 )); then
         bin_summary="($(tk_join ' ' "${bin_states[@]}"))"
-        [[ -n $tk__use_color_prompt ]] && bin_summary="${tk__ansi_gray_dark}${bin_summary}${tk__ansi_reset}"
+        [[ -n $tk__use_color_prompt ]] && bin_summary="${tk__ansi16b_gray_dark}${bin_summary}${tk__ansi_reset}"
     fi
 
     PS1="${last_cmd_exit_status}${user_and_host}${cwd}${git}${python_venv}${host_extras}${bin_summary}\\n${end}"
