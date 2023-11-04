@@ -59,7 +59,7 @@ The Bash prompt shows the currently selected versions of
 * [Node.js], using [chnode] (`n:$version` at the top of the prompt),
 * [Ruby], using [chruby] (`r:$version`), and
 * [Java Development Kit], using a tiny shell function called `chjava`
-  (`j:$version`).
+  defined in [.bashrc-common.sh](.bashrc-common.sh) (`j:$version`).
 
 For all these programming environments, I want that the environment
 switching tool (such as chnode) selects the environment version for a
