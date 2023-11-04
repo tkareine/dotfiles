@@ -129,27 +129,6 @@ sudo bash -c 'echo /usr/local/bin/bash >> /etc/shells'
 chsh -s /usr/local/bin/bash
 ```
 
-## Xcode Zenburn color theme
-
-I have adapted Bozhidar Batsov's [Emacs Zenburn] color theme for Xcode:
-
-<img src="https://github.com/tkareine/dotfiles/raw/master/images/xcode-tkareine-zenburn-input.png" title="Zenburn color theme for Xcode" alt="Zenburn color theme for Xcode" width="688">
-
-I prefer to use [Input font] for Xcode's source editor view, but you can
-change the font with ease: in Xcode's Preferences → Fonts & Colors →
-tkareine-zenburn → Source Editor, select all the list items with Cmd+A
-and click on the font icon at the bottom to select another font for all
-the items.
-
-For installing the theme manually, copy
-`Library/Developer/Xcode/UserData/FontAndColorThemes/tkareine-zenburn.dvtcolortheme`
-file to `~/Library/Developer/Xcode/UserData/FontAndColorThemes/`
-directory.
-
-[Jari Nurminen](http://kippura.org/zenburnpage/) invented the theme
-originally.
-
-[Emacs Zenburn]: https://github.com/bbatsov/zenburn-emacs
 [Emacs macOS port]: https://bitbucket.org/mituharu/emacs-mac/src/master/
 [GNU Bash]: https://www.gnu.org/software/bash/
 [GNU Global]: https://www.gnu.org/software/global/
