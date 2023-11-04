@@ -112,8 +112,8 @@ installer skips symlinking or copying. See `./install -h` for more.
 
 ### Homebrew
 
-On macOS, [install Homebrew][Homebrew install] to the default path
-(`/usr/local`):
+On macOS, [install Homebrew][Homebrew install] to its default prefix
+directory:
 
 ``` bash
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
@@ -125,8 +125,8 @@ Installing the latest version of Bash, using [Homebrew] on macOS:
 
 ``` bash
 brew install bash
-sudo bash -c 'echo /usr/local/bin/bash >> /etc/shells'
-chsh -s /usr/local/bin/bash
+sudo bash -c "echo $(brew --prefix)/bin/bash >> /etc/shells"
+chsh -s "$(brew --prefix)/bin/bash"
 ```
 
 [Emacs macOS port]: https://bitbucket.org/mituharu/emacs-mac/src/master/
