@@ -30,7 +30,7 @@ programming skills in shape.
 
 A screenshot from [iTerm2], showing the Bash prompt:
 
-<img src="https://github.com/tkareine/dotfiles/raw/master/images/bash-prompt-iterm2-input.png" title="My Bash prompt in iTerm2" alt="My Bash prompt in iTerm2" width="584">
+<img src="https://github.com/tkareine/dotfiles/raw/master/images/bash-prompt-showcase-iterm2.png" title="Bash prompt showcase in iTerm2" alt="Bash prompt showcase in iTerm2" width="616">
 
 The font in use is [Input][Input font]
 ([customization](https://input.djr.com/download/?customize&fontSelection=fourStyleFamily&regular=InputMonoNarrow-Regular&italic=InputMonoNarrow-Italic&bold=InputMonoNarrow-Bold&boldItalic=InputMonoNarrow-BoldItalic&a=ss&g=ss&i=serifs_round&l=serifs_round&zero=0&asterisk=height&braces=straight&preset=default&line-height=1.1)).
@@ -42,14 +42,14 @@ optimize the start-up time of my `.bashrc`:
 
 ``` bash
 time bash --login -i -c true
-# => real 0m0.276s
+# => real 0m0.095s
 ```
 
 And especially, I want that the shell prompt gets re-displayed quickly:
 
 ``` bash
 time eval "$PROMPT_COMMAND"
-# => real 0m0.018s
+# => real 0m0.024s
 ```
 
 ### Show selected versions of programming environments in Bash prompt
