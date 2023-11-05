@@ -1,3 +1,4 @@
+# Cops docs: https://docs.rubocop.org/rubocop/cops.html
 # Default config: https://github.com/rubocop/rubocop/blob/master/config/default.yml
 
 AllCops:
