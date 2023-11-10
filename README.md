@@ -33,7 +33,7 @@ A screenshot from [iTerm2], showing the Bash prompt:
 <img src="https://github.com/tkareine/dotfiles/raw/master/images/bash-prompt-showcase-iterm2.png" title="Bash prompt showcase in iTerm2" alt="Bash prompt showcase in iTerm2" width="616">
 
 The font in use is [Input][Input font]
-([customization](https://input.djr.com/download/?customize&fontSelection=fourStyleFamily&regular=InputMonoNarrow-Regular&italic=InputMonoNarrow-Italic&bold=InputMonoNarrow-Bold&boldItalic=InputMonoNarrow-BoldItalic&a=ss&g=ss&i=serifs_round&l=serifs_round&zero=0&asterisk=height&braces=straight&preset=default&line-height=1.1)).
+([customization](https://input.djr.com/download/?customize&fontSelection=fourStyleFamily&regular=InputMonoNarrow-Regular&italic=InputMonoNarrow-Italic&bold=InputMonoNarrow-Bold&boldItalic=InputMonoNarrow-BoldItalic&a=ss&g=ss&i=serifs_round&l=serifs_round&zero=0&asterisk=height&braces=straight&preset=default&line-height=1.2)).
 
 ### Fast Bash start-up and prompt display time
 
