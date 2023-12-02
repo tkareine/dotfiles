@@ -1,0 +1,5 @@
+# Reference: https://doc.rust-lang.org/cargo/reference/profiles.html
+
+[profile.profiling]
+inherits = "release"
+debug = true
