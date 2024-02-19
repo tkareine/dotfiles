@@ -23,7 +23,9 @@
 [core]
 	excludesfile = ~/.gitignore
 [diff]
-	algorithm = patience
+	# See https://luppeng.wordpress.com/2020/10/10/when-to-use-each-of-the-git-diff-algorithms/
+	algorithm = histogram
+
 	renames = true
 	submodule = log
 	tool = ediffclient
@@ -40,7 +42,9 @@
 [magit]
 	hideCampaign = true
 [merge]
-	conflictstyle = diff3
+	# See https://ductile.systems/zdiff3/
+	conflictstyle = zdiff3
+
 	ff = only
 	tool = ediffclient
 [mergetool]
