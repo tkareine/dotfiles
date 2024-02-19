@@ -39,8 +39,6 @@
 	numbered = true
 [init]
 	defaultBranch = main
-[magit]
-	hideCampaign = true
 [merge]
 	# See https://ductile.systems/zdiff3/
 	conflictstyle = zdiff3
