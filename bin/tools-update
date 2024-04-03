@@ -2,11 +2,15 @@
 
 set -euo pipefail
 
-ERROR_CMD_NOT_FOUND=253
-ERROR_FAILED_TO_UPDATE=1
+ERROR_SCRIPT_FAILURES=1
+ERROR_GIT_UNCLEAN_WORKING_TREE=11
+ERROR_GIT_UNEXPECTED_BRANCH=12
+ERROR_UPDATE_COMMAND_NOT_FOUND=253
+
+script_error_statuses=()
 
 cmd_exist() {
-    [[ -z $1 ]] && echo "cmd_exist(): expects command name as the parameter" >&2 && return "$ERROR_CMD_NOT_FOUND"
+    [[ -z $1 ]] && echo "cmd_exist(): expects command name as the parameter" >&2 && return "$ERROR_UPDATE_COMMAND_NOT_FOUND"
     command -v "$1" &>/dev/null
 }
 
@@ -21,17 +25,18 @@ do_update() {
 
     echo -en "=== Update $tool ===\\n\\n"
 
-    local status=0
-    $cmd || status=$?
+    local update_status=0
+    $cmd || update_status=$?
 
-    if (( status != 0 && status != ERROR_CMD_NOT_FOUND )); then
-        echo -e "\\nFailed to update: $tool (exit_status=$status)" >&2
-        exit "$ERROR_FAILED_TO_UPDATE"
+    if (( update_status != 0 && update_status != ERROR_UPDATE_COMMAND_NOT_FOUND )); then
+        local error_status="Failed to update: $tool (exit_status=$update_status)"
+        echo -e "\\n$error_status" >&2
+        script_error_statuses+=("$error_status")
     fi
 }
 
 do_update_git_project() {
-    cmd_exist git || { echo "Skip, because \`git\` command not found" >&2; return "$ERROR_CMD_NOT_FOUND"; }
+    cmd_exist git || { echo "Skip, because \`git\` command not found" >&2; return "$ERROR_UPDATE_COMMAND_NOT_FOUND"; }
 
     local path=$1
 
@@ -40,17 +45,21 @@ do_update_git_project() {
 
         if [[ $(git rev-parse --abbrev-ref --verify HEAD) != "master" ]]; then
             echo "unexpected git branch: $(git rev-parse --abbrev-ref HEAD)" >&2
-            exit 1
+            exit "$ERROR_GIT_UNEXPECTED_BRANCH"
         fi
 
         if ! git status -s | wc -l | grep -q '\<0\>'; then
-            echo "unclean git worktree:" >&2
+            echo "unclean git working tree:" >&2
             git status -s
-            exit 1
+            exit "$ERROR_GIT_UNCLEAN_WORKING_TREE"
         fi
 
-        if ! git pull --ff-only origin master; then
-            exit 1
+        local git_pull_status=0
+
+        git pull --ff-only origin master || git_pull_status=$?
+
+        if (( git_pull_status != 0 )); then
+            exit "$git_pull_status"
         fi
 
         git gc --quiet
@@ -71,24 +80,24 @@ update_emacsd() {
 }
 
 update_npm() {
-    cmd_exist npm || { echo "Skip, because \`npm\` command not found" >&2; return "$ERROR_CMD_NOT_FOUND"; }
+    cmd_exist npm || { echo "Skip, because \`npm\` command not found" >&2; return "$ERROR_UPDATE_COMMAND_NOT_FOUND"; }
     npm update --location=global --ignore-scripts
 }
 
 update_rubygems() {
-    cmd_exist gem || { echo "Skip, because \`gem\` command not found" >&2; return "$ERROR_CMD_NOT_FOUND"; }
+    cmd_exist gem || { echo "Skip, because \`gem\` command not found" >&2; return "$ERROR_UPDATE_COMMAND_NOT_FOUND"; }
     gem update --system && gem update && gem clean --silent
 }
 
 update_brew() {
-    cmd_exist brew || { echo "Skip, because \`brew\` command not found" >&2; return "$ERROR_CMD_NOT_FOUND"; }
+    cmd_exist brew || { echo "Skip, because \`brew\` command not found" >&2; return "$ERROR_UPDATE_COMMAND_NOT_FOUND"; }
     brew update && \
         brew upgrade && \
         brew cleanup -s
 }
 
 update_rustup() {
-    cmd_exist rustup || { echo "Skip, because \`rustup\` command not found" >&2; return "$ERROR_CMD_NOT_FOUND"; }
+    cmd_exist rustup || { echo "Skip, because \`rustup\` command not found" >&2; return "$ERROR_UPDATE_COMMAND_NOT_FOUND"; }
     rustup update
 }
 
@@ -98,3 +107,13 @@ do_update "npm"            update_npm
 do_update "RubyGems"       update_rubygems
 do_update "Rust toolchain" update_rustup
 do_update "Homebrew"       update_brew
+
+if (( ${#script_error_statuses[@]} > 0 )); then
+    echo -en "\\n=== Failures summary ===\\n\\n" >&2
+
+    for error_status in "${script_error_statuses[@]}"; do
+        echo "$error_status" >&2
+    done
+
+    exit "$ERROR_SCRIPT_FAILURES"
+fi
