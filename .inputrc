@@ -1,33 +1,36 @@
 # See
 # https://www.gnu.org/software/bash/manual/html_node/Readline-Init-File-Syntax.html
+#
+# In Bash, use `bind -p` to list functions and bindings in a form that
+# can be reused as input
 
 # Perform filename matching and completion in a case-insensitive
-# fashion.
+# fashion
 set completion-ignore-case on
 
 # Convert characters with the eighth bit set to an ASCII key sequence by
 # stripping the eighth bit and prefixing an ESC character, converting
-# them to a meta-prefixed key sequence.
+# them to a meta-prefixed key sequence
 set convert-meta off
 
 # Enable eight-bit input (it will not clear the eighth bit in the
 # characters it reads), regardless of what the terminal claims it can
-# support.
+# support
 set input-meta on
 
 # Display characters with the eighth bit set directly rather than as a
-# meta-prefixed escape sequence.
+# meta-prefixed escape sequence
 set output-meta on
 
 # Completed names which are symbolic links to directories have a slash
-# appended (subject to the value of mark-directories).
+# appended (subject to the value of `mark-directories`)
 set mark-symlinked-directories on
 
 # Words which have more than one possible completion cause the matches
-# to be listed immediately instead of ringing the bell.
+# to be listed immediately instead of ringing the bell
 set show-all-if-ambiguous on
 
-# Control which default set of key bindings is used.
+# Control which default set of key bindings is used
 set editing-mode emacs
 
 # Display possible completions using different colors to indicate their
@@ -41,15 +44,15 @@ set colored-stats on
 set colored-completion-prefix on
 
 # Key binding <up>: non-incremental backward history search, must match
-# from beginning of history line.
+# from beginning of history line
 "\e[A": history-search-backward
 
 # Key binding <down>: non-incremental forward history search, must match
-# from beginning of history line.
+# from beginning of history line
 "\e[B": history-search-forward
 
-# Key binding C-<right>.
+# Key binding C-<right>
 "\e[1;5C": forward-word
 
-# Key binding C-<left>.
+# Key binding C-<left>
 "\e[1;5D": backward-word
