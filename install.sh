@@ -16,6 +16,7 @@ INSTALL_BY_COPYING_DARWIN=(
 )
 
 INSTALL_BY_SYMLINKING_COMMON=(
+    .Brewfile
     .bash_profile
     .bashrc
     .bashrc-common.sh

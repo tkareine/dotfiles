@@ -92,6 +92,7 @@ update_rubygems() {
 update_brew() {
     cmd_exist brew || { echo "Skip, because \`brew\` command not found" >&2; return "$ERROR_UPDATE_COMMAND_NOT_FOUND"; }
     brew update && \
+        brew bundle install --global && \
         brew upgrade && \
         brew cleanup -s
 }
