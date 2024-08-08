@@ -55,7 +55,7 @@ INSTALL_BY_SYMLINKING_DARWIN=(
     bin/emacsclient
     'Library/Application Support/Firefox/Profiles/tkareine/user.js'
     'Library/Application Support/Firefox/profiles.ini.example'
-    'Library/Application Support/JetBrains/IntelliJIdea2024.1/idea.vmoptions'
+    'Library/Application Support/JetBrains/IntelliJIdea2024.2/idea.vmoptions'
     'Library/Application Support/iTerm2/DynamicProfiles/dynamic-profiles.json'
     Library/Thunderbird/Profiles/tkareine/user.js
     Library/Thunderbird/profiles.ini.example
