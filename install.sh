@@ -41,6 +41,7 @@ INSTALL_BY_SYMLINKING_COMMON=(
     .tmux.conf
     .vimrc
     bin/ansi-colors.sh
+    bin/curl-time
     bin/git-short-rev
     bin/psql-jq
     bin/ssl-tool

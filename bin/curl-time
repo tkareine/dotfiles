@@ -1,0 +1,22 @@
+#!/bin/bash
+#
+# Print timing information with `curl`.
+#
+# Based on:
+# https://blog.josephscott.org/2011/10/14/timing-details-with-curl/
+
+exec curl \
+     --write-out @- \
+     --output /dev/null \
+     --silent \
+     "$@" \
+     <<'EOF'
+    time_namelookup: %{time_namelookup}\n
+       time_connect: %{time_connect}\n
+    time_appconnect: %{time_appconnect}\n
+   time_pretransfer: %{time_pretransfer}\n
+      time_redirect: %{time_redirect}\n
+ time_starttransfer: %{time_starttransfer} (first response byte)\n
+                     --------\n
+         time_total: %{time_total}\n
+EOF
