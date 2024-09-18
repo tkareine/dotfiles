@@ -416,6 +416,7 @@ for app in \
         Safari \
         SystemUIServer \
         TextEdit \
+        firefox \
     ; do
     pkill -x "${app}" || true
 done
