@@ -122,6 +122,29 @@ defaults write NSGlobalDomain AppleMenuBarVisibleInFullscreen -bool false
 # Date format in menubar
 defaults write com.apple.menuextra.clock DateFormat -string "EEE d MMM  H.mm"
 
+# Dock: only show when moving pointer to the screen edge
+defaults write com.apple.dock autohide -bool true
+
+# Dock: show indicator lights for open applications
+defaults write com.apple.dock show-process-indicators -bool true
+
+# Dock: tile size and magnification off
+defaults write com.apple.dock tilesize -int 32
+defaults write com.apple.dock largesize -int 100
+defaults write com.apple.dock magnification -bool false
+
+# Dock: disable icon bouncing
+defaults write com.apple.dock no-bouncing -bool true
+
+# Dock: place dock on the right
+defaults write com.apple.dock orientation -string "right"
+
+# Dock: don't automatically rearrange Spaces based on most recent use
+defaults write com.apple.dock mru-spaces -bool false
+
+# Dock: don't show Dashboard as a Space
+defaults write com.apple.dock dashboard-in-overlay -bool true
+
 # Keyboard, text: disable automatic spelling correction
 defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
 
@@ -257,29 +280,6 @@ defaults write com.apple.finder FXPreferredViewStyle -string "Nlsv"
 
 # Finder: show ~/Library
 chflags nohidden ~/Library
-
-# Dock: only show when moving pointer to the screen edge
-defaults write com.apple.dock autohide -bool true
-
-# Dock: show indicator lights for open applications
-defaults write com.apple.dock show-process-indicators -bool true
-
-# Dock: tile size and magnification off
-defaults write com.apple.dock tilesize -int 32
-defaults write com.apple.dock largesize -int 100
-defaults write com.apple.dock magnification -bool false
-
-# Dock: disable icon bouncing
-defaults write com.apple.dock no-bouncing -bool true
-
-# Dock: place dock on the right
-defaults write com.apple.dock orientation -string "right"
-
-# Dock: don't automatically rearrange Spaces based on most recent use
-defaults write com.apple.dock mru-spaces -bool false
-
-# Dock: don't show Dashboard as a Space
-defaults write com.apple.dock dashboard-in-overlay -bool true
 
 # Disable Dashboard
 defaults write com.apple.dashboard mcx-disabled -bool true
