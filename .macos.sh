@@ -122,7 +122,7 @@ defaults write NSGlobalDomain AppleMenuBarVisibleInFullscreen -bool false
 # Window Manager: disable stage manager
 defaults write com.apple.WindowManager GloballyEnabled -bool false
 
-# Window Manager: indicate that I've  education functionality
+# Window Manager: indicate that I've completed tutorial functionalities
 defaults write com.apple.WindowManager GloballyEnabledEver -bool true
 defaults write com.apple.WindowManager HasDisplayedShowDesktopEducation -bool true
 
