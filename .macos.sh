@@ -119,6 +119,25 @@ defaults write NSGlobalDomain _HIHideMenuBar -bool false
 # Menu Bar: hide it in fullscreen mode
 defaults write NSGlobalDomain AppleMenuBarVisibleInFullscreen -bool false
 
+# Window Manager: disable stage manager
+defaults write com.apple.WindowManager GloballyEnabled -bool false
+
+# Window Manager: indicate that I've  education functionality
+defaults write com.apple.WindowManager GloballyEnabledEver -bool true
+defaults write com.apple.WindowManager HasDisplayedShowDesktopEducation -bool true
+
+# Window Manager: use click wallpaper to reveal desktop only in stage manager
+defaults write com.apple.WindowManager EnableStandardClickToShowDesktop -bool false
+
+# Window Manager: enable tiling by dragging windows to screen edges
+defaults write com.apple.WindowManager EnableTilingByEdgeDrag -bool true
+
+# Window Manager: enable Option shortcut highlight window tiling area
+defaults write com.apple.WindowManager EnableTilingOptionAccelerator -bool true
+
+# Window Manager: disable margins of tiled windows
+defaults write com.apple.WindowManager EnableTiledWindowMargins -bool false
+
 # Date format in menubar
 defaults write com.apple.menuextra.clock DateFormat -string "EEE d MMM  H.mm"
 
