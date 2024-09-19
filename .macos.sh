@@ -122,7 +122,7 @@ defaults write NSGlobalDomain AppleMenuBarVisibleInFullscreen -bool false
 # Window Manager: disable stage manager
 defaults write com.apple.WindowManager GloballyEnabled -bool false
 
-# Window Manager: indicate that I've completed tutorial functionalities
+# Window Manager: indicate that I've completed tutorial functions
 defaults write com.apple.WindowManager GloballyEnabledEver -bool true
 defaults write com.apple.WindowManager HasDisplayedShowDesktopEducation -bool true
 
@@ -132,7 +132,7 @@ defaults write com.apple.WindowManager EnableStandardClickToShowDesktop -bool fa
 # Window Manager: enable tiling by dragging windows to screen edges
 defaults write com.apple.WindowManager EnableTilingByEdgeDrag -bool true
 
-# Window Manager: enable Option shortcut highlight window tiling area
+# Window Manager: enable Option shortcut to highlight window tiling area
 defaults write com.apple.WindowManager EnableTilingOptionAccelerator -bool true
 
 # Window Manager: disable margins of tiled windows
