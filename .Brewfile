@@ -22,7 +22,7 @@ brew "gnupg"
 brew "jq"
 brew "libressl"
 brew "nmap"
-brew "node@20"
+brew "node@22"
 brew "openssl@3"
 brew "pinentry-mac" if OS.mac?
 brew "railwaycat/emacsmacport/emacs-mac", args: ["with-modern-icon"]
