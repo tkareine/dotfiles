@@ -2,16 +2,15 @@
 
 [![CI](https://github.com/tkareine/dotfiles/workflows/CI/badge.svg)][dotfiles-CI]
 
-My public configuration for selected command line tools, in order to
-synchronize them to computers I work with.
+Here is my public configuration for selected command line tools. I
+checkout this repository to computers I work with.
 
 The dotfiles focus on [GNU Bash] with the goal of having the shell
 user-friendly enough to use, but without having extra functionality that
 would hinder either the shell's start-up or prompt displaying time. I do
-most of my programming and file editing in Mitsuharu Yamamoto's [Emacs
-macOS port] (see [my .emacs.d], separate from this repository) or in
-[IntelliJ IDEA]; using rich IDEs is another reason for the rather
-bare-bones shell setup I prefer.
+most of my programming and file editing in [Emacs] (see [my .emacs.d],
+separate from this repository) or in [IntelliJ IDEA]; using rich IDEs is
+another reason for the rather bare-bones shell setup I prefer.
 
 I mainly use macOS, so the tools are optimized for that
 environment. Rudimentary support for Linux is in place, however, since I
@@ -129,7 +128,7 @@ sudo bash -c "echo $(brew --prefix)/bin/bash >> /etc/shells"
 chsh -s "$(brew --prefix)/bin/bash"
 ```
 
-[Emacs macOS port]: https://bitbucket.org/mituharu/emacs-mac/src/master/
+[Emacs]: https://www.gnu.org/software/emacs/
 [GNU Bash]: https://www.gnu.org/software/bash/
 [GNU Global]: https://www.gnu.org/software/global/
 [Homebrew install]: https://docs.brew.sh/Installation

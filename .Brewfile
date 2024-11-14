@@ -14,6 +14,7 @@ brew "bash"
 brew "bash-completion@2"
 brew "chruby"
 brew "coreutils"
+brew "d12frosted/emacs-plus/emacs-plus", args: ["with-modern-icon", "with-native-comp"] if OS.mac?
 brew "ffmpeg"
 brew "fzf"
 brew "git"
@@ -25,7 +26,6 @@ brew "nmap"
 brew "node@22"
 brew "openssl@3"
 brew "pinentry-mac" if OS.mac?
-brew "railwaycat/emacsmacport/emacs-mac", args: ["with-modern-icon"]
 brew "readline"
 brew "ripgrep"
 brew "ruby-install"

@@ -2,7 +2,7 @@
 
 set -euo pipefail
 
-bin=$(brew --prefix emacs-mac)/Emacs.app/Contents/MacOS/Emacs
+bin=$(brew --prefix emacs-plus)/Emacs.app/Contents/MacOS/Emacs
 
 if [[ ! -x $bin ]]; then
     echo "Emacs not found from $bin" >&2
