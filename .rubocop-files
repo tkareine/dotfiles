@@ -1,3 +1,4 @@
+.Brewfile
 .irbrc
 bin/yaml2json
 test/**/*.rb
