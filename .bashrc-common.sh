@@ -65,7 +65,7 @@ EOF
             export HOMEBREW_NO_INSECURE_REDIRECT=1
             export HOMEBREW_NO_ANALYTICS=1
 
-            [[ -n $tk__brew_should_export_path ]] && export PATH="${tk__brew_path:+${tk__brew_path}/bin}:$PATH"
+            [[ -n $tk__brew_should_export_path && -n $tk__brew_path ]] && export PATH="${tk__brew_path}/bin:${tk__brew_path}/sbin:$PATH"
 
             MANPATH="$tk__brew_manpath"
 
@@ -159,10 +159,10 @@ if tk_is_login_shell; then
 
     # Python user installs
     export PYTHONUSERBASE=~/.local
-    export PATH="$PATH:$PYTHONUSERBASE/bin"
+    [[ -d $PYTHONUSERBASE/bin ]] && export PATH="$PYTHONUSERBASE/bin:$PATH"
 
     # Rust toolchain (`rustup`)
-    [[ -d ~/.cargo/bin ]] && export PATH="$PATH:$HOME/.cargo/bin"
+    [[ -d ~/.cargo/bin ]] && export PATH=~/.cargo/bin:"$PATH"
 
     # Select Java if chjava is installed
     tk_cmd_exist chjava && chjava default
