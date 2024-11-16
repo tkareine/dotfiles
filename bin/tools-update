@@ -94,7 +94,7 @@ update_brew() {
     brew update && \
         brew bundle install --global && \
         brew upgrade && \
-        brew cleanup -s
+        brew cleanup --scrub
 }
 
 update_rustup() {
