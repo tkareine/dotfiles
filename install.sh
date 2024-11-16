@@ -52,8 +52,6 @@ INSTALL_BY_SYMLINKING_COMMON=(
 
 INSTALL_BY_SYMLINKING_DARWIN=(
     .macos.sh
-    bin/emacs
-    bin/emacsclient
     'Library/Application Support/Firefox/Profiles/tkareine/user.js'
     'Library/Application Support/Firefox/profiles.ini.example'
     'Library/Application Support/JetBrains/IntelliJIdea2024.2/idea.vmoptions'

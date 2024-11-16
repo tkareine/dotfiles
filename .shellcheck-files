@@ -2,7 +2,6 @@
 .bash*
 .macos.sh
 bin/*.sh
-bin/emacs*
 bin/git-short-rev
 bin/psql-jq
 bin/ssl-tool
