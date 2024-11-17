@@ -18,7 +18,6 @@ brew "coreutils"
 brew "d12frosted/emacs-plus/emacs-plus@29", args: %w[with-modern-icon with-native-comp] if OS.mac?
 brew "ffmpeg"
 brew "fzf"
-brew "gcc"  # Required for emacs-plus (with-native-comp) when Emacs compiles `*.elc` files asynchronously (JIT)
 brew "git"
 brew "global"
 brew "gnupg"
