@@ -246,8 +246,8 @@ defaults write com.apple.universalaccess HIDScrollZoomModifierMask -int 262144
 # Automatically quit printer app once the print jobs complete
 defaults write com.apple.print.PrintingPrefs "Quit When Finished" -bool true
 
-# Screen capture: save to desktop
-defaults write com.apple.screencapture location -string "$HOME/Desktop"
+# Screen capture: save to the downloads directory
+defaults write com.apple.screencapture location -string "$HOME/Downloads"
 
 # Screen capture: save in PNG format (options: BMP, GIF, JPG, PDF, TIFF)
 defaults write com.apple.screencapture type -string "png"
