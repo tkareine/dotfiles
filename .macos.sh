@@ -1,7 +1,13 @@
 #!/usr/bin/env bash
 #
-# Adapted from Mathias Bynens' .macos, available at
-# <https://mths.be/macos>. Thanks!
+# References:
+#
+# * `man 1 defaults`
+# * https://macos-defaults.com/
+# * https://www.real-world-systems.com/docs/defaults.1.html
+#
+# Originally adapted from Mathias Bynens' `.macos`, available at
+# https://mths.be/macos . Thanks!
 
 set -euo pipefail
 
@@ -189,6 +195,10 @@ defaults write NSGlobalDomain InitialKeyRepeat -int 25
 
 # Keyboard: use F1, F2, etc. keys as standard function keys
 defaults write NSGlobalDomain com.apple.keyboard.fnState -bool true
+
+# Keyboard: set the Globe key to Do Nothing; the Fn functionality of the
+# key still works with the function keys (F1, F2, etc.)
+defaults write com.apple.HIToolbox AppleFnUsageType -int 0
 
 # Trackpad: disable click with one finger tap gesture
 defaults write com.apple.AppleMultitouchTrackpad Clicking -bool false
