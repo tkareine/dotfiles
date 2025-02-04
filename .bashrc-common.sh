@@ -119,9 +119,6 @@ if tk_is_login_shell; then
     export HISTFILESIZE=10000
     export HISTSIZE=10000
 
-    # Apache Maven
-    [[ -d ~/.m2/repository ]] && export M2_REPO=~/.m2/repository
-
     # Ripgrep (rg)
     [[ -r ~/.ripgreprc ]] && export RIPGREP_CONFIG_PATH=~/.ripgreprc
 
