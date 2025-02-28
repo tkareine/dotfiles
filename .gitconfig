@@ -20,12 +20,16 @@
 	st        = status --long -b -u
 [color]
 	ui = auto
+[commit]
+	verbose = true
 [core]
-	excludesfile = ~/.gitignore
+	excludesFile = ~/.gitignore
 [diff]
 	# See https://luppeng.wordpress.com/2020/10/10/when-to-use-each-of-the-git-diff-algorithms/
 	algorithm = histogram
 
+	colorMoved = zebra
+	mnemonicPrefix = true
 	renames = true
 	submodule = log
 	tool = ediffclient
@@ -35,13 +39,15 @@
 	prompt = true
 [difftool "ediffclient"]
 	cmd = emacsclient --eval \"(ediff-files \\\"$LOCAL\\\" \\\"$REMOTE\\\")\"
+[fetch]
+	prune = true
 [format]
 	numbered = true
 [init]
 	defaultBranch = main
 [merge]
 	# See https://ductile.systems/zdiff3/
-	conflictstyle = zdiff3
+	conflictStyle = zdiff3
 
 	ff = only
 	tool = ediffclient
@@ -54,15 +60,18 @@
 [push]
 	default = simple
 [rebase]
-	autosquash = true
+	autoSquash = true
 [rerere]
 	enabled = true
+	autoUpdate = true
 [status]
-	submodulesummary = 1
+	submoduleSummary = 1
 [submodule]
 	fetchJobs = 4
 [stash]
 	showPatch = true
+[tag]
+	sort = version:refname
 # Must be last: git includes the contents of the file immediately.
 [include]
 	path = ~/.gitconfig.host
