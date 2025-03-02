@@ -15,7 +15,7 @@ brew "bash"
 brew "bash-completion@2"
 brew "chruby"
 brew "coreutils"
-brew "d12frosted/emacs-plus/emacs-plus@29", args: %w[with-modern-icon with-native-comp] if OS.mac?
+brew "d12frosted/emacs-plus/emacs-plus@30", args: %w[with-modern-icon] if OS.mac?
 brew "ffmpeg"
 brew "fzf"
 brew "git"
