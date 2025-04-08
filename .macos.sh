@@ -125,6 +125,9 @@ defaults write NSGlobalDomain _HIHideMenuBar -bool false
 # Menu Bar: hide it in fullscreen mode
 defaults write NSGlobalDomain AppleMenuBarVisibleInFullscreen -bool false
 
+# Menu Bar: date format in menubar
+defaults write com.apple.menuextra.clock DateFormat -string "EEE d MMM  H.mm"
+
 # Window Manager: disable stage manager
 defaults write com.apple.WindowManager GloballyEnabled -bool false
 
@@ -143,9 +146,6 @@ defaults write com.apple.WindowManager EnableTilingOptionAccelerator -bool true
 
 # Window Manager: disable margins of tiled windows
 defaults write com.apple.WindowManager EnableTiledWindowMargins -bool false
-
-# Date format in menubar
-defaults write com.apple.menuextra.clock DateFormat -string "EEE d MMM  H.mm"
 
 # Dock: only show when moving pointer to the screen edge
 defaults write com.apple.dock autohide -bool true
