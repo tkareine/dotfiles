@@ -6,7 +6,7 @@ SHELLCHECK_OPTS := -s bash -e SC1090
 SHELLCHECK_DOCKER_IMAGE := koalaman/shellcheck:stable
 
 RUBOCOP_CONFIG_FILE := .rubocop.yml
-RUBOCOP_DOCKER_IMAGE := ruby:3-alpine
+RUBOCOP_DOCKER_IMAGE := ruby:3
 
 TEST_RUNNER := test/support/runner.sh
 TEST_FILES := $(wildcard test/*-test.sh)
