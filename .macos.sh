@@ -170,6 +170,9 @@ defaults write com.apple.dock mru-spaces -bool false
 # Dock: don't show Dashboard as a Space
 defaults write com.apple.dock dashboard-in-overlay -bool true
 
+# Dock: group windows by application in Mission Control
+defaults write com.apple.dock expose-group-apps -bool true
+
 # Keyboard, text: disable automatic spelling correction
 defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
 
