@@ -73,7 +73,6 @@ sudo pmset -a ttyskeepawake 1
 # default)
 sudo "$SOCKETFILTERFW" \
      --setglobalstate on \
-     --setloggingmode on \
      --setstealthmode on \
      --setallowsigned on \
      --setallowsignedapp off \
