@@ -172,6 +172,30 @@ defaults write com.apple.dock dashboard-in-overlay -bool true
 # Dock: group windows by application in Mission Control
 defaults write com.apple.dock expose-group-apps -bool true
 
+# Dock: disable all Hot Corners
+#
+# wvous-C-corner: action associated with the corner; 0 for no-op
+#
+# wvous-C-modifier: modifier keys (as a bit mask) which need to be
+# pressed for the hot corner to trigger; 0 for no modifier
+#
+# Where C signifies corner: bottom-left (bl), bottom-right (br),
+# top-left (tl), and top-right (tr)
+#
+# See
+# https://blog.jiayu.co/2018/12/quickly-configuring-hot-corners-on-macos/
+disable_dock_hot_corners() {
+    local corner
+    local corners=(bl br tl tr)
+
+    for corner in "${corners[@]}"; do
+        defaults write com.apple.dock "wvous-$corner-corner" -int 0
+        defaults write com.apple.dock "wvous-$corner-modifier" -int 0
+    done
+}
+
+disable_dock_hot_corners
+
 # Keyboard, text: disable automatic spelling correction
 defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
 
