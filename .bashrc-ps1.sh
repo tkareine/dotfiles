@@ -145,6 +145,9 @@ if [[ $tk__uname == Darwin* ]] && ! /usr/bin/ssh-add -l >/dev/null; then
     /usr/bin/ssh-add --apple-load-keychain 2>/dev/null
 fi
 
+# Disable XON (^Q) and XOFF (^S) control characters for flow control
+stty -ixon
+
 # Bash: check the window size after each command
 shopt -s checkwinsize
 

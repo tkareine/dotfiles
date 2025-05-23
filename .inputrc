@@ -1,5 +1,8 @@
 # See
-# https://www.gnu.org/software/bash/manual/html_node/Readline-Init-File-Syntax.html
+#
+# * https://www.gnu.org/software/bash/manual/html_node/Readline-Init-File-Syntax.html
+#
+# * `man 3 readline`, https://www.man7.org/linux/man-pages/man3/readline.3.html
 #
 # In Bash, use `bind -p` to list functions and bindings in a form that
 # can be reused as input
