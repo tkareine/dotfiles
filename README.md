@@ -1,6 +1,6 @@
 # My dotfiles
 
-[![CI](https://github.com/tkareine/dotfiles/workflows/CI/badge.svg)][dotfiles-CI]
+[![CI](https://github.com/tkareine/dotfiles/actions/workflows/ci.yml/badge.svg)][dotfiles-CI]
 
 Here is my public configuration for selected command line tools. I
 checkout this repository to computers I work with.
@@ -142,7 +142,7 @@ chsh -s "$(brew --prefix)/bin/bash"
 [Universal Ctags]: https://docs.ctags.io/en/latest/
 [chnode]: https://github.com/tkareine/chnode
 [chruby]: https://github.com/postmodern/chruby
-[dotfiles-CI]: https://github.com/tkareine/dotfiles/actions?workflow=CI
+[dotfiles-CI]: https://github.com/tkareine/dotfiles/actions/workflows/ci.yml
 [iTerm2]: https://www.iterm2.com/
 [my .emacs.d]: https://github.com/tkareine/emacs.d
 [universal-ctags-optlib]: https://docs.ctags.io/en/latest/man/ctags-optlib.7.html
