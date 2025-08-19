@@ -18,4 +18,4 @@ source ~/.bashrc-common.sh
 
 [[ -n $PS1 ]] && source ~/.bashrc-ps1.sh
 
-true  # ensure last command is successful
+true # ensure last command is successful

@@ -20,8 +20,8 @@ if [[ $tk__uname == Darwin* ]]; then
         local tool_opts=()
 
         case ${1:-} in
-            -h|-\?|--help)
-                cat << EOF
+            -h | -\? | --help)
+                cat <<EOF
 Usage: chjava [JAVA_VERSION|default]
 EOF
                 return

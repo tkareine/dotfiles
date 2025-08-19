@@ -79,7 +79,7 @@ tk_set_prompt() {
 
     local python_venv
     if [[ -n $VIRTUAL_ENV ]]; then
-        if (( ${PIPENV_ACTIVE:-0} > 0)); then
+        if ((${PIPENV_ACTIVE:-0} > 0)); then
             python_venv="(pipenv) "
         else
             python_venv="(venv) "
@@ -98,7 +98,7 @@ tk_set_prompt() {
     [[ -n $JAVA_HOME ]] && bin_states+=("j:$(tk_version_in_path "$JAVA_HOME")")
 
     local bin_summary
-    if (( ${#bin_states[@]} > 0 )); then
+    if ((${#bin_states[@]} > 0)); then
         bin_summary="($(tk_join ' ' "${bin_states[@]}"))"
         [[ -n $tk__use_color_prompt ]] && bin_summary="${tk__ansi16b_gray_dark}${bin_summary}${tk__ansi_reset}"
     fi

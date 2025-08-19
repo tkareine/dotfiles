@@ -7,7 +7,7 @@ THIS_SCRIPT=${0##*/}
 DEFAULT_PORT=443
 
 print_usage() {
-cat << EOF
+    cat <<EOF
 Usage:
   $THIS_SCRIPT verifycert host [-p port] [-s servername]
   $THIS_SCRIPT showcert host [-p port] [-s servername]
@@ -55,13 +55,13 @@ parse_http_proxy() {
     res=${res#"http://"}
     res=${res#"https://"}
     res=${res%%/*}
-    (( nc )) || shopt -u nocasematch
+    ((nc)) || shopt -u nocasematch
     echo "$res"
 }
 
 use_proxy() {
     local host=$1 no_proxy_hosts no_proxy_host
-    IFS=', ' read -ra no_proxy_hosts <<< "${no_proxy:-}"
+    IFS=', ' read -ra no_proxy_hosts <<<"${no_proxy:-}"
     for no_proxy_host in "${no_proxy_hosts[@]}"; do
         no_proxy_host=${no_proxy_host/#./*.}
         # shellcheck disable=SC2053
@@ -83,18 +83,18 @@ parse_s_client_args() {
     servername=
     s_client_opts=()
 
-    while (( $# > 0 )); do
+    while (($# > 0)); do
         case ${1:-} in
-            -h|-\?|--help)
+            -h | -\? | --help)
                 print_usage
                 exit
                 ;;
-            -p|--port)
+            -p | --port)
                 [[ -z ${2:-} ]] && error_usage_exit "$THIS_SCRIPT $subcommand: no argument given for --port"
                 port=$2
                 shift
                 ;;
-            -s|--servername)
+            -s | --servername)
                 [[ -z ${2:-} ]] && error_usage_exit "$THIS_SCRIPT $subcommand: no argument given for --servername"
                 servername=$2
                 shift
@@ -102,6 +102,7 @@ parse_s_client_args() {
             *)
                 [[ -n $host ]] && error_usage_exit "$THIS_SCRIPT $subcommand: no other arguments allowed"
                 host=${1:-}
+                ;;
         esac
 
         shift
@@ -132,13 +133,13 @@ cmd_verifycert() {
 
     echo "" \
         | "$OPENSSL_BIN" s_client \
-                         "${s_client_opts[@]}" \
-                         -no_ssl2 \
-                         -no_ssl3 \
-                         -verify 9 \
-                         -verify_return_error \
-                         -servername "$servername" \
-                         -connect "$host:$port"
+            "${s_client_opts[@]}" \
+            -no_ssl2 \
+            -no_ssl3 \
+            -verify 9 \
+            -verify_return_error \
+            -servername "$servername" \
+            -connect "$host:$port"
 }
 
 cmd_showcert() {
@@ -148,19 +149,19 @@ cmd_showcert() {
 
     echo "" \
         | "$OPENSSL_BIN" s_client \
-                         "${s_client_opts[@]}" \
-                         -no_ssl2 \
-                         -no_ssl3 \
-                         -servername "$servername" \
-                         -connect "$host:$port" \
-                         2>/dev/null \
+            "${s_client_opts[@]}" \
+            -no_ssl2 \
+            -no_ssl3 \
+            -servername "$servername" \
+            -connect "$host:$port" \
+            2>/dev/null \
         | "$OPENSSL_BIN" x509 -text
 }
 
 cmd_exist "$OPENSSL_BIN" || error_exit 3 "$THIS_SCRIPT: $OPENSSL_BIN not found"
 
 case ${1:-} in
-    -h|-\?|--help)
+    -h | -\? | --help)
         print_usage
         exit
         ;;
@@ -177,4 +178,5 @@ case ${1:-} in
     *)
         print_usage
         exit 2
+        ;;
 esac

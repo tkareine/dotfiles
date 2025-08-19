@@ -62,7 +62,7 @@ tk_version_in_path() {
 
 tk_bm() {
     if [[ $# = 0 ]]; then
-        cat << EOF
+        cat <<EOF
 Usage:
 
   tk_bm true              Measure baseline latency
@@ -82,7 +82,12 @@ EOF
     eval "__tk_bm_cmd() { $cmd; }"
 
     local total_secs per_cmd_ms
-    total_secs=$({ time for (( r=0; r < num_times; r+=1 )); do __tk_bm_cmd >/dev/null; done; true; } 2>&1)
+
+    total_secs=$({
+        time for ((r = 0; r < num_times; r += 1)); do __tk_bm_cmd >/dev/null; done
+        true
+    } 2>&1)
+
     per_cmd_ms=$(printf "scale=10\n(%s / %s) * 1000\n" "$total_secs" "$num_times" | bc)
 
     unset __tk_bm_cmd

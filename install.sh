@@ -65,7 +65,7 @@ print_error() {
 }
 
 print_usage() {
-    cat << EOF
+    cat <<EOF
 Usage: ${0##*/} [-f] [-h]
 Install dotfiles by copying or symlinking to user's home directory.
 
@@ -122,15 +122,16 @@ force_install=
 
 while :; do
     case ${1:-} in
-        -h|-\?|--help)
+        -h | -\? | --help)
             print_usage
             exit
             ;;
-        -f|--force)
+        -f | --force)
             force_install=1
             ;;
         *)
             break
+            ;;
     esac
 
     shift
