@@ -3,16 +3,16 @@
 set -uo pipefail
 
 case ${1:-} in
-    -h|--help)
-        echo "Usage: git short-rev [<revision>]"
-        exit 0
-        ;;
-    '')
-        rev=HEAD
-        ;;
-    *)
-        rev=$1
-        ;;
+-h | --help)
+    echo "Usage: git short-rev [<revision>]"
+    exit 0
+    ;;
+'')
+    rev=HEAD
+    ;;
+*)
+    rev=$1
+    ;;
 esac
 
 git rev-parse --short "$rev"

@@ -72,11 +72,11 @@ sudo pmset -a ttyskeepawake 1
 # signed built-in apps (by default), disallow downloaded signed apps (by
 # default)
 sudo "$SOCKETFILTERFW" \
-     --setglobalstate on \
-     --setstealthmode on \
-     --setallowsigned on \
-     --setallowsignedapp off \
-     >/dev/null
+    --setglobalstate on \
+    --setstealthmode on \
+    --setallowsigned on \
+    --setallowsignedapp off \
+    >/dev/null
 
 # Application layer firewall: restart
 sudo pkill -HUP -xf "$SOCKETFILTERFW"
@@ -91,7 +91,7 @@ defaults write NSGlobalDomain AppleICUTimeFormatStrings -dict 4 "HH' h 'mm' min 
 
 # Set the timezone; see `sudo systemsetup -listtimezones` for other
 # values
-sudo systemsetup -settimezone "Europe/Helsinki" > /dev/null
+sudo systemsetup -settimezone "Europe/Helsinki" >/dev/null
 
 # Dark interface style
 defaults write NSGlobalDomain AppleInterfaceStyle -string "Dark"
@@ -411,10 +411,10 @@ defaults write com.apple.iCal 'Show Week Numbers' -bool true
 # `Library/KeyBindings/DefaultKeyBinding.dict` for a summary of key
 # modifiers
 defaults write com.apple.Notes NSUserKeyEquivalents -dict \
-         'Remove Style' '@~c' \
-         'Bulleted List' '@~b' \
-         'Dashed List' '@~v' \
-         'Numbered List' '@~n'
+    'Remove Style' '@~c' \
+    'Bulleted List' '@~b' \
+    'Dashed List' '@~v' \
+    'Numbered List' '@~n'
 
 # TextEdit: use plain text mode for new documents
 defaults write com.apple.TextEdit RichText -int 0
@@ -442,18 +442,17 @@ defaults write org.keepassxc.keepassxc NSUserKeyEquivalents -dict 'Password Gene
 sudo pkill -x cfprefsd
 
 for app in \
-        "Google Chrome Canary" \
-        "Google Chrome" \
-        Calendar \
-        Dock \
-        Finder \
-        Mail \
-        Notes \
-        Safari \
-        SystemUIServer \
-        TextEdit \
-        firefox \
-    ; do
+    "Google Chrome Canary" \
+    "Google Chrome" \
+    Calendar \
+    Dock \
+    Finder \
+    Mail \
+    Notes \
+    Safari \
+    SystemUIServer \
+    TextEdit \
+    firefox; do
     pkill -x "${app}" || true
 done
 

@@ -7,7 +7,7 @@ global_should_find() {
     expect_num_matches=$1
     symbol=$2
 
-    if ! global -x --literal "$symbol" | wc -l | grep -q "\<$expect_num_matches\>" ; then
+    if ! global -x --literal "$symbol" | wc -l | grep -q "\<$expect_num_matches\>"; then
         echo "global_should_find(): failed (expect $expect_num_matches match): $symbol" >&2
         global -x --literal "$symbol" >&2
         return 1

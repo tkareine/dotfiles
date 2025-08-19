@@ -60,12 +60,18 @@ test_tk_version_in_path() {
 
 test_tk_bm() {
     local actual
+
     # shellcheck disable=SC2034
-    readarray -t actual < <(tk_bm_num_times=2; tk_bm 'sleep 0.1 && false')
+    readarray -t actual < <(
+        tk_bm_num_times=2
+        tk_bm 'sleep 0.1 && false'
+    )
+
     local exp_lines=(
         $'^[0-9]+\\.[0-9]{3} secs for 2 times run command: sleep 0.1 && false$'
         $'^[0-9]+\\.[0-9]{3} ms/command$'
     )
+
     [[ ${actual[0]} =~ ${exp_lines[0]} ]] || fail_test "didn't match: ${actual[0]}"
     [[ ${actual[1]} =~ ${exp_lines[1]} ]] || fail_test "didn't match: ${actual[1]}"
 }

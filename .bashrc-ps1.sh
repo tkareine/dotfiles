@@ -79,7 +79,7 @@ tk_set_prompt() {
 
     local python_venv
     if [[ -n $VIRTUAL_ENV ]]; then
-        if (( ${PIPENV_ACTIVE:-0} > 0)); then
+        if ((${PIPENV_ACTIVE:-0} > 0)); then
             python_venv="(pipenv) "
         else
             python_venv="(venv) "
@@ -98,7 +98,7 @@ tk_set_prompt() {
     [[ -n $JAVA_HOME ]] && bin_states+=("j:$(tk_version_in_path "$JAVA_HOME")")
 
     local bin_summary
-    if (( ${#bin_states[@]} > 0 )); then
+    if ((${#bin_states[@]} > 0)); then
         bin_summary="($(tk_join ' ' "${bin_states[@]}"))"
         [[ -n $tk__use_color_prompt ]] && bin_summary="${tk__ansi16b_gray_dark}${bin_summary}${tk__ansi_reset}"
     fi
@@ -175,30 +175,30 @@ fi
 # Color support for ls
 if tk_is_color_term; then
     case $tk__uname in
-        Darwin*)
-            tk_is_login_shell && export LSCOLORS=Hxgxfxdxcxegedabagacad
+    Darwin*)
+        tk_is_login_shell && export LSCOLORS=Hxgxfxdxcxegedabagacad
 
-            # Install GNU coreutils for from Homebrew (`brew install
-            # coreutils`); see https://www.gnu.org/software/coreutils
-            if tk_cmd_exist gls && tk_cmd_exist gdircolors; then
-                if [[ -r ~/.dircolors ]]; then
-                    eval "$(gdircolors -b ~/.dircolors)"
-                else
-                    eval "$(gdircolors -b)"
-                fi
-                alias ls='gls -F --color=auto'
-            else
-                alias ls='ls -FG'
-            fi
-            ;;
-        Linux*)
+        # Install GNU coreutils for from Homebrew (`brew install
+        # coreutils`); see https://www.gnu.org/software/coreutils
+        if tk_cmd_exist gls && tk_cmd_exist gdircolors; then
             if [[ -r ~/.dircolors ]]; then
-                eval "$(dircolors -b ~/.dircolors)"
+                eval "$(gdircolors -b ~/.dircolors)"
             else
-                eval "$(dircolors -b)"
+                eval "$(gdircolors -b)"
             fi
-            alias ls='ls -F --color=auto'
-            ;;
+            alias ls='gls -F --color=auto'
+        else
+            alias ls='ls -FG'
+        fi
+        ;;
+    Linux*)
+        if [[ -r ~/.dircolors ]]; then
+            eval "$(dircolors -b ~/.dircolors)"
+        else
+            eval "$(dircolors -b)"
+        fi
+        alias ls='ls -F --color=auto'
+        ;;
     esac
 fi
 

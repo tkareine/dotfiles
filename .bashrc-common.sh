@@ -20,24 +20,24 @@ if [[ $tk__uname == Darwin* ]]; then
         local tool_opts=()
 
         case ${1:-} in
-            -h|-\?|--help)
-                cat << EOF
+        -h | -\? | --help)
+            cat <<EOF
 Usage: chjava [JAVA_VERSION|default]
 EOF
-                return
-                ;;
-            '')
-                "$tool_path" -V
-                return
-                ;;
-            default)
-                tool_opts+=(--failfast)
-                ;;
-            *)
-                tool_opts+=(--failfast)
-                tool_opts+=(-v)
-                tool_opts+=("$1")
-                ;;
+            return
+            ;;
+        '')
+            "$tool_path" -V
+            return
+            ;;
+        default)
+            tool_opts+=(--failfast)
+            ;;
+        *)
+            tool_opts+=(--failfast)
+            tool_opts+=(-v)
+            tool_opts+=("$1")
+            ;;
         esac
 
         local java_home

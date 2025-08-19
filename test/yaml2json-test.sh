@@ -19,7 +19,7 @@ test_input_from_file() {
 }
 
 __print_json() {
-    cat << END
+    cat <<END
 {
   "string": "foo",
   "list": [
@@ -35,7 +35,7 @@ END
 }
 
 __print_yaml() {
-    cat << END
+    cat <<END
 string: foo
 list:
 - bar

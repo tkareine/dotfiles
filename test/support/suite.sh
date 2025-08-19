@@ -3,7 +3,7 @@
 set -euo pipefail
 
 if [[ -z ${TEST_SOURCE:-} ]]; then
-    cat << 'EOF' >&2
+    cat <<'EOF' >&2
 No TEST_SOURCE set.
 
 Usage: TEST_SOURCE=$0 source run-test-suite.sh

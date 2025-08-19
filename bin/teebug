@@ -22,7 +22,7 @@ printt() {
         exit 3
     }
     # shellcheck disable=SC2059
-    printf "$@" >> "$out_file"
+    printf "$@" >>"$out_file"
     # shellcheck disable=SC2059
     printf "$@"
 }
@@ -32,7 +32,7 @@ printt_args() {
     printt "NUM ARGS: %d\n" "$#"
     for var in "$@"; do
         printt "ARG %d: %s\n" "$index" "$var"
-        (( index += 1))
+        ((index += 1))
     done
 }
 
