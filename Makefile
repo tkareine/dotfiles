@@ -2,6 +2,9 @@ CLEAN_FILES := $(foreach file,GPATH GRTAGS GTAGS TAGS,test/fixture/gtags/$(file)
 
 INSTALL_ARGS :=
 
+SHFMT_OPTS := --diff
+SHFMT_DOCKER_IMAGE := mvdan/shfmt:v3-alpine
+
 SHELLCHECK_OPTS := -s bash -e SC1090
 SHELLCHECK_DOCKER_IMAGE := koalaman/shellcheck:stable
 
@@ -29,19 +32,35 @@ clean:
 	rm -f $(CLEAN_FILES)
 
 .PHONY: lint
-lint: lint-shellcheck lint-rubocop
+lint: shfmt shellcheck rubocop
 
 .PHONY: lint-docker
-lint-docker: lint-shellcheck-docker lint-rubocop-docker
+lint-docker: shfmt-docker shellcheck-docker rubocop-docker
 
-.PHONY: lint-shellcheck
-lint-shellcheck: SHELL := bash
-lint-shellcheck:
-	shellcheck $$(< .shellcheck-files)
+.PHONY: shfmt
+shfmt: SHELL := bash
+shfmt:
+	shfmt $(SHFMT_OPTS) $$(< .sh-files)
 
-.PHONY: lint-shellcheck-docker
-lint-shellcheck-docker: SHELL := bash
-lint-shellcheck-docker:
+.PHONY: shfmt-docker
+shfmt-docker: SHELL := bash
+shfmt-docker:
+	docker run \
+	    --rm \
+	    -t \
+	    -v "$(CURDIR):/dotfiles:ro" \
+	    -w /dotfiles \
+	    $(SHFMT_DOCKER_IMAGE) $(SHFMT_OPTS) \
+	    $$(< .sh-files)
+
+.PHONY: shellcheck
+shellcheck: SHELL := bash
+shellcheck:
+	shellcheck $$(< .sh-files)
+
+.PHONY: shellcheck-docker
+shellcheck-docker: SHELL := bash
+shellcheck-docker:
 	docker run \
 	    --rm \
 	    -t \
@@ -49,15 +68,15 @@ lint-shellcheck-docker:
 	    -w /dotfiles \
 	    -e SHELLCHECK_OPTS="$(SHELLCHECK_OPTS)" \
 	    $(SHELLCHECK_DOCKER_IMAGE) \
-	    $$(< .shellcheck-files)
+	    $$(< .sh-files)
 
-.PHONY: lint-rubocop
-lint-rubocop: SHELL := bash
-lint-rubocop:
+.PHONY: rubocop
+rubocop: SHELL := bash
+rubocop:
 	rubocop --config $(CURDIR)/$(RUBOCOP_CONFIG_FILE) $$(< .rubocop-files)
 
-.PHONY: lint-rubocop-docker
-lint-rubocop-docker:
+.PHONY: rubocop-docker
+rubocop-docker:
 	docker run \
 	    --rm \
 	    -t \
@@ -135,10 +154,12 @@ Targets:
 
   lint                    Run linters on source files
   lint-docker             Run linters on source files in a Docker container
-  lint-shellcheck         Run ShellCheck on source files
-  lint-shellcheck-docker  Run ShellCheck on source files in a Docker container
-  lint-rubocop            Run RuboCop on source files
-  lint-rubocop-docker     Run RuboCop on source files in a Docker container
+  shfmt                   Run shfmt on source files
+  shfmt-docker            Run shfmt on source files in a Docker container
+  shellcheck              Run ShellCheck on source files
+  shellcheck-docker       Run ShellCheck on source files in a Docker container
+  rubocop                 Run RuboCop on source files
+  rubocop-docker          Run RuboCop on source files in a Docker container
 
   test                    Run tests (requires install) (select: TEST_FILES=test/*-test.sh)
   test-docker             Run tests in Docker containers
