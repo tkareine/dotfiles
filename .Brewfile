@@ -1,9 +1,11 @@
 # # rubocop:disable Naming/FileName
 # frozen_string_literal: true
 
+# Install: `brew bundle install --file .Brewfile`
+#
 # See
 #
-# * https://github.com/Homebrew/homebrew-bundle
+# * https://docs.brew.sh/Brew-Bundle-and-Brewfile
 # * `brew bundle --help`
 
 tap "d12frosted/emacs-plus"
@@ -38,7 +40,7 @@ brew "zoxide"
 cask "alfred"
 cask "betterdisplay"
 cask "firefox"
-cask "gitup"
+cask "gitup-app"
 cask "imageoptim"
 cask "iterm2"
 cask "jdk-mission-control"
