@@ -279,6 +279,9 @@ defaults write com.apple.universalaccess reduceTransparency -bool true
 defaults write com.apple.universalaccess closeViewScrollWheelToggle -bool true
 defaults write com.apple.universalaccess HIDScrollZoomModifierMask -int 262144
 
+# Accessibility: turn off blinking cursor
+defaults write com.apple.Accessibility PrefersNonBlinkingCursorIndicator -bool true
+
 # Automatically quit printer app once the print jobs complete
 defaults write com.apple.print.PrintingPrefs "Quit When Finished" -bool true
 
