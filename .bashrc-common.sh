@@ -122,9 +122,24 @@ if tk_is_login_shell; then
     # Ripgrep (rg)
     [[ -r ~/.ripgreprc ]] && export RIPGREP_CONFIG_PATH=~/.ripgreprc
 
-    # Less: ignore character case in searches, display ANSI colors, highlight the
-    # first unread line, show verbose prompt
-    export LESS=-iRWMFX
+    # Less:
+    #
+    # * `-i`: ignore character case in searches
+    #
+    # * `-R`: display ANSI colors
+    #
+    # * `-S`: chop lines longer than screen width (press right-arrow to
+    #   scroll to right)
+    #
+    # * `-W`: highlight the first unread line
+    #
+    # * `-M`: show verbose prompt
+    #
+    # * `-F`: exit if the entire file can be displayed on the first
+    #   screen
+    #
+    # * `-X`: don't send termcap deinit for clearing the screen at exit
+    export LESS=-iRSWMFX
     export PAGER=less
 
     # GNU Global
