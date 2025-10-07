@@ -1,7 +1,10 @@
 -- Reference: https://www.postgresql.org/docs/current/app-psql.html
+
 \timing on
 \pset pager on
 \set HISTCONTROL ignoreboth
 \set COMP_KEYWORD_CASE preserve-lower
+
+-- Reference: https://www.postgresql.org/docs/current/app-psql.html#APP-PSQL-PROMPTING
 \set PROMPT1 '%n@%m %~%R%# '
 \set PROMPT2 '%R %# '
