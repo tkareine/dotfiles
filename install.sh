@@ -34,6 +34,7 @@ INSTALL_BY_SYMLINKING_COMMON=(
     .inputrc
     .irbrc
     .lein/profiles.clj
+    .npmrc
     .prettierrc.js
     .psqlrc
     .ripgreprc
