@@ -92,13 +92,13 @@ update_emacsd() {
     )
 }
 
-update_npm() {
-    cmd_exist npm || {
-        echo "Skip, because \`npm\` command not found" >&2
+update_pnpm() {
+    cmd_exist pnpm || {
+        echo "Skip, because \`pnpm\` command not found" >&2
         return "$ERROR_UPDATE_COMMAND_NOT_FOUND"
     }
 
-    npm update --location=global --ignore-scripts
+    pnpm update --global
 }
 
 update_rubygems() {
@@ -133,7 +133,7 @@ update_rustup() {
 
 do_update "dotfiles" update_dotfiles 1
 do_update ".emacs.d" update_emacsd
-do_update "npm" update_npm
+do_update "pnpm" update_pnpm
 do_update "RubyGems" update_rubygems
 do_update "Rust toolchain" update_rustup
 do_update "Homebrew" update_brew
