@@ -23,6 +23,7 @@ INSTALL_BY_SYMLINKING_COMMON=(
     .bashrc-ps1.sh
     .bashrc-support.sh
     .cargo/config.toml
+    .config/pnpm/rc
     .config/pgcli/config
     .ctags.d/custom.ctags
     .dircolors

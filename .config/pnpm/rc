@@ -1,0 +1,10 @@
+# -*- mode: conf -*-
+
+# See config in effect, with defaults: `pnpm config list -g`
+#
+# References:
+#
+# * https://pnpm.io/cli/config
+# * https://pnpm.io/settings
+# * https://pnpm.io/supply-chain-security
+minimum-release-age = 1440
