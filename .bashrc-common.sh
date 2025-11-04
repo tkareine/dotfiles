@@ -112,6 +112,15 @@ if tk_is_login_shell; then
     # Localization
     export LANG=en_US.UTF-8
 
+    # Explicitly set XDG_* environment variables so they work on macOS.
+    # Some tools, such as pnpm, use these directories.
+    #
+    # https://wiki.archlinux.org/title/XDG_Base_Directory
+    export XDG_CACHE_HOME=~/.cache
+    export XDG_CONFIG_HOME=~/.config
+    export XDG_DATA_HOME=~/.local/share
+    export XDG_STATE_HOME=~/.local/state
+
     # Bash: ignore commands that begin with space and duplicate commands
     export HISTCONTROL=erasedups:ignoreboth
     export HISTIGNORE='bg?( *):clear:exit:fg?( *):history?( *):ll:ls?( *):reset'
