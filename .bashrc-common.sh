@@ -175,6 +175,12 @@ if tk_is_login_shell; then
     # Select Node.js if chnode is installed
     tk_cmd_exist chnode && chnode node-24
 
+    # pnpm; see: https://pnpm.io/settings#storedir
+    if tk_cmd_exist pnpm; then
+        export PNPM_HOME="$XDG_DATA_HOME/pnpm/store"
+        export PATH="$PNPM_HOME:$PATH"
+    fi
+
     # Select Ruby if chruby is installed
     tk_cmd_exist chruby && chruby ruby-3
 
