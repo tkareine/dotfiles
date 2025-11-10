@@ -38,7 +38,6 @@ brew "yt-dlp"
 brew "zoxide"
 
 cask "alfred"
-cask "betterdisplay"
 cask "firefox"
 cask "gitup-app"
 cask "imageoptim"
