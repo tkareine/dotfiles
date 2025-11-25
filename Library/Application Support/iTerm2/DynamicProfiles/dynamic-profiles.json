@@ -1,6 +1,10 @@
 {
   "Profiles": [
     {
+      "Name": "tmux",
+      "Guid": "tmux"
+    },
+    {
       "Name": "prod-env",
       "Guid": "prod-env",
       "Background Color": {
