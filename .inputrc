@@ -8,6 +8,9 @@
 #
 # In Bash, use `bind -p` to list functions and bindings in a form that
 # can be reused as input
+#
+# Use `C-x C-r` (`re-read-init-file`) to re-apply this file within
+# readline prompt
 
 # Perform filename matching and completion in a case-insensitive
 # fashion
@@ -48,16 +51,19 @@ set colored-stats on
 # are taken from the value of the LS_COLORS environment variable.
 set colored-completion-prefix on
 
-# Key binding <up>: non-incremental backward history search, must match
-# from beginning of history line
+# Key binding `<esc> C-r`: incremental forward history search
+"\e\C-r": forward-search-history
+
+# Key binding `<up>`: non-incremental backward history search, must
+# match from beginning of history line
 "\e[A": history-search-backward
 
-# Key binding <down>: non-incremental forward history search, must match
-# from beginning of history line
+# Key binding `<down>`: non-incremental forward history search, must
+# match from beginning of history line
 "\e[B": history-search-forward
 
-# Key binding C-<right>
+# Key binding `C-<right>`
 "\e[1;5C": forward-word
 
-# Key binding C-<left>
+# Key binding `C-<left>`
 "\e[1;5D": backward-word
