@@ -93,10 +93,13 @@ update_emacsd() {
 }
 
 update_pnpm() {
-    cmd_exist pnpm || {
-        echo "Skip, because \`pnpm\` command not found" >&2
+    (cmd_exist pnpm && cmd_exist jq) || {
+        echo "Skip, because \`pnpm\` or \`jq\` commands not found" >&2
         return "$ERROR_UPDATE_COMMAND_NOT_FOUND"
     }
+
+    jq --raw-output0 '.dependencies | keys[]' ~/Projects/dotfiles/global-packages.json \
+        | xargs -0 pnpm --global add
 
     pnpm update --global
 }

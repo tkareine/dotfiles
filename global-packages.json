@@ -1,0 +1,11 @@
+{
+  "name": "dotfiles global npm packages",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "marked": "latest",
+    "prettier": "latest",
+    "typescript": "latest",
+    "typescript-language-server": "latest"
+  }
+}
