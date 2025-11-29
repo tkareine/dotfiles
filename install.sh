@@ -2,7 +2,7 @@
 
 set -euo pipefail
 
-# needed for determining $SOURCE_DIR and expanding pattern bin/*
+# Needed for determining $SOURCE_DIR and expanding pattern bin/*
 cd "${0%/*}" || exit 1
 SOURCE_DIR=$(pwd -P)
 
