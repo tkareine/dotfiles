@@ -98,7 +98,7 @@ update_pnpm() {
         return "$ERROR_UPDATE_COMMAND_NOT_FOUND"
     }
 
-    jq --raw-output0 '.dependencies | keys[]' ~/Projects/dotfiles/global-packages.json \
+    jq --raw-output0 '.dependencies | keys[]' ~/Projects/dotfiles/global-package.json \
         | xargs -0 pnpm --global add
 
     pnpm update --global
