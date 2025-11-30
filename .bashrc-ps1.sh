@@ -182,9 +182,9 @@ if tk_is_color_term; then
             # coreutils`); see https://www.gnu.org/software/coreutils
             if tk_cmd_exist gls && tk_cmd_exist gdircolors; then
                 if [[ -r ~/.dircolors ]]; then
-                    eval "$(gdircolors -b ~/.dircolors)"
+                    source <(gdircolors -b ~/.dircolors)
                 else
-                    eval "$(gdircolors -b)"
+                    source <(gdircolors -b)
                 fi
                 alias ls='gls -F --color=auto'
             else
@@ -193,9 +193,9 @@ if tk_is_color_term; then
             ;;
         Linux*)
             if [[ -r ~/.dircolors ]]; then
-                eval "$(dircolors -b ~/.dircolors)"
+                source <(dircolors -b ~/.dircolors)
             else
-                eval "$(dircolors -b)"
+                source <(dircolors -b)
             fi
             alias ls='ls -F --color=auto'
             ;;
@@ -204,7 +204,7 @@ fi
 
 alias ll='ls -lhA'
 
-tk_cmd_exist zoxide && eval "$(zoxide init --hook pwd bash)"
+tk_cmd_exist zoxide && source <(zoxide init --hook pwd bash)
 
 # Grep: color support
 alias grep='grep --color=auto'
