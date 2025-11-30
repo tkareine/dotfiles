@@ -3,9 +3,10 @@
 
 # Install: `brew bundle install --file .Brewfile`
 #
-# See
+# See:
 #
 # * https://docs.brew.sh/Brew-Bundle-and-Brewfile
+#
 # * `brew bundle --help`
 
 tap "d12frosted/emacs-plus"
@@ -41,6 +42,7 @@ brew "yt-dlp"
 brew "zoxide"
 
 cask "alfred"
+cask "betterdisplay"
 cask "firefox"
 cask "gitup-app"
 cask "imageoptim"
