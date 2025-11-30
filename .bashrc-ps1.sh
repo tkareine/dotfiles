@@ -206,6 +206,11 @@ alias ll='ls -lhA'
 
 tk_cmd_exist zoxide && source <(zoxide init --hook pwd bash)
 
+if tk_cmd_exist fzf; then
+    tk_is_login_shell && export FZF_DEFAULT_OPTS='--color=pointer:80,prompt:176,info:72'
+    FZF_ALT_C_COMMAND='' source <(fzf --bash)
+fi
+
 # Grep: color support
 alias grep='grep --color=auto'
 alias egrep='egrep --color=auto'
