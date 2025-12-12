@@ -282,6 +282,12 @@ defaults write com.apple.universalaccess HIDScrollZoomModifierMask -int 262144
 # Accessibility: turn off blinking cursor
 defaults write com.apple.Accessibility PrefersNonBlinkingCursorIndicator -bool true
 
+# Disable the new cursor indicator that shows status near the cursor if
+# the Caps Lock is toggled on or when the user changes keyboard input
+# source. Disables the `CursorUIViewService` service, which is has a bug
+# on Apple Silicon CPUs that causes the process to not respond.
+sudo defaults write /Library/Preferences/FeatureFlags/Domain/UIKit.plist redesigned_text_cursor -dict-add Enabled -bool false
+
 # Automatically quit printer app once the print jobs complete
 defaults write com.apple.print.PrintingPrefs "Quit When Finished" -bool true
 
