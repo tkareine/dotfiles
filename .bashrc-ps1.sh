@@ -129,16 +129,6 @@ tk_set_title() {
 # shellcheck disable=SC1091
 [[ $tk__brew_path && -r ${tk__brew_path}/etc/profile.d/bash_completion.sh ]] && source "${tk__brew_path}/etc/profile.d/bash_completion.sh"
 
-# Install my local Bash completions
-if [[ -d ~/.bash_completion.d && -x ~/.bash_completion.d ]]; then
-    for file in ~/.bash_completion.d/*; do
-        if [[ -f $file && -r $file ]]; then
-            source "$file"
-        fi
-    done
-    unset file
-fi
-
 # shellcheck disable=SC2154
 if [[ $tk__uname == Darwin* ]] && ! /usr/bin/ssh-add -l >/dev/null; then
     # ssh: load identities with passwords from user's keychain
