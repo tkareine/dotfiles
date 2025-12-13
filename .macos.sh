@@ -284,8 +284,8 @@ defaults write com.apple.Accessibility PrefersNonBlinkingCursorIndicator -bool t
 
 # Disable the new cursor indicator that shows status near the cursor if
 # the Caps Lock is toggled on or when the user changes keyboard input
-# source. Disables the `CursorUIViewService` service, which is has a bug
-# on Apple Silicon CPUs that causes the process to not respond.
+# source. Disables the `CursorUIViewService` process, which has a bug on
+# Apple Silicon CPUs causing the process to not respond.
 sudo defaults write /Library/Preferences/FeatureFlags/Domain/UIKit.plist redesigned_text_cursor -dict-add Enabled -bool false
 
 # Automatically quit printer app once the print jobs complete
