@@ -19,35 +19,44 @@ test_tk_exit_if_fail_when_ok() {
 }
 
 test_tk_exit_if_fail_when_fail() {
-    local msg ecode
-    set +e
-    msg=$(tk_exit_if_fail false 2>&1)
-    ecode=$?
-    set -e
-    assert_equal $ecode 1
-    assert_equal "$msg" "failed (1): false"
+    assert_fail_with 1 "failed (1): false" tk_exit_if_fail false
 }
 
 test_tk_join() {
     local ary=(a bb ccc "d dd d")
+    assert_equal "$(tk_join)" ""
+    assert_equal "$(tk_join ,)" ""
     assert_equal "$(tk_join , "${ary[@]}")" "a,bb,ccc,d dd d"
 }
 
 test_tk_trim() {
+    assert_equal "$(tk_trim)" ""
     assert_equal "$(tk_trim $' foo bar \t\n')" "foo bar"
 }
 
-test_tk_cmd_exist() {
+test_tk_cmd_exist_when_no_parameter() {
+    assert_fail_with 1 'tk_cmd_exist(): expects command name as the parameter' tk_cmd_exist
+}
+
+test_tk_cmd_exist_when_parameter() {
     assert_ok 'tk_cmd_exist echo'
     assert_fail 'tk_cmd_exist nosuch'
 }
 
-test_tk_fn_exist() {
-    assert_ok 'tk_fn_exist test_tk_fn_exist'
+test_tk_fn_exist_when_no_parameter() {
+    assert_fail_with 1 'tk_fn_exist(): expects function name as the parameter' tk_fn_exist
+}
+
+test_tk_fn_exist_when_parameter() {
+    assert_ok 'tk_fn_exist test_tk_fn_exist_when_parameter'
     assert_fail 'tk_fn_exist nosuch'
 }
 
-test_tk_version_in_path() {
+test_tk_version_in_path_when_no_parameter() {
+    assert_fail_with 1 'tk_version_in_path(): expects path as the parameter' tk_version_in_path
+}
+
+test_tk_version_in_path_when_parameter() {
     assert_equal "$(tk_version_in_path /usr/local/share/node-14)" 14
     assert_equal "$(tk_version_in_path /usr/local/share/node-14.4.5)" 14.4.5
     assert_equal "$(tk_version_in_path /usr/local/share/node-14.4.5/bin)" 14.4.5

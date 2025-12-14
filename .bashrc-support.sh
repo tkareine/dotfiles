@@ -20,7 +20,7 @@ tk_exit_if_fail() {
 #   $(tk_join , "${ary[@]}")
 #   => "a,bb,ccc"
 tk_join() {
-    local IFS="$1"
+    local IFS="${1:-}"
     shift
     echo "$*"
 }
@@ -31,19 +31,19 @@ tk_join() {
 tk_trim() {
     # Adapted from
     # https://github.com/dylanaraps/pure-bash-bible#trim-leading-and-trailing-white-space-from-string
-    local tmp=$1
+    local tmp=${1:-}
     tmp=${tmp#"${tmp%%[![:space:]]*}"}
     tmp=${tmp%"${tmp##*[![:space:]]}"}
     printf '%s\n' "$tmp"
 }
 
 tk_cmd_exist() {
-    [[ -z $1 ]] && tk_print_error "tk_cmd_exist(): expects command name as the parameter" && return 1
+    [[ -z ${1:-} ]] && tk_print_error "tk_cmd_exist(): expects command name as the parameter" && return 1
     command -v "$1" &>/dev/null
 }
 
 tk_fn_exist() {
-    [[ -z $1 ]] && tk_print_error "tk_fn_exist(): expects function name as the parameter" && return 1
+    [[ -z ${1:-} ]] && tk_print_error "tk_fn_exist(): expects function name as the parameter" && return 1
     [[ $(type -t "$1") == "function" ]]
 }
 
@@ -52,7 +52,7 @@ tk_is_login_shell() {
 }
 
 tk_version_in_path() {
-    [[ -z $1 ]] && tk_print_error "tk_version_in_path(): expects path as the parameter" && return 1
+    [[ -z ${1:-} ]] && tk_print_error "tk_version_in_path(): expects path as the parameter" && return 1
     if [[ $1 =~ [/-]([[:digit:]]+(\.[[:digit:]]+)*) ]]; then
         echo "${BASH_REMATCH[1]}"
     fi
