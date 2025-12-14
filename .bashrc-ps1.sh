@@ -78,12 +78,8 @@ tk_set_prompt() {
     fi
 
     local python_venv
-    if [[ -n $VIRTUAL_ENV ]]; then
-        if ((${PIPENV_ACTIVE:-0} > 0)); then
-            python_venv="(pipenv) "
-        else
-            python_venv="(venv) "
-        fi
+    if [[ -n ${VIRTUAL_ENV:-} ]]; then
+        python_venv="(venv) "
     fi
 
     local host_extras
