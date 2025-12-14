@@ -23,7 +23,11 @@ test_interactive_login_shell() {
 
 test_interactive_nonlogin_shell() {
     local stdout
-    stdout=$(__clean_shell -i -c true 2>&1)
+    # For now, don't redirect stderr to stdout. Having bash-completion@2
+    # installed causes lines similar to the following printed to stderr:
+    #
+    # bash: warning: setlocale: LC_CTYPE: cannot change locale (): Bad file descriptor
+    stdout=$(__clean_shell -i -c true)
     local status=$?
     [[ $status = 0 ]] || fail_test "error in bash init for interactive non-login shell"
     assert_equal '' "$stdout"
