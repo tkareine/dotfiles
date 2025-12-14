@@ -16,7 +16,7 @@ TEST_FILES := $(wildcard test/*-test.sh)
 TEST_BASH_FILES := $(wildcard test/bash*-test.sh)
 TEST_BASH_DOCKER_IMAGES := bash!5 bash!4.4
 TEST_DEBIAN_FILES := test/gtags-test.sh test/yaml2json-test.sh
-TEST_DEBIAN_DOCKER_IMAGE := debian!11
+TEST_DEBIAN_DOCKER_IMAGE := debian!12
 
 .PHONY: help
 help: SHELL := bash
