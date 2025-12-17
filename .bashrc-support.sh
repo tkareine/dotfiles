@@ -58,24 +58,31 @@ tk_version_in_path() {
     fi
 }
 
-: "${tk_bm_num_times:=1000}"
+: "${tk_bm_num_iterations:=1000}"
 
 tk_bm() {
     if [[ $# = 0 ]]; then
         cat <<EOF
+Tiny shell function to benchmark the execution time of a command within
+the shell itself. Avoids the overhead of forking a process for
+measurement. Intended for measuring the latencies of shell commands.
+
 Usage:
 
-  tk_bm true              Measure baseline latency
-  tk_bm whoami            Benchmark a command (here, whoami)
-  tk_bm '[[ \$UID = 0 ]]'  Benchmark a shell command
+  tk_bm true                      Measure baseline latency for comparison
+  tk_bm whoami                    Benchmark a command (here, \`whoami\`)
+  tk_bm '[[ \$UID = 0 ]]'          Benchmark a shell command
+  tk_bm 'eval "\$PROMPT_COMMAND"'  Benchmark your shell prompt
 
-Use the tk_bm_num_times shell variable to control the number of
-benchmark iterations (currently $tk_bm_num_times).
+Use the \`tk_bm_num_iterations\` shell variable to control the number of
+benchmark iterations (currently $tk_bm_num_iterations).
+
+Caveat: the command must not print to stderr.
 EOF
         return 2
     fi
 
-    local num_times="${tk_bm_num_times:-1000}"
+    local num_iterations="${tk_bm_num_iterations:-1000}"
     local TIMEFORMAT=%3R
     local cmd="$*"
 
@@ -84,13 +91,13 @@ EOF
     local total_secs per_cmd_ms
 
     total_secs=$({
-        time for ((r = 0; r < num_times; r += 1)); do __tk_bm_cmd >/dev/null; done
+        time for ((r = 0; r < num_iterations; r += 1)); do __tk_bm_cmd >/dev/null; done
         true
     } 2>&1)
 
-    per_cmd_ms=$(printf "scale=10\n(%s / %s) * 1000\n" "$total_secs" "$num_times" | bc)
+    per_cmd_ms=$(printf "scale=10\n(%s / %s) * 1000\n" "$total_secs" "$num_iterations" | bc)
 
     unset __tk_bm_cmd
 
-    printf '%.3f secs for %d times run command: %s\n%.3f ms/command\n' "$total_secs" "$num_times" "$cmd" "$per_cmd_ms"
+    printf '%.3f secs for %d times to run command: %s\nmean per command: %.3f ms\n' "$total_secs" "$num_iterations" "$cmd" "$per_cmd_ms"
 }
