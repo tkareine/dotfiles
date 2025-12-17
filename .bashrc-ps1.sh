@@ -107,6 +107,8 @@ tk__last_cmd_exit_status=0
 tk_prompt_command() {
     tk__last_cmd_exit_status=$?
     history -a
+    history -c
+    history -r
     tk_set_prompt
 }
 

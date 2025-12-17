@@ -121,8 +121,11 @@ if tk_is_login_shell; then
     export XDG_DATA_HOME=~/.local/share
     export XDG_STATE_HOME=~/.local/state
 
-    # Bash: ignore commands that begin with space and duplicate commands
-    export HISTCONTROL=erasedups:ignoreboth
+    # Bash: ignore commands that begin with space; delete earlier
+    # commands that are duplicates of the current command. Don't use
+    # `ignoreboth` (which implies `ignoredups`) together with
+    # `erasedups`.
+    export HISTCONTROL=ignorespace:erasedups
     export HISTIGNORE='bg?( *):clear:exit:fg?( *):history?( *):ll:ls?( *):reset'
     export HISTTIMEFORMAT='%F %T '
     export HISTFILESIZE=10000
