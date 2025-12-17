@@ -76,8 +76,6 @@ Usage:
 
 Use the \`tk_bm_num_iterations\` shell variable to control the number of
 benchmark iterations (currently $tk_bm_num_iterations).
-
-Caveat: the command must not print to stderr.
 EOF
         return 2
     fi
@@ -93,7 +91,7 @@ EOF
     total_secs=$({
         time for ((r = 0; r < num_iterations; r += 1)); do __tk_bm_cmd >/dev/null; done
         true
-    } 2>&1)
+    } 2>&1 | tail -n 1)
 
     per_cmd_ms=$(printf "scale=10\n(%s / %s) * 1000\n" "$total_secs" "$num_iterations" | bc)
 

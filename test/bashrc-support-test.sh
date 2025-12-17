@@ -73,11 +73,11 @@ test_tk_bm() {
     # shellcheck disable=SC2034
     readarray -t actual < <(
         tk_bm_num_iterations=2
-        tk_bm 'sleep 0.1 && false'
+        tk_bm 'echo "Intentional error message" >&2 && false'
     )
 
     local exp_lines=(
-        $'^[0-9]+\\.[0-9]{3} secs for 2 times to run command: sleep 0.1 && false$'
+        $'^[0-9]+\\.[0-9]{3} secs for 2 times to run command: echo "Intentional error message" >&2 && false$'
         $'^mean per command: [0-9]+\\.[0-9]{3} ms$'
     )
 
