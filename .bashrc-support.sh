@@ -84,14 +84,14 @@ EOF
     local TIMEFORMAT=%3R
     local cmd="$*"
 
-    eval "__tk_bm_cmd() { $cmd; }"
+    eval "__tk_bm_cmd() { { $cmd; } &>/dev/null; }"
 
     local total_secs per_cmd_ms
 
     total_secs=$({
-        time for ((r = 0; r < num_iterations; r += 1)); do __tk_bm_cmd >/dev/null; done
+        time for ((r = 0; r < num_iterations; r += 1)); do __tk_bm_cmd; done
         true
-    } 2>&1 | tail -n 1)
+    } 2>&1)
 
     per_cmd_ms=$(printf "scale=10\n(%s / %s) * 1000\n" "$total_secs" "$num_iterations" | bc)
 
