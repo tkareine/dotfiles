@@ -81,7 +81,7 @@ EOF
     fi
 
     local num_iterations="${tk_bm_num_iterations:-1000}"
-    local TIMEFORMAT=%3R
+    local TIMEFORMAT=%6R
     local cmd="$*"
 
     eval "__tk_bm_cmd() { { $cmd; } &>/dev/null; }"
