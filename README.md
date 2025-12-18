@@ -12,9 +12,9 @@ most of my programming and file editing in [Emacs] (see [my .emacs.d],
 separate from this repository) or in [IntelliJ IDEA]; using rich IDEs is
 another reason for the rather bare-bones shell setup I prefer.
 
-I mainly use macOS, so the tools are optimized for that
-environment. Rudimentary support for Linux is in place, however, since I
-occasionally work in a Linux environment for longer periods.
+I mainly use macOS, so the tools are optimized for that environment.
+Rudimentary support for Linux is in place, however, since I occasionally
+work in a Linux environment for longer periods.
 
 I have copied or adapted some contents from others. For small chunks of
 code, I have embedded the source URL in a comment inside the file. When
@@ -41,15 +41,30 @@ optimize the start-up time of my `.bashrc`:
 
 ``` bash
 time bash --login -i -c true
-# => real 0m0.095s
+# => real    0m0.162s
 ```
 
-And especially, I want that the shell prompt gets re-displayed quickly:
+And especially, I want that the shell prompt gets re-displayed quickly.
+In a directory not belonging to a git working tree:
 
 ``` bash
 time eval "$PROMPT_COMMAND"
-# => real 0m0.024s
+# => real    0m0.032s
 ```
+
+The [.bashrc-support.sh](.bashrc-support.sh) defines `tk_bm`, a tiny
+shell function to benchmark the execution time of a command within the
+shell itself. Using that to benchmark shell prompt:
+
+``` bash
+tk_bm 'eval "$PROMPT_COMMAND"'
+# 10.781 secs for 1000 times to run command: eval "$PROMPT_COMMAND"
+# mean per command: 10.781 ms
+```
+
+These outputs are from a Apple M2 Pro, using Bash v5 and
+[bash-completion] with completions enabled for around 30 different
+tools.
 
 ### Show selected versions of programming environments in Bash prompt
 
@@ -140,6 +155,7 @@ chsh -s "$(brew --prefix)/bin/bash"
 [Node.js]: https://nodejs.org/en/
 [Ruby]: https://www.ruby-lang.org/
 [Universal Ctags]: https://docs.ctags.io/en/latest/
+[bash-completion]: https://github.com/scop/bash-completion
 [chnode]: https://github.com/tkareine/chnode
 [chruby]: https://github.com/postmodern/chruby
 [dotfiles-CI]: https://github.com/tkareine/dotfiles/actions/workflows/ci.yml
