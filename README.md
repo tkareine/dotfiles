@@ -41,20 +41,20 @@ optimize the start-up time of my `.bashrc`:
 
 ``` bash
 time bash --login -i -c true
-# => real    0m0.162s
+# real    0m0.162s
 ```
 
 And especially, I want that the shell prompt gets re-displayed quickly.
-In a directory not belonging to a git working tree:
+In a directory not belonging to a Git working tree:
 
 ``` bash
 time eval "$PROMPT_COMMAND"
-# => real    0m0.032s
+# real    0m0.032s
 ```
 
-The [.bashrc-support.sh](.bashrc-support.sh) defines `tk_bm`, a tiny
-shell function to benchmark the execution time of a command within the
-shell itself. Using that to benchmark shell prompt:
+The [.bashrc-support.sh](.bashrc-support.sh) file defines `tk_bm`, a
+tiny shell function to benchmark the execution time of a command within
+the shell itself. Using that to benchmark shell prompt:
 
 ``` bash
 tk_bm 'eval "$PROMPT_COMMAND"'
