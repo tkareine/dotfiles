@@ -39,10 +39,14 @@ else
     tk__use_color_prompt=
 fi
 
-# Keep the implementation of this function fast.
+# Implementation requirements: fast execution and runs successfully with
+# the `set -euo pipefail` shell options.
 #
 # To quickly benchmark time taken to display prompt, run `time eval
 # "$PROMPT_COMMAND"`.
+#
+# Test the support for `set -euo pipefail` simply by setting the options
+# at the prompt.
 tk_set_prompt() {
     local last_cmd_exit_status last_cmd_exit_status_color user_and_host cwd end
 
@@ -71,18 +75,18 @@ tk_set_prompt() {
         fi
     fi
 
-    local git
+    local git=''
     if tk_fn_exist __git_ps1; then
         git="$(__git_ps1 '%s ')"
         [[ -n $tk__use_color_prompt ]] && git="${tk__ansi256_greenblue}${git}${tk__ansi_reset}"
     fi
 
-    local python_venv
+    local python_venv=''
     if [[ -n ${VIRTUAL_ENV:-} ]]; then
         python_venv="(venv) "
     fi
 
-    local host_extras
+    local host_extras=''
     tk_fn_exist tk_set_prompt_hook_host_extras && host_extras="$(tk_set_prompt_hook_host_extras)"
 
     local bin_states=()
@@ -93,7 +97,7 @@ tk_set_prompt() {
 
     [[ -n $JAVA_HOME ]] && bin_states+=("j:$(tk_version_in_path "$JAVA_HOME")")
 
-    local bin_summary
+    local bin_summary=''
     if ((${#bin_states[@]} > 0)); then
         bin_summary="($(tk_join ' ' "${bin_states[@]}"))"
         [[ -n $tk__use_color_prompt ]] && bin_summary="${tk__ansi16b_gray_dark}${bin_summary}${tk__ansi_reset}"
