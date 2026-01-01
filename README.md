@@ -58,11 +58,12 @@ the shell itself. Using that to benchmark shell prompt:
 
 ``` bash
 tk_bm 'eval "$PROMPT_COMMAND"'
-# 10.781 secs for 1000 times to run command: eval "$PROMPT_COMMAND"
-# mean per command: 10.781 ms
+# warmup for 1.150 secs (100 times)
+# run command for 10.821 secs (1000 times): eval "$PROMPT_COMMAND"
+# mean 10.821 ms
 ```
 
-These outputs are from a Apple M2 Pro, using Bash v5 and
+These outputs are from an Apple M2 Pro laptop, using Bash v5 and
 [bash-completion] with completions enabled for around 30 different
 tools.
 

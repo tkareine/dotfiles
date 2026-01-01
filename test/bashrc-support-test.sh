@@ -68,21 +68,25 @@ test_tk_version_in_path_when_parameter() {
 }
 
 test_tk_bm() {
-    local actual
+    local actual_lines
 
     # shellcheck disable=SC2034
-    readarray -t actual < <(
-        tk_bm_num_iterations=2
-        tk_bm 'echo stderr >&2; echo stdout; false'
+    readarray -t actual_lines < <(
+        tk_bm_num_warmups=2
+        tk_bm_num_iterations=3
+        tk_bm 'echo stderr >&2; echo stdout; false' 2>&1
     )
 
+    local line_idx
     local exp_lines=(
-        $'^[0-9]+\\.[0-9]{3} secs for 2 times to run command: echo stderr >&2; echo stdout; false$'
-        $'^mean per command: [0-9]+\\.[0-9]{3} ms$'
+        $'^warmup for [0-9]+\\.[0-9]{3} secs \(2 times\)$'
+        $'run command for [0-9]+\\.[0-9]{3} secs \(3 times\): echo stderr >&2; echo stdout; false$'
+        $'^mean [0-9]+\\.[0-9]{3} ms$'
     )
 
-    [[ ${actual[0]} =~ ${exp_lines[0]} ]] || fail_test "didn't match: ${actual[0]}"
-    [[ ${actual[1]} =~ ${exp_lines[1]} ]] || fail_test "didn't match: ${actual[1]}"
+    for line_idx in "${!exp_lines[@]}"; do
+        [[ ${actual_lines[$line_idx]} =~ ${exp_lines[$line_idx]} ]] || fail_test "didn't match line_idx=$line_idx: ${actual_lines[$line_idx]}"
+    done
 }
 
 TEST_SOURCE=$0 source test/support/suite.sh

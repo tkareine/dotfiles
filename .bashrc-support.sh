@@ -59,13 +59,14 @@ tk_version_in_path() {
 }
 
 : "${tk_bm_num_iterations:=1000}"
+: "${tk_bm_num_warmups:=100}"
 
 tk_bm() {
     if [[ $# = 0 ]]; then
         cat <<EOF
 Tiny shell function to benchmark the execution time of a command within
-the shell itself. Avoids the overhead of forking a process for
-measurement. Intended for measuring the latencies of shell commands.
+the shell itself. Intended for measuring the latencies of shell
+commands.
 
 Usage:
 
@@ -74,28 +75,53 @@ Usage:
   tk_bm '[[ \$UID = 0 ]]'          Benchmark a shell command
   tk_bm 'eval "\$PROMPT_COMMAND"'  Benchmark your shell prompt
 
-Use the \`tk_bm_num_iterations\` shell variable to control the number of
-benchmark iterations (currently $tk_bm_num_iterations).
+Use the following shell variables to control benchmarking:
+
+  tk_bm_num_iterations  Number of benchmark iterations (currently $tk_bm_num_iterations)
+  tk_bm_num_warmups     Number of warmup iterations (currently $tk_bm_num_warmups)
+
+Depends on \`bc(1)\` to be installed.
 EOF
         return 2
     fi
 
-    local num_iterations="${tk_bm_num_iterations:-1000}"
+    local num_iterations=${tk_bm_num_iterations:-1000}
+    local num_warmups=${tk_bm_num_warmups:-100}
     local TIMEFORMAT=%6R
     local cmd="$*"
 
     eval "__tk_bm_cmd() { { $cmd; } &>/dev/null; }"
 
-    local total_secs per_cmd_ms
+    local warmup_secs iterations_secs per_iteration_ms
+    declare -a bm_lines
 
-    total_secs=$({
-        time for ((r = 0; r < num_iterations; r += 1)); do __tk_bm_cmd; done
-        true
+    readarray -n 2 -t bm_lines < <({
+        if ((num_warmups > 0)); then
+            time for ((i = 0; i < num_warmups; i += 1)); do __tk_bm_cmd; done || true
+        fi
+
+        time for ((i = 0; i < num_iterations; i += 1)); do __tk_bm_cmd; done || true
     } 2>&1)
 
-    per_cmd_ms=$(printf "scale=10\n(%s / %s) * 1000\n" "$total_secs" "$num_iterations" | bc)
+    if ((num_warmups > 0)); then
+        warmup_secs=${bm_lines[0]}
+        iterations_secs=${bm_lines[1]}
+
+        printf 'warmup for %.3f secs (%d times)\n' \
+            "$warmup_secs" \
+            "$num_warmups" \
+            >&2
+    else
+        iterations_secs=${bm_lines[0]}
+    fi
+
+    per_iteration_ms=$(printf "scale=10\n(%s / %s) * 1000\n" "$iterations_secs" "$num_iterations" | bc)
+
+    printf 'run command for %.3f secs (%d times): %s\nmean %.3f ms\n' \
+        "$iterations_secs" \
+        "$num_iterations" \
+        "$cmd" \
+        "$per_iteration_ms"
 
     unset __tk_bm_cmd
-
-    printf '%.3f secs for %d times to run command: %s\nmean per command: %.3f ms\n' "$total_secs" "$num_iterations" "$cmd" "$per_cmd_ms"
 }
