@@ -2,7 +2,11 @@
 
 [main]
 multi_line = True
+
 timing = True
+
+# Require Alt/Opt-Enter to execute a command
+multi_line_mode = safe
 
 # \t - Current date and time
 # \u - Username
@@ -15,6 +19,7 @@ timing = True
 # \n - Newline
 # \dsn_alias - name of dsn alias if -D option is used (empty otherwise)
 prompt = '\x1b[1;33m\u\x1b[0;38;5;72m@\h\x1b[0m \x1b[1;38;5;80m\d\x1b[1;38;5;176m\n\#\x1b[0m '
+
 multiline_continuation_char = ' '
 
 min_num_menu_lines = 10
