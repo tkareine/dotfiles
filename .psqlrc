@@ -6,5 +6,8 @@
 \set COMP_KEYWORD_CASE preserve-lower
 
 -- Reference: https://www.postgresql.org/docs/current/app-psql.html#APP-PSQL-PROMPTING
-\set PROMPT1 '%n@%m %~%R%# '
-\set PROMPT2 '%R %# '
+--
+-- Note: the `history-search-{backward,forward}` functions of `readline`
+-- draw incorrectly if the prompt has multiple lines (`\n`)
+\set PROMPT1 '%n@%m %~%x%R%# '
+\set PROMPT2 '%R%# '
