@@ -110,11 +110,19 @@ tk__last_cmd_exit_status=0
 
 tk_prompt_command() {
     tk__last_cmd_exit_status=$?
+    # Just append to command history. Don't clear (`-c`) and load (`-r`)
+    # the history to support calling the previous command again in long
+    # running shell sessions.
     history -a
-    history -c
-    history -r
     tk_set_prompt
 }
+
+tk_reload_history() {
+    history -c
+    history -r
+}
+
+bind -x '"\C-xr": tk_reload_history'
 
 tk_set_title() {
     echo -ne "\\e]0;${USER}@${HOSTNAME}: ${PWD/$HOME/\~}\\007"
