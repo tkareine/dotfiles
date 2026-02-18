@@ -23,7 +23,7 @@
 [commit]
 	verbose = true
 [core]
-	excludesFile = ~/.gitignore
+	excludesFile = ~/.config/git/ignore
 [diff]
 	# See https://luppeng.wordpress.com/2020/10/10/when-to-use-each-of-the-git-diff-algorithms/
 	algorithm = histogram
@@ -72,6 +72,6 @@
 	showPatch = true
 [tag]
 	sort = version:refname
-# Must be last: git includes the contents of the file immediately.
+# Must be last: Git includes the contents of the file immediately
 [include]
-	path = ~/.gitconfig.host
+	path = ~/.config/git/config.host

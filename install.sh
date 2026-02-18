@@ -23,14 +23,14 @@ INSTALL_BY_SYMLINKING_COMMON=(
     .bashrc-ps1.sh
     .bashrc-support.sh
     .cargo/config.toml
-    .config/pnpm/rc
+    .config/git/config
+    .config/git/ignore
     .config/pgcli/config
+    .config/pnpm/rc
     .ctags.d/custom.ctags
     .dircolors
     .eslintrc.json
     .gemrc
-    .gitconfig
-    .gitignore
     .globalrc
     .inputrc
     .irbrc
