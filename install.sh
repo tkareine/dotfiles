@@ -27,6 +27,7 @@ INSTALL_BY_SYMLINKING_COMMON=(
     .config/git/ignore
     .config/pgcli/config
     .config/pnpm/rc
+    .config/tmux/tmux.conf
     .ctags.d/custom.ctags
     .dircolors
     .eslintrc.json
@@ -41,7 +42,6 @@ INSTALL_BY_SYMLINKING_COMMON=(
     .ripgreprc
     .rubocop.yml
     .rustfmt.toml
-    .tmux.conf
     .vimrc
     bin/ansi-colors.sh
     bin/curl-time
