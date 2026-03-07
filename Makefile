@@ -8,8 +8,8 @@ SHFMT_DOCKER_IMAGE := mvdan/shfmt:v3-alpine
 SHELLCHECK_OPTS := -s bash -e SC1090
 SHELLCHECK_DOCKER_IMAGE := koalaman/shellcheck:stable
 
-RUBOCOP_CONFIG_FILE := .rubocop.yml
-RUBOCOP_DOCKER_IMAGE := ruby:3
+RUBOCOP_CONFIG_FILE := .config/rubocop/config.yml
+RUBOCOP_DOCKER_IMAGE := ruby:4
 
 TEST_RUNNER := test/support/runner.sh
 TEST_FILES := $(wildcard test/*-test.sh)

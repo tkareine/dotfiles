@@ -27,6 +27,7 @@ INSTALL_BY_SYMLINKING_COMMON=(
     .config/git/ignore
     .config/pgcli/config
     .config/pnpm/rc
+    .config/rubocop/config.yml
     .config/tmux/tmux.conf
     .config/vim/vimrc
     .ctags.d/custom.ctags
@@ -41,7 +42,6 @@ INSTALL_BY_SYMLINKING_COMMON=(
     .prettierrc.js
     .psqlrc
     .ripgreprc
-    .rubocop.yml
     .rustfmt.toml
     bin/ansi-colors.sh
     bin/curl-time
