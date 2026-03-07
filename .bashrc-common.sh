@@ -187,7 +187,7 @@ if tk_is_login_shell; then
     fi
 
     # Select Ruby if chruby is installed
-    tk_cmd_exist chruby && chruby ruby-3
+    tk_cmd_exist chruby && chruby ruby-4
 
     # Python user installs
     export PYTHONUSERBASE=~/.local
