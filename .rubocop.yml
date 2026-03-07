@@ -19,6 +19,9 @@ Metrics/MethodLength:
   Max: 50
 Metrics/ModuleLength:
   Max: 200
+Naming/FileName:
+  Exclude:
+    - .Brewfile
 Naming/MemoizedInstanceVariableName:
   EnforcedStyleForLeadingUnderscores: required
 Style/ClassAndModuleChildren:
