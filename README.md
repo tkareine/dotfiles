@@ -39,7 +39,7 @@ The font in use is [Input][Input font]
 I get frustrated if the shell feels sluggish to use. That's why I
 optimize the start-up time of my `.bashrc`:
 
-``` bash
+```bash
 time bash --login -i -c true
 # real    0m0.162s
 ```
@@ -47,7 +47,7 @@ time bash --login -i -c true
 And especially, I want that the shell prompt gets re-displayed quickly.
 In a directory not belonging to a Git working tree:
 
-``` bash
+```bash
 time eval "$PROMPT_COMMAND"
 # real    0m0.032s
 ```
@@ -56,7 +56,7 @@ The [.bashrc-support.sh](.bashrc-support.sh) file defines `tk_bm`, a
 tiny shell function to benchmark the execution time of a command within
 the shell itself. Using that to benchmark shell prompt:
 
-``` bash
+```bash
 tk_bm 'eval "$PROMPT_COMMAND"'
 # warmup for 1.150 secs (100 times)
 # run command for 10.821 secs (1000 times): eval "$PROMPT_COMMAND"
@@ -71,9 +71,9 @@ tools.
 
 The Bash prompt shows the currently selected versions of
 
-* [Node.js], using [chnode] (`n:$version` at the top of the prompt),
-* [Ruby], using [chruby] (`r:$version`), and
-* [Java Development Kit], using a tiny shell function called `chjava`
+- [Node.js], using [chnode] (`n:$version` at the top of the prompt),
+- [Ruby], using [chruby] (`r:$version`), and
+- [Java Development Kit], using a tiny shell function called `chjava`
   defined in [.bashrc-common.sh](.bashrc-common.sh) (`j:$version`).
 
 For all these programming environments, I want that the environment
@@ -102,7 +102,7 @@ there's an extensive test suite in [gtags-test.sh](test/gtags-test.sh).
 
 Installing Global with Homebrew:
 
-``` bash
+```bash
 brew install global
 ```
 
@@ -130,7 +130,7 @@ installer skips symlinking or copying. See `./install -h` for more.
 On macOS, [install Homebrew][Homebrew install] to its default prefix
 directory:
 
-``` bash
+```bash
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```
 
@@ -138,7 +138,7 @@ directory:
 
 Installing the latest version of Bash, using [Homebrew] on macOS:
 
-``` bash
+```bash
 brew install bash
 sudo bash -c "echo $(brew --prefix)/bin/bash >> /etc/shells"
 chsh -s "$(brew --prefix)/bin/bash"
