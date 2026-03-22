@@ -1,6 +1,13 @@
 #!/usr/bin/env bash
 
 tk_is_color_term() {
+    # Fast path
+    case $TERM in
+        *-256color | xterm-color | xterm-ghostty)
+            return 0
+            ;;
+    esac
+    # Slow path
     local colors
     if colors=$(tput colors 2>/dev/null); then
         ((colors >= 8))
