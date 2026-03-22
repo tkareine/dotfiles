@@ -49,7 +49,7 @@ In a directory not belonging to a Git working tree:
 
 ```bash
 time eval "$PROMPT_COMMAND"
-# real    0m0.032s
+# real    0m0.029s
 ```
 
 The [.bashrc-support.sh](.bashrc-support.sh) file defines `tk_bm`, a
@@ -58,9 +58,9 @@ the shell itself. Using that to benchmark shell prompt:
 
 ```bash
 tk_bm 'eval "$PROMPT_COMMAND"'
-# warmup for 1.150 secs (100 times)
-# run command for 10.821 secs (1000 times): eval "$PROMPT_COMMAND"
-# mean 10.821 ms
+# warmup for 0.926 secs (100 times)
+# run command for 8.630 secs (1000 times): eval "$PROMPT_COMMAND"
+# mean 8.630 ms
 ```
 
 These outputs are from an Apple M2 Pro laptop, using Bash v5 and
