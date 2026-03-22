@@ -44,7 +44,7 @@ tk_cmd_exist() {
 
 tk_fn_exist() {
     [[ -z ${1:-} ]] && tk_print_error "tk_fn_exist(): expects function name as the parameter" && return 1
-    [[ $(type -t "$1") == "function" ]]
+    declare -F "$1" >/dev/null
 }
 
 tk_is_login_shell() {
