@@ -20,7 +20,8 @@ tk_is_root() {
     [[ $UID == "0" ]]
 }
 
-# Optimization: cache whether we use color prompt or not
+# Optimization: cache whether we use color prompt or not, and
+# pre-compute static prompt parts that don't change in a shell session
 if tk_is_color_term; then
     # Syntax:
     #
@@ -42,8 +43,22 @@ if tk_is_color_term; then
     tk__ansi256_greenblue='\[\e[38;5;72m\]'
     tk__ansi256_red_bold='\[\e[1;38;5;203m\]'
     tk__ansi256_violet_bold='\[\e[1;38;5;176m\]'
+    tk__ps1_user_and_host="${tk__ansi256_greenblue}\\u@\\h${tk__ansi_reset} "
+    tk__ps1_cwd="${tk__ansi256_bluegreen_bold}\\w${tk__ansi_reset} "
+    if tk_is_root; then
+        tk__ps1_end="${tk__ansi256_red_bold}#${tk__ansi_reset} "
+    else
+        tk__ps1_end="${tk__ansi256_violet_bold}\$${tk__ansi_reset} "
+    fi
 else
     tk__use_color_prompt=
+    tk__ps1_user_and_host='\u@\h '
+    tk__ps1_cwd='\w '
+    if tk_is_root; then
+        tk__ps1_end='# '
+    else
+        tk__ps1_end='$ '
+    fi
 fi
 
 # Implementation requirements: fast execution and runs successfully with
@@ -55,31 +70,18 @@ fi
 # Test the support for `set -euo pipefail` simply by setting the options
 # at the prompt.
 tk_set_prompt() {
-    local last_cmd_exit_status last_cmd_exit_status_color user_and_host cwd end
+    local last_cmd_exit_status
 
     if [[ -n $tk__use_color_prompt ]]; then
+        local last_cmd_exit_status_color
         if [[ $tk__last_cmd_exit_status == 0 ]]; then
             last_cmd_exit_status_color=$tk__ansi16b_gray_dark_bold
         else
             last_cmd_exit_status_color=$tk__ansi256_red_bold
         fi
         last_cmd_exit_status="${last_cmd_exit_status_color}${tk__last_cmd_exit_status}${tk__ansi_reset} "
-        user_and_host="${tk__ansi256_greenblue}\\u@\\h${tk__ansi_reset} "
-        cwd="${tk__ansi256_bluegreen_bold}\\w${tk__ansi_reset} "
-        if tk_is_root; then
-            end="${tk__ansi256_red_bold}#${tk__ansi_reset} "
-        else
-            end="${tk__ansi256_violet_bold}\$${tk__ansi_reset} "
-        fi
     else
         last_cmd_exit_status="${tk__last_cmd_exit_status} "
-        user_and_host='\u@\h '
-        cwd='\w '
-        if tk_is_root; then
-            end="# "
-        else
-            end="$ "
-        fi
     fi
 
     local git=''
@@ -110,7 +112,7 @@ tk_set_prompt() {
         [[ -n $tk__use_color_prompt ]] && bin_summary="${tk__ansi16b_gray_dark}${bin_summary}${tk__ansi_reset}"
     fi
 
-    PS1="${last_cmd_exit_status}${user_and_host}${cwd}${git}${python_venv}${host_extras}${bin_summary}\\n${end}"
+    PS1="${last_cmd_exit_status}${tk__ps1_user_and_host}${tk__ps1_cwd}${git}${python_venv}${host_extras}${bin_summary}\\n${tk__ps1_end}"
 }
 
 tk__last_cmd_exit_status=0
