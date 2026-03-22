@@ -7,8 +7,7 @@ umask 0022
 # Disable core dumps; to enable them: `ulimit -S -c unlimited`
 ulimit -S -c 0
 
-# shellcheck disable=SC2154
-if [[ $tk__uname == Darwin* ]]; then
+if [[ $OSTYPE == darwin* ]]; then
     # Soft limit for the maximum number of open file descriptors
     ulimit -S -n 10240
 
@@ -92,7 +91,7 @@ EOF
         [[ -r $chruby_path ]] && source "$chruby_path"
     }
 
-    if [[ $tk__uname == *arm64 && -x /opt/homebrew/bin/brew ]]; then
+    if [[ $HOSTTYPE == aarch64 && -x /opt/homebrew/bin/brew ]]; then
         tk__setup_brew /opt/homebrew 1 /opt/homebrew/share/man
     elif [[ -x /usr/local/bin/brew ]]; then
         tk__setup_brew /usr/local

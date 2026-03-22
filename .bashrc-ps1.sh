@@ -139,8 +139,7 @@ tk_set_title() {
 # shellcheck disable=SC1091
 [[ $tk__brew_path && -r ${tk__brew_path}/etc/profile.d/bash_completion.sh ]] && source "${tk__brew_path}/etc/profile.d/bash_completion.sh"
 
-# shellcheck disable=SC2154
-if [[ $tk__uname == Darwin* ]] && ! /usr/bin/ssh-add -l >/dev/null; then
+if [[ $OSTYPE == darwin* ]] && ! /usr/bin/ssh-add -l >/dev/null; then
     # ssh: load identities with passwords from user's keychain
     /usr/bin/ssh-add --apple-load-keychain 2>/dev/null
 fi
@@ -174,8 +173,8 @@ fi
 
 # Color support for ls
 if tk_is_color_term; then
-    case $tk__uname in
-        Darwin*)
+    case $OSTYPE in
+        darwin*)
             tk_is_login_shell && export LSCOLORS=Hxgxfxdxcxegedabagacad
 
             # Install GNU coreutils for from Homebrew (`brew install
@@ -191,7 +190,7 @@ if tk_is_color_term; then
                 alias ls='ls -FG'
             fi
             ;;
-        Linux*)
+        linux*)
             if [[ -r ~/.dircolors ]]; then
                 source <(dircolors -b ~/.dircolors)
             else
