@@ -139,7 +139,7 @@ tk_set_title() {
 # shellcheck disable=SC1091
 [[ $tk__brew_path && -r ${tk__brew_path}/etc/profile.d/bash_completion.sh ]] && source "${tk__brew_path}/etc/profile.d/bash_completion.sh"
 
-if [[ $OSTYPE == darwin* ]] && ! /usr/bin/ssh-add -l >/dev/null; then
+if [[ $OSTYPE == darwin* ]] && tk_is_login_shell && ! /usr/bin/ssh-add -l >/dev/null; then
     # ssh: load identities with passwords from user's keychain
     /usr/bin/ssh-add --apple-load-keychain 2>/dev/null
 fi
