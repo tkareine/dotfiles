@@ -92,6 +92,7 @@ install_by_copying() {
         elif [[ ! -e $destination || $force_install ]]; then
             echo "copying: $destination -> $source"
             mkdir -p "$(dirname "$destination")"
+            rm -f "$destination" # Delete potential destination file that is a symlink to avoid following it
             cp "$source" "$destination"
         else
             echo "exists already, skipping: $destination"
