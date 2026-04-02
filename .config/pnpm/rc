@@ -6,5 +6,9 @@
 #
 # * https://pnpm.io/cli/config
 # * https://pnpm.io/settings
-# * https://pnpm.io/supply-chain-security
-minimum-release-age = 1440
+
+# Allow installing npm packages older than 3 days
+#
+# https://pnpm.io/supply-chain-security
+# https://docs.npmjs.com/policies/unpublish#packages-published-less-than-72-hours-ago
+minimum-release-age = 4320
