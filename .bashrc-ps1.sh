@@ -229,6 +229,9 @@ alias hgrep='history | \egrep --color=auto -i'
 alias g='git'
 alias gd='git diff --no-index'
 
+# Docker: prune everything over 30 days old
+alias dockerprune='docker system prune --all --filter "until=$((30*24))h"'
+
 # Ruby: shorten commonly used Bundler command
 alias be='bundle exec'
 
