@@ -62,6 +62,9 @@ EOF
 
         if tk_is_login_shell; then
             export HOMEBREW_NO_INSECURE_REDIRECT=1
+
+            # Opt out Homebrew analytics; see
+            # https://docs.brew.sh/Analytics
             export HOMEBREW_NO_ANALYTICS=1
 
             [[ -n $tk__brew_should_export_path && -n $tk__brew_path ]] && export PATH="${tk__brew_path}/bin:${tk__brew_path}/sbin:$PATH"
