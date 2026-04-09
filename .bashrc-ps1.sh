@@ -61,6 +61,24 @@ else
     fi
 fi
 
+# Enable host specific hooks to add content to PS1.
+#
+# Example for intended usage:
+#
+#   if [[ -n $PS1 ]]; then
+#       tk__ps1_aws_profile_hook() {
+#           if [[ -n ${AWS_PROFILE:-} ]]; then
+#               local output="aws:$AWS_PROFILE"
+#               # shellcheck disable=SC2154
+#               [[ -n $tk__use_color_prompt && -n $output ]] && output="${tk__ansi16b_gray_dark}${output}${tk__ansi_reset}"
+#               echo "$output"
+#           fi
+#       }
+#
+#       tk__ps1_extra_hooks+=(tk__ps1_aws_profile_hook)
+#   fi
+tk__ps1_extra_hooks=()
+
 # Implementation requirements: fast execution and runs successfully with
 # the `set -euo pipefail` shell options.
 #
@@ -95,8 +113,14 @@ tk_set_prompt() {
         python_venv="(venv) "
     fi
 
-    local host_extras=''
-    tk_fn_exist tk_set_prompt_hook_host_extras && host_extras="$(tk_set_prompt_hook_host_extras)"
+    local ps1_extras=''
+    local ps1_extra_hook ps1_extra_output
+    for ps1_extra_hook in "${tk__ps1_extra_hooks[@]}"; do
+        ps1_extra_output=$("$ps1_extra_hook") || true
+        if [[ -n $ps1_extra_output ]]; then
+            ps1_extras="${ps1_extras}${ps1_extra_output} "
+        fi
+    done
 
     local bin_states=()
 
@@ -112,7 +136,7 @@ tk_set_prompt() {
         [[ -n $tk__use_color_prompt ]] && bin_summary="${tk__ansi16b_gray_dark}${bin_summary}${tk__ansi_reset}"
     fi
 
-    PS1="${last_cmd_exit_status}${tk__ps1_user_and_host}${tk__ps1_cwd}${git}${python_venv}${host_extras}${bin_summary}\\n${tk__ps1_end}"
+    PS1="${last_cmd_exit_status}${tk__ps1_user_and_host}${tk__ps1_cwd}${git}${python_venv}${ps1_extras}${bin_summary}\\n${tk__ps1_end}"
 }
 
 tk__last_cmd_exit_status=0

@@ -8,8 +8,8 @@
 source ~/.bashrc-support.sh
 source ~/.bashrc-common.sh
 
-[[ -r ~/.bashrc-host.sh ]] && source ~/.bashrc-host.sh
-
 [[ -n $PS1 ]] && source ~/.bashrc-ps1.sh
+
+[[ -r ~/.bashrc-host.sh ]] && source ~/.bashrc-host.sh
 
 true # ensure last command is successful
