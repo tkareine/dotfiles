@@ -132,7 +132,7 @@ tk_set_prompt() {
 
     local bin_summary=''
     if ((${#bin_states[@]} > 0)); then
-        bin_summary="($(tk_join ' ' "${bin_states[@]}"))"
+        IFS=' ' bin_summary="(${bin_states[*]})"
         [[ -n $tk__use_color_prompt ]] && bin_summary="${tk__ansi16b_gray_dark}${bin_summary}${tk__ansi_reset}"
     fi
 
