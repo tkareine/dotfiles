@@ -105,7 +105,7 @@ tk_set_prompt() {
     local git=''
     if tk_fn_exist __git_ps1; then
         git="$(__git_ps1 '%s ')"
-        [[ -n $tk__use_color_prompt ]] && git="${tk__ansi256_greenblue}${git}${tk__ansi_reset}"
+        [[ -n $tk__use_color_prompt && -n $git ]] && git="${tk__ansi256_greenblue}${git}${tk__ansi_reset}"
     fi
 
     local python_venv=''
