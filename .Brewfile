@@ -8,16 +8,12 @@
 #
 # * `brew bundle --help`
 
-tap "d12frosted/emacs-plus"
-tap "tkareine/chnode"
-
 brew "awscli"
 brew "azure-cli"
 brew "bash"
 brew "bash-completion@2"
 brew "chruby"
 brew "coreutils"
-brew "d12frosted/emacs-plus/emacs-plus@30", args: %w[with-modern-icon] if OS.mac?
 brew "ffmpeg"
 brew "fzf"
 brew "git"
@@ -35,10 +31,15 @@ brew "ripgrep"
 brew "ruby-install"
 brew "shellcheck"
 brew "shfmt"
-brew "tkareine/chnode/chnode"
 brew "tmux"
 brew "yt-dlp"
 brew "zoxide"
+
+tap "tkareine/chnode"
+brew "tkareine/chnode/chnode"
+
+tap "d12frosted/emacs-plus"
+brew "d12frosted/emacs-plus/emacs-plus@30", args: %w[with-modern-icon] if OS.mac?
 
 cask "alfred"
 cask "betterdisplay"
