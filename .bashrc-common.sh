@@ -197,4 +197,8 @@ if tk_is_login_shell; then
 
     # Select Java if chjava is installed
     tk_cmd_exist chjava && chjava default
+
+    # Opt out Docker Sandbox analytics; see
+    # https://docs.docker.com/ai/sandboxes/faq/
+    export SBX_NO_TELEMETRY=1
 fi
