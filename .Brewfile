@@ -53,3 +53,6 @@ cask "rectangle"
 cask "spotify"
 cask "temurin@25"
 cask "thunderbird"
+
+tap "docker/tap"
+cask "docker/tap/sbx"
