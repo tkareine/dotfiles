@@ -50,7 +50,6 @@ cask "iterm2"
 cask "jdk-mission-control"
 cask "keepassxc"
 cask "rectangle"
-cask "spotify"
 cask "temurin@25"
 cask "thunderbird"
 
