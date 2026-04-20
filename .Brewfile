@@ -28,6 +28,7 @@ brew "pinentry-mac" if OS.mac?
 brew "pnpm"
 brew "readline"
 brew "ripgrep"
+brew "ruby@4"
 brew "shellcheck"
 brew "shfmt"
 brew "tmux"
