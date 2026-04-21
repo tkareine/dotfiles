@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
-# Install: `brew bundle install --file .Brewfile`
+# Install: `brew bundle install --global`
 #
 # See:
 #
 # * https://docs.brew.sh/Brew-Bundle-and-Brewfile
 #
-# * `brew bundle --help`
+# * `man brew`
 
 brew "awscli"
 brew "azure-cli"

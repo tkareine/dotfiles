@@ -16,7 +16,6 @@ INSTALL_BY_COPYING_DARWIN=(
 )
 
 INSTALL_BY_SYMLINKING_COMMON=(
-    .Brewfile
     .bash_profile
     .bashrc
     .bashrc-common.sh
@@ -25,6 +24,8 @@ INSTALL_BY_SYMLINKING_COMMON=(
     .cargo/config.toml
     .config/git/config
     .config/git/ignore
+    .config/homebrew/Brewfile
+    .config/homebrew/brew.env
     .config/pgcli/config
     .config/pnpm/rc
     .config/rubocop/config.yml

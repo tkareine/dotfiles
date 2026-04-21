@@ -1,5 +1,7 @@
 # Cops docs: https://docs.rubocop.org/rubocop/cops.html
-# Default config: https://github.com/rubocop/rubocop/blob/master/config/default.yml
+#
+# Default config:
+# https://github.com/rubocop/rubocop/blob/master/config/default.yml
 
 AllCops:
   DisplayCopNames: true
@@ -21,7 +23,10 @@ Metrics/ModuleLength:
   Max: 200
 Naming/FileName:
   Exclude:
-    - .Brewfile
+    - "**/.Brewfile"
+    - "**/Brewfile"
+    - ".*/**/.Brewfile"
+    - ".*/**/Brewfile"
 Naming/MemoizedInstanceVariableName:
   EnforcedStyleForLeadingUnderscores: required
 Style/ClassAndModuleChildren:

@@ -7,6 +7,20 @@ umask 0022
 # Disable core dumps; to enable them: `ulimit -S -c unlimited`
 ulimit -S -c 0
 
+if tk_is_login_shell; then
+    # Localization
+    export LANG=en_US.UTF-8
+
+    # Explicitly set XDG_* environment variables so they work on macOS.
+    # Some tools, such as pnpm, use these directories.
+    #
+    # https://wiki.archlinux.org/title/XDG_Base_Directory
+    export XDG_CACHE_HOME=~/.cache
+    export XDG_CONFIG_HOME=~/.config
+    export XDG_DATA_HOME=~/.local/share
+    export XDG_STATE_HOME=~/.local/state
+fi
+
 if [[ $OSTYPE == darwin* ]]; then
     # Soft limit for the maximum number of open file descriptors
     ulimit -S -n 10240
@@ -61,12 +75,6 @@ EOF
         local tk__brew_manpath=${3:-}
 
         if tk_is_login_shell; then
-            export HOMEBREW_NO_INSECURE_REDIRECT=1
-
-            # Opt out Homebrew analytics; see
-            # https://docs.brew.sh/Analytics
-            export HOMEBREW_NO_ANALYTICS=1
-
             [[ -n $tk__brew_should_export_path && -n $tk__brew_path ]] && export PATH="${tk__brew_path}/bin:${tk__brew_path}/sbin:$PATH"
 
             MANPATH="$tk__brew_manpath"
@@ -110,18 +118,6 @@ if tk_is_login_shell; then
     # Set manpath to contain system paths by having the colon character
     # in the end
     export MANPATH="${MANPATH:-}:"
-
-    # Localization
-    export LANG=en_US.UTF-8
-
-    # Explicitly set XDG_* environment variables so they work on macOS.
-    # Some tools, such as pnpm, use these directories.
-    #
-    # https://wiki.archlinux.org/title/XDG_Base_Directory
-    export XDG_CACHE_HOME=~/.cache
-    export XDG_CONFIG_HOME=~/.config
-    export XDG_DATA_HOME=~/.local/share
-    export XDG_STATE_HOME=~/.local/state
 
     # Bash: history control for command lines:
     #
