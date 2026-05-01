@@ -177,7 +177,7 @@ if tk_is_login_shell; then
     # pnpm; see: https://pnpm.io/settings#storedir
     if tk_cmd_exist pnpm; then
         export PNPM_HOME="$XDG_DATA_HOME/pnpm/store"
-        export PATH="$PNPM_HOME:$PATH"
+        export PATH="$PNPM_HOME/bin:$PATH"
     fi
 
     # Select Ruby if chruby is installed

@@ -1,5 +1,3 @@
-# -*- mode: conf -*-
-
 # See config in effect, with defaults: `pnpm config list -g`
 #
 # References:
@@ -11,4 +9,4 @@
 #
 # https://pnpm.io/supply-chain-security
 # https://docs.npmjs.com/policies/unpublish#packages-published-less-than-72-hours-ago
-minimum-release-age = 4320
+minimumReleaseAge: 4320

@@ -27,7 +27,7 @@ INSTALL_BY_SYMLINKING_COMMON=(
     .config/homebrew/Brewfile
     .config/homebrew/brew.env
     .config/pgcli/config
-    .config/pnpm/rc
+    .config/pnpm/config.yaml
     .config/rubocop/config.yml
     .config/tmux/tmux.conf
     .config/vim/vimrc
