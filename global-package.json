@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "dependencies": {
+    "@upstash/context7-mcp": "latest",
     "marked": "latest",
     "prettier": "latest",
     "typescript": "latest",
