@@ -26,6 +26,7 @@ INSTALL_BY_SYMLINKING_COMMON=(
     .config/git/ignore
     .config/homebrew/Brewfile
     .config/homebrew/brew.env
+    .config/k9s/config.yaml
     .config/pgcli/config
     .config/pnpm/config.yaml
     .config/rubocop/config.yml

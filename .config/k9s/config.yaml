@@ -1,0 +1,7 @@
+# Reference: https://k9scli.io/topics/config/
+k9s:
+  logger:
+    buffer: 10000
+    tail: 1000
+  ui:
+    logoless: true
