@@ -12,7 +12,7 @@ if tk_is_login_shell; then
     export LANG=en_US.UTF-8
 
     # Explicitly set XDG_* environment variables so they work on macOS.
-    # Some tools, such as pnpm, use these directories.
+    # Some tools, such as git and tmux, use these directories.
     #
     # https://wiki.archlinux.org/title/XDG_Base_Directory
     export XDG_CACHE_HOME=~/.cache
@@ -173,12 +173,6 @@ if tk_is_login_shell; then
 
     # Select Node.js if chnode is installed
     tk_cmd_exist chnode && chnode node-24
-
-    # pnpm; see: https://pnpm.io/settings#storedir
-    if tk_cmd_exist pnpm; then
-        export PNPM_HOME="$XDG_DATA_HOME/pnpm/store"
-        export PATH="$PNPM_HOME/bin:$PATH"
-    fi
 
     # Select Ruby if chruby is installed
     tk_cmd_exist chruby && chruby ruby-4

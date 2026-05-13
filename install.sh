@@ -28,7 +28,6 @@ INSTALL_BY_SYMLINKING_COMMON=(
     .config/homebrew/brew.env
     .config/k9s/config.yaml
     .config/pgcli/config
-    .config/pnpm/config.yaml
     .config/rubocop/config.yml
     .config/tmux/tmux.conf
     .config/vim/vimrc
