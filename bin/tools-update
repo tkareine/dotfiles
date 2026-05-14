@@ -127,7 +127,7 @@ update_rubygems() {
     gem update --system
 
     jq --raw-output0 '.dependencies[]' ~/Projects/dotfiles/global-rubygems.json \
-        | xargs -0 gem install
+        | xargs -0 gem install --conservative
 
     gem update
 
