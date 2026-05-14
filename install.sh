@@ -6,7 +6,7 @@ set -euo pipefail
 cd "${0%/*}" || exit 1
 SOURCE_DIR=$(pwd -P)
 
-INSTALL_DOTFILE_BY_COPYING_DARWIN=(
+INSTALL_DOTFILES_BY_COPYING_DARWIN=(
     # XCode preferences must be copied instead of symlinking, because
     # modifying them in XCode replaces the symlink with a new copy.
     Library/Developer/Xcode/UserData/KeyBindings/tkareine.idekeybindings
@@ -15,7 +15,7 @@ INSTALL_DOTFILE_BY_COPYING_DARWIN=(
     Library/KeyBindings/DefaultKeyBinding.dict
 )
 
-INSTALL_DOTFILE_BY_SYMLINKING_COMMON=(
+INSTALL_DOTFILES_BY_SYMLINKING_COMMON=(
     .bash_profile
     .bashrc
     .bashrc-common.sh
@@ -54,7 +54,7 @@ INSTALL_DOTFILE_BY_SYMLINKING_COMMON=(
     bin/yaml2json
 )
 
-INSTALL_DOTFILE_BY_SYMLINKING_DARWIN=(
+INSTALL_DOTFILES_BY_SYMLINKING_DARWIN=(
     .macos.sh
     'Library/Application Support/Firefox/Profiles/tkareine/user.js'
     'Library/Application Support/Firefox/profiles.ini.example'
@@ -117,10 +117,10 @@ install_symlink() {
     fi
 }
 
-install_dotfile_by_copying() {
+install_dotfiles_by_copying() {
     local source destination
 
-    [[ $# -le 0 || -z $1 ]] && print_error "install_dotfile_by_copying(): expects file paths as parameters" && return 1
+    [[ $# -le 0 || -z $1 ]] && print_error "install_dotfiles_by_copying(): expects file paths as parameters" && return 1
 
     local file
     for file in "$@"; do
@@ -128,10 +128,10 @@ install_dotfile_by_copying() {
     done
 }
 
-install_dotfile_by_symlinking() {
+install_dotfiles_by_symlinking() {
     local source destination
 
-    [[ $# -le 0 || -z $1 ]] && print_error "install_dotfile_by_symlinking(): expects file paths as parameters" && return 1
+    [[ $# -le 0 || -z $1 ]] && print_error "install_dotfiles_by_symlinking(): expects file paths as parameters" && return 1
 
     local file
     for file in "$@"; do
@@ -171,10 +171,10 @@ while :; do
     shift
 done
 
-install_dotfile_by_symlinking "${INSTALL_DOTFILE_BY_SYMLINKING_COMMON[@]}"
+install_dotfiles_by_symlinking "${INSTALL_DOTFILES_BY_SYMLINKING_COMMON[@]}"
 
 if [[ $OSTYPE == darwin* ]]; then
-    install_dotfile_by_copying "${INSTALL_DOTFILE_BY_COPYING_DARWIN[@]}"
-    install_dotfile_by_symlinking "${INSTALL_DOTFILE_BY_SYMLINKING_DARWIN[@]}"
+    install_dotfiles_by_copying "${INSTALL_DOTFILES_BY_COPYING_DARWIN[@]}"
+    install_dotfiles_by_symlinking "${INSTALL_DOTFILES_BY_SYMLINKING_DARWIN[@]}"
     install_symlinks INSTALL_SYMLINKS_DARWIN
 fi
