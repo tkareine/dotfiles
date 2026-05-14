@@ -1,0 +1,3 @@
+{
+  "dependencies": ["rake", "rubocop"]
+}

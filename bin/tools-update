@@ -105,12 +105,19 @@ update_npm() {
 }
 
 update_rubygems() {
-    cmd_exist gem || {
-        echo "Skip, because \`gem\` command not found" >&2
+    (cmd_exist gem && cmd_exist jq) || {
+        echo "Skip, because \`gem\` or \`jq\` command not found" >&2
         return "$ERROR_UPDATE_COMMAND_NOT_FOUND"
     }
 
-    gem update --system && gem update && gem clean --silent
+    gem update --system
+
+    jq --raw-output0 '.dependencies[]' ~/Projects/dotfiles/global-rubygems.json \
+        | xargs -0 gem install
+
+    gem update
+
+    gem clean --silent
 }
 
 update_brew() {
