@@ -92,7 +92,7 @@ install_copy() {
     if [[ -f $destination ]] && cmp -s "$source" "$destination"; then
         echo "installed already, skipping: $destination"
     elif [[ ! -e $destination || $FORCE_INSTALL ]]; then
-        echo "copying: $destination -> $source"
+        echo "copying: $source -> $destination"
         mkdir -p "$(dirname "$destination")"
         rm -f "$destination" # Delete potential destination file that is a symlink to avoid following it
         cp "$source" "$destination"
