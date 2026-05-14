@@ -74,19 +74,6 @@ EOF
             [[ -n $tk__brew_should_export_path && -n $tk__brew_path ]] && export PATH="${tk__brew_path}/bin:${tk__brew_path}/sbin:$PATH"
 
             MANPATH="$tk__brew_manpath"
-
-            # Put selected Homebrew installed tools before system paths.
-            # You can find the paths with `brew --prefix $tool`. Use
-            # pre-calculated paths, as `brew --prefix` is slow.
-            local tools=(
-                opt/libpq
-                opt/libressl
-            )
-            local tool_subpath
-            for tool_subpath in "${tools[@]}"; do
-                local path="${tk__brew_path}/${tool_subpath}/bin"
-                [[ -d $path && -x $path ]] && export PATH="$path:$PATH"
-            done
         fi
 
         # Install chnode
