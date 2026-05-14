@@ -23,12 +23,15 @@ cmd_exist() {
     command -v "$1" &>/dev/null
 }
 
+DO_UPDATE_IS_FIRST=1
+
 do_update() {
     local tool=$1
     local cmd=$2
-    local is_first=${3:-0}
 
-    if [[ $is_first != "1" ]]; then
+    if [[ -n $DO_UPDATE_IS_FIRST ]]; then
+        DO_UPDATE_IS_FIRST=
+    else
         echo -en "\\n\\n"
     fi
 
@@ -82,14 +85,25 @@ update_dotfiles() {
     do_update_git_project ~/Projects/dotfiles
 }
 
-update_emacsd() {
-    local path=~/.emacs.d
+update_brew() {
+    cmd_exist brew || {
+        echo "Skip, because \`brew\` command not found" >&2
+        return "$ERROR_UPDATE_COMMAND_NOT_FOUND"
+    }
 
-    do_update_git_project "$path" && (
-        cd "$path"
-        make compile
-        make upgrade-packages
-    )
+    brew update \
+        && brew bundle install --global \
+        && brew upgrade \
+        && brew cleanup --scrub
+}
+
+update_rustup() {
+    cmd_exist rustup || {
+        echo "Skip, because \`rustup\` command not found" >&2
+        return "$ERROR_UPDATE_COMMAND_NOT_FOUND"
+    }
+
+    rustup update
 }
 
 update_npm() {
@@ -120,33 +134,22 @@ update_rubygems() {
     gem clean --silent
 }
 
-update_brew() {
-    cmd_exist brew || {
-        echo "Skip, because \`brew\` command not found" >&2
-        return "$ERROR_UPDATE_COMMAND_NOT_FOUND"
-    }
+update_emacsd() {
+    local path=~/.emacs.d
 
-    brew update \
-        && brew bundle install --global \
-        && brew upgrade \
-        && brew cleanup --scrub
+    do_update_git_project "$path" && (
+        cd "$path"
+        make compile
+        make upgrade-packages
+    )
 }
 
-update_rustup() {
-    cmd_exist rustup || {
-        echo "Skip, because \`rustup\` command not found" >&2
-        return "$ERROR_UPDATE_COMMAND_NOT_FOUND"
-    }
-
-    rustup update
-}
-
-do_update "dotfiles" update_dotfiles 1
-do_update ".emacs.d" update_emacsd
+do_update "dotfiles" update_dotfiles
+do_update "Homebrew" update_brew
+do_update "Rust toolchain" update_rustup
 do_update "npm" update_npm
 do_update "RubyGems" update_rubygems
-do_update "Rust toolchain" update_rustup
-do_update "Homebrew" update_brew
+do_update ".emacs.d" update_emacsd
 
 if ((${#script_error_statuses[@]} > 0)); then
     echo -en "\\n=== Failures summary ===\\n\\n" >&2
