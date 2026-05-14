@@ -173,7 +173,7 @@ done
 
 install_dotfile_by_symlinking "${INSTALL_DOTFILE_BY_SYMLINKING_COMMON[@]}"
 
-if [[ $(uname) == "Darwin" ]]; then
+if [[ $OSTYPE == darwin* ]]; then
     install_dotfile_by_copying "${INSTALL_DOTFILE_BY_COPYING_DARWIN[@]}"
     install_dotfile_by_symlinking "${INSTALL_DOTFILE_BY_SYMLINKING_DARWIN[@]}"
     install_symlinks INSTALL_SYMLINKS_DARWIN
