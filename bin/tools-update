@@ -98,7 +98,7 @@ update_npm() {
         return "$ERROR_UPDATE_COMMAND_NOT_FOUND"
     }
 
-    jq --raw-output0 '.dependencies | keys[]' ~/Projects/dotfiles/global-package.json \
+    jq --raw-output0 '.dependencies | keys[]' ~/Projects/dotfiles/global-npm-package.json \
         | xargs -0 npm --global install
 
     npm update --global
