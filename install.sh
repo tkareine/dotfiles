@@ -120,7 +120,7 @@ install_symlink() {
 install_dotfiles_by_copying() {
     local source destination
 
-    [[ $# -le 0 || -z $1 ]] && print_error "install_dotfiles_by_copying(): expects file paths as parameters" && return 1
+    [[ $# -le 0 ]] && print_error "install_dotfiles_by_copying(): expects file paths as parameters" && return 1
 
     local file
     for file in "$@"; do
@@ -131,7 +131,7 @@ install_dotfiles_by_copying() {
 install_dotfiles_by_symlinking() {
     local source destination
 
-    [[ $# -le 0 || -z $1 ]] && print_error "install_dotfiles_by_symlinking(): expects file paths as parameters" && return 1
+    [[ $# -le 0 ]] && print_error "install_dotfiles_by_symlinking(): expects file paths as parameters" && return 1
 
     local file
     for file in "$@"; do
