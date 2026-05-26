@@ -24,6 +24,9 @@
 	verbose = true
 [core]
 	excludesFile = ~/.config/git/ignore
+[credential]
+	# See https://git-scm.com/docs/gitcredentials
+	helper = osxkeychain
 [diff]
 	# See https://luppeng.wordpress.com/2020/10/10/when-to-use-each-of-the-git-diff-algorithms/
 	algorithm = histogram
