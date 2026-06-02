@@ -31,7 +31,7 @@
 	# See https://luppeng.wordpress.com/2020/10/10/when-to-use-each-of-the-git-diff-algorithms/
 	algorithm = histogram
 
-	colorMoved = zebra
+	colorMoved = dimmed-zebra
 	mnemonicPrefix = true
 	renames = true
 	submodule = log
