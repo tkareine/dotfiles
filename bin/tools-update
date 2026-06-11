@@ -93,7 +93,7 @@ update_brew() {
 
     brew update \
         && brew bundle install --global \
-        && brew upgrade \
+        && brew upgrade --no-ask \
         && brew cleanup --scrub
 }
 
