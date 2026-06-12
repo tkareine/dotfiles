@@ -3,20 +3,23 @@
 set -euo pipefail
 
 ERROR_SCRIPT_FAILURES=1
-ERROR_TERMINATE_REQUESTED=2
 ERROR_GIT_UNCLEAN_WORKING_TREE=11
 ERROR_GIT_UNEXPECTED_BRANCH=12
 ERROR_UPDATE_COMMAND_NOT_FOUND=253
 
 SCRIPT_ERROR_STATUSES=()
 
-request_terminate() {
-    echo "${0##*/}: Terminate requested" >&2
-    exit "$ERROR_TERMINATE_REQUESTED"
+THIS_SCRIPT=${0##*/}
+
+cleanup() {
+    local original_exit_code=$?
+    local signal=$1
+    echo "$THIS_SCRIPT: $signal requested" >&2
+    exit "$original_exit_code"
 }
 
-trap request_terminate SIGTERM
-trap request_terminate SIGINT
+trap 'cleanup SIGTERM' TERM
+trap 'cleanup SIGINT' INT
 
 cmd_exist() {
     [[ -z $1 ]] && echo "cmd_exist(): expects command name as the parameter" >&2 && return "$ERROR_UPDATE_COMMAND_NOT_FOUND"
