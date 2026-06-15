@@ -12,10 +12,10 @@ SCRIPT_ERROR_STATUSES=()
 THIS_SCRIPT=${0##*/}
 
 cleanup() {
-    local original_exit_code=$?
+    local original_exit_status=$?
     local signal=$1
     echo "$THIS_SCRIPT: $signal requested" >&2
-    exit "$original_exit_code"
+    exit "$original_exit_status"
 }
 
 trap 'cleanup SIGTERM' TERM
