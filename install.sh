@@ -21,6 +21,7 @@ INSTALL_DOTFILES_BY_SYMLINKING_COMMON=(
     .bashrc-common.sh
     .bashrc-ps1.sh
     .bashrc-support.sh
+    .bundle/config
     .cargo/config.toml
     .config/git/config
     .config/git/ignore
