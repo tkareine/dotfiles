@@ -143,10 +143,6 @@ update_emacsd() {
     do_update_git_project "$path" && (
         cd "$path"
         make compile
-
-        # For now, disable updating packages, because we track package
-        # versions with a lock file (`~/.emacs.d/elpaca-lockfile.eld`)
-        # make update-packages
     )
 }
 
