@@ -165,7 +165,7 @@ if tk_is_login_shell; then
     tk_cmd_exist chruby && chruby ruby-4
 
     # Python user installs
-    export PYTHONUSERBASE=~/.local
+    export PYTHONUSERBASE=~/.local/python
     [[ -d $PYTHONUSERBASE/bin ]] && export PATH="$PYTHONUSERBASE/bin:$PATH"
 
     # Rust toolchain (`rustup`)
