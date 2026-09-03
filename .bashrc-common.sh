@@ -168,6 +168,14 @@ if tk_is_login_shell; then
     export PYTHONUSERBASE=~/.local/python
     [[ -d $PYTHONUSERBASE/bin ]] && export PATH="$PYTHONUSERBASE/bin:$PATH"
 
+    # Go toolchain; see `go help environment` and current settings with
+    # `go env`
+    export GOENV=$XDG_CONFIG_HOME/go/env
+    export GOPATH=$XDG_DATA_HOME/go
+    export GOCACHE=$XDG_CACHE_HOME/go/build
+    export GOBIN=~/.local/go/bin
+    [[ -d $GOBIN ]] && export PATH=$GOBIN:"$PATH"
+
     # Rust toolchain (`rustup`); see https://doc.rust-lang.org/cargo/guide/cargo-home.html
     [[ -d ~/.cargo/bin ]] && export PATH=~/.cargo/bin:"$PATH"
 
