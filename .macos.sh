@@ -5,6 +5,7 @@
 # * `man 1 defaults`
 # * https://macos-defaults.com/
 # * https://www.real-world-systems.com/docs/defaults.1.html
+# * Mac keyboard shortcuts: https://support.apple.com/en-us/102650
 #
 # Originally adapted from Mathias Bynens' `.macos`, available at
 # https://mths.be/macos . Thanks!
