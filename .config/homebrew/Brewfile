@@ -36,8 +36,10 @@ brew "zoxide"
 tap "tkareine/chnode"
 brew "tkareine/chnode/chnode", trusted: true
 
-tap "d12frosted/emacs-plus", trusted: true
-brew "d12frosted/emacs-plus/emacs-plus@30", args: %w[with-modern-icon] if OS.mac?
+if OS.mac?
+  tap "d12frosted/emacs-plus", trusted: true
+  brew "d12frosted/emacs-plus/emacs-plus@30"
+end
 
 cask "alfred"
 cask "betterdisplay"
