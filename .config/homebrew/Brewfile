@@ -33,7 +33,6 @@ brew "tmux"
 brew "yt-dlp"
 brew "zoxide"
 
-tap "tkareine/chnode"
 brew "tkareine/chnode/chnode", trusted: true
 
 if OS.mac?
@@ -53,5 +52,4 @@ cask "rectangle"
 cask "temurin@25"
 cask "thunderbird"
 
-tap "docker/tap"
 cask "docker/tap/sbx", trusted: true
