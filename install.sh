@@ -95,7 +95,9 @@ install_copy() {
     elif [[ ! -e $destination || $FORCE_INSTALL ]]; then
         echo "copying: $source -> $destination"
         mkdir -p "$(dirname "$destination")"
-        rm -f "$destination" # Delete potential destination file that is a symlink to avoid following it
+        # Delete potential destination file that is a symlink to avoid
+        # following it
+        rm -f "$destination"
         cp "$source" "$destination"
     else
         echo "exists already, skipping: $destination"
@@ -103,18 +105,22 @@ install_copy() {
 }
 
 install_symlink() {
-    local source=$1 destination=$2
+    local source=$1 target=$2
 
-    [[ $# -le 1 || -z $source || -z $destination ]] && print_error "install_symlink(): expects source and destination as parameters" && return 1
+    [[ $# -le 1 || -z $source || -z $target ]] && print_error "install_symlink(): expects source and target as parameters" && return 1
 
-    if [[ -L $destination && $source -ef $destination ]]; then
-        echo "installed already, skipping: $destination"
-    elif [[ ! -e $destination || $FORCE_INSTALL ]]; then
-        echo "symlinking: $destination -> $source"
-        mkdir -p "$(dirname "$destination")"
-        ln -sf "$source" "$destination"
+    if [[ -L $target && $(readlink "$target") = "$source" ]]; then
+        echo "installed already, skipping: $target"
+    elif [[ ! -e $target || $FORCE_INSTALL ]]; then
+        echo "symlinking: $target -> $source"
+        mkdir -p "$(dirname "$target")"
+        # Delete potential target file to force using the expected
+        # source. At least on macOS, `ln -sf` does not unlink the target
+        # if source is a symlink which differs from the expected source.
+        rm -f "$target"
+        ln -s "$source" "$target"
     else
-        echo "exists already, skipping: $destination"
+        echo "exists already, skipping: $target"
     fi
 }
 
