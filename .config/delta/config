@@ -1,0 +1,26 @@
+# See: https://dandavison.github.io/delta/configuration.html
+[delta]
+	line-numbers = true
+	dark = true
+	syntax-theme = base16-256
+
+	file-style = "#949494 bold"
+	file-decoration-style = "#8a8a8a ul"
+	file-added-label = [+]
+	file-copied-label = [==]
+	file-modified-label = [*]
+	file-removed-label = [-]
+	file-renamed-label = [->]
+
+	hunk-header-decoration-style = "#3a3a3a ul"
+	hunk-header-line-number-style = "#8a8a8a"
+	hunk-header-file-style = "#949494"
+	hunk-label = " "
+
+	line-numbers-left-style = "#3a3a3a"
+	line-numbers-right-style = "#3a3a3a"
+	line-numbers-minus-style = "#b63a2c"
+	line-numbers-plus-style = "#489963"
+	line-numbers-zero-style = "#3a3a3a"
+	line-numbers-left-format = " {nm:>3} │"
+	line-numbers-right-format = " {np:>3} │"

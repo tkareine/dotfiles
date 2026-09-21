@@ -23,6 +23,7 @@ INSTALL_DOTFILES_BY_SYMLINKING_COMMON=(
     .bashrc-support.sh
     .bundle/config
     .cargo/config.toml
+    .config/delta/config
     .config/git/config
     .config/git/ignore
     .config/homebrew/Brewfile
