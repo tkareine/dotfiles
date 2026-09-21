@@ -125,8 +125,6 @@ install_symlink() {
 }
 
 install_dotfiles_by_copying() {
-    local source destination
-
     [[ $# -le 0 ]] && print_error "install_dotfiles_by_copying(): expects file paths as parameters" && return 1
 
     local file
@@ -136,8 +134,6 @@ install_dotfiles_by_copying() {
 }
 
 install_dotfiles_by_symlinking() {
-    local source destination
-
     [[ $# -le 0 ]] && print_error "install_dotfiles_by_symlinking(): expects file paths as parameters" && return 1
 
     local file
@@ -147,10 +143,9 @@ install_dotfiles_by_symlinking() {
 }
 
 install_symlinks() {
-    local -n asso_array_ref
-
     [[ $# -le 0 || -z $1 ]] && print_error "install_symlinks(): expects reference to associated array name, where the array maps destination file paths to source file paths" && return 1
 
+    local -n asso_array_ref
     asso_array_ref=$1
 
     local destination
