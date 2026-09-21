@@ -7,8 +7,29 @@ git:
     - command: delta --paging=never --side-by-side
 gui:
   sidePanelWidth: 0.25
+  timeFormat: 02 Jan 06
+  shortTimeFormat: "15:04"
   # See:
   # https://github.com/jesseduffield/lazygit/blob/master/docs/Config.md#color-attributes
   theme:
+    defaultFgColor:
+      - default
+    activeBorderColor:
+      - "#83adad"
+      - bold
+    inactiveBorderColor:
+      - "#8a8a8a"
+    searchingActiveBorderColor:
+      - "#ff8700"
     optionsTextColor:
       - "#8a8a8a"
+    selectedLineBgColor:
+      - "#3a3a3a"
+    cherryPickedCommitBgColor:
+      - "#8a8a8a"
+    cherryPickedCommitFgColor:
+      - "#83adad"
+    markedBaseCommitFgColor:
+      - "#83adad"
+    unstagedChangesColor:
+      - "#d75f5f"
