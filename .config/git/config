@@ -24,9 +24,14 @@
 	verbose = true
 [core]
 	excludesFile = ~/.config/git/ignore
+        pager = delta
 [credential]
 	# See https://git-scm.com/docs/gitcredentials
 	helper = osxkeychain
+[delta]
+	navigate = true
+        line-numbers = true
+        syntax-theme = gruvbox-dark
 [diff]
 	# See https://luppeng.wordpress.com/2020/10/10/when-to-use-each-of-the-git-diff-algorithms/
 	algorithm = histogram
@@ -48,6 +53,8 @@
 	numbered = true
 [init]
 	defaultBranch = main
+[interactive]
+	diffFilter = delta --color-only
 [merge]
 	# See https://ductile.systems/zdiff3/
 	conflictStyle = zdiff3
