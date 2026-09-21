@@ -1,0 +1,14 @@
+# Reference:
+# https://github.com/jesseduffield/lazygit/blob/master/docs/Config.md
+git:
+  diffRenderers:
+    # See:
+    # https://github.com/jesseduffield/lazygit/blob/master/docs/Custom_DiffRenderers.md#delta
+    - command: delta --paging=never --side-by-side
+gui:
+  sidePanelWidth: 0.25
+  # See:
+  # https://github.com/jesseduffield/lazygit/blob/master/docs/Config.md#color-attributes
+  theme:
+    optionsTextColor:
+      - "#8a8a8a"

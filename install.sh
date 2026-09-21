@@ -28,6 +28,7 @@ INSTALL_DOTFILES_BY_SYMLINKING_COMMON=(
     .config/homebrew/Brewfile
     .config/homebrew/brew.env
     .config/k9s/config.yaml
+    .config/lazygit/config.yml
     .config/pgcli/config
     .config/rubocop/config.yml
     .config/tmux/tmux.conf
