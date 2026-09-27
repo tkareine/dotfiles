@@ -26,6 +26,7 @@ INSTALL_DOTFILES_BY_SYMLINKING_COMMON=(
     .config/delta/config
     .config/git/config
     .config/git/ignore
+    .config/ghostty/config.ghostty
     .config/homebrew/Brewfile
     .config/homebrew/brew.env
     .config/k9s/config.yaml

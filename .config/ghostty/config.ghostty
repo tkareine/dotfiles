@@ -1,0 +1,80 @@
+# See
+#
+# * https://ghostty.org/docs/config
+#
+# * `/Applications/Ghostty.app/Contents/MacOS/ghostty +show-config --default --docs`
+#
+# Reload Ghostty config with Cmd+Shift+<comma>
+
+font-family = JetBrains Mono
+font-style = Regular
+font-size = 14
+
+# Don't attempt to synthesize font styles
+font-synthetic-style = no-bold,no-italic,no-bold-italic
+
+# Disable programming ligatures
+font-feature = -calt
+
+adjust-cell-width = -2%
+
+background = #000000
+foreground = #c7c7c7
+background-opacity = 1
+
+selection-background = #7ea8d9
+selection-foreground = #000000
+
+search-foreground = #000000
+search-background = #fefb51
+
+# See https://www.ditig.com/256-colors-cheat-sheet
+palette = 0=#686868
+palette = 1=#c62411
+palette = 2=#33a057
+palette = 3=#c7c437
+palette = 4=#3d85ec
+palette = 5=#c636c2
+palette = 6=#0fc4c8
+palette = 7=#ffffff
+palette = 8=#686868
+palette = 9=#fe716b
+palette = 10=#6dcd79
+palette = 11=#fffc7a
+palette = 12=#77bfee
+palette = 13=#fe7af9
+palette = 14=#6afcfe
+palette = 15=#ffffff
+
+palette-generate = false
+
+cursor-color = cell-foreground
+cursor-opacity = 1
+cursor-style = block
+cursor-style-blink = false
+
+mouse-hide-while-typing = true
+
+# The size of the scrollback buffer in bytes
+scrollback-limit = 10000000
+
+copy-on-select = true
+clipboard-read = ask
+clipboard-write = allow
+clipboard-trim-trailing-spaces = true
+clipboard-paste-protection = true
+
+unfocused-split-fill = #262626
+split-divider-color = #262626
+
+shell-integration = detect
+
+# Disable modifying cursor style via shell integration
+shell-integration-features = no-cursor
+
+window-save-state = never
+
+macos-shortcuts = deny
+
+auto-update = check
+auto-update-channel = stable
