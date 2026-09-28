@@ -9,6 +9,8 @@
 font-family = JetBrains Mono
 font-style = Regular
 font-size = 14
+font-thicken = true
+font-thicken-strength = 127
 
 # Don't attempt to synthesize font styles
 font-synthetic-style = no-bold,no-italic,no-bold-italic
