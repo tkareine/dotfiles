@@ -2,7 +2,7 @@
 [delta]
 	line-numbers = true
 	dark = true
-	syntax-theme = base16-256
+	syntax-theme = 1337
 
 	file-style = "#949494 bold"
 	file-decoration-style = "#8a8a8a ul"
