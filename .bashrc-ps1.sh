@@ -33,8 +33,14 @@ if tk_is_color_term; then
     # SGR (Select Graphic Rendition) parameters are control sequences of
     # `CSI n m`, written as `\e[$n1;...;${nN}m]`
     #
+    # To print for $PS1, wrap CSI sequences in `\[<csi>\]` to signal
+    # Readline that they're non-printable characters.
+    #
     # See:
-    # https://en.wikipedia.org/wiki/ANSI_escape_code#CSI_(Control_Sequence_Introducer)_sequences
+    #
+    # * https://en.wikipedia.org/wiki/ANSI_escape_code#CSI_(Control_Sequence_Introducer)_sequences
+    #
+    # * https://www.gnu.org/software/bash/manual/bash.html#Controlling-the-Prompt-1
     tk__use_color_prompt=1
     tk__ansi_reset='\[\e[0m\]'
     tk__ansi16b_gray_dark='\[\e[90m\]'
