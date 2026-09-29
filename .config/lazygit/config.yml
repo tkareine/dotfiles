@@ -9,6 +9,7 @@ gui:
   sidePanelWidth: 0.25
   timeFormat: 02 Jan 06
   shortTimeFormat: "15:04"
+  mouseEvents: false
   # See:
   # https://github.com/jesseduffield/lazygit/blob/master/docs/Config.md#color-attributes
   theme:
