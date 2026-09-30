@@ -420,6 +420,7 @@ defaults write com.apple.iCal 'Show Week Numbers' -bool true
 # Notes: set additional keyboard shortcuts; see
 # `Library/KeyBindings/DefaultKeyBinding.dict` for a summary of key
 # modifiers
+
 defaults write com.apple.Notes NSUserKeyEquivalents -dict \
     'Remove Style' '@~c' \
     'Bulleted List' '@~b' \
@@ -432,6 +433,70 @@ defaults write com.apple.TextEdit RichText -int 0
 # TextEdit: open and save files as UTF-8
 defaults write com.apple.TextEdit PlainTextEncoding -int 4
 defaults write com.apple.TextEdit PlainTextEncodingForWrite -int 4
+
+# Rectangle
+setup_rectangle_app_shortcuts() {
+    local plist=com.knollsoft.Rectangle
+
+    # Ctrl+Option+Cmd
+    local coc_modifier_flags=1835008
+
+    local -A coc_commands_by_keycode=(
+        [topHalf]=126    # <up>
+        [bottomHalf]=125 # <down>
+        [leftHalf]=123   # <left>
+        [rightHalf]=124  # <right>
+        [centerHalf]=47  # .
+
+        [restore]=44        # /
+        [maximize]=43       # ,
+        [maximizeHeight]=42 # \
+
+        [larger]=24  # =
+        [smaller]=27 # -
+
+        [firstTwoThirds]=33 # [
+        [lastThird]=30      # ]
+    )
+
+    local command
+    for command in "${!coc_commands_by_keycode[@]}"; do
+        defaults write "$plist" "$command" -dict keyCode "${coc_commands_by_keycode[$command]}" modifierFlags "$coc_modifier_flags"
+    done
+
+    # Shift+Ctrl+Cmd
+    local scc_modifier_flags=917504
+
+    local -A scc_commands_by_keycode=(
+        [nextDisplay]=123     # <left>
+        [previousDisplay]=124 # <right>
+    )
+
+    for command in "${!scc_commands_by_keycode[@]}"; do
+        defaults write "$plist" "$command" -dict keyCode "${scc_commands_by_keycode[$command]}" modifierFlags "$scc_modifier_flags"
+    done
+
+    local -a unset_commands=(
+        bottomLeft
+        bottomRight
+        topLeft
+        topRight
+
+        moveUp
+        moveDown
+        moveLeft
+        moveRight
+    )
+
+    for command in "${unset_commands[@]}"; do
+        defaults write "$plist" "$command" -dict
+    done
+
+    # Preserve maximize state when moving across displays
+    defaults write "$plist" autoMaximize -int 1
+}
+
+setup_rectangle_app_shortcuts
 
 # Google Chrome: disable swipe navigation, because it has bad
 # implementation
