@@ -139,6 +139,7 @@ defaults write com.apple.WindowManager HasDisplayedShowDesktopEducation -bool tr
 defaults write com.apple.WindowManager EnableStandardClickToShowDesktop -bool false
 
 # Window Manager: enable tiling by dragging windows to screen edges
+defaults write com.apple.WindowManager EnableTopTilingByEdgeDrag -bool true
 defaults write com.apple.WindowManager EnableTilingByEdgeDrag -bool true
 
 # Window Manager: enable Option shortcut to highlight window tiling area
