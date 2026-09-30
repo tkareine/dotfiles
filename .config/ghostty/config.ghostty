@@ -56,6 +56,7 @@ cursor-style = block
 cursor-style-blink = false
 
 mouse-hide-while-typing = true
+mouse-scroll-multiplier = precision:2,discrete:3
 
 # The size of the scrollback buffer in bytes
 scrollback-limit = 10000000
