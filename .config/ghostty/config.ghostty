@@ -18,7 +18,7 @@ font-synthetic-style = no-bold,no-italic,no-bold-italic
 # Disable programming ligatures
 font-feature = -calt
 
-adjust-cell-width = -2%
+adjust-cell-width = -3%
 
 background = #000000
 foreground = #c7c7c7
