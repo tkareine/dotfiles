@@ -77,3 +77,6 @@ user_pref("network.cookie.sameSite.laxByDefault", true);
 // - https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/DNT
 // - https://kb.mozillazine.org/Privacy.donottrackheader.enabled
 user_pref("privacy.donottrackheader.enabled", false);
+
+// For now, disable the new Nova UI design
+user_pref("browser.nova.enabled", false);
