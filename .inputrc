@@ -52,6 +52,9 @@ set colored-stats on
 # are taken from the value of the LS_COLORS environment variable.
 set colored-completion-prefix on
 
+# Key binding `C-<backspace>`
+"\C-h": backward-kill-word
+
 # Key binding `<esc> C-r`: incremental backward history search
 "\e\C-r": reverse-search-history
 
