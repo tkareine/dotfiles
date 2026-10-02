@@ -5,3 +5,4 @@ k9s:
     tail: 1000
   ui:
     logoless: true
+    skin: transparent
