@@ -21,7 +21,7 @@ user_pref("browser.nova.enabled", false);
 // vertical space for the viewport
 user_pref("sidebar.verticalTabs", true);
 
-// Scroll viewport with left/right swipe gestures.
+// Scroll viewport with left/right swipe gestures
 user_pref("browser.gesture.swipe.left", "cmd_scrollLeft");
 user_pref("browser.gesture.swipe.right", "cmd_scrollRight");
 
@@ -59,12 +59,12 @@ user_pref("privacy.trackingprotection.cryptomining.enabled", true);
 // Enable social media tracking protection
 user_pref("privacy.trackingprotection.socialtracking.enabled", true);
 
-// Force all connections to websites to use https.
+// Force all connections to websites to use https
 //
 // Read more: https://support.mozilla.org/en-US/kb/https-only-prefs
 user_pref("dom.security.https_only_mode", true);
 
-// Enable DNS-over-HTTPS.
+// Enable DNS-over-HTTPS
 //
 // Read more:
 // - https://support.mozilla.org/en-US/kb/firefox-dns-over-https
@@ -73,7 +73,7 @@ user_pref("network.trr.mode", 2);
 user_pref("network.trr.uri", "https://mozilla.cloudflare-dns.com/dns-query");
 
 // Make SameSite=Lax as the default behavior for cookies that don't
-// specify the SameSite attribute.
+// specify the SameSite attribute
 //
 // Read more: https://web.dev/samesite-cookies-explained/
 //
@@ -82,7 +82,7 @@ user_pref("network.trr.uri", "https://mozilla.cloudflare-dns.com/dns-query");
 user_pref("network.cookie.sameSite.laxByDefault", true);
 
 // Disable sending DNT (Do Not Track) header on requests as it can be
-// used for fingerprinting.
+// used for fingerprinting
 //
 // Read more:
 // - https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/DNT
