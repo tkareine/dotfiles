@@ -10,6 +10,17 @@
 //
 // Semicolons ending JavaScript statements are mandatory.
 
+// We're overriding user preferences already, so we know the risks
+user_pref("browser.aboutConfig.showWarning", false);
+
+// For now, disable the new Nova UI design (too round, which is bad for
+// screen estate)
+user_pref("browser.nova.enabled", false);
+
+// Vertical tabs allow more content to be shown inside the tab and more
+// vertical space for the viewport
+user_pref("sidebar.verticalTabs", true);
+
 // Scroll viewport with left/right swipe gestures.
 user_pref("browser.gesture.swipe.left", "cmd_scrollLeft");
 user_pref("browser.gesture.swipe.right", "cmd_scrollRight");
@@ -77,6 +88,3 @@ user_pref("network.cookie.sameSite.laxByDefault", true);
 // - https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/DNT
 // - https://kb.mozillazine.org/Privacy.donottrackheader.enabled
 user_pref("privacy.donottrackheader.enabled", false);
-
-// For now, disable the new Nova UI design
-user_pref("browser.nova.enabled", false);
