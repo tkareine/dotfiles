@@ -31,7 +31,7 @@ search-foreground = #000000
 search-background = #fefb51
 
 # See https://www.ditig.com/256-colors-cheat-sheet
-palette = 0=#686868
+palette = 0=#000000
 palette = 1=#c62411
 palette = 2=#33a057
 palette = 3=#c7c437
