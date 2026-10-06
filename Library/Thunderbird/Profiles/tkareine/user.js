@@ -33,3 +33,9 @@ user_pref("mailnews.message_display.disable_remote_image", true);
 user_pref("mail.chat.play_sound", false);
 
 user_pref("mail.chat.enabled", false);
+
+// Sort messages in descending order by default
+user_pref("mailnews.default_sort_order", 2);
+
+// Sort messages by Date by default
+user_pref("mailnews.default_sort_type", 18);
