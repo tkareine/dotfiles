@@ -1,9 +1,12 @@
 # Reference:
 # https://github.com/jesseduffield/lazygit/blob/master/docs/Config.md
 git:
+  # Don't automatically fast-forward local branches having upstream
+  # tracking
+  autoForwardBranches: none
+  # See:
+  # https://github.com/jesseduffield/lazygit/blob/master/docs/Custom_DiffRenderers.md#delta
   diffRenderers:
-    # See:
-    # https://github.com/jesseduffield/lazygit/blob/master/docs/Custom_DiffRenderers.md#delta
     - command: delta --paging=never --side-by-side
 gui:
   sidePanelWidth: 0.25
