@@ -39,7 +39,7 @@ brew "tkareine/chnode/chnode", trusted: true
 
 if OS.mac?
   tap "d12frosted/emacs-plus", trusted: true
-  brew "d12frosted/emacs-plus/emacs-plus@30"
+  brew "d12frosted/emacs-plus/emacs-plus@31"
 end
 
 cask "alfred"
