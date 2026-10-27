@@ -59,10 +59,9 @@ mouse-hide-while-typing = true
 mouse-scroll-multiplier = precision:2,discrete:3
 
 # The size of the scrollback buffer in bytes
-scrollback-limit = 10000000
+scrollback-limit-bytes = 10000000
 
-# Always copy selection to both the selection clipboard and the system
-# clipboard
+# Copy selection to the system clipboard only
 copy-on-select = clipboard
 
 clipboard-read = ask
