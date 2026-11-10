@@ -9,7 +9,6 @@
 # * `man brew`
 
 brew "awscli"
-brew "azure-cli"
 brew "bash"
 brew "bash-completion@2"
 brew "chruby"
